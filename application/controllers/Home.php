@@ -65,6 +65,8 @@ class Home extends CI_Controller
         // Get the category ids
         if (isset($_GET['category']) && !empty($_GET['category'] && $_GET['category'] != "all")) {
             $selected_category_id = $this->crud_model->get_category_id($_GET['category']);
+            // print_r($selected_category_id);
+            // die();
         }
 
         // Get the selected price

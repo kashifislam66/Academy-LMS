@@ -593,7 +593,7 @@ class Admin extends CI_Controller
             // get catalauge
             $get_catalauge = $this->api_model->catalauge_response($get_login_decode->access_token);
             $get_catalauge_decode = json_decode($get_catalauge);
-           
+        //    print_r($get_catalauge_decode); die();
             foreach($get_catalauge_decode->hits as $catalague_result) {
                 // get course from db if exist
                 $course_details = $this->crud_model->get_course_by_api_id($catalague_result->id)->row_array();
@@ -617,14 +617,17 @@ class Admin extends CI_Controller
                         if(empty($course_details) ||  $course_details == "") {
                             if($i == 0) {
                                 $parent = 0;
+                                $icon = "fab fa-500px";
                             } else {
                                 $parent = $cat_value[0];
+                                $icon = "fab fa-accessible-icon";
                             }
                             $cataguary_add = [
                                 'name'=>$cataguary->value,
                                 'code'=>$cataguary->key,
                                 'slug'=>slugify(html_escape($cataguary->value)),
                                 'parent'=>$parent,
+                                'font_awesome_class'=>$icon,
                                 'date_added'=>strtotime($catalague_result->created_time),
                                 'last_modified'=>strtotime($catalague_result->updated_time),
                                 
@@ -645,9 +648,26 @@ class Admin extends CI_Controller
                 // } else {
                 //     $is_free_course = 0;
                 // }
-                $outcomes = "";
+                $outcomes = json_encode(array());
                 if(isset($catalague_result->attributes->learning_outcomes)) {
                 $outcomes = $this->crud_model->trim_and_return_json($catalague_result->attributes->learning_outcomes);
+                }
+                $skills = json_encode(array());
+                if(isset($catalague_result->attributes->skills)) {
+                $skills = $this->crud_model->trim_and_return_json($catalague_result->attributes->skills);
+                }
+               
+               
+                $cat_values = array();
+                foreach($cat_value as $key => $val) {
+                  if($key != 0) {
+                    $cat_values[] = $val;
+                  } 
+                }
+                $sub_catagoury = "";
+                if(isset($cat_values)) {
+                    // array_shift($cat_value);
+                   $sub_catagoury =  implode(',',$cat_values);
                 }
                 $course_add = [
                     'title'=>$catalague_result->title,
@@ -657,15 +677,16 @@ class Admin extends CI_Controller
                     'is_admin'=>1,
                     'course_type'=>'general',
                     'category_id'=>isset($cat_value[0]) ?  $cat_value[0] : '',
-                    'sub_category_id'=>isset($cat_value[1]) ?  $cat_value[1] : '',
+                    'sub_category_id'=>$sub_catagoury,
                     'date_added'=>strtotime($catalague_result->created_time),
                     'thumbnail'=>$catalague_result->image,
                     'last_modified'=>strtotime($catalague_result->updated_time),
                     'price'=> 90,
                     'level'=> isset($catalague_result->attributes->entry_level->value) ? $catalague_result->attributes->entry_level->value : '',
                     'outcomes'=>$outcomes,
+                    'requirements'=>$skills,
                     'section'=>json_encode(array()),
-                    'course_overview_provider'=>$catalague_result->provider->name,
+                    'course_overview_provider'=>"html5",
                     'is_free_course'=> 0,
                     'meta_keywords'=>isset($catalague_result->tags) ? implode(', ', $catalague_result->tags) : '',
                     'meta_description'=>isset($catalague_result->summary) ?  $catalague_result->summary : '',

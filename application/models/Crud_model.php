@@ -2183,14 +2183,18 @@ class Crud_model extends CI_Model
     // version 1.4
     function filter_course($selected_category_id = "", $selected_price = "", $selected_level = "", $selected_language = "", $selected_rating = "")
     {
-        //echo $selected_category_id.' '.$selected_price.' '.$selected_level.' '.$selected_language.' '.$selected_rating;
-
+        // echo $selected_category_id.' '.$selected_price.' '.$selected_level.' '.$selected_language.' '.$selected_rating;
+// die();
         $course_ids = array();
         if ($selected_category_id != "all") {
             $category_details = $this->get_category_details_by_id($selected_category_id)->row_array();
 
             if ($category_details['parent'] > 0) {
-                $this->db->where('sub_category_id', $selected_category_id);
+                
+            //   $sub =   explode(',', $category_details['sub_category_id']);
+            $search="FIND_IN_SET ('$selected_category_id',sub_category_id)";
+             $this->db->where($search);
+                // $this->db->where_in('sub_category_id', $selected_category_id);
             } else {
                 $this->db->where('category_id', $selected_category_id);
             }
@@ -3086,7 +3090,8 @@ class Crud_model extends CI_Model
     }
 
     function get_active_course_by_category_id($category_id = "", $category_id_type = "category_id"){
-        $this->db->where($category_id_type, $category_id);
+        $search="FIND_IN_SET ('$category_id',$category_id_type)";
+        $this->db->where($search);
         $this->db->where('status', 'active');
         return $this->db->get('course');
     }

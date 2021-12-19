@@ -855,7 +855,7 @@ class Api_model extends CI_Model
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		CURLOPT_URL => 'https://api.go1.com/v2/learning-objects?limit=50&offset=50',
+		CURLOPT_URL => 'https://api.go1.com/v2/learning-objects',
 		CURLOPT_RETURNTRANSFER => true,
 		CURLOPT_ENCODING => '',
 		CURLOPT_MAXREDIRS => 10,

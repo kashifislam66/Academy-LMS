@@ -810,5 +810,7 @@
     "italian": "Italian",
     "successfully_enrolled": "Successfully enrolled",
     "german": "German",
-    "suitable_for_everyone": "Suitable for everyone"
+    "suitable_for_everyone": "Suitable for everyone",
+    "no_records_found": "No records found",
+    "updated_successfully": "Updated successfully"
 }

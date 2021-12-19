@@ -139,6 +139,7 @@
                                                         <option value="beginner"><?php echo get_phrase('beginner'); ?></option>
                                                         <option value="advanced"><?php echo get_phrase('advanced'); ?></option>
                                                         <option value="intermediate"><?php echo get_phrase('intermediate'); ?></option>
+                                                        <option value="Suitable for everyone">Suitable for Everyone</option>
                                                     </select>
                                                 </div>
                                             </div>

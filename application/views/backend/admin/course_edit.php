@@ -273,7 +273,8 @@ $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
                                                         <select class="form-control select2" data-toggle="select2" name="level" id="level">
                                                             <option value="beginner" <?php if ($course_details['level'] == "beginner") echo 'selected'; ?>><?php echo get_phrase('beginner'); ?></option>
                                                             <option value="advanced" <?php if ($course_details['level'] == "advanced") echo 'selected'; ?>><?php echo get_phrase('advanced'); ?></option>
-                                                            <option value="intermediate" <?php if ($course_details['level'] == "intermediate") echo 'selected'; ?>><?php echo get_phrase('intermediate'); ?>
+                                                            <option value="intermediate" <?php if ($course_details['level'] == "intermediate") echo 'selected'; ?>><?php echo get_phrase('intermediate'); ?></option>
+                                                            <option value="Suitable for everyone" <?php if ($course_details['level'] == "Suitable for everyone") echo 'selected'; ?>>Suitable for Everyone</option>
                                                         </select>
                                                     </div>
                                                 </div>
