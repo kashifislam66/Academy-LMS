@@ -49,7 +49,8 @@ class Api_model extends CI_Model
 		$category_details = $this->crud_model->get_category_details_by_id($category_id)->row_array();
 
 		if ($category_details['parent'] > 0) {
-			$this->db->where('sub_category_id', $category_id);
+			$search="FIND_IN_SET ('$category_id',sub_category_id)";
+			$this->db->where($search);
 		} else {
 			$this->db->where('category_id', $category_id);
 		}
