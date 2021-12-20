@@ -26,6 +26,13 @@ $course_details_url = site_url("home/course/".slugify($course_details['title']).
         </div>
     </div>
 
+ <?php   if(isset($file_path)) { ?>
+    <body style=" margin: 0; ">
+		<iframe class="iframe" src="<?php echo $file_path ?>"  frameborder="0" style="display: block;background: #000;border: none;height: 100vh;width: 100vw;" height="150%" width="150%"></iframe>
+		</body>
+       
+<?php	}else { ?>
+
     <div class="row" id = "lesson-container">
         <?php if (isset($lesson_id) == true || isset($scorm_curriculum) == true): ?>
             <!-- Course content, video, quizes, files starts-->
@@ -75,4 +82,7 @@ $course_details_url = site_url("home/course/".slugify($course_details['title']).
             </div>
         </div>
     </div>
+    <?php } ?>
 </div>
+
+

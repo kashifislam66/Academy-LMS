@@ -593,15 +593,19 @@ class Admin extends CI_Controller
             // get catalauge
             $get_catalauge = $this->api_model->catalauge_response($get_login_decode->access_token);
             $get_catalauge_decode = json_decode($get_catalauge);
-        //    print_r($get_catalauge_decode); die();
+           
+           
+           
             foreach($get_catalauge_decode->hits as $catalague_result) {
                 // get course from db if exist
                 $course_details = $this->crud_model->get_course_by_api_id($catalague_result->id)->row_array();
                 if(empty($course_details) || $course_details == "") {
-                // get preview video play link from api
+                // get scorm from api
+                $get_catalauge_scorm = $this->api_model->catalauge_scorm_response($get_login_decode->access_token,$catalague_result->id);
+
                 $get_catalauge_play = $this->api_model->catalauge_play_response($get_login_decode->access_token,$catalague_result->id);
                 $get_catalauge_play_decode = json_decode($get_catalauge_play);
-               
+                
                 
                 $cat_value = array();
                 $i = 0;
@@ -641,13 +645,7 @@ class Admin extends CI_Controller
                     $i++;
                   
                 }
-                   
-               // check if the course is free
-                // if($catalague_result->pricing->price == 0 &&  $catalague_result->pricing->tax == 0) {
-                //     $is_free_course = 1;
-                // } else {
-                //     $is_free_course = 0;
-                // }
+                
                 $outcomes = json_encode(array());
                 if(isset($catalague_result->attributes->learning_outcomes)) {
                 $outcomes = $this->crud_model->trim_and_return_json($catalague_result->attributes->learning_outcomes);
@@ -755,12 +753,26 @@ class Admin extends CI_Controller
                     file_put_contents('uploads/thumbnails/lesson_thumbnails/'.$lesson_add_id.'.jpg', $content);
                 }
 
-              
-               
-              
-               
-               
+                if (!file_exists('uploads/scorm/'.$lesson_add_id)) {
+                    mkdir('uploads/scorm/'.$lesson_add_id, 0777, true);
                 }
+
+                if(!file_exists('uploads/scorm/'.$lesson_add_id.'/file.zip')) {
+                 
+                    file_put_contents('uploads/scorm/'.$lesson_add_id.'/file.zip', $get_catalauge_scorm);
+                    $zip = new ZipArchive;
+                    // Zip File Name
+                    $res = $zip->open('uploads/scorm/'.$lesson_add_id.'/file.zip');
+                    
+                    if ($res === TRUE) {
+                        
+                        // Unzip Path 
+                        $zip->extractTo('uploads/scorm/'.$lesson_add_id.'/');
+                            
+                        $zip->close();
+                    } 
+                }
+            }
             }
         }
        

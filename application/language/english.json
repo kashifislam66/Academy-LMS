@@ -812,5 +812,18 @@
     "german": "German",
     "suitable_for_everyone": "Suitable for everyone",
     "no_records_found": "No records found",
-    "updated_successfully": "Updated successfully"
+    "updated_successfully": "Updated successfully",
+    "student_has_been_enrolled_to_that_course": "Student has been enrolled to that course",
+    "application_submitted_successfully": "Application submitted successfully",
+    "applicant": "Applicant",
+    "approve": "Approve",
+    "application_approved_successfully": "Application approved successfully",
+    "approved": "Approved",
+    "list_of_sections": "List of sections",
+    "update_sorting": "Update sorting",
+    "sections_have_been_sorted": "Sections have been sorted",
+    "quiz_title": "Quiz title",
+    "instruction": "Instruction",
+    "scorm_course": "Scorm course",
+    "access_on_laptop_and_tv": "Access on laptop and tv"
 }

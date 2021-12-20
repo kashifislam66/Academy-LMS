@@ -718,6 +718,8 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
     $.ajax({
       url: '<?php echo site_url('home/go_course_playing_page/'); ?>'+course_id,
       type: 'POST',
+      dataType: 'JSON',
+      cache:false,
       success: function(response) {
         if(response == 1){
           window.location.replace(course_playing_url);
