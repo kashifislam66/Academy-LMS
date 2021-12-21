@@ -852,11 +852,11 @@ class Api_model extends CI_Model
 		return $response;
 	}
 
-	public function catalauge_response($token) {
+	public function catalauge_response($token,$lo_id) {
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		CURLOPT_URL => 'https://api.go1.com/v2/learning-objects',
+		CURLOPT_URL => 'https://api.go1.com/v2/learning-objects/'.$lo_id,
 		CURLOPT_RETURNTRANSFER => true,
 		CURLOPT_ENCODING => '',
 		CURLOPT_MAXREDIRS => 10,

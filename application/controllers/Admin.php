@@ -589,24 +589,37 @@ class Admin extends CI_Controller
         $get_login = $this->api_model->login_go1();
         $get_login_decode = json_decode($get_login);
         if(isset($get_login_decode->access_token)) {
-
-            // get catalauge
-            $get_catalauge = $this->api_model->catalauge_response($get_login_decode->access_token);
-            $get_catalauge_decode = json_decode($get_catalauge);
+            $array = $this->crud_model->go1Array();
+            $arr = 0;
+            $count = 0;
+            while ($arr <= count($array)) {
+               
+                $value_id = $array[$arr];
+                $arr++;
+               
+               
+            
+           // get course from db if exist
+           $course_details = $this->crud_model->get_course_by_api_id( $value_id)->row_array();
+           if(empty($course_details) || $course_details == "") {
+              if ($count > 100) { break; }
+               $count++; 
+           // get catalauge
+            $get_catalauge = $this->api_model->catalauge_response($get_login_decode->access_token, $value_id);
+            $catalague_result = json_decode($get_catalauge);
+            // print_r( $catalague_result); die();
            
-           
-           
-            foreach($get_catalauge_decode->hits as $catalague_result) {
-                // get course from db if exist
-                $course_details = $this->crud_model->get_course_by_api_id($catalague_result->id)->row_array();
-                if(empty($course_details) || $course_details == "") {
+               
+                    // if ($arr >= 100) { break; }
+                    
                 // get scorm from api
-                $get_catalauge_scorm = $this->api_model->catalauge_scorm_response($get_login_decode->access_token,$catalague_result->id);
+                $get_catalauge_scorm = $this->api_model->catalauge_scorm_response($get_login_decode->access_token,$value_id);
 
-                $get_catalauge_play = $this->api_model->catalauge_play_response($get_login_decode->access_token,$catalague_result->id);
+                $get_catalauge_play = $this->api_model->catalauge_play_response($get_login_decode->access_token,$value_id);
                 $get_catalauge_play_decode = json_decode($get_catalauge_play);
                 
-                
+                if(isset($catalague_result->title)) {
+                  
                 $cat_value = array();
                 $i = 0;
                 foreach($catalague_result->attributes->topics as $cataguary) {
@@ -716,6 +729,45 @@ class Admin extends CI_Controller
                         
                         $duration =  sprintf($format, $hours, $minutes,$seconds);
                     }
+
+                    if(isset($catalague_result->items)) {
+                        foreach($catalague_result->items as $items_value) {
+                            
+                            $section = [
+                                'title'=>html_escape($items_value->title),
+                                'course_id'=>$course_add_id,
+                            ];
+            
+                            $section_id_value =  $this->crud_model->add_section_api($section);
+                            if(isset($items_value->items)) {
+                                foreach($items_value->items as $items_sub) {
+
+                                                $lesson_add = [
+                                                    'title'=>$items_sub->title,
+                                                    'duration'=> "00:00:00",
+                                                    'video_type'=>'html5',
+                                                    'video_url'=>"",
+                                                    'date_added'=>strtotime($items_sub->created_time),
+                                                    'lesson_type'=>'html5',
+                                                    'last_modified'=>strtotime($items_sub->updated_time),
+                                                    'attachment'=> "",
+                                                    'section_id'=> $section_id_value,
+                                                    'course_id'=>$course_add_id,
+                                                    'attachment_type'=> $items_sub->type,
+                                                    'video_url_for_mobile_application'=>"",
+                                                    'summary'=>isset($items_sub->summary) ?  $items_sub->summary : '',
+                                                    'video_type_for_mobile_application'=>'html5',
+                                                    'video_url_for_mobile_application'=>"",
+                                                    'duration_for_mobile_application'=>"00:00:00",
+                                                    'is_free'=> 0,
+                                                
+                                                ];
+                                                 $this->crud_model->add_lesson_api($lesson_add);
+                                }
+                            }
+
+                        }
+                    }
                   
             
                 $lesson_add = [
@@ -736,7 +788,6 @@ class Admin extends CI_Controller
                     'video_url_for_mobile_application'=>isset($get_catalauge_play_decode->player) ? $get_catalauge_play_decode->player : '',
                     'duration_for_mobile_application'=>$duration,
                     'is_free'=> 0,
-                    'duration_for_mobile_application'=>isset($catalague_result->tags) ? implode(', ', $catalague_result->tags) : '',
                    
                 ];
                 $lesson_add_id =  $this->crud_model->add_lesson_api($lesson_add);
@@ -772,9 +823,18 @@ class Admin extends CI_Controller
                         $zip->close();
                     } 
                 }
+                } else {
+                    echo "<pre>";
+                    print_r($value_id."wrong"); 
+                    echo "</pre>";
+                }
+               
+                
+                
             }
             }
         }
+        
        
         die();
 
