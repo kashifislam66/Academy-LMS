@@ -52,7 +52,7 @@ class Super_Admin extends CI_Controller
             } else {
                 $this->session->set_flashdata('error_message', get_phrase('category_name_already_exists'));
             }
-            redirect(site_url('admin/categories'), 'refresh');
+            redirect(site_url('super_admin/categories'), 'refresh');
         } elseif ($param1 == "edit") {
 
             $response = $this->crud_model->edit_category($param2);
@@ -61,12 +61,12 @@ class Super_Admin extends CI_Controller
             } else {
                 $this->session->set_flashdata('error_message', get_phrase('category_name_already_exists'));
             }
-            redirect(site_url('admin/categories'), 'refresh');
+            redirect(site_url('super_admin/categories'), 'refresh');
         } elseif ($param1 == "delete") {
 
             $this->crud_model->delete_category($param2);
             $this->session->set_flashdata('flash_message', get_phrase('data_deleted'));
-            redirect(site_url('admin/categories'), 'refresh');
+            redirect(site_url('super_admin/categories'), 'refresh');
         }
         $page_data['page_name'] = 'categories';
         $page_data['page_title'] = get_phrase('categories');
@@ -107,7 +107,7 @@ class Super_Admin extends CI_Controller
         }
 
         $category_id = $this->input->post('category_id');
-        redirect(site_url("admin/sub_categories/$category_id"), 'refresh');
+        redirect(site_url("super_admin/sub_categories/$category_id"), 'refresh');
     }
 
     public function sub_category_form($param1 = "", $param2 = "")
@@ -143,13 +143,13 @@ class Super_Admin extends CI_Controller
 
         if ($param1 == "add") {
             $this->user_model->add_user(true); // PROVIDING TRUE FOR INSTRUCTOR
-            redirect(site_url('admin/instructors'), 'refresh');
+            redirect(site_url('super_admin/instructors'), 'refresh');
         } elseif ($param1 == "edit") {
             $this->user_model->edit_user($param2);
-            redirect(site_url('admin/instructors'), 'refresh');
+            redirect(site_url('super_admin/instructors'), 'refresh');
         } elseif ($param1 == "delete") {
             $this->user_model->delete_user($param2);
-            redirect(site_url('admin/instructors'), 'refresh');
+            redirect(site_url('super_admin/instructors'), 'refresh');
         }
 
         $page_data['page_name'] = 'instructors';
@@ -192,13 +192,13 @@ class Super_Admin extends CI_Controller
 
         if ($param1 == "add") {
             $this->user_model->add_user();
-            redirect(site_url('admin/users'), 'refresh');
+            redirect(site_url('super_admin/users'), 'refresh');
         } elseif ($param1 == "edit") {
             $this->user_model->edit_user($param2);
-            redirect(site_url('admin/users'), 'refresh');
+            redirect(site_url('super_admin/users'), 'refresh');
         } elseif ($param1 == "delete") {
             $this->user_model->delete_user($param2);
-            redirect(site_url('admin/users'), 'refresh');
+            redirect(site_url('super_admin/users'), 'refresh');
         }
 
         $page_data['page_name'] = 'users';
@@ -280,7 +280,7 @@ class Super_Admin extends CI_Controller
 
         if ($param1 == 'enrol') {
             $this->crud_model->enrol_a_student_manually();
-            redirect(site_url('admin/enrol_history'), 'refresh');
+            redirect(site_url('super_admin/enrol_history'), 'refresh');
         }
         $page_data['page_name'] = 'enrol_student';
         $page_data['page_title'] = get_phrase('enrol_a_student');
@@ -322,8 +322,6 @@ class Super_Admin extends CI_Controller
         $page_data['payment_history'] = $this->crud_model->get_revenue_by_user_type($page_data['timestamp_start'], $page_data['timestamp_end'], 'admin_revenue');
         $page_data['page_title'] = get_phrase('admin_revenue');
 
-
-
         $this->load->view('backend/index', $page_data);
     }
 
@@ -364,7 +362,7 @@ class Super_Admin extends CI_Controller
 
         $this->crud_model->delete_enrol_history($param1);
         $this->session->set_flashdata('flash_message', get_phrase('data_deleted_successfully'));
-        redirect(site_url('admin/enrol_history'), 'refresh');
+        redirect(site_url('super_admin/enrol_history'), 'refresh');
     }
 
     public function purchase_history()
@@ -390,19 +388,19 @@ class Super_Admin extends CI_Controller
         if ($param1 == 'system_update') {
             $this->crud_model->update_system_settings();
             $this->session->set_flashdata('flash_message', get_phrase('system_settings_updated'));
-            redirect(site_url('admin/system_settings'), 'refresh');
+            redirect(site_url('super_admin/system_settings'), 'refresh');
         }
 
         if ($param1 == 'logo_upload') {
             move_uploaded_file($_FILES['logo']['tmp_name'], 'assets/backend/logo.png');
             $this->session->set_flashdata('flash_message', get_phrase('backend_logo_updated'));
-            redirect(site_url('admin/system_settings'), 'refresh');
+            redirect(site_url('super_admin/system_settings'), 'refresh');
         }
 
         if ($param1 == 'favicon_upload') {
             move_uploaded_file($_FILES['favicon']['tmp_name'], 'assets/favicon.png');
             $this->session->set_flashdata('flash_message', get_phrase('favicon_updated'));
-            redirect(site_url('admin/system_settings'), 'refresh');
+            redirect(site_url('super_admin/system_settings'), 'refresh');
         }
 
         $page_data['languages']  = $this->crud_model->get_all_languages();
@@ -423,39 +421,39 @@ class Super_Admin extends CI_Controller
         if ($param1 == 'frontend_update') {
             $this->crud_model->update_frontend_settings();
             $this->session->set_flashdata('flash_message', get_phrase('frontend_settings_updated'));
-            redirect(site_url('admin/frontend_settings'), 'refresh');
+            redirect(site_url('super_admin/frontend_settings'), 'refresh');
         }
 
         if ($param1 == 'recaptcha_update') {
             $this->crud_model->update_recaptcha_settings();
             $this->session->set_flashdata('flash_message', get_phrase('recaptcha_settings_updated'));
-            redirect(site_url('admin/frontend_settings'), 'refresh');
+            redirect(site_url('super_admin/frontend_settings'), 'refresh');
         }
 
         if ($param1 == 'banner_image_update') {
             $this->crud_model->update_frontend_banner();
             $this->session->set_flashdata('flash_message', get_phrase('banner_image_update'));
-            redirect(site_url('admin/frontend_settings'), 'refresh');
+            redirect(site_url('super_admin/frontend_settings'), 'refresh');
         }
         if ($param1 == 'light_logo') {
             $this->crud_model->update_light_logo();
             $this->session->set_flashdata('flash_message', get_phrase('logo_updated'));
-            redirect(site_url('admin/frontend_settings'), 'refresh');
+            redirect(site_url('super_admin/frontend_settings'), 'refresh');
         }
         if ($param1 == 'dark_logo') {
             $this->crud_model->update_dark_logo();
             $this->session->set_flashdata('flash_message', get_phrase('logo_updated'));
-            redirect(site_url('admin/frontend_settings'), 'refresh');
+            redirect(site_url('super_admin/frontend_settings'), 'refresh');
         }
         if ($param1 == 'small_logo') {
             $this->crud_model->update_small_logo();
             $this->session->set_flashdata('flash_message', get_phrase('logo_updated'));
-            redirect(site_url('admin/frontend_settings'), 'refresh');
+            redirect(site_url('super_admin/frontend_settings'), 'refresh');
         }
         if ($param1 == 'favicon') {
             $this->crud_model->update_favicon();
             $this->session->set_flashdata('flash_message', get_phrase('favicon_updated'));
-            redirect(site_url('admin/frontend_settings'), 'refresh');
+            redirect(site_url('super_admin/frontend_settings'), 'refresh');
         }
 
         $page_data['page_name'] = 'frontend_settings';
@@ -473,20 +471,20 @@ class Super_Admin extends CI_Controller
 
         if ($param1 == 'system_currency') {
             $this->crud_model->update_system_currency();
-            redirect(site_url('admin/payment_settings'), 'refresh');
+            redirect(site_url('super_admin/payment_settings'), 'refresh');
         }
         if ($param1 == 'paypal_settings') {
             $this->crud_model->update_paypal_settings();
-            redirect(site_url('admin/payment_settings'), 'refresh');
+            redirect(site_url('super_admin/payment_settings'), 'refresh');
         }
         if ($param1 == 'stripe_settings') {
             $this->crud_model->update_stripe_settings();
-            redirect(site_url('admin/payment_settings'), 'refresh');
+            redirect(site_url('super_admin/payment_settings'), 'refresh');
         }
 
         if ($param1 == 'razorpay_settings') {
             $this->crud_model->update_razorpay_settings();
-            redirect(site_url('admin/payment_settings'), 'refresh');
+            redirect(site_url('super_admin/payment_settings'), 'refresh');
         }
 
         $page_data['page_name'] = 'payment_settings';
@@ -506,7 +504,7 @@ class Super_Admin extends CI_Controller
         if ($param1 == 'update') {
             $this->crud_model->update_smtp_settings();
             $this->session->set_flashdata('flash_message', get_phrase('smtp_settings_updated_successfully'));
-            redirect(site_url('admin/smtp_settings'), 'refresh');
+            redirect(site_url('super_admin/smtp_settings'), 'refresh');
         }
 
         $page_data['page_name'] = 'smtp_settings';
@@ -526,7 +524,7 @@ class Super_Admin extends CI_Controller
         if ($param1 == 'update') {
             $this->crud_model->update_social_login_settings();
             $this->session->set_flashdata('flash_message', get_phrase('social_login_settings_updated_successfully'));
-            redirect(site_url('admin/social_login_settings'), 'refresh');
+            redirect(site_url('super_admin/social_login_settings'), 'refresh');
         }
 
         $page_data['page_name'] = 'social_login';
@@ -547,7 +545,7 @@ class Super_Admin extends CI_Controller
         if ($param1 == 'update') {
             $this->crud_model->update_instructor_settings();
             $this->session->set_flashdata('flash_message', get_phrase('instructor_settings_updated'));
-            redirect(site_url('admin/instructor_settings'), 'refresh');
+            redirect(site_url('super_admin/instructor_settings'), 'refresh');
         }
 
         $page_data['page_name'] = 'instructor_settings';
@@ -881,7 +879,7 @@ class Super_Admin extends CI_Controller
                 $this->crud_model->remove_files_and_folders(FCPATH . '/assets/frontend/' . $theme);
                 $this->session->set_flashdata('flash_message', $theme . ' ' . get_phrase('theme_removed_successfully'));
             }
-            redirect(site_url('admin/theme_settings'), 'refresh');
+            redirect(site_url('super_admin/theme_settings'), 'refresh');
         }
     }
 
@@ -984,28 +982,28 @@ class Super_Admin extends CI_Controller
                 }
 
                 $view_course_on_frontend_url = site_url('home/course/' . rawurlencode(slugify($row->title)) . '/' . $row->id);
-                $edit_this_course_url = site_url('admin/course_form/course_edit/' . $row->id);
-                $section_and_lesson_url = site_url('admin/course_form/course_edit/' . $row->id);
+                $edit_this_course_url = site_url('super_admin/course_form/course_edit/' . $row->id);
+                $section_and_lesson_url = site_url('super_admin/course_form/course_edit/' . $row->id);
 
                 if ($row->status == 'active') {
                     $course_status_changing_message = get_phrase('mark_as_pending');
                     if ($row->user_id != $this->session->userdata('user_id')) {
                         $course_status_changing_action = "showAjaxModal('" . site_url('modal/popup/mail_on_course_status_changing_modal/pending/' . $row->id . '/' . $filter_data['selected_category_id'] . '/' . $filter_data['selected_instructor_id'] . '/' . $filter_data['selected_price'] . '/' . $filter_data['selected_status']) . "', '" . $course_status_changing_message . "')";
                     } else {
-                        $course_status_changing_action = "confirm_modal('" . site_url('admin/change_course_status_for_admin/pending/' . $row->id . '/' . $filter_data['selected_category_id'] . '/' . $filter_data['selected_instructor_id'] . '/' . $filter_data['selected_price'] . '/' . $filter_data['selected_status']) . "')";
+                        $course_status_changing_action = "confirm_modal('" . site_url('super_admin/change_course_status_for_admin/pending/' . $row->id . '/' . $filter_data['selected_category_id'] . '/' . $filter_data['selected_instructor_id'] . '/' . $filter_data['selected_price'] . '/' . $filter_data['selected_status']) . "')";
                     }
                 } else {
                     $course_status_changing_message = get_phrase('mark_as_active');
                     if ($row->user_id != $this->session->userdata('user_id')) {
                         $course_status_changing_action = "showAjaxModal('" . site_url('modal/popup/mail_on_course_status_changing_modal/active/' . $row->id . '/' . $filter_data['selected_category_id'] . '/' . $filter_data['selected_instructor_id'] . '/' . $filter_data['selected_price'] . '/' . $filter_data['selected_status']) . "', '" . $course_status_changing_message . "')";
                     } else {
-                        $course_status_changing_action = "confirm_modal('" . site_url('admin/change_course_status_for_admin/active/' . $row->id . '/' . $filter_data['selected_category_id'] . '/' . $filter_data['selected_instructor_id'] . '/' . $filter_data['selected_price'] . '/' . $filter_data['selected_status']) . "')";
+                        $course_status_changing_action = "confirm_modal('" . site_url('super_admin/change_course_status_for_admin/active/' . $row->id . '/' . $filter_data['selected_category_id'] . '/' . $filter_data['selected_instructor_id'] . '/' . $filter_data['selected_price'] . '/' . $filter_data['selected_status']) . "')";
                     }
                 }
 
 
 
-                $delete_course_url = "confirm_modal('" . site_url('admin/course_actions/delete/' . $row->id) . "')";
+                $delete_course_url = "confirm_modal('" . site_url('super_admin/course_actions/delete/' . $row->id) . "')";
 
                 if ($row->course_type != 'scorm') {
                     $section_and_lesson_menu = '<li><a class="dropdown-item" href="' . $section_and_lesson_url . '">' . get_phrase("section_and_lesson") . '</a></li>';

@@ -61,8 +61,13 @@ class Login extends CI_Controller
             $this->session->set_flashdata('flash_message', get_phrase('welcome') . ' ' . $row->first_name . ' ' . $row->last_name);
             if ($row->role_id == 1) {
                 $this->session->set_userdata('admin_login', '1');
+                redirect(site_url('super_admin/dashboard'), 'refresh');
+            }
+            else if ($row->role_id == 3) {
+                $this->session->set_userdata('admin_login', '1');
                 redirect(site_url('admin/dashboard'), 'refresh');
-            } else if ($row->role_id == 2) {
+            }
+             else if ($row->role_id == 2) {
                 $this->session->set_userdata('user_login', '1');
 
                 if($this->session->userdata('url_history')){
