@@ -165,11 +165,14 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                                 class="lecture-list collapse <?php if ($counter == 0) echo 'show'; ?>">
                                 <ul>
                                     <?php $lessons = $this->crud_model->get_lessons('section', $section['id'])->result_array();
-                      foreach ($lessons as $lesson) : ?>
+                                    
+                      foreach ($lessons as $lesson) :  ?>
+                      
                                     <li class="lecture has-preview text-14px ">
+                                     
                                         <span
-                                            class="lecture-title <?php if($lesson['is_free'] == 1) echo 'text-primary'; ?>"
-                                            onclick="go_course_playing_page('<?php echo $course_details['id']; ?>', '<?php echo $lesson['id']; ?>')"><?php echo $lesson['title']; ?></span>
+                                            class="lecture-title <?php  if($lesson['is_free'] == 1) echo 'text-primary'; ?>"  <?php if($key != "0") { ?>style="pointer-events: none;" <?php } ?>
+                                            onclick="go_course_playing_page('<?php echo $course_details['id']; ?>', '<?php echo $lesson['id']; ?>')"><?php  echo $lesson['title']; ?></span>
 
                                         <div class="lecture-info float-lg-end">
                                             <?php if($lesson['is_free'] == 1): ?>
@@ -186,7 +189,8 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                                             </span>
                                         </div>
                                     </li>
-                                    <?php endforeach; ?>
+                                    
+                                    <?php  endforeach; ?>
                                 </ul>
                             </div>
                         </div>
@@ -666,7 +670,12 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                         const player = new Plyr('#player');
                         </script>
                         <!------------- PLYR.IO ------------>
+                        <!-- image check -->
+                      <?php 
+                        elseif (preg_match('/(\.jpg|\.png|\.gif|\.jpeg|\.bmp)$/i', $course_details['video_url'])) : ?>
+                              <img src="<?php echo $course_details['video_url']; ?>" style="width: 100%;" alt="this slowpoke moves"  />
                         <?php else : ?>
+                          <!-- end image check -->
                         <!------------- PLYR.IO ------------>
                         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/global/plyr/plyr.css">
                         <video
@@ -694,6 +703,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                             </script>
                             <?php elseif (get_video_extension($course_details['video_url']) == 'webm') : ?>
                             <source src="<?php echo $course_details['video_url']; ?>" type="video/webm">
+                           
                             <?php else : ?>
                             <h4><?php site_phrase('video_url_is_not_supported'); ?></h4>
                             <?php endif; ?>

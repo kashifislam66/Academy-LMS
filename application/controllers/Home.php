@@ -535,6 +535,9 @@ class Home extends CI_Controller
     
     public function lesson($slug = "", $course_id = "", $lesson_id = "")
     {
+        echo $slug."slug";
+        echo $course_id."course_id";
+        echo $lesson_id."lesson_id";
         if ($this->session->userdata('user_login') != 1) {
             if ($this->session->userdata('admin_login') != 1) {
                 redirect('home', 'refresh');
@@ -547,8 +550,12 @@ class Home extends CI_Controller
         //this function saved current lesson id and return previous lesson id if $lesson_id param is empty
         $lesson_id = $this->crud_model->update_watch_history($course_id, $lesson_id);
         if($course_details['api_id'] != NULL) {
+            $sections = $this->crud_model->get_section('course', $course_id);
+            if ($sections->num_rows() > 0) {
+                $page_data['sections'] = $sections->result_array();
+            }
             $page_data['file_path'] =   base_url('uploads/scorm/'.$lesson_id.'/index.html');
-           
+            $page_data['lesson_id']  = $lesson_id;
         
         } elseif ($course_details['course_type'] == 'general') {
             $sections = $this->crud_model->get_section('course', $course_id);
