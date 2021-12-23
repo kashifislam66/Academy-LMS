@@ -575,9 +575,9 @@ class Admin extends CI_Controller
         ini_set('display_errors', 1);
         ini_set('max_execution_time', 0); 
         ini_set('memory_limit','2048M');
-        if ($this->session->userdata('admin_login') != true) {
-            redirect(site_url('login'), 'refresh');
-        }
+        // if ($this->session->userdata('admin_login') != true) {
+        //     redirect(site_url('login'), 'refresh');
+        // }
 
         // CHECK ACCESS PERMISSION
         check_permission('catalague');

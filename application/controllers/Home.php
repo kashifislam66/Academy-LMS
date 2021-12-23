@@ -535,9 +535,7 @@ class Home extends CI_Controller
     
     public function lesson($slug = "", $course_id = "", $lesson_id = "")
     {
-        echo $slug."slug";
-        echo $course_id."course_id";
-        echo $lesson_id."lesson_id";
+       
         if ($this->session->userdata('user_login') != 1) {
             if ($this->session->userdata('admin_login') != 1) {
                 redirect('home', 'refresh');
@@ -551,6 +549,21 @@ class Home extends CI_Controller
         $lesson_id = $this->crud_model->update_watch_history($course_id, $lesson_id);
         if($course_details['api_id'] != NULL) {
             $sections = $this->crud_model->get_section('course', $course_id);
+            if ($lesson_id == "") {
+                $default_section = $sections->row_array();
+                $page_data['section_id'] = $default_section['id'];
+                $lessons = $this->crud_model->get_lessons('section', $default_section['id']);
+                if ($lessons->num_rows() > 0) {
+                    $default_lesson = $lessons->row_array();
+                    
+                    $lesson_id = $default_lesson['id'];
+                    $page_data['lesson_id']  = $default_lesson['id'];
+                }
+            } else {
+                $page_data['lesson_id']  = $lesson_id;
+                $section_id = $this->db->get_where('lesson', array('id' => $lesson_id))->row()->section_id;
+                $page_data['section_id'] = $section_id;
+            }
             if ($sections->num_rows() > 0) {
                 $page_data['sections'] = $sections->result_array();
             }

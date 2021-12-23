@@ -3,7 +3,7 @@
 var newProgress;
 var savedProgress;
 var currentProgress = '<?php echo lesson_progress($lesson_id); ?>';
-var lessonType = '<?php echo $lesson_details['lesson_type']; ?>';
+var lessonType = '<?php isset($lesson_details['lesson_type']) ? $lesson_details['lesson_type'] : 'html5'; ?>';
 var videoProvider = '<?php echo isset($provider) ? $provider : null; ?>';
 
 function markThisLessonAsCompleted(lesson_id) {
