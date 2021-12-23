@@ -233,7 +233,7 @@ class User_model extends CI_Model
                  
                 }
                 
-                 die();
+                
               }
             }
             $this->db->where('id', $user_id);
