@@ -183,7 +183,7 @@ class User_model extends CI_Model
             $data['last_name'] = html_escape($this->input->post('last_name'));
 
             if (isset($_POST['email'])) {
-                $data['email'] = html_escape($this->input->post('email'));
+                $data['email'] = $email =  html_escape($this->input->post('email'));
             }
             $social_link['facebook'] = html_escape($this->input->post('facebook_link'));
             $social_link['twitter'] = html_escape($this->input->post('twitter_link'));
@@ -214,7 +214,28 @@ class User_model extends CI_Model
             );
             array_push($stripe_info, $stripe_keys);
             $data['stripe_keys'] = json_encode($stripe_info);
+            // go1 api code start
+           
+            if($this->input->post('status') == 1) {
+                $get_login = $this->api_model->login_go1();
+                $get_login_decode = json_decode($get_login);
+            if(isset($get_login_decode->access_token)) {
+                $search_user = $this->api_model->search_user($get_login_decode->access_token, $email);
+                $search_user_decode = json_decode($search_user);
 
+                if(isset($search_user_decode->hits[0]->id)) {
+                    $data['go1_id'] = $search_user_decode->hits[0]->id;
+                 
+                } else {
+                    $post_user = $this->api_model->add_user_go1($get_login_decode->access_token, $data);
+                    $post_user_decode = json_decode($post_user);
+                    $data['go1_id'] = $post_user_decode->id;
+                 
+                }
+                
+                
+              }
+            }
             $this->db->where('id', $user_id);
             $this->db->update('users', $data);
             $this->session->set_flashdata('flash_message', get_phrase('user_update_successfully'));

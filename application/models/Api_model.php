@@ -923,5 +923,70 @@ class Api_model extends CI_Model
 		return $response;
 	}
 
+	public function add_user_go1($token,$data) {
+		$result = [
+			"email"=> $data["email"],
+			"first_name"=> $data["first_name"],
+			"last_name"=> $data["last_name"],
+			"roles"=> array("Learner"),
+			"password"=> $data["last_name"].'3879',
+			"send_login_email"=> false,
+			"custom_fields"=> array(
+				"customfield1"=>$data["first_name"],
+				"customfield2"=>$data["last_name"],
+			),
+			"managers"=> array("5898439"),
+		];
+
+
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+		CURLOPT_URL => 'https://api.go1.com/v2/users',
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_ENCODING => '',
+		CURLOPT_MAXREDIRS => 10,
+		CURLOPT_TIMEOUT => 0,
+		CURLOPT_FOLLOWLOCATION => true,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => 'POST',
+		CURLOPT_POSTFIELDS =>json_encode($result),
+		CURLOPT_HTTPHEADER => array(
+			'Authorization: Bearer '.$token,
+			'Content-Type: application/json'
+		),
+
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		return $response;
+	}
+
+	public function search_user($token,$email) {
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+		CURLOPT_URL => 'https://api.go1.com/v2/users?email='.$email,
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_ENCODING => '',
+		CURLOPT_MAXREDIRS => 10,
+		CURLOPT_TIMEOUT => 0,
+		CURLOPT_FOLLOWLOCATION => true,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => 'GET',
+		CURLOPT_HTTPHEADER => array(
+			'Authorization: Bearer '.$token
+		),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		return $response;
+	}
+
 	
 }
