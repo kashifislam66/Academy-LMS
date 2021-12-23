@@ -17,9 +17,12 @@ class Login extends CI_Controller
 
     public function index()
     {
-        if ($this->session->userdata('admin_login')) {
+        if ($this->session->userdata('super_admin_login')) {
+            redirect(site_url('super_admin'), 'refresh');
+        } elseif ($this->session->userdata('admin_login')) {
             redirect(site_url('admin'), 'refresh');
-        } elseif ($this->session->userdata('user_login')) {
+        } 
+        elseif ($this->session->userdata('user_login')) {
             redirect(site_url('user'), 'refresh');
         } else {
             redirect(site_url('home/login'), 'refresh');
@@ -55,19 +58,19 @@ class Login extends CI_Controller
             $row = $query->row();
             $this->session->set_userdata('user_id', $row->id);
             $this->session->set_userdata('role_id', $row->role_id);
+            $this->session->set_userdata('go1_id', $row->go1_id);
             $this->session->set_userdata('role', get_user_role('user_role', $row->id));
             $this->session->set_userdata('name', $row->first_name . ' ' . $row->last_name);
             $this->session->set_userdata('is_instructor', $row->is_instructor);
             $this->session->set_flashdata('flash_message', get_phrase('welcome') . ' ' . $row->first_name . ' ' . $row->last_name);
             if ($row->role_id == 1) {
-                $this->session->set_userdata('admin_login', '1');
+                $this->session->set_userdata('super_admin_login', '1');
                 redirect(site_url('super_admin/dashboard'), 'refresh');
             }
             else if ($row->role_id == 3) {
                 $this->session->set_userdata('admin_login', '1');
                 redirect(site_url('admin/dashboard'), 'refresh');
-            }
-             else if ($row->role_id == 2) {
+            } else if ($row->role_id == 2) {
                 $this->session->set_userdata('user_login', '1');
 
                 if($this->session->userdata('url_history')){
@@ -189,9 +192,12 @@ class Login extends CI_Controller
         $this->session->unset_userdata('name');
         $this->session->unset_userdata('is_instructor');
         $this->session->unset_userdata('url_history');
-        if ($this->session->userdata('admin_login') == 1) {
+        if ($this->session->userdata('super_admin_login') == 1) {
+            $this->session->unset_userdata('super_admin_login');
+        } else if($this->session->userdata('admin_login') == 1) {
             $this->session->unset_userdata('admin_login');
-        } else {
+        }
+        else {
             $this->session->unset_userdata('user_login');
         }
         

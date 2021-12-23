@@ -547,9 +547,9 @@ class Home extends CI_Controller
 
         //this function saved current lesson id and return previous lesson id if $lesson_id param is empty
         $lesson_id = $this->crud_model->update_watch_history($course_id, $lesson_id);
-        if($course_details['api_id'] != NULL) {
+        if($course_details['api_id'] != NULL && $this->session->userdata('go1_id') !="") {
             $sections = $this->crud_model->get_section('course', $course_id);
-            if ($lesson_id == "") {
+            if ($lesson_id == "" ) {
                 $default_section = $sections->row_array();
                 $page_data['section_id'] = $default_section['id'];
                 $lessons = $this->crud_model->get_lessons('section', $default_section['id']);
@@ -567,7 +567,18 @@ class Home extends CI_Controller
             if ($sections->num_rows() > 0) {
                 $page_data['sections'] = $sections->result_array();
             }
-            $page_data['file_path'] =   base_url('uploads/scorm/'.$lesson_id.'/index.html');
+             // login api to get access token 
+                $get_login = $this->api_model->login_go1();
+                $get_login_decode = json_decode($get_login);
+                if(isset($get_login_decode->access_token)) {
+                    $get_file = $this->api_model->catalauge_course_response($get_login_decode->access_token, $this->session->userdata('go1_id'),$course_details['api_id']);
+                    $get_file_decode = json_decode($get_file);
+                    // echo "<pre>";
+                    // print_r($get_file_decode);  echo "</pre>"; die();
+                    if(isset($get_file_decode->url)) { 
+                    $page_data['file_path'] =   $get_file_decode->url;
+                    } 
+                }
             $page_data['lesson_id']  = $lesson_id;
         
         } elseif ($course_details['course_type'] == 'general') {
@@ -896,7 +907,9 @@ class Home extends CI_Controller
     // Version 1.4 codes
     public function login()
     {
-        if ($this->session->userdata('admin_login')) {
+        if ($this->session->userdata('super_admin_login')) {
+            redirect(site_url('super_admin'), 'refresh');
+        } elseif ($this->session->userdata('admin_login')) {
             redirect(site_url('admin'), 'refresh');
         } elseif ($this->session->userdata('user_login')) {
             redirect(site_url('user'), 'refresh');

@@ -19,7 +19,7 @@ class Super_Admin extends CI_Controller
 
     public function index()
     {
-        if ($this->session->userdata('admin_login') == true) {
+        if ($this->session->userdata('super_admin_login') == true) {
             $this->dashboard();
         } else {
             redirect(site_url('login'), 'refresh');
@@ -27,7 +27,7 @@ class Super_Admin extends CI_Controller
     }
     public function dashboard()
     {
-        if ($this->session->userdata('admin_login') != true) {
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
         $page_data['page_name'] = 'dashboard';
@@ -37,7 +37,7 @@ class Super_Admin extends CI_Controller
 
     public function categories($param1 = "", $param2 = "")
     {
-        if ($this->session->userdata('admin_login') != true) {
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
 
@@ -76,7 +76,7 @@ class Super_Admin extends CI_Controller
 
     public function category_form($param1 = "", $param2 = "")
     {
-        if ($this->session->userdata('admin_login') != true) {
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
 
@@ -102,7 +102,7 @@ class Super_Admin extends CI_Controller
 
     public function sub_categories_by_category_id($category_id = 0)
     {
-        if ($this->session->userdata('admin_login') != true) {
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
 
@@ -112,7 +112,7 @@ class Super_Admin extends CI_Controller
 
     public function sub_category_form($param1 = "", $param2 = "")
     {
-        if ($this->session->userdata('admin_login') != true) {
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
 
@@ -133,7 +133,7 @@ class Super_Admin extends CI_Controller
 
     public function instructors($param1 = "", $param2 = "")
     {
-        if ($this->session->userdata('admin_login') != true) {
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
 
@@ -160,7 +160,7 @@ class Super_Admin extends CI_Controller
 
     public function instructor_form($param1 = "", $param2 = "")
     {
-        if ($this->session->userdata('admin_login') != true) {
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
 
@@ -182,7 +182,7 @@ class Super_Admin extends CI_Controller
 
     public function users($param1 = "", $param2 = "")
     {
-        if ($this->session->userdata('admin_login') != true) {
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
 
@@ -209,7 +209,7 @@ class Super_Admin extends CI_Controller
 
     public function add_shortcut_student()
     {
-        if ($this->session->userdata('admin_login') != true) {
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
 
@@ -223,7 +223,7 @@ class Super_Admin extends CI_Controller
 
     public function user_form($param1 = "", $param2 = "")
     {
-        if ($this->session->userdata('admin_login') != true) {
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
 
@@ -245,7 +245,7 @@ class Super_Admin extends CI_Controller
 
     public function enrol_history($param1 = "")
     {
-        if ($this->session->userdata('admin_login') != true) {
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
 
@@ -271,7 +271,7 @@ class Super_Admin extends CI_Controller
 
     public function enrol_student($param1 = "")
     {
-        if ($this->session->userdata('admin_login') != true) {
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
 
@@ -289,7 +289,7 @@ class Super_Admin extends CI_Controller
 
     public function shortcut_enrol_student()
     {
-        if ($this->session->userdata('admin_login') != true) {
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
 
@@ -301,7 +301,7 @@ class Super_Admin extends CI_Controller
 
     public function admin_revenue($param1 = "")
     {
-        if ($this->session->userdata('admin_login') != true) {
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
 
@@ -327,7 +327,7 @@ class Super_Admin extends CI_Controller
 
     public function instructor_revenue($param1 = "")
     {
-        if ($this->session->userdata('admin_login') != true) {
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
 
@@ -342,7 +342,7 @@ class Super_Admin extends CI_Controller
 
     function invoice($payout_id = "")
     {
-        if ($this->session->userdata('admin_login') != true) {
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
         $page_data['page_name'] = 'invoice';
@@ -353,7 +353,7 @@ class Super_Admin extends CI_Controller
 
     public function enrol_history_delete($param1 = "")
     {
-        if ($this->session->userdata('admin_login') != true) {
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
 
@@ -367,7 +367,7 @@ class Super_Admin extends CI_Controller
 
     public function purchase_history()
     {
-        if ($this->session->userdata('admin_login') != true) {
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
         $page_data['page_name'] = 'purchase_history';
@@ -378,7 +378,7 @@ class Super_Admin extends CI_Controller
 
     public function system_settings($param1 = "")
     {
-        if ($this->session->userdata('admin_login') != true) {
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
 
@@ -411,7 +411,7 @@ class Super_Admin extends CI_Controller
 
     public function frontend_settings($param1 = "")
     {
-        if ($this->session->userdata('admin_login') != true) {
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
 
@@ -462,7 +462,7 @@ class Super_Admin extends CI_Controller
     }
     public function payment_settings($param1 = "")
     {
-        if ($this->session->userdata('admin_login') != true) {
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
 
@@ -494,7 +494,7 @@ class Super_Admin extends CI_Controller
 
     public function smtp_settings($param1 = "")
     {
-        if ($this->session->userdata('admin_login') != true) {
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
 
@@ -514,7 +514,7 @@ class Super_Admin extends CI_Controller
 
     public function social_login_settings($param1 = "")
     {
-        if ($this->session->userdata('admin_login') != true) {
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
 
@@ -534,7 +534,7 @@ class Super_Admin extends CI_Controller
 
     public function instructor_settings($param1 = "")
     {
-        if ($this->session->userdata('admin_login') != true) {
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
 
@@ -555,7 +555,7 @@ class Super_Admin extends CI_Controller
 
     public function theme_settings($action = '')
     {
-        if ($this->session->userdata('admin_login') != true) {
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
 
@@ -574,7 +574,7 @@ class Super_Admin extends CI_Controller
         ini_set('display_errors', 1);
         ini_set('max_execution_time', 0); 
         ini_set('memory_limit','2048M');
-        // if ($this->session->userdata('admin_login') != true) {
+        // if ($this->session->userdata('super_admin_login') != true) {
         //     redirect(site_url('login'), 'refresh');
         // }
 
@@ -606,15 +606,8 @@ class Super_Admin extends CI_Controller
            // get catalauge
             $get_catalauge = $this->api_model->catalauge_response($get_login_decode->access_token, $value_id);
             $catalague_result = json_decode($get_catalauge);
-            // print_r( $catalague_result); die();
-           
-               
-                    // if ($arr >= 100) { break; }
-                    
-                // get scorm from api
-                $get_catalauge_scorm = $this->api_model->catalauge_scorm_response($get_login_decode->access_token,$value_id);
-
-                $get_catalauge_play = $this->api_model->catalauge_play_response($get_login_decode->access_token,$value_id);
+            
+            $get_catalauge_play = $this->api_model->catalauge_play_response($get_login_decode->access_token,$value_id);
                 $get_catalauge_play_decode = json_decode($get_catalauge_play);
                 
                 if(isset($catalague_result->title)) {
@@ -814,26 +807,7 @@ class Super_Admin extends CI_Controller
                     file_put_contents('uploads/thumbnails/lesson_thumbnails/'.$lesson_add_id.'.jpg', $content);
                 }
 
-                if (!file_exists('uploads/scorm/'.$lesson_add_id)) {
-                    mkdir('uploads/scorm/'.$lesson_add_id, 0777, true);
-                }
-
-                if(!file_exists('uploads/scorm/'.$lesson_add_id.'/file.zip')) {
-                 
-                    file_put_contents('uploads/scorm/'.$lesson_add_id.'/file.zip', $get_catalauge_scorm);
-                    $zip = new ZipArchive;
-                    // Zip File Name
-                    $res = $zip->open('uploads/scorm/'.$lesson_add_id.'/file.zip');
-                    
-                    if ($res === TRUE) {
-                        
-                        // Unzip Path 
-                        $zip->extractTo('uploads/scorm/'.$lesson_add_id.'/');
-                            
-                        $zip->close();
-                    } 
-                }
-                } else {
+               } else {
                     echo "<pre>";
                     print_r($value_id."wrong"); 
                     echo "</pre>";
@@ -856,7 +830,7 @@ class Super_Admin extends CI_Controller
 
     public function theme_actions($action = "", $theme = "")
     {
-        if ($this->session->userdata('admin_login') != true) {
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
 
@@ -886,7 +860,7 @@ class Super_Admin extends CI_Controller
 
     public function courses()
     {
-        if ($this->session->userdata('admin_login') != true) {
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
 
@@ -912,7 +886,7 @@ class Super_Admin extends CI_Controller
 // This function is responsible for loading the course data from server side for datatable SILENTLY
 public function get_courses()
 {
-if ($this->session->userdata('admin_login') != true) {
+if ($this->session->userdata('super_admin_login') != true) {
 redirect(site_url('login'), 'refresh');
 }
 $courses = array();
@@ -1102,7 +1076,7 @@ echo json_encode($json_data);
 
 public function pending_courses()
 {
-if ($this->session->userdata('admin_login') != true) {
+if ($this->session->userdata('super_admin_login') != true) {
 redirect(site_url('login'), 'refresh');
 }
 
@@ -1116,7 +1090,7 @@ $this->load->view('backend/index', $page_data);
 
 public function course_actions($param1 = "", $param2 = "")
 {
-if ($this->session->userdata('admin_login') != true) {
+if ($this->session->userdata('super_admin_login') != true) {
 redirect(site_url('login'), 'refresh');
 }
 // CHECK ACCESS PERMISSION
@@ -1156,7 +1130,7 @@ redirect(site_url('admin/courses'), 'refresh');
 public function course_form($param1 = "", $param2 = "")
 {
 
-if ($this->session->userdata('admin_login') != true) {
+if ($this->session->userdata('super_admin_login') != true) {
 redirect(site_url('login'), 'refresh');
 }
 
@@ -1188,7 +1162,7 @@ $this->load->view('backend/index', $page_data);
 
 private function is_drafted_course($course_id)
 {
-if ($this->session->userdata('admin_login') != true) {
+if ($this->session->userdata('super_admin_login') != true) {
 redirect(site_url('login'), 'refresh');
 }
 $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
@@ -1200,7 +1174,7 @@ redirect(site_url('admin/courses'), 'refresh');
 
 public function change_course_status($updated_status = "")
 {
-if ($this->session->userdata('admin_login') != true) {
+if ($this->session->userdata('super_admin_login') != true) {
 redirect(site_url('login'), 'refresh');
 }
 
@@ -1223,7 +1197,7 @@ $instructor_id . '&price=' . $price), 'refresh');
 public function change_course_status_for_admin($updated_status = "", $course_id = "", $category_id = "", $status = "",
 $instructor_id = "", $price = "")
 {
-if ($this->session->userdata('admin_login') != true) {
+if ($this->session->userdata('super_admin_login') != true) {
 redirect(site_url('login'), 'refresh');
 }
 $this->crud_model->change_course_status($updated_status, $course_id);
@@ -1234,7 +1208,7 @@ $instructor_id . '&price=' . $price), 'refresh');
 
 public function sections($param1 = "", $param2 = "", $param3 = "")
 {
-if ($this->session->userdata('admin_login') != true) {
+if ($this->session->userdata('super_admin_login') != true) {
 redirect(site_url('login'), 'refresh');
 }
 
@@ -1259,7 +1233,7 @@ public function lessons($course_id = "", $param1 = "", $param2 = "")
 // CHECK ACCESS PERMISSION
 check_permission('course');
 
-if ($this->session->userdata('admin_login') != true) {
+if ($this->session->userdata('super_admin_login') != true) {
 redirect(site_url('login'), 'refresh');
 }
 if ($param1 == 'add') {
@@ -1286,7 +1260,7 @@ $this->load->view('backend/index', $page_data);
 
 public function watch_video($slugified_title = "", $lesson_id = "")
 {
-if ($this->session->userdata('admin_login') != true) {
+if ($this->session->userdata('super_admin_login') != true) {
 redirect(site_url('login'), 'refresh');
 }
 $lesson_details = $this->crud_model->get_lessons('lesson', $lesson_id)->row_array();
@@ -1303,7 +1277,7 @@ $this->load->view('backend/index', $page_data);
 public function manage_language($param1 = '', $param2 = '', $param3 = '')
 {
 
-if ($this->session->userdata('admin_login') != true) {
+if ($this->session->userdata('super_admin_login') != true) {
 redirect(site_url('login'), 'refresh');
 }
 
@@ -1356,7 +1330,7 @@ echo $current_editing_language . ' ' . $key . ' ' . $updatedValue;
 
 function message($param1 = 'message_home', $param2 = '', $param3 = '')
 {
-if ($this->session->userdata('admin_login') != 1)
+if ($this->session->userdata('super_admin_login') != 1)
 redirect(site_url('login'), 'refresh');
 
 // CHECK ACCESS PERMISSION
@@ -1388,7 +1362,7 @@ $this->load->view('backend/index', $page_data);
 /******MANAGE OWN PROFILE AND CHANGE PASSWORD***/
 function manage_profile($param1 = '', $param2 = '', $param3 = '')
 {
-if ($this->session->userdata('admin_login') != 1)
+if ($this->session->userdata('super_admin_login') != 1)
 redirect(site_url('login'), 'refresh');
 if ($param1 == 'update_profile_info') {
 $this->user_model->edit_user($param2);
@@ -1410,7 +1384,7 @@ $this->load->view('backend/index', $page_data);
 
 public function paypal_checkout_for_instructor_revenue()
 {
-if ($this->session->userdata('admin_login') != 1)
+if ($this->session->userdata('super_admin_login') != 1)
 redirect(site_url('login'), 'refresh');
 
 $page_data['amount_to_pay'] = $this->input->post('amount_to_pay');
@@ -1455,7 +1429,7 @@ redirect(site_url('admin/instructor_payout'), 'refresh');
 
 public function stripe_checkout_for_instructor_revenue($payout_id)
 {
-if ($this->session->userdata('admin_login') != 1)
+if ($this->session->userdata('super_admin_login') != 1)
 redirect(site_url('login'), 'refresh');
 
 // BEFORE, CHECK PAYOUT AMOUNTS ARE VALID
@@ -1491,7 +1465,7 @@ redirect(site_url('admin/instructor_payout'), 'refresh');
 
 public function preview($course_id = '')
 {
-if ($this->session->userdata('admin_login') != 1)
+if ($this->session->userdata('super_admin_login') != 1)
 redirect(site_url('login'), 'refresh');
 
 $this->is_drafted_course($course_id);
@@ -1509,7 +1483,7 @@ redirect(site_url('admin/courses'), 'refresh');
 // Manage Quizes
 public function quizes($course_id = "", $action = "", $quiz_id = "")
 {
-if ($this->session->userdata('admin_login') != true) {
+if ($this->session->userdata('super_admin_login') != true) {
 redirect(site_url('login'), 'refresh');
 }
 
@@ -1532,7 +1506,7 @@ redirect(site_url('admin/course_form/course_edit/' . $course_id));
 // Manage Quize Questions
 public function quiz_questions($quiz_id = "", $action = "", $question_id = "")
 {
-if ($this->session->userdata('admin_login') != true) {
+if ($this->session->userdata('super_admin_login') != true) {
 redirect(site_url('login'), 'refresh');
 }
 $quiz_details = $this->crud_model->get_lessons('lesson', $quiz_id)->row_array();
@@ -1553,7 +1527,7 @@ redirect(site_url('admin/course_form/course_edit/' . $quiz_details['course_id'])
 // software about page
 function about()
 {
-if ($this->session->userdata('admin_login') != 1)
+if ($this->session->userdata('super_admin_login') != 1)
 redirect(site_url('login'), 'refresh');
 
 $page_data['application_details'] = $this->crud_model->get_application_details();
@@ -1565,7 +1539,7 @@ $this->load->view('backend/index', $page_data);
 public function install_theme($theme_to_install = '')
 {
 
-if ($this->session->userdata('admin_login') != 1) {
+if ($this->session->userdata('super_admin_login') != 1) {
 redirect(site_url('login'), 'refresh');
 }
 
@@ -1626,7 +1600,7 @@ redirect(site_url('admin/theme_settings'));
 //ADDON MANAGER PORTION STARTS HERE
 public function addon($param1 = "", $param2 = "", $param3 = "")
 {
-if ($this->session->userdata('admin_login') != 1) {
+if ($this->session->userdata('super_admin_login') != 1) {
 redirect(site_url('login'), 'refresh');
 }
 
@@ -1692,7 +1666,7 @@ $this->load->view('backend/index', $page_data);
 
 public function instructor_application($param1 = "", $param2 = "")
 { // param1 is the status and param2 is the application id
-if ($this->session->userdata('admin_login') != 1)
+if ($this->session->userdata('super_admin_login') != 1)
 redirect(site_url('login'), 'refresh');
 
 // CHECK ACCESS PERMISSION
@@ -1712,7 +1686,7 @@ $this->load->view('backend/index', $page_data);
 // INSTRUCTOR PAYOUT SECTION
 public function instructor_payout($param1 = "")
 {
-if ($this->session->userdata('admin_login') != 1)
+if ($this->session->userdata('super_admin_login') != 1)
 redirect(site_url('login'), 'refresh');
 
 // CHECK ACCESS PERMISSION
@@ -1739,7 +1713,7 @@ $this->load->view('backend/index', $page_data);
 // SUPER ADMINS SECTION STARTS
 public function admins($param1 = "", $param2 = "")
 {
-if ($this->session->userdata('admin_login') != true) {
+if ($this->session->userdata('super_admin_login') != true) {
 redirect(site_url('login'), 'refresh');
 }
 
@@ -1774,7 +1748,7 @@ $this->load->view('backend/index', $page_data);
 
 public function admin_form($param1 = "", $param2 = "")
 {
-if ($this->session->userdata('admin_login') != true) {
+if ($this->session->userdata('super_admin_login') != true) {
 redirect(site_url('login'), 'refresh');
 }
 if ($param1 == 'add_admin_form') {
@@ -1797,7 +1771,7 @@ $this->load->view('backend/index', $page_data);
 
 public function permissions()
 {
-if ($this->session->userdata('admin_login') != true) {
+if ($this->session->userdata('super_admin_login') != true) {
 redirect(site_url('login'), 'refresh');
 }
 // CHECK ACCESS PERMISSION
@@ -1834,7 +1808,7 @@ $this->load->view('backend/index', $page_data);
 // ASSIGN PERMISSION TO ADMIN
 public function assign_permission()
 {
-if ($this->session->userdata('admin_login') != true) {
+if ($this->session->userdata('super_admin_login') != true) {
 redirect(site_url('login'), 'refresh');
 }
 
@@ -1894,7 +1868,7 @@ redirect('admin/course_form/course_edit/' . $course_id);
 /** Coupons functionality starts */
 public function coupons($param1 = "", $param2 = "")
 {
-if ($this->session->userdata('admin_login') != true) {
+if ($this->session->userdata('super_admin_login') != true) {
 redirect(site_url('login'), 'refresh');
 }
 
@@ -1935,7 +1909,7 @@ $this->load->view('backend/index', $page_data);
 
 public function coupon_form($param1 = "", $param2 = "")
 {
-if ($this->session->userdata('admin_login') != true) {
+if ($this->session->userdata('super_admin_login') != true) {
 redirect(site_url('login'), 'refresh');
 }
 
@@ -2004,7 +1978,7 @@ $this->crud_model->sort_question($question_json);
 // SUPER ADMINS SECTION STARTS
 public function campanies($param1 = "", $param2 = "")
 {
-if ($this->session->userdata('admin_login') != true) {
+if ($this->session->userdata('super_admin_login') != true) {
 redirect(site_url('login'), 'refresh');
 }
 
@@ -2039,7 +2013,7 @@ $this->load->view('backend/index', $page_data);
 
 public function company_form($param1 = "", $param2 = "")
 {
-if ($this->session->userdata('admin_login') != true) {
+if ($this->session->userdata('super_admin_login') != true) {
 redirect(site_url('login'), 'refresh');
 }
 if ($param1 == 'add_admin_form') {

@@ -12,7 +12,7 @@ $course_details_url = site_url("home/course/".slugify($course_details['title']).
 ?>
 <div class="container-fluid course_container">
     <!-- Top bar -->
-    <div class="row" <?php if(isset($file_path)) { ?>     style="position: relative" <?php } ?>>
+    <div class="row" >
         <div class="col-md-12 col-lg-7 col-xl-9 course_header_col">
             <h5>
                 <img src="<?php echo base_url('uploads/system/').get_frontend_settings('small_logo');?>" height="25"> |
@@ -28,7 +28,7 @@ $course_details_url = site_url("home/course/".slugify($course_details['title']).
 
  <?php   if(isset($file_path)) { ?>
     <body style=" margin: 0; ">
-		<iframe class="iframe1" name="iframe1" id="iframe1" src="<?php echo $file_path ?>"  frameborder="0" style="display: block;background: #000;border: none;height: 76vh;width: 93vw;margin-top: -46px;" height="150%" width="150%"></iframe>
+		<iframe class="iframe1" name="iframe1" id="iframe1" src="<?php echo $file_path ?>"  frameborder="0" style="display: block;background: #000;border: none;height: 76vh;width: 93vw;" height="150%" width="150%"></iframe>
 		</body>
       
        

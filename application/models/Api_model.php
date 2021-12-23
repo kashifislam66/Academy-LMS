@@ -877,19 +877,20 @@ class Api_model extends CI_Model
 
 
 
-	public function catalauge_scorm_response($token,$scorm) {
+	public function catalauge_course_response($token,$user_id,$lo_id) {
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		CURLOPT_URL => 'https://api.go1.com/v2/learning-objects/'.$scorm.'/scorm',
+		CURLOPT_URL => 'https://api.go1.com/v2/users/'.$user_id.'/login?redirect_url=/play/'.$lo_id.'?exit=0',
 		CURLOPT_RETURNTRANSFER => true,
 		CURLOPT_ENCODING => '',
 		CURLOPT_MAXREDIRS => 10,
 		CURLOPT_TIMEOUT => 0,
 		CURLOPT_FOLLOWLOCATION => true,
 		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		CURLOPT_CUSTOMREQUEST => 'GET',
+		CURLOPT_CUSTOMREQUEST => 'POST',
 		CURLOPT_HTTPHEADER => array(
+			'user-id:'.$user_id,
 			'Authorization: Bearer '.$token
 		),
 		));

@@ -27,6 +27,13 @@
           </div>
         </div>
       <?php endif; ?>
+      <?php if ($this->session->userdata('super_admin_login')): ?>
+        <div class="instructor-box menu-icon-box ms-auto">
+          <div class="icon">
+            <a href="<?php echo site_url('super_admin'); ?>" style="border: 1px solid transparent; margin: 0px; font-size: 14px; width: max-content; border-radius: 5px; max-height: 40px; line-height: 40px; padding: 0px 10px;"><?php echo 'Super Admin'; ?></a>
+          </div>
+        </div>
+      <?php endif; ?>
 
       <div class="cart-box menu-icon-box ms-auto" id = "cart_items">
         <?php include 'cart_items.php'; ?>
