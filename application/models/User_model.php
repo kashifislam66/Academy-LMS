@@ -215,9 +215,10 @@ class User_model extends CI_Model
             array_push($stripe_info, $stripe_keys);
             $data['stripe_keys'] = json_encode($stripe_info);
             // go1 api code start
-            $get_login = $this->api_model->login_go1();
-            $get_login_decode = json_decode($get_login);
+           
             if($this->input->post('status') == 1) {
+                $get_login = $this->api_model->login_go1();
+                $get_login_decode = json_decode($get_login);
             if(isset($get_login_decode->access_token)) {
                 $search_user = $this->api_model->search_user($get_login_decode->access_token, $email);
                 $search_user_decode = json_decode($search_user);
