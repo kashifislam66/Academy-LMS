@@ -825,5 +825,7 @@
     "quiz_title": "Quiz title",
     "instruction": "Instruction",
     "scorm_course": "Scorm course",
-    "access_on_laptop_and_tv": "Access on laptop and tv"
+    "access_on_laptop_and_tv": "Access on laptop and tv",
+    "admin_edit": "Admin edit",
+    "admin_edit_form": "Admin edit form"
 }

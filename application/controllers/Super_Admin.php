@@ -567,15 +567,16 @@ class Super_Admin extends CI_Controller
         $this->load->view('backend/index', $page_data);
     }
 
+    
     // code by kashif islam catalauge code for getting results from api 
     public function get_catalague($action = '')
     {
         ini_set('display_errors', 1);
         ini_set('max_execution_time', 0); 
         ini_set('memory_limit','2048M');
-        if ($this->session->userdata('admin_login') != true) {
-            redirect(site_url('login'), 'refresh');
-        }
+        // if ($this->session->userdata('admin_login') != true) {
+        //     redirect(site_url('login'), 'refresh');
+        // }
 
         // CHECK ACCESS PERMISSION
         check_permission('catalague');
@@ -1380,6 +1381,8 @@ class Super_Admin extends CI_Controller
         ))->result_array();
         $this->load->view('backend/index', $page_data);
     }
+
+
 
     public function paypal_checkout_for_instructor_revenue()
     {

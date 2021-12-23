@@ -270,14 +270,7 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
 			</li>
 		<?php endif; ?>
 
-		<?php if (has_permission('catalague')) : ?>
-			<li class="side-nav-item">
-				<a href="<?php echo site_url('admin/get_catalague'); ?>" class="side-nav-link">
-					<i class="dripicons-brush"></i>
-					<span><?php echo "Catalague"; ?></span>
-				</a>
-			</li>
-		<?php endif; ?>
+		
 
 		<?php if (has_permission('settings')) : ?>
 			<li class="side-nav-item  <?php if ($page_name == 'system_settings' || $page_name == 'frontend_settings' || $page_name == 'payment_settings' || $page_name == 'smtp_settings' || $page_name == 'manage_language' || $page_name == 'about' || $page_name == 'themes') : ?> active <?php endif; ?>">
