@@ -16,7 +16,7 @@
               <div class="col-lg-12">
                 <h4 class="mb-3 header-title"><?php echo get_phrase('category_add_form'); ?></h4>
 
-                <form class="required-form" action="<?php echo site_url('admin/categories/add'); ?>" method="post" enctype="multipart/form-data">
+                <form class="required-form" action="<?php echo site_url('super_admin/categories/add'); ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="code"><?php echo get_phrase('category_code'); ?></label>
                         <input type="text" class="form-control" id="code" name = "code" value="<?php echo substr(md5(rand(0, 1000000)), 0, 10); ?>" readonly>

@@ -4,7 +4,7 @@
             <div class="card-body">
                 <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i>
                     <?php echo $page_title; ?>
-                    <a href="<?php echo site_url('admin/admin_form/add_admin_form'); ?>"
+                    <a href="<?php echo site_url('super_admin/admin_form/add_admin_form'); ?>"
                         class="btn btn-outline-primary btn-rounded alignToTitle"><i
                             class="mdi mdi-plus"></i><?php echo get_phrase('add_admin'); ?></a>
                 </h4>
@@ -50,13 +50,13 @@
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li><a class="dropdown-item"
-                                                    href="<?php echo site_url('admin/permissions?permission_assing_to=' . $user['id']) ?>"><?php echo get_phrase('assign_permission'); ?></a>
+                                                    href="<?php echo site_url('super_admin/permissions?permission_assing_to=' . $user['id']) ?>"><?php echo get_phrase('assign_permission'); ?></a>
                                             </li>
                                             <li><a class="dropdown-item"
-                                                    href="<?php echo site_url('admin/admin_form/edit_admin_form/' . $user['id']) ?>"><?php echo get_phrase('edit'); ?></a>
+                                                    href="<?php echo site_url('super_admin/admin_form/edit_admin_form/' . $user['id']) ?>"><?php echo get_phrase('edit'); ?></a>
                                             </li>
                                             <li><a class="dropdown-item" href="#"
-                                                    onclick="confirm_modal('<?php echo site_url('admin/admins/delete/' . $user['id']); ?>');"><?php echo get_phrase('delete'); ?></a>
+                                                    onclick="confirm_modal('<?php echo site_url('super_admin/admins/delete/' . $user['id']); ?>');"><?php echo get_phrase('delete'); ?></a>
                                             </li>
                                         </ul>
                                     </div>

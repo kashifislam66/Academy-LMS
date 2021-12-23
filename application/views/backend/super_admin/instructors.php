@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo $page_title; ?>
-                    <a href="<?php echo site_url('admin/instructor_form/add_instructor_form'); ?>" class="btn btn-outline-primary btn-rounded alignToTitle"><i class="mdi mdi-plus"></i><?php echo get_phrase('add_instructor'); ?></a>
+                    <a href="<?php echo site_url('super_admin/instructor_form/add_instructor_form'); ?>" class="btn btn-outline-primary btn-rounded alignToTitle"><i class="mdi mdi-plus"></i><?php echo get_phrase('add_instructor'); ?></a>
                 </h4>
             </div> <!-- end card body-->
         </div> <!-- end card -->
@@ -46,9 +46,9 @@
                                                 <i class="mdi mdi-dots-vertical"></i>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="<?php echo site_url('admin/courses?category_id=all&status=all&instructor_id=' . $user['id'] . '&price=all') ?>"><?php echo get_phrase('view_courses'); ?></a></li>
-                                                <li><a class="dropdown-item" href="<?php echo site_url('admin/instructor_form/edit_instructor_form/' . $user['id']) ?>"><?php echo get_phrase('edit'); ?></a></li>
-                                                <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('admin/instructors/delete/' . $user['id']); ?>');"><?php echo get_phrase('delete'); ?></a></li>
+                                                <li><a class="dropdown-item" href="<?php echo site_url('super_admin/courses?category_id=all&status=all&instructor_id=' . $user['id'] . '&price=all') ?>"><?php echo get_phrase('view_courses'); ?></a></li>
+                                                <li><a class="dropdown-item" href="<?php echo site_url('super_admin/instructor_form/edit_instructor_form/' . $user['id']) ?>"><?php echo get_phrase('edit'); ?></a></li>
+                                                <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('super_admin/instructors/delete/' . $user['id']); ?>');"><?php echo get_phrase('delete'); ?></a></li>
                                             </ul>
                                         </div>
                                     </td>
