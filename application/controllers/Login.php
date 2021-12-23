@@ -100,13 +100,13 @@ class Login extends CI_Controller
             redirect(site_url('home/login'), 'refresh');
         }
 
-
         $data['first_name'] = html_escape($this->input->post('first_name'));
         $data['last_name']  = html_escape($this->input->post('last_name'));
         $data['email']  = html_escape($this->input->post('email'));
         $data['password']  = sha1($this->input->post('password'));
+        $data['company_number']  = html_escape($this->input->post('company_number'));
 
-        if (empty($data['first_name']) || empty($data['last_name']) || empty($data['email']) || empty($data['password'])) {
+        if (empty($data['first_name']) || empty($data['last_name']) || empty($data['email']) || empty($data['password']) ||empty($data['company_number'])) {
             $this->session->set_flashdata('error_message', site_phrase('your_sign_up_form_is_empty') . '. ' . site_phrase('fill_out_the_form with_your_valid_data'));
             redirect(site_url('home/sign_up'), 'refresh');
         }
@@ -129,7 +129,7 @@ class Login extends CI_Controller
             'linkedin' => ""
         );
         $data['social_links'] = json_encode($social_links);
-        $data['role_id']  = 2;
+        $data['role_id']  = 3;
 
         // Add paypal keys
         $paypal_info = array();

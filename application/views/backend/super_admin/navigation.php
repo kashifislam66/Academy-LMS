@@ -149,7 +149,29 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
                 <span class="menu-arrow"></span>
             </a>
             <ul class="side-nav-second-level" aria-expanded="false">
-                <?php if (has_permission('admins')) : ?>
+                <?php if (has_permission('super_admin')) : ?>
+                <li
+                    class="side-nav-item <?php if ($page_name == 'admins' || $page_name == 'admin_add' || $page_name == 'admin_edit' || $page_name == 'admin_permission') : ?> active <?php endif; ?>">
+                    <a href="javascript: void(0);"
+                        class="<?php if ($page_name == 'admins' || $page_name == 'admin_add' || $page_name == 'admin_edit' || $page_name == 'admin_permission') : ?> active <?php endif; ?>"
+                        aria-expanded="false">Company
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="side-nav-third-level" aria-expanded="false">
+                        <li
+                            class="<?php if ($page_name == 'admins' || $page_name == 'admin_edit' || $page_name == 'admin_permission') : ?> active <?php endif; ?>">
+                            <a href="<?php echo site_url('super_admin/campanies'); ?>"
+                                class="<?php if ($page_name == 'admins' || $page_name == 'admin_edit' || $page_name == 'admin_permission') : ?> active <?php endif; ?>">Manage
+                                Company</a>
+                        </li>
+                        <li class="<?php if ($page_name == 'admin_add') echo 'active'; ?>">
+                            <a href="<?php echo site_url('super_admin/company_form/add_admin_form'); ?>">Add New
+                                Company</a>
+                        </li>
+                    </ul>
+                </li>
+                <?php endif; ?>
+                <?php if (has_permission('admin')) : ?>
                 <li
                     class="side-nav-item <?php if ($page_name == 'admins' || $page_name == 'admin_add' || $page_name == 'admin_edit' || $page_name == 'admin_permission') : ?> active <?php endif; ?>">
                     <a href="javascript: void(0);"

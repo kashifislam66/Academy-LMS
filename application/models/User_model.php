@@ -336,6 +336,15 @@ class User_model extends CI_Model
         }
     }
 
+    public function get_all_users($id = 0)
+    {
+        if ($id > 0) {
+            return $this->db->get_where('users', array('id' => $id, 'role_id' => 3));
+        } else {
+            return $this->db->get_where('users', array('role_id' => 3));
+        }
+    }
+
     public function get_number_of_active_courses_of_instructor($instructor_id)
     {
         $multi_instructor_course_ids = $this->crud_model->multi_instructor_course_ids_for_an_instructor($instructor_id);

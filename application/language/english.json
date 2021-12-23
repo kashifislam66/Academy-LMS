@@ -392,6 +392,7 @@
     "your_cart_is_empty": "Your cart is empty",
     "log_in": "Log in",
     "sign_up": "Sign up",
+    "company_number": "Company Number",
     "accept": "Accept",
     "learn_on_your_schedule": "Learn on your schedule",
     "study_any_topic,_anytime._explore_thousands_of_courses_for_the_lowest_price_ever!": "Study any topic, anytime. explore thousands of courses for the lowest price ever!",
@@ -827,5 +828,10 @@
     "scorm_course": "Scorm course",
     "access_on_laptop_and_tv": "Access on laptop and tv",
     "admin_edit": "Admin edit",
-    "admin_edit_form": "Admin edit form"
+    "admin_edit_form": "Admin edit form",
+    "super_admin": "Super admin",
+    "companies_list": "Companies list",
+    "add_company": "Add company",
+    "company_edit": "Company edit",
+    "user_deleted_successfully": "User deleted successfully"
 }
