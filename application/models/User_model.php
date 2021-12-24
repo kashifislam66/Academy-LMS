@@ -51,7 +51,7 @@ class User_model extends CI_Model
             $data['biography'] = $this->input->post('biography');
 
             if ($is_admin) {
-                $data['role_id'] = 1;
+                $data['role_id'] = 3;
                 $data['is_instructor'] = 1;
             } else {
                 $data['role_id'] = 2;

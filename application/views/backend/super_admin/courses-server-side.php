@@ -18,7 +18,7 @@
             <div class="card-body p-0">
                 <div class="row no-gutters">
                     <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo site_url('super_user/courses'); ?>" class="text-secondary">
+                        <a href="<?php echo site_url('super_admin/courses'); ?>" class="text-secondary">
                             <div class="card shadow-none m-0">
                                 <div class="card-body text-center">
                                     <i class="dripicons-link text-muted" style="font-size: 24px;"></i>
@@ -30,7 +30,7 @@
                     </div>
 
                     <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo site_url('super_user/courses'); ?>" class="text-secondary">
+                        <a href="<?php echo site_url('super_admin/courses'); ?>" class="text-secondary">
                             <div class="card shadow-none m-0 border-left">
                                 <div class="card-body text-center">
                                     <i class="dripicons-link-broken text-muted" style="font-size: 24px;"></i>
@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo site_url('super_user/courses'); ?>" class="text-secondary">
+                        <a href="<?php echo site_url('super_admin/courses'); ?>" class="text-secondary">
                             <div class="card shadow-none m-0 border-left">
                                 <div class="card-body text-center">
                                     <i class="dripicons-star text-muted" style="font-size: 24px;"></i>
@@ -55,7 +55,7 @@
                     </div>
 
                     <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo site_url('super_user/courses'); ?>" class="text-secondary">
+                        <a href="<?php echo site_url('super_admin/courses'); ?>" class="text-secondary">
                             <div class="card shadow-none m-0 border-left">
                                 <div class="card-body text-center">
                                     <i class="dripicons-tags text-muted" style="font-size: 24px;"></i>
@@ -77,7 +77,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="mb-3 header-title"><?php echo get_phrase('course_list'); ?></h4>
-                <form class="row justify-content-center" action="<?php echo site_url('super_user/courses'); ?>"
+                <form class="row justify-content-center" action="<?php echo site_url('super_admin/courses'); ?>"
                     method="get">
                     <!-- Course Categories -->
                     <div class="col-xl-3">

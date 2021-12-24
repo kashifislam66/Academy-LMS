@@ -151,8 +151,7 @@
             <div class="card-body">
                 <div class="col-lg-12">
                     <h4 class="mb-3 header-title"><?php echo get_phrase('update_product');?></h4>
-
-                    <form action="<?php echo site_url('updater/update'); ?>" method="post"
+                    <form action="<?php echo site_url('updater/super_admin_update'); ?>" method="post"
                         enctype="multipart/form-data">
                         <div class="form-group mb-2">
                             <label><?php echo get_phrase('file'); ?></label>

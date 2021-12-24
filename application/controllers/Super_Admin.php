@@ -1290,11 +1290,11 @@ $language = trimmer($this->input->post('language'));
 if ($language == 'n-a') {
 $this->session->set_flashdata('error_message',
 get_phrase('language_name_can_not_be_empty_or_can_not_have_special_characters'));
-redirect(site_url('admin/manage_language'), 'refresh');
+redirect(site_url('super_admin/manage_language'), 'refresh');
 }
 saveDefaultJSONFile($language);
 $this->session->set_flashdata('flash_message', get_phrase('language_added_successfully'));
-redirect(site_url('admin/manage_language'), 'refresh');
+redirect(site_url('super_admin/manage_language'), 'refresh');
 }
 if ($param1 == 'add_phrase') {
 $new_phrase = get_phrase($this->input->post('phrase'));
@@ -1366,11 +1366,11 @@ if ($this->session->userdata('super_admin_login') != 1)
 redirect(site_url('login'), 'refresh');
 if ($param1 == 'update_profile_info') {
 $this->user_model->edit_user($param2);
-redirect(site_url('admin/manage_profile'), 'refresh');
+redirect(site_url('super_admin/manage_profile'), 'refresh');
 }
 if ($param1 == 'change_password') {
 $this->user_model->change_password($param2);
-redirect(site_url('admin/manage_profile'), 'refresh');
+redirect(site_url('super_admin/manage_profile'), 'refresh');
 }
 $page_data['page_name'] = 'manage_profile';
 $page_data['page_title'] = get_phrase('manage_profile');
@@ -1718,17 +1718,17 @@ redirect(site_url('login'), 'refresh');
 }
 
 // CHECK ACCESS PERMISSION
-check_permission('admin');
+check_permission('super_admin');
 
 if ($param1 == "add") {
 // CHECK ACCESS PERMISSION
-check_permission('admin');
+check_permission('super_admin');
 
 $this->user_model->add_user(false, true); // PROVIDING TRUE FOR INSTRUCTOR
 redirect(site_url('super_admin/admins'), 'refresh');
 } elseif ($param1 == "edit") {
 // CHECK ACCESS PERMISSION
-check_permission('admin');
+check_permission('super_admin');
 
 $this->user_model->edit_user($param2);
 redirect(site_url('super_admin/admins'), 'refresh');
