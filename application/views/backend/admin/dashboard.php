@@ -119,46 +119,7 @@
             </div>
         </div>
     </div>
-    <div class="col-xl-8">
-        <div class="card" id='unpaid-instructor-revenue'>
-            <div class="card-body">
-                <h4 class="header-title mb-3"><?php echo get_phrase('requested_withdrawal'); ?>
-                    <a href="<?php echo site_url('admin/instructor_payout'); ?>" class="alignToTitle"
-                        id="go-to-instructor-revenue"> <i class="mdi mdi-logout"></i> </a>
-                </h4>
-                <div class="table-responsive">
-                    <table class="table table-centered table-hover mb-0">
-                        <tbody>
-
-                            <?php
-                                $pending_payouts = $this->crud_model->get_pending_payouts()->result_array();
-                                foreach ($pending_payouts as $key => $pending_payout):
-                                $instructor_details = $this->user_model->get_all_user($pending_payout['user_id'])->row_array();
-                            ?>
-                            <tr>
-                                <td>
-                                    <h5 class="font-14 my-1"><a href="javascript:void(0);" class="text-body"
-                                            style="cursor: auto;"><?php echo $instructor_details['first_name'].' '.$instructor_details['last_name']; ?></a>
-                                    </h5>
-                                    <small><?php echo get_phrase('email'); ?>: <span
-                                            class="text-muted font-13"><?php echo $instructor_details['email']; ?></span></small>
-                                </td>
-                                <td>
-                                    <h5 class="font-14 my-1"><a href="javascript:void(0);" class="text-body"
-                                            style="cursor: auto;"><?php echo currency($pending_payout['amount']); ?></a>
-                                    </h5>
-                                    <small><span
-                                            class="text-muted font-13"><?php echo get_phrase('requested_withdrawal_amount'); ?></span></small>
-                                </td>
-                            </tr>
-                            <?php endforeach; ?>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+ 
 </div>
 
 <script type="text/javascript">

@@ -137,7 +137,7 @@
                         <span><?php echo get_phrase('my_account'); ?></span>
                     </a>
 
-                    <?php if (strtolower($this->session->userdata('role')) == 'admin'): ?>
+                    <?php if (strtolower($this->session->userdata('role')) == 'super_admin'): ?>
                     <!-- settings-->
                     <a href="<?php echo site_url('admin/system_settings'); ?>" class="dropdown-item notify-item">
                         <i class="mdi mdi-settings mr-1"></i>
