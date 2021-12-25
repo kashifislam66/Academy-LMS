@@ -587,6 +587,9 @@ class Super_Admin extends CI_Controller
         // login api to get access token 
         $get_login = $this->api_model->login_go1();
         $get_login_decode = json_decode($get_login);
+        // $get_catalauge = $this->api_model->catalauge_response($get_login_decode->access_token, 8551164);
+        //     $catalague_result = json_decode($get_catalauge);
+        //    echo "<pre>"; print_r($catalague_result); echo "</pre>"; die();
         if(isset($get_login_decode->access_token)) {
             $array = $this->crud_model->go1Array();
             $arr = 0;
@@ -601,7 +604,7 @@ class Super_Admin extends CI_Controller
            // get course from db if exist
            $course_details = $this->crud_model->get_course_by_api_id( $value_id)->row_array();
            if(empty($course_details) || $course_details == "") {
-              if ($count > 100) { break; }
+              if ($count > 1000) { break; }
                $count++; 
            // get catalauge
             $get_catalauge = $this->api_model->catalauge_response($get_login_decode->access_token, $value_id);
@@ -662,8 +665,11 @@ class Super_Admin extends CI_Controller
             if(isset($catalague_result->authors)) {
                 $author_values = array();
                 foreach($catalague_result->authors as $key => $authors) {
-                  
+                  if(isset($authors->name)) {
                     $author_values[] = $authors->name;
+                  } else {
+                    $author_values[] = $authors->first_name .' '. $authors->last_name; 
+                  }
                 
                 }
                 $author_result =  implode(',',$author_values);

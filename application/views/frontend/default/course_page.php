@@ -554,8 +554,8 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                             <a href="javascript:;" class="btn btn-buy-now"
                                 onclick="handleEnrolledButton()"><?php echo site_phrase('get_enrolled'); ?></a>
                             <?php else : ?>
-                            <a href="<?php echo site_url('home/get_enrolled_to_free_course/' . $course_details['id']); ?>"
-                                class="btn btn-buy-now"><?php echo site_phrase('get_enrolled'); ?></a>
+                            <a href="<?php echo site_url('home/get_enrolled/' . $course_details['id']); ?>"
+                                class="btn btn-buy-now"><?php echo site_phrase('enrolment_request'); ?></a>
                             <?php endif; ?>
                         </div>
                         <?php else : ?>
@@ -565,8 +565,8 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                                 id="<?php echo $course_details['id']; ?>"
                                 onclick="handleCartItems(this)"><?php echo site_phrase('added_to_cart'); ?></button>
                             <?php else : ?>
-                            <button class="btn btn-buy-now" type="button" id="<?php echo $course_details['id']; ?>"
-                                onclick="handleCartItems(this)"><?php echo site_phrase('add_to_cart'); ?></button>
+                                <a href="<?php echo site_url('home/get_enrolled/' . $course_details['id']); ?>"
+                                class="btn btn-buy-now"><?php echo site_phrase('enrolment_request'); ?></a>
                             <?php endif; ?>
                         </div>
                         <?php endif; ?>

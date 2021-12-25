@@ -3,8 +3,8 @@
 var newProgress;
 var savedProgress;
 var currentProgress = '<?php echo lesson_progress($lesson_id); ?>';
-var lessonType = '<?php isset($lesson_details['lesson_type']) ? $lesson_details['lesson_type'] : 'html5'; ?>';
-var videoProvider = '<?php echo isset($provider) ? $provider : null; ?>';
+var lessonType = '<?php echo isset($file_path) ? 'video' : $lesson_details['lesson_type']; ?>';
+var videoProvider = '<?php echo isset($file_path) ? 'html5' : $provider; ?>';
 
 function markThisLessonAsCompleted(lesson_id) {
   $('#lesson_list_area').hide();
@@ -30,7 +30,9 @@ function markThisLessonAsCompleted(lesson_id) {
 
 var timer = setInterval(function(){
   console.log('Current Progress is '+currentProgress);
+  
   if (lessonType == 'video' && videoProvider == 'html5' && currentProgress != 1) {
+   
     getCurrentTime();
   }
 }, 1000);
@@ -40,8 +42,10 @@ $(document).ready(function() {
     var totalDuration = document.querySelector('#player').duration;
 
     if (currentProgress == 1 || currentProgress == totalDuration) {
+      console.log('die '+totalDuration);
       document.querySelector('#player').currentTime = 0;
     }else {
+      console.log('pp '+totalDuration);
       document.querySelector('#player').currentTime = currentProgress;
     }
   }
@@ -50,8 +54,10 @@ var counter = 0;
 player.on('canplay', event => {
   if (counter == 0) {
     if (currentProgress == 1) {
+      console.log('Current Progress is '+currentProgress);
       document.querySelector('#player').currentTime = 0;
     }else{
+      console.log('else '+currentProgress);
       document.querySelector('#player').currentTime = currentProgress;
     }
   }

@@ -1810,6 +1810,17 @@ class Crud_model extends CI_Model
         if ($this->db->get_where('enrol', $data)->num_rows() > 0) {
             $this->session->set_flashdata('error_message', get_phrase('student_has_already_been_enrolled_to_this_course'));
         } else {
+            $get_login = $this->api_model->login_go1();
+            $get_login_decode = json_decode($get_login);
+   
+        if(isset($get_login_decode->access_token)) {
+            $course_details = $this->get_course_by_id($data['course_id'])->row_array();
+            $user_data= $this->user_model->get_user($data['user_id'])->row_array();
+            $enrol_add =   $this->api_model->enrol_Add($get_login_decode->access_token,$user_data['go1_id'],$course_details['api_id']);
+            $enrol_add_decode = json_decode($enrol_add);
+            // print_r($enrol_add_decode); die();
+            $data['enrol_go1_id'] = $enrol_add_decode->id;
+        }
             $data['date_added'] = strtotime(date('D, d-M-Y'));
             $this->db->insert('enrol', $data);
             $this->session->set_flashdata('flash_message', get_phrase('student_has_been_enrolled_to_that_course'));
@@ -1851,6 +1862,26 @@ class Crud_model extends CI_Model
             $this->session->set_flashdata('error_message', get_phrase('this_course_is_not_free_at_all'));
             redirect(site_url('home/course/' . slugify($course_details['title']) . '/' . $course_id), 'refresh');
         }
+    }
+    public function company_user_enrolment($course_id = "", $user_id = "" , $company_id = "")
+    {
+        $course_details = $this->get_course_by_id($course_id)->row_array();
+        
+            $data['course_id'] = $course_id;
+            $data['user_id']   = $user_id;
+            if($company_id != "") {
+            $data['company_id']   = $company_id;
+            } else {
+                $data['company_id']   = 1; 
+            }
+            if ($this->db->get_where('enrolment_request', $data)->num_rows() > 0) {
+                $this->session->set_flashdata('error_message', get_phrase('student_has_already_sent_request_to_enrolled_this_course'));
+            } else {
+                $data['dated_request'] = strtotime(date('D, d-M-Y'));
+                $this->db->insert('enrolment_request', $data);
+                $this->session->set_flashdata('flash_message', get_phrase('successfully__sent_enrolled_request'));
+            }
+       
     }
     public function course_purchase($user_id, $method, $amount_paid, $param1 = "", $param2 = "")
     {

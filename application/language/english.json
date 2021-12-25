@@ -857,5 +857,12 @@
     "please_update_version": "Please update version",
     "first": "First",
     "superadmin": "Superadmin",
-    "invalid_admin": "Invalid admin"
+    "invalid_admin": "Invalid admin",
+    "message_sent": "Message sent",
+    "please_enter_your_messsage": "Please enter your messsage",
+    "enrolment_request": "Enrolment request",
+    "successfully__sent_enrolled_request": "Successfully  sent enrolled request",
+    "student_has_already_sent_request_to_enrolled_this_course": "Student has already sent request to enrolled this course",
+    "data_deleted_successfully": "Data deleted successfully",
+    "student_has_already_been_enrolled_to_this_course": "Student has already been enrolled to this course"
 }
