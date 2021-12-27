@@ -857,5 +857,8 @@
     "please_update_version": "Please update version",
     "first": "First",
     "superadmin": "Superadmin",
-    "invalid_admin": "Invalid admin"
+    "invalid_admin": "Invalid admin",
+    "student_edit": "Student edit",
+    "student_edit_form": "Student edit form",
+    "email_duplication": "Email duplication"
 }

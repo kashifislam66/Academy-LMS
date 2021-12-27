@@ -43,6 +43,8 @@ class User_model extends CI_Model
             $data['first_name'] = html_escape($this->input->post('first_name'));
             $data['last_name'] = html_escape($this->input->post('last_name'));
             $data['email'] = html_escape($this->input->post('email'));
+            $data['company_id'] = html_escape($this->input->post('company_id'));
+            
             $data['password'] = sha1(html_escape($this->input->post('password')));
             $social_link['facebook'] = html_escape($this->input->post('facebook_link'));
             $social_link['twitter'] = html_escape($this->input->post('twitter_link'));
@@ -56,6 +58,7 @@ class User_model extends CI_Model
             } else {
                 $data['role_id'] = 2;
             }
+            // echo "<pre>"; print_r($data['company_id']); exit;
 
             $data['date_added'] = strtotime(date("Y-m-d H:i:s"));
             $data['wishlist'] = json_encode(array());
@@ -83,7 +86,29 @@ class User_model extends CI_Model
                 $data['is_instructor'] = 1;
             }
 
+            // activated user go1 API
+            if($this->input->post('status') == 1) {
+                $get_login = $this->api_model->login_go1();
+                $get_login_decode = json_decode($get_login);
+            if(isset($get_login_decode->access_token)) {
+                $search_user = $this->api_model->search_user($get_login_decode->access_token, $email);
+                $search_user_decode = json_decode($search_user);
+
+                if(isset($search_user_decode->hits[0]->id)) {
+                    $data['go1_id'] = $search_user_decode->hits[0]->id;
+                 
+                } else {
+                    $post_user = $this->api_model->add_user_go1($get_login_decode->access_token, $data);
+                    $post_user_decode = json_decode($post_user);
+                    $data['go1_id'] = $post_user_decode->id;
+                 
+                }
+                  
+              }
+            }
+
             $this->db->insert('users', $data);
+            $this->email_model->send_email_company_user_activition($data['email']);
             $user_id = $this->db->insert_id();
 
             // IF THIS IS A USER THEN INSERT BLANK VALUE IN PERMISSION TABLE AS WELL
@@ -185,6 +210,7 @@ class User_model extends CI_Model
             if (isset($_POST['email'])) {
                 $data['email'] = $email =  html_escape($this->input->post('email'));
             }
+            $data['company_id'] = html_escape($this->input->post('company_id'));
             $social_link['facebook'] = html_escape($this->input->post('facebook_link'));
             $social_link['twitter'] = html_escape($this->input->post('twitter_link'));
             $social_link['linkedin'] = html_escape($this->input->post('linkedin_link'));
@@ -586,5 +612,38 @@ class User_model extends CI_Model
         $instructor_ids = explode(',', $csv);
         $this->db->where_in('id', $instructor_ids);
         return $this->db->get('users')->result_array();
+    }
+
+    // select company name by user
+    public function select_company_name()
+    {   
+        $this->db->select('u.id,u.first_name,u.last_name,u.role_id, u.status');
+        $this->db->from('users u');
+        $this->db->join('role r', 'r.id = u.role_id');
+        $array = array('r.id' => 3, 'u.status'=>1, 'status' => 1);
+        $this->db->where($array);
+        return  $this->db->get()->result();
+    }
+    
+    // Get user company name;
+    public function add_user_company_name($user_id=0){
+        
+        $full_name = '';
+        if(!empty($user_id)){
+         $this->db->select('u.id,u.first_name,u.last_name,u.role_id, u.status');
+         $this->db->from('users u');
+         $this->db->join('role r', 'r.id = u.role_id');
+         $array = array('r.id' => 3, 'u.status'=>1, 'u.id'=> $user_id);
+         $this->db->where($array);
+         $result = $this->db->get()->result();
+
+         $full_name='';
+        foreach($result as $value){
+           $full_name = $value->first_name.' '.$value->last_name;
+         } 
+         return $full_name;
+        }else{
+         return null;
+        }
     }
 }

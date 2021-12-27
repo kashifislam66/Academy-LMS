@@ -27,6 +27,7 @@
                                 <th><?php echo get_phrase('name'); ?></th>
                                 <th><?php echo get_phrase('email'); ?></th>
                                 <th><?php echo get_phrase('enrolled_courses'); ?></th>
+                                <th><?php echo 'Company Name'; ?></th>
                                 <th><?php echo get_phrase('actions'); ?></th>
                             </tr>
                         </thead>
@@ -58,6 +59,9 @@
                                         <li><?php echo $course_details['title']; ?></li>
                                         <?php endforeach; ?>
                                     </ul>
+                                </td>
+                                <td>
+                                    <?php echo $this->user_model->add_user_company_name($user['company_id']); ?>
                                 </td>
                                 <td>
                                     <div class="dropright dropright">
