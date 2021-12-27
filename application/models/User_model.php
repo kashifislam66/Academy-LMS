@@ -22,7 +22,18 @@ class User_model extends CI_Model
         if ($user_id > 0) {
             $this->db->where('id', $user_id);
         }
+        
         $this->db->where('role_id', 2);
+        return $this->db->get('users');
+    }
+     
+    public function get_user_by_company()
+    {
+        $user_id = $this->session->userdata('user_id');
+        // echo $user_id; exit;
+        $array = array('role_id' => 2, 'status'=>1, 'company_id'=> $user_id);
+        $this->db->where($array);
+        // echo "<pre>";print_r($test); exit;
         return $this->db->get('users');
     }
 
@@ -403,7 +414,7 @@ class User_model extends CI_Model
         }
     }
 
-    public function get_all_users($id = 0)
+    public function get_all_company($id = 0)
     {
         if ($id > 0) {
             return $this->db->get_where('users', array('id' => $id, 'role_id' => 3));

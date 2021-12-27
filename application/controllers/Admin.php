@@ -739,9 +739,6 @@ class Admin extends CI_Controller
                 </button>
                 <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="' . $view_course_on_frontend_url . '" target="_blank">' . get_phrase("view_course_on_frontend") . '</a></li>
-                ' . $course_edit_menu . $section_and_lesson_menu . '
-                <li><a class="dropdown-item" href="javascript::" onclick="' . $course_status_changing_action . '">' . $course_status_changing_message . '</a></li>
-                ' . $course_delete_menu . '
                 </ul>
                 </div>
                 ';

@@ -2019,7 +2019,7 @@ redirect(site_url('super_admin/campanies'), 'refresh');
 
 $page_data['page_name'] = 'companies';
 $page_data['page_title'] = 'Companies List';
-$page_data['admins'] = $this->user_model->get_all_users()->result_array();
+$page_data['admins'] = $this->user_model->get_all_company()->result_array();
 $this->load->view('backend/index', $page_data);
 }
 
