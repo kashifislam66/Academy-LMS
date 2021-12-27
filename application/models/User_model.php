@@ -44,7 +44,7 @@ class User_model extends CI_Model
             $data['last_name'] = html_escape($this->input->post('last_name'));
             $data['email'] = html_escape($this->input->post('email'));
             $data['company_id'] = html_escape($this->input->post('company_id'));
-            
+            $userPass = html_escape($this->input->post('password'));
             $data['password'] = sha1(html_escape($this->input->post('password')));
             $social_link['facebook'] = html_escape($this->input->post('facebook_link'));
             $social_link['twitter'] = html_escape($this->input->post('twitter_link'));
@@ -108,7 +108,7 @@ class User_model extends CI_Model
             }
 
             $this->db->insert('users', $data);
-            $this->email_model->send_email_company_user_activition($data['email']);
+            $this->email_model->send_email_company_user_activition($data['email'], $userPass);
             $user_id = $this->db->insert_id();
 
             // IF THIS IS A USER THEN INSERT BLANK VALUE IN PERMISSION TABLE AS WELL

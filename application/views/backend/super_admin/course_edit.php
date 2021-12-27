@@ -278,6 +278,21 @@ $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
                                                 </div>
                                                 <div class="form-group row mb-3">
                                                     <label class="col-md-2 col-form-label"
+                                                        for="future_course"><?php echo 'Future course'; ?></label>
+                                                    <div class="col-md-10">
+                                                        <select name="future_course" class="form-control"
+                                                            id="future_course">
+                                                            <option value="<?php $course_details['future_course']; ?>"
+                                                                <?php if ($course_details['future_course']==0) echo 'selected'; ?>>
+                                                                un-Active</option>
+                                                            <option value="<?php $course_details['future_course']; ?>"
+                                                                <?php if ($course_details['future_course']==1) echo 'selected'; ?>>
+                                                                Active</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row mb-3">
+                                                    <label class="col-md-2 col-form-label"
                                                         for="course_title"><?php echo get_phrase('course_title'); ?><span
                                                             class="required">*</span></label>
                                                     <div class="col-md-10">

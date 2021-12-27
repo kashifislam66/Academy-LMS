@@ -245,6 +245,17 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="form-group row mb-3">
+                                                    <label class="col-md-2 col-form-label"
+                                                        for="future_course"><?php echo 'Future course'; ?></label>
+                                                    <div class="col-md-10">
+                                                        <select name="future_course" class="form-control"
+                                                            id="future_course">
+                                                            <option value="0"> un-Active</option>
+                                                            <option value="1">Active</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

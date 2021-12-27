@@ -495,7 +495,8 @@ class Crud_model extends CI_Model
         $data['course_type'] = html_escape($this->input->post('course_type'));
         $data['title'] = html_escape($this->input->post('title'));
         $data['short_description'] = html_escape($this->input->post('short_description'));
-        $data['description'] = $this->input->post('description');
+        $data['description']   = $this->input->post('description');
+        $data['future_course'] = $this->input->post('future_course');
         $data['outcomes'] = $outcomes;
         $data['language'] = $this->input->post('language_made_in');
         $data['sub_category_id'] = $this->input->post('sub_category_id');
@@ -640,6 +641,7 @@ class Crud_model extends CI_Model
         $data['description'] = $this->input->post('description');
         $data['outcomes'] = $outcomes;
         $data['language'] = $this->input->post('language_made_in');
+        $data['future_course'] = $this->input->post('future_course');
         $data['sub_category_id'] = $this->input->post('sub_category_id');
         $category_details = $this->get_category_details_by_id($this->input->post('sub_category_id'))->row_array();
         $data['category_id'] = $category_details['parent'];
@@ -650,7 +652,6 @@ class Crud_model extends CI_Model
         $data['discounted_price'] = $this->input->post('discounted_price');
         $data['level'] = $this->input->post('level');
         $data['video_url'] = $this->input->post('course_overview_url');
-
         if ($this->input->post('course_overview_url') != "") {
             $data['course_overview_provider'] = html_escape($this->input->post('course_overview_provider'));
         } else {
@@ -3252,7 +3253,14 @@ return $array;
 
 
 
-
+    public function get_future_courses()
+    {
+        if (addon_status('scorm_course')) {
+            return $this->db->get_where('course', array('future_course' => 1, 'status' => 'active'));
+        } else {
+            return $this->db->get_where('course', array('future_course' => 1, 'status' => 'active', 'course_type' => 'general'));
+        }
+    }
 
 
 

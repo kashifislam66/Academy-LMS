@@ -310,16 +310,16 @@ class Email_model extends CI_Model {
 		$this->email->send();
 	}
 	
-	public function send_email_company_user_activition($to ='') {
+	public function send_email_company_user_activition($to ='', $userPass='') {
 		$to_name = $this->db->get_where('users', array('email' => $to))->row_array();
-		$verification_company = to_name['company_id'];
-		$email_data['subject'] = "Verify email address";
-		$email_data['from'] = get_settings('system_email');
-		$email_data['to'] = $to;
-		$email_data['to_name'] = $to_name['first_name'].' '.$to_name['last_name'];
+		$email_data['userPass'] = $userPass;
+		$email_data['subject']  = "Verify Your Account";
+		$email_data['from']		= get_settings('system_email');
+		$email_data['to'] 		= $to;
+		$email_data['to_name']  = $to_name['first_name'].' '.$to_name['last_name'];
 		$email_data['verification_company'] = $verification_company;
-		$email_template = $this->load->view('email/email_verification', $email_data, TRUE);
-		// echo "<pre>"; print_r($to_name); exit;
-		$this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from'], 'verification_company');
+		$email_template = $this->load->view('email/email_user_activition', $email_data, TRUE);
+		
+		$this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from']);
 	}
 }

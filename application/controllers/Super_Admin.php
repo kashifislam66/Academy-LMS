@@ -1109,7 +1109,7 @@ check_permission('course');
 
 if ($param1 == "add") {
 $course_id = $this->crud_model->add_course();
-redirect(site_url('admin/course_form/course_edit/' . $course_id), 'refresh');
+redirect(site_url('super_admin/course_form/course_edit/' . $course_id), 'refresh');
 } elseif ($param1 == 'add_shortcut') {
 echo $this->crud_model->add_shortcut_course();
 } elseif ($param1 == "edit") {
