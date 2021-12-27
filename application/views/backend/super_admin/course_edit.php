@@ -1,6 +1,5 @@
 <?php
-$course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
-?>
+$course_details = $this->crud_model->get_course_by_id($course_id)->row_array();?>
 <div class="row ">
     <div class="col-xl-12">
         <div class="card">
@@ -282,10 +281,10 @@ $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
                                                     <div class="col-md-10">
                                                         <select name="future_course" class="form-control"
                                                             id="future_course">
-                                                            <option value="<?php $course_details['future_course']; ?>"
+                                                            <option value="0"
                                                                 <?php if ($course_details['future_course']==0) echo 'selected'; ?>>
                                                                 un-Active</option>
-                                                            <option value="<?php $course_details['future_course']; ?>"
+                                                            <option value="1"
                                                                 <?php if ($course_details['future_course']==1) echo 'selected'; ?>>
                                                                 Active</option>
                                                         </select>

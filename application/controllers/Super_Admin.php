@@ -1167,6 +1167,7 @@ $page_data['course_id'] = $param2;
 $page_data['page_title'] = get_phrase('edit_course');
 $page_data['languages'] = $this->crud_model->get_all_languages();
 $page_data['categories'] = $this->crud_model->get_categories();
+
 $this->load->view('backend/index', $page_data);
 }
 }
