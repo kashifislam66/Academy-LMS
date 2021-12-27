@@ -904,6 +904,18 @@ class Home extends CI_Controller
         }
     }
 
+    public function get_enrolled($course_id)
+    {
+        $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
+        
+        if ($this->session->userdata('user_login') == 1) {
+            $this->crud_model->company_user_enrolment($course_id, $this->session->userdata('user_id'),$this->session->userdata('company_id') );
+            redirect(site_url('home/course/'.slugify($course_details['title']).'/'.$course_details['id']), 'refresh');
+        } else {
+            redirect(site_url('login'), 'refresh');
+        }
+    }
+
     // Version 1.4 codes
     public function login()
     {

@@ -989,5 +989,71 @@ class Api_model extends CI_Model
 		return $response;
 	}
 
+	public function get_status_course($token,$user_id,$course_id) {
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+		CURLOPT_URL => 'https://api.go1.com/v2/enrollments?user_id='.$user_id.'&lo_ids='.$course_id,
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_ENCODING => '',
+		CURLOPT_MAXREDIRS => 10,
+		CURLOPT_TIMEOUT => 0,
+		CURLOPT_FOLLOWLOCATION => true,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => 'GET',
+		CURLOPT_HTTPHEADER => array(
+			'Authorization: Bearer '.$token
+		),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		return $response;
+	}
+
+	public function enrol_Add($token,$user_id,$course_id) {
+		$result = [
+			"lo_id"=> (int)$course_id,
+			"parent_enrollment_id"=> 0,
+			"parent_lo_id"=> 0,
+			"user_id"=> (int)$user_id,
+			"attributes"=> array(
+				"date"=>date("Y-m-d"),
+				"description"=>"",
+				"documents"=>array(),
+				"provider"=>"",
+				"type"=>"EDUCATION",
+			)
+		];
+		// print_r(json_encode($result)); die();
+
+
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+		CURLOPT_URL => 'https://api.go1.com/v2/enrollments',
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_ENCODING => '',
+		CURLOPT_MAXREDIRS => 10,
+		CURLOPT_TIMEOUT => 0,
+		CURLOPT_FOLLOWLOCATION => true,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => 'POST',
+		CURLOPT_POSTFIELDS =>json_encode($result),
+		CURLOPT_HTTPHEADER => array(
+			'Authorization: Bearer '.$token,
+			'Content-Type: application/json'
+		),
+
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		return $response;
+	}
+
 	
 }
