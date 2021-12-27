@@ -1,4 +1,4 @@
-<form class="required-form ajaxForm" action="<?php echo site_url('admin/add_shortcut_student'); ?>" method="post" enctype="multipart/form-data">
+<form class="required-form ajaxForm" action="<?php echo site_url('super_admin/add_shortcut_student'); ?>" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="first_name"><?php echo get_phrase('first_name'); ?><span class="required">*</span> </label>
         <input type="text" id="first_name" name="first_name" class="form-control" required>

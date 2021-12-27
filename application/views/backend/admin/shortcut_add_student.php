@@ -7,6 +7,7 @@
         <label for="last_name"><?php echo get_phrase('last_name'); ?></label>
         <input type="text" id="last_name" name="last_name" class="form-control">
     </div>
+    <input type="hidden" value="<?php echo $this->session->userdata('user_id') ?>" id="company_id" name="company_id" class="form-control">
 
     <div class="form-group">
         <label for="email"><?php echo get_phrase('email'); ?><span class="required">*</span> </label>
@@ -30,8 +31,10 @@
            url: url,
            data: form.serialize(), // serializes the form's elements.
            success: function(response)
-           {    
+           {
+               console.log(response);  
             var myArray = jQuery.parseJSON(response);
+
                 if(myArray['status']){
                     location.reload();
                 }else{

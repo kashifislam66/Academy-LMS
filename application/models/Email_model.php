@@ -317,7 +317,7 @@ class Email_model extends CI_Model {
 		$email_data['from']		= get_settings('system_email');
 		$email_data['to'] 		= $to;
 		$email_data['to_name']  = $to_name['first_name'].' '.$to_name['last_name'];
-		$email_data['verification_company'] = $verification_company;
+		// $email_data['verification_company'] = $verification_company;
 		$email_template = $this->load->view('email/email_user_activition', $email_data, TRUE);
 		
 		$this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from']);

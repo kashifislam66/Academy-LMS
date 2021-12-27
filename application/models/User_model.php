@@ -42,7 +42,7 @@ class User_model extends CI_Model
         } else {
             $data['first_name'] = html_escape($this->input->post('first_name'));
             $data['last_name'] = html_escape($this->input->post('last_name'));
-            $data['email'] = html_escape($this->input->post('email'));
+            $data['email'] = $email = html_escape($this->input->post('email'));
             $data['company_id'] = html_escape($this->input->post('company_id'));
             $userPass = html_escape($this->input->post('password'));
             $data['password'] = sha1(html_escape($this->input->post('password')));
@@ -87,25 +87,23 @@ class User_model extends CI_Model
             }
 
             // activated user go1 API
-            if($this->input->post('status') == 1) {
                 $get_login = $this->api_model->login_go1();
                 $get_login_decode = json_decode($get_login);
-            if(isset($get_login_decode->access_token)) {
-                $search_user = $this->api_model->search_user($get_login_decode->access_token, $email);
-                $search_user_decode = json_decode($search_user);
+                    if(isset($get_login_decode->access_token)) {
+                        $search_user = $this->api_model->search_user($get_login_decode->access_token, $email);
+                        $search_user_decode = json_decode($search_user);
 
-                if(isset($search_user_decode->hits[0]->id)) {
-                    $data['go1_id'] = $search_user_decode->hits[0]->id;
-                 
-                } else {
-                    $post_user = $this->api_model->add_user_go1($get_login_decode->access_token, $data);
-                    $post_user_decode = json_decode($post_user);
-                    $data['go1_id'] = $post_user_decode->id;
-                 
-                }
-                  
-              }
-            }
+                        if(isset($search_user_decode->hits[0]->id)) {
+                            $data['go1_id'] = $search_user_decode->hits[0]->id;
+                        
+                        } else {
+                            $post_user = $this->api_model->add_user_go1($get_login_decode->access_token, $data);
+                            $post_user_decode = json_decode($post_user);
+                            $data['go1_id'] = $post_user_decode->id;
+                        
+                        }
+                        
+                    }
 
             $this->db->insert('users', $data);
             $this->email_model->send_email_company_user_activition($data['email'], $userPass);
@@ -132,8 +130,9 @@ class User_model extends CI_Model
             return json_encode($response);
         } else {
             $data['first_name'] = html_escape($this->input->post('first_name'));
+            $data['company_id'] = html_escape($this->input->post('company_id'));
             $data['last_name'] = html_escape($this->input->post('last_name'));
-            $data['email'] = html_escape($this->input->post('email'));
+            $data['email'] = $email = html_escape($this->input->post('email'));
             $data['password'] = sha1(html_escape($this->input->post('password')));
             $social_link['facebook'] = '';
             $social_link['twitter'] = '';
@@ -165,7 +164,28 @@ class User_model extends CI_Model
             if ($is_instructor) {
                 $data['is_instructor'] = 1;
             }
+
+            // activated user go1 API
+            $get_login = $this->api_model->login_go1();
+            $get_login_decode = json_decode($get_login);
+                if(isset($get_login_decode->access_token)) {
+                    $search_user = $this->api_model->search_user($get_login_decode->access_token, $email);
+                    $search_user_decode = json_decode($search_user);
+
+                    if(isset($search_user_decode->hits[0]->id)) {
+                        $data['go1_id'] = $search_user_decode->hits[0]->id;
+                    
+                    } else {
+                        $post_user = $this->api_model->add_user_go1($get_login_decode->access_token, $data);
+                        $post_user_decode = json_decode($post_user);
+                        $data['go1_id'] = $post_user_decode->id;
+                    
+                    }
+                    
+                }
+
             $this->db->insert('users', $data);
+            $this->email_model->send_email_company_user_activition($email, $this->input->post('password'));
 
             $this->session->set_flashdata('flash_message', get_phrase('user_added_successfully'));
             $response['status'] = 1;
