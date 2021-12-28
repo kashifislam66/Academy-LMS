@@ -31,7 +31,7 @@ class User_model extends CI_Model
     {
         $user_id = $this->session->userdata('user_id');
         // echo $user_id; exit;
-        $array = array('role_id' => 2, 'status'=>1, 'company_id'=> $user_id);
+        $array = array('role_id' => 2,  'company_id'=> $user_id);
         $this->db->where($array);
         // echo "<pre>";print_r($test); exit;
         return $this->db->get('users');

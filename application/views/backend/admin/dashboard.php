@@ -3,7 +3,7 @@
     $number_of_courses = $status_wise_courses['pending']->num_rows() + $status_wise_courses['active']->num_rows();
     $number_of_lessons = $this->crud_model->get_lessons()->num_rows();
     $number_of_enrolment = $this->crud_model->enrol_history()->num_rows();
-    $number_of_students = $this->user_model->get_user()->num_rows();
+    $number_of_students = $this->user_model->get_user_by_company()->num_rows();
 ?>
 <div class="row">
     <div class="col-xl-12">

@@ -106,7 +106,7 @@
     <div class="container-lg">
         <div class="row">
             <div class="col">
-                <h3 class="course-carousel-title mb-4"><?php echo 'Future courses'; ?></h3>
+                <h3 class="course-carousel-title mb-4"><?php echo site_phrase('Future_courses'); ?></h3>
 
                 <!-- page loader -->
                 <div class="animated-loader">
@@ -114,7 +114,7 @@
                 </div>
 
                 <div class="course-carousel shown-after-loading" style="display: none;">
-                    <?php $top_courses = $this->crud_model->get_future_courses()->result_array();
+                    <?php $top_courses = $this->crud_model->get_future_courses();
                     $cart_items = $this->session->userdata('cart_items');
                     foreach ($top_courses as $top_course) : ?>
                     <?php

@@ -862,5 +862,6 @@
     "student_edit_form": "Student edit form",
     "email_duplication": "Email duplication",
     "enrolment_request": "Enrolment request",
-    "instructor_has_been_removed": "Instructor has been removed"
+    "instructor_has_been_removed": "Instructor has been removed",
+    "future_courses": "Future courses"
 }

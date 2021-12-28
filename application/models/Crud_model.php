@@ -1794,6 +1794,18 @@ class Crud_model extends CI_Model
         return $this->db->get('course')->result_array();
     }
 
+    public function get_future_courses()
+    {
+        if (addon_status('scorm_course')) {
+            $this->db->where('course_type', 'general');
+        }
+        $this->db->order_by("id", "desc");
+        $this->db->limit('10');
+        $this->db->where('status', 'active');
+        $this->db->where('future_course', '1');
+        return $this->db->get('course')->result_array();
+    }
+
     public function enrol_student($user_id)
     {
         $purchased_courses = $this->session->userdata('cart_items');
@@ -1837,6 +1849,17 @@ class Crud_model extends CI_Model
             $response['message'] = get_phrase('student_has_already_been_enrolled_to_this_course');
             return json_encode($response);
         } else {
+            $get_login = $this->api_model->login_go1();
+            $get_login_decode = json_decode($get_login);
+   
+                if(isset($get_login_decode->access_token)) {
+                    $course_details = $this->get_course_by_id($data['course_id'])->row_array();
+                    $user_data= $this->user_model->get_user($data['user_id'])->row_array();
+                    $enrol_add =   $this->api_model->enrol_Add($get_login_decode->access_token,$user_data['go1_id'],$course_details['api_id']);
+                    $enrol_add_decode = json_decode($enrol_add);
+                    // print_r($enrol_add_decode); die();
+                    $data['enrol_go1_id'] = $enrol_add_decode->id;
+                }
             $data['date_added'] = strtotime(date('D, d-M-Y'));
             $this->db->insert('enrol', $data);
             $this->session->set_flashdata('flash_message', get_phrase('student_has_been_enrolled_to_that_course'));
@@ -1855,6 +1878,18 @@ class Crud_model extends CI_Model
             if ($this->db->get_where('enrol', $data)->num_rows() > 0) {
                 $this->session->set_flashdata('error_message', get_phrase('student_has_already_been_enrolled_to_this_course'));
             } else {
+                $get_login = $this->api_model->login_go1();
+                $get_login_decode = json_decode($get_login);
+   
+                if(isset($get_login_decode->access_token)) {
+                    $course_details = $this->get_course_by_id($data['course_id'])->row_array();
+                    $user_data= $this->user_model->get_user($data['user_id'])->row_array();
+                    $enrol_add =   $this->api_model->enrol_Add($get_login_decode->access_token,$user_data['go1_id'],$course_details['api_id']);
+                    $enrol_add_decode = json_decode($enrol_add);
+                    // print_r($enrol_add_decode); die();
+                    $data['enrol_go1_id'] = $enrol_add_decode->id;
+                }
+
                 $data['date_added'] = strtotime(date('D, d-M-Y'));
                 $this->db->insert('enrol', $data);
                 $this->session->set_flashdata('flash_message', get_phrase('successfully_enrolled'));
@@ -3149,14 +3184,7 @@ class Crud_model extends CI_Model
         return $this->db->get('course');
     }
 
-    public function get_future_courses()
-    {
-        if (addon_status('scorm_course')) {
-            return $this->db->get_where('course', array('future_course' => 1, 'status' => 'active'));
-        } else {
-            return $this->db->get_where('course', array('future_course' => 1, 'status' => 'active', 'course_type' => 'general'));
-        }
-    }
+    
     
 function go1Array() {
         
