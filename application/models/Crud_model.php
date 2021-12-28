@@ -1847,6 +1847,38 @@ class Crud_model extends CI_Model
         }
     }
 
+    public function enrol_a_student_by_request($id)
+    {
+        $this->db->where('id', $id);
+        $resut =  $this->db->get('enrolment_request')->row_array();
+
+        $data['course_id'] = $resut['course_id'];
+        $data['user_id']   = $resut['user_id'];
+        if ($this->db->get_where('enrol', $data)->num_rows() > 0) {
+            $this->session->set_flashdata('error_message', get_phrase('student_has_already_been_enrolled_to_this_course'));
+        } else {
+            $get_login = $this->api_model->login_go1();
+            $get_login_decode = json_decode($get_login);
+   
+        if(isset($get_login_decode->access_token)) {
+            $course_details = $this->get_course_by_id($data['course_id'])->row_array();
+            $user_data= $this->user_model->get_user($data['user_id'])->row_array();
+            $enrol_add =   $this->api_model->enrol_Add($get_login_decode->access_token,$user_data['go1_id'],$course_details['api_id']);
+            $enrol_add_decode = json_decode($enrol_add);
+            // print_r($enrol_add_decode); die();
+            $data['enrol_go1_id'] = $enrol_add_decode->id;
+        }
+            $data['date_added'] = strtotime(date('D, d-M-Y'));
+            $this->db->insert('enrol', $data);
+            $status = ['status'=>1];
+            $checker = array('id' => $id);
+            $this->db->where($checker);
+            $this->db->update('enrolment_request', $status);
+
+            $this->session->set_flashdata('flash_message', get_phrase('student_has_been_enrolled_to_that_course'));
+        }
+    }
+
     public function shortcut_enrol_a_student_manually()
     {
         $data['course_id'] = $this->input->post('course_id');

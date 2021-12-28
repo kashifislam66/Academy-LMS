@@ -243,7 +243,7 @@ class Admin extends CI_Controller
         }
     }
 
-    public function enrol_request($param1 = "")
+    public function enrol_request($param1 = "",$param2 = "")
     {
         if ($this->session->userdata('admin_login') != true) {
             redirect(site_url('login'), 'refresh');
@@ -251,6 +251,15 @@ class Admin extends CI_Controller
 
         // CHECK ACCESS PERMISSION
         check_permission('enrolment');
+
+        if ($param1 == 'edit_enrol_request') {
+            //  $page_data['page_name'] = 'edit_enerol_request';
+            $page_data['enrol_request'] = $this->crud_model->enrol_a_student_by_request($param2);
+            redirect(site_url('admin/enrol_request'), 'refresh');
+
+            // $page_data['page_title'] = get_phrase('edit_enerol_request');
+            // $this->load->view('backend/index', $page_data);
+        } 
 
        
         $page_data['page_name'] = 'enrol_request';

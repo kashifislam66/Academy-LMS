@@ -23,6 +23,7 @@
                                   <th><?php echo get_phrase('user_name'); ?></th>
                                   <th><?php echo get_phrase('enrolled_course'); ?></th>
                                   <th><?php echo get_phrase('enrolment_date'); ?></th>
+                                  <th><?php echo get_phrase('status'); ?></th>
                                   <th><?php echo get_phrase('actions'); ?></th>
                               </tr>
                           </thead>
@@ -40,8 +41,18 @@
                                       </td>
                                       <td><strong><a href="<?php echo site_url('admin/course_form/course_edit/'.$course_data['id']); ?>" target="_blank"><?php echo $course_data['title']; ?></a></strong></td>
                                       <td><?php echo date('D, d-M-Y', $enrol['dated_request']); ?></td>
+                                      <td><?php   if($enrol['status'] == 1) { echo 'Enrol'; }else { echo 'Not Enrol'; } ?></td>
                                       <td>
-                                          <button type="button" class="btn btn-outline-danger btn-icon btn-rounded btn-sm" onclick="confirm_modal('<?php echo site_url('admin/enrol_history_delete/'.$enrol['id']); ?>');"> <i class="dripicons-trash"></i> </button>
+                                      <div class="dropright dropright">
+                                            <button type="button" class="btn btn-sm btn-outline-primary btn-rounded btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="mdi mdi-dots-vertical"></i>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="<?php echo site_url('admin/enrol_request/edit_enrol_request/' . $enrol['id']) ?>"><?php echo get_phrase('enrol_course'); ?></a></li>
+                                                <!-- <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('admin/coupons/delete/' . $coupon['id']); ?>');"><?php echo get_phrase('delete'); ?></a></li> -->
+                                            </ul>
+                                        </div>
+                                          <!-- <button type="button" class="btn btn-outline-danger btn-icon btn-rounded btn-sm" onclick="confirm_modal('<?php echo site_url('admin/enrol_history_delete/'.$enrol['id']); ?>');"> <i class="dripicons-trash"></i> </button> -->
                                       </td>
                                   </tr>
                               <?php endforeach; ?>
