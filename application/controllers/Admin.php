@@ -243,7 +243,7 @@ class Admin extends CI_Controller
         }
     }
 
-    public function enrol_history($param1 = "")
+    public function enrol_request($param1 = "")
     {
         if ($this->session->userdata('admin_login') != true) {
             redirect(site_url('login'), 'refresh');
@@ -252,20 +252,10 @@ class Admin extends CI_Controller
         // CHECK ACCESS PERMISSION
         check_permission('enrolment');
 
-        if ($param1 != "") {
-            $date_range                   = $this->input->get('date_range');
-            $date_range                   = explode(" - ", $date_range);
-            $page_data['timestamp_start'] = strtotime($date_range[0]);
-            $page_data['timestamp_end']   = strtotime($date_range[1]);
-        } else {
-            $first_day_of_month = "1 " . date("M") . " " . date("Y") . ' 00:00:00';
-            $last_day_of_month = date("t") . " " . date("M") . " " . date("Y") . ' 23:59:59';
-            $page_data['timestamp_start']   = strtotime($first_day_of_month);
-            $page_data['timestamp_end']     = strtotime($last_day_of_month);
-        }
-        $page_data['page_name'] = 'enrol_history';
-        $page_data['enrol_history'] = $this->crud_model->enrol_history_by_date_range($page_data['timestamp_start'], $page_data['timestamp_end']);
-        $page_data['page_title'] = get_phrase('enrol_history');
+       
+        $page_data['page_name'] = 'enrol_request';
+        $page_data['enrol_request'] = $this->crud_model->enrol_request_by_date_range();
+        $page_data['page_title'] = get_phrase('enrol_request');
         $this->load->view('backend/index', $page_data);
     }
 

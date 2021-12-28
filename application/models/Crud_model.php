@@ -162,6 +162,13 @@ class Crud_model extends CI_Model
         return $this->db->get('enrol');
     }
 
+    public function enrol_request_by_date_range()
+    {
+        $this->db->order_by('dated_request', 'desc');
+        $this->db->where('company_id', $this->session->userdata('user_id'));
+        return $this->db->get('enrolment_request');
+    }
+
     public function get_revenue_by_user_type($timestamp_start = "", $timestamp_end = "", $revenue_type = "")
     {
         $course_ids = array();

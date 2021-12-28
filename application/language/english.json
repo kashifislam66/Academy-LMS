@@ -863,5 +863,6 @@
     "email_duplication": "Email duplication",
     "enrolment_request": "Enrolment request",
     "instructor_has_been_removed": "Instructor has been removed",
-    "future_courses": "Future courses"
+    "future_courses": "Future courses",
+    "enrol_request": "Enrol request"
 }

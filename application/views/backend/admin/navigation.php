@@ -98,5 +98,13 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
 				<span><?php echo get_phrase('manage_profile'); ?></span>
 			</a>
 		</li>
+		<!-- code by kasif islam -->
+		<li class="side-nav-item <?php if ($page_name == 'enrol_request') echo 'active'; ?>">
+			<a href="<?php echo site_url(strtolower($this->session->userdata('role')) . '/enrol_request'); ?>" class="side-nav-link">
+				<i class="dripicons-user"></i>
+				<span><?php echo get_phrase('enrol_request'); ?></span>
+			</a>
+		</li>
+		<!-- end code -->
 	</ul>
 </div>
