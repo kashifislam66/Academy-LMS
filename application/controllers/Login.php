@@ -121,7 +121,7 @@ class Login extends CI_Controller
         if (get_settings('student_email_verification') == 'enable') {
             $data['status'] = 0;
         } else {
-            $data['status'] = 1;
+            $data['status'] = 0;
         }
 
         $data['wishlist'] = json_encode(array());
