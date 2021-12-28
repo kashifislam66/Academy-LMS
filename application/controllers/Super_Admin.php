@@ -1046,7 +1046,7 @@ $instructor_names .= $counterForThis + 1 == count($instructors) ? '' : ', ';
 $instructor_names = $instructor_details['first_name'] . ' ' . $instructor_details['last_name'];
 }
 
-$nestedData['title'] = '<strong><a href="' . site_url('admin/course_form/course_edit/' . $row->id) . '">' . $row->title
+$nestedData['title'] = '<strong><a href="' . site_url('super_admin/course_form/course_edit/' . $row->id) . '">' . $row->title
         . '</a></strong><br>
 <small class="text-muted">' . get_phrase('instructor') . ': <b>' . $instructor_names . '</b></small>';
 
@@ -1128,12 +1128,12 @@ $this->load->model('addons/jitsi_liveclass_model', 'jitsi_liveclass_model');
 $this->jitsi_liveclass_model->update_live_class($param2);
 }
 
-redirect(site_url('admin/course_form/course_edit/' . $param2));
+redirect(site_url('super_admin/course_form/course_edit/' . $param2));
 } elseif ($param1 == 'delete') {
 
 $this->is_drafted_course($param2);
 $this->crud_model->delete_course($param2);
-redirect(site_url('admin/courses'), 'refresh');
+redirect(site_url('super_admin/courses'), 'refresh');
 }
 }
 
@@ -1180,7 +1180,7 @@ redirect(site_url('login'), 'refresh');
 $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
 if ($course_details['status'] == 'draft') {
 $this->session->set_flashdata('error_message', get_phrase('you_do_not_have_right_to_access_this_course'));
-redirect(site_url('admin/courses'), 'refresh');
+redirect(site_url('super_admin/courses'), 'refresh');
 }
 }
 
@@ -1202,7 +1202,7 @@ $this->email_model->send_mail_on_course_status_changing($course_id, $mail_subjec
 }
 $this->crud_model->change_course_status($updated_status, $course_id);
 $this->session->set_flashdata('flash_message', get_phrase('course_status_updated'));
-redirect(site_url('admin/courses?category_id=' . $category_id . '&status=' . $status . '&instructor_id=' .
+redirect(site_url('super_admin/courses?category_id=' . $category_id . '&status=' . $status . '&instructor_id=' .
 $instructor_id . '&price=' . $price), 'refresh');
 }
 
@@ -1214,7 +1214,7 @@ redirect(site_url('login'), 'refresh');
 }
 $this->crud_model->change_course_status($updated_status, $course_id);
 $this->session->set_flashdata('flash_message', get_phrase('course_status_updated'));
-redirect(site_url('admin/courses?category_id=' . $category_id . '&status=' . $status . '&instructor_id=' .
+redirect(site_url('super_admin/courses?category_id=' . $category_id . '&status=' . $status . '&instructor_id=' .
 $instructor_id . '&price=' . $price), 'refresh');
 }
 
@@ -1237,7 +1237,7 @@ $this->session->set_flashdata('flash_message', get_phrase('section_has_been_upda
 $this->crud_model->delete_section($param1, $param3);
 $this->session->set_flashdata('flash_message', get_phrase('section_has_been_deleted_successfully'));
 }
-redirect(site_url('admin/course_form/course_edit/' . $param1));
+redirect(site_url('super_admin/course_form/course_edit/' . $param1));
 }
 
 public function lessons($course_id = "", $param1 = "", $param2 = "")
@@ -1251,17 +1251,17 @@ redirect(site_url('login'), 'refresh');
 if ($param1 == 'add') {
 $this->crud_model->add_lesson();
 $this->session->set_flashdata('flash_message', get_phrase('lesson_has_been_added_successfully'));
-redirect('admin/course_form/course_edit/' . $course_id);
+redirect('super_admin/course_form/course_edit/' . $course_id);
 } elseif ($param1 == 'edit') {
 $this->crud_model->edit_lesson($param2);
 $this->session->set_flashdata('flash_message', get_phrase('lesson_has_been_updated_successfully'));
-redirect('admin/course_form/course_edit/' . $course_id);
+redirect('super_admin/course_form/course_edit/' . $course_id);
 } elseif ($param1 == 'delete') {
 $this->crud_model->delete_lesson($param2);
 $this->session->set_flashdata('flash_message', get_phrase('lesson_has_been_deleted_successfully'));
-redirect('admin/course_form/course_edit/' . $course_id);
+redirect('super_admin/course_form/course_edit/' . $course_id);
 } elseif ($param1 == 'filter') {
-redirect('admin/lessons/' . $this->input->post('course_id'));
+redirect('super_admin/lessons/' . $this->input->post('course_id'));
 }
 $page_data['page_name'] = 'lessons';
 $page_data['lessons'] = $this->crud_model->get_lessons('course', $course_id);
@@ -1311,7 +1311,7 @@ redirect(site_url('super_admin/manage_language'), 'refresh');
 if ($param1 == 'add_phrase') {
 $new_phrase = get_phrase($this->input->post('phrase'));
 $this->session->set_flashdata('flash_message', $new_phrase . ' ' . get_phrase('has_been_added_successfully'));
-redirect(site_url('admin/manage_language'), 'refresh');
+redirect(site_url('super_admin/manage_language'), 'refresh');
 }
 
 if ($param1 == 'edit_phrase') {
@@ -1322,7 +1322,7 @@ if ($param1 == 'delete_language') {
 if (file_exists('application/language/' . $param2 . '.json')) {
 unlink('application/language/' . $param2 . '.json');
 $this->session->set_flashdata('flash_message', get_phrase('language_deleted_successfully'));
-redirect(site_url('admin/manage_language'), 'refresh');
+redirect(site_url('super_admin/manage_language'), 'refresh');
 }
 }
 $page_data['languages'] = $this->crud_model->get_all_languages();
@@ -1351,13 +1351,13 @@ check_permission('messaging');
 if ($param1 == 'send_new') {
 $message_thread_code = $this->crud_model->send_new_private_message();
 $this->session->set_flashdata('flash_message', get_phrase('message_sent'));
-redirect(site_url('admin/message/message_read/' . $message_thread_code), 'refresh');
+redirect(site_url('super_admin/message/message_read/' . $message_thread_code), 'refresh');
 }
 
 if ($param1 == 'send_reply') {
 $this->crud_model->send_reply_message($param2); //$param2 = message_thread_code
 $this->session->set_flashdata('flash_message', get_phrase('message_sent'));
-redirect(site_url('admin/message/message_read/' . $param2), 'refresh');
+redirect(site_url('super_admin/message/message_read/' . $param2), 'refresh');
 }
 
 if ($param1 == 'message_read') {
@@ -1407,10 +1407,10 @@ $page_data['production_client_id'] = $this->input->post('production_client_id');
 // BEFORE, CHECK PAYOUT AMOUNTS ARE VALID
 $payout_details = $this->crud_model->get_payouts($page_data['payout_id'], 'payout')->row_array();
 if ($payout_details['amount'] == $page_data['amount_to_pay'] && $payout_details['status'] == 0) {
-$this->load->view('backend/admin/paypal_checkout_for_instructor_revenue', $page_data);
+$this->load->view('backend/super_admin/paypal_checkout_for_instructor_revenue', $page_data);
 } else {
 $this->session->set_flashdata('error_message', get_phrase('invalid_payout_data'));
-redirect(site_url('admin/instructor_payout'), 'refresh');
+redirect(site_url('super_admin/instructor_payout'), 'refresh');
 }
 }
 
@@ -1432,11 +1432,11 @@ $status = $this->payment_model->paypal_payment($paypalPaymentID, $paypalPaymentT
 $production_client_id, $production_secret_key);
 if (!$status) {
 $this->session->set_flashdata('error_message', get_phrase('an_error_occurred_during_payment'));
-redirect(site_url('admin/instructor_payout'), 'refresh');
+redirect(site_url('super_admin/instructor_payout'), 'refresh');
 }
 $this->crud_model->update_payout_status($payout_id, 'paypal');
 $this->session->set_flashdata('flash_message', get_phrase('payout_updated_successfully'));
-redirect(site_url('admin/instructor_payout'), 'refresh');
+redirect(site_url('super_admin/instructor_payout'), 'refresh');
 }
 
 public function stripe_checkout_for_instructor_revenue($payout_id)
@@ -1450,10 +1450,10 @@ if ($payout_details['amount'] > 0 && $payout_details['status'] == 0) {
 $page_data['user_details'] = $this->user_model->get_user($payout_details['user_id'])->row_array();
 $page_data['amount_to_pay'] = $payout_details['amount'];
 $page_data['payout_id'] = $payout_details['id'];
-$this->load->view('backend/admin/stripe_checkout_for_instructor_revenue', $page_data);
+$this->load->view('backend/super_admin/stripe_checkout_for_instructor_revenue', $page_data);
 } else {
 $this->session->set_flashdata('error_message', get_phrase('invalid_payout_data'));
-redirect(site_url('admin/instructor_payout'), 'refresh');
+redirect(site_url('super_admin/instructor_payout'), 'refresh');
 }
 }
 
@@ -1472,7 +1472,7 @@ $this->session->set_flashdata('flash_message', get_phrase('payout_updated_succes
 $this->session->set_flashdata('error_message', $response['status_msg']);
 }
 
-redirect(site_url('admin/instructor_payout'), 'refresh');
+redirect(site_url('super_admin/instructor_payout'), 'refresh');
 }
 
 public function preview($course_id = '')
@@ -1489,7 +1489,7 @@ redirect(site_url('home/lesson/' . rawurlencode(slugify($course_details['title']
 'refresh');
 }
 }
-redirect(site_url('admin/courses'), 'refresh');
+redirect(site_url('super_admin/courses'), 'refresh');
 }
 
 // Manage Quizes
@@ -1512,7 +1512,7 @@ $this->session->set_flashdata('flash_message', get_phrase('quiz_has_been_updated
 $this->crud_model->delete_section($course_id, $quiz_id);
 $this->session->set_flashdata('flash_message', get_phrase('quiz_has_been_deleted_successfully'));
 }
-redirect(site_url('admin/course_form/course_edit/' . $course_id));
+redirect(site_url('super_admin/course_form/course_edit/' . $course_id));
 }
 
 // Manage Quize Questions
@@ -1532,7 +1532,7 @@ echo $response;
 } elseif ($action == 'delete') {
 $response = $this->crud_model->delete_quiz_question($question_id);
 $this->session->set_flashdata('flash_message', get_phrase('question_has_been_deleted'));
-redirect(site_url('admin/course_form/course_edit/' . $quiz_details['course_id']));
+redirect(site_url('super_admin/course_form/course_edit/' . $quiz_details['course_id']));
 }
 }
 
@@ -1561,13 +1561,13 @@ check_permission('theme');
 $uninstalled_themes = $this->crud_model->get_uninstalled_themes();
 if (!in_array($theme_to_install, $uninstalled_themes)) {
 $this->session->set_flashdata('error_message', get_phrase('this_theme_is_not_available'));
-redirect(site_url('admin/theme_settings'));
+redirect(site_url('super_admin/theme_settings'));
 }
 
 if (!class_exists('ZipArchive')) {
 $this->session->set_flashdata('error_message', get_phrase('your_server_is_unable_to_extract_the_zip_file') . '. ' .
 get_phrase('please_enable_the_zip_extension_on_your_server') . ', ' . get_phrase('then_try_again'));
-redirect(site_url('admin/theme_settings'));
+redirect(site_url('super_admin/theme_settings'));
 }
 
 $zipped_file_name = $theme_to_install;
@@ -1606,7 +1606,7 @@ $assets_zip->close();
 unlink($theme_path);
 $this->crud_model->remove_files_and_folders('themes/' . $unzipped_file_name);
 $this->session->set_flashdata('flash_message', get_phrase('theme_imported_successfully'));
-redirect(site_url('admin/theme_settings'));
+redirect(site_url('super_admin/theme_settings'));
 }
 
 //ADDON MANAGER PORTION STARTS HERE
@@ -1649,21 +1649,21 @@ if ($param1 == 'activate') {
 
 $update_message = $this->addon_model->addon_activate($param2);
 $this->session->set_flashdata('flash_message', get_phrase($update_message));
-redirect(site_url('admin/addon'), 'refresh');
+redirect(site_url('super_admin/addon'), 'refresh');
 }
 
 // DEACTIVATING AN ADDON
 if ($param1 == 'deactivate') {
 $update_message = $this->addon_model->addon_deactivate($param2);
 $this->session->set_flashdata('flash_message', get_phrase($update_message));
-redirect(site_url('admin/addon'), 'refresh');
+redirect(site_url('super_admin/addon'), 'refresh');
 }
 
 // REMOVING AN ADDON
 if ($param1 == 'delete') {
 $this->addon_model->addon_delete($param2);
 $this->session->set_flashdata('flash_message', get_phrase('addon_is_deleted_successfully'));
-redirect(site_url('admin/addon'), 'refresh');
+redirect(site_url('super_admin/addon'), 'refresh');
 }
 
 // SHOWING LIST OF INSTALLED ADDONS
@@ -1791,23 +1791,23 @@ check_permission('super_admin');
 
 if (!isset($_GET['permission_assing_to']) || empty($_GET['permission_assing_to'])) {
 $this->session->set_flashdata('error_message', get_phrase('you_have_select_an_admin_first'));
-redirect(site_url('admin/admins'), 'refresh');
+redirect(site_url('super_admin/admins'), 'refresh');
 }
 
 $page_data['permission_assing_to'] = $this->input->get('permission_assing_to');
 $user_details = $this->user_model->get_all_user($page_data['permission_assing_to']);
 if ($user_details->num_rows() == 0) {
 $this->session->set_flashdata('error_message', get_phrase('invalid_admin'));
-redirect(site_url('admin/admins'), 'refresh');
+redirect(site_url('super_admin/admins'), 'refresh');
 } else {
 $user_details = $user_details->row_array();
 if ($user_details['role_id'] != 1) {
 $this->session->set_flashdata('error_message', get_phrase('invalid_admin'));
-redirect(site_url('admin/admins'), 'refresh');
+redirect(site_url('super_admin/admins'), 'refresh');
 }
 if (is_root_admin($user_details['id'])) {
 $this->session->set_flashdata('error_message', get_phrase('you_can_not_set_permission_to_the_root_admin'));
-redirect(site_url('admin/admins'), 'refresh');
+redirect(site_url('super_admin/admins'), 'refresh');
 }
 }
 
@@ -1840,7 +1840,7 @@ $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
 
 if ($course_details['creator'] == $instructor_id) {
 $this->session->set_flashdata('error_message', get_phrase('course_creator_can_be_removed'));
-redirect('admin/course_form/course_edit/' . $course_id);
+redirect('super_admin/course_form/course_edit/' . $course_id);
 }
 
 if ($course_details['multi_instructor']) {
@@ -1857,22 +1857,22 @@ $this->db->update('course', $data);
 
 $this->session->set_flashdata('flash_message', get_phrase('instructor_has_been_removed'));
 if ($this->session->userdata('user_id') == $instructor_id) {
-redirect('admin/courses/');
+redirect('super_admin/courses/');
 } else {
-redirect('admin/course_form/course_edit/' . $course_id);
+redirect('super_admin/course_form/course_edit/' . $course_id);
 }
 }
 } else {
 $this->session->set_flashdata('error_message', get_phrase('a_course_should_have_at_least_one_instructor'));
-redirect('admin/course_form/course_edit/' . $course_id);
+redirect('super_admin/course_form/course_edit/' . $course_id);
 }
 } else {
 $this->session->set_flashdata('error_message', get_phrase('invalid_instructor_id'));
-redirect('admin/course_form/course_edit/' . $course_id);
+redirect('super_admin/course_form/course_edit/' . $course_id);
 }
 } else {
 $this->session->set_flashdata('error_message', get_phrase('a_course_should_have_at_least_one_instructor'));
-redirect('admin/course_form/course_edit/' . $course_id);
+redirect('super_admin/course_form/course_edit/' . $course_id);
 }
 }
 
@@ -1950,20 +1950,20 @@ $this->load->view('backend/index', $page_data);
 function manage_multiple_choices_options()
 {
 $page_data['number_of_options'] = $this->input->post('number_of_options');
-$this->load->view('backend/admin/manage_multiple_choices_options', $page_data);
+$this->load->view('backend/super_admin/manage_multiple_choices_options', $page_data);
 }
 
 public function ajax_get_sub_category($category_id)
 {
 $page_data['sub_categories'] = $this->crud_model->get_sub_categories($category_id);
 
-return $this->load->view('backend/admin/ajax_get_sub_category', $page_data);
+return $this->load->view('backend/super_admin/ajax_get_sub_category', $page_data);
 }
 
 public function ajax_get_section($course_id)
 {
 $page_data['sections'] = $this->crud_model->get_section('course', $course_id)->result_array();
-return $this->load->view('backend/admin/ajax_get_section', $page_data);
+return $this->load->view('backend/super_admin/ajax_get_section', $page_data);
 }
 
 public function ajax_get_video_details()

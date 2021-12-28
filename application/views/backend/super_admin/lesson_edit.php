@@ -32,11 +32,12 @@ $sections = $this->crud_model->get_section('course', $param3)->result_array();
 </div>
 
 <!-- ACTUAL LESSON ADDING FORM -->
-<form action="<?php echo site_url('admin/lessons/'.$param3.'/edit'.'/'.$param2); ?>" method="post" enctype="multipart/form-data">
+<form action="<?php echo site_url('super_admin/lessons/'.$param3.'/edit'.'/'.$param2); ?>" method="post"
+    enctype="multipart/form-data">
 
     <div class="form-group">
         <label><?php echo get_phrase('title'); ?></label>
-        <input type="text" name = "title" class="form-control" required value="<?php echo $lesson_details['title']; ?>">
+        <input type="text" name="title" class="form-control" required value="<?php echo $lesson_details['title']; ?>">
     </div>
 
     <input type="hidden" name="course_id" value="<?php echo $param3; ?>">
@@ -45,7 +46,9 @@ $sections = $this->crud_model->get_section('course', $param3)->result_array();
         <label for="section_id"><?php echo get_phrase('section'); ?></label>
         <select class="form-control select2" data-toggle="select2" name="section_id" id="section_id" required>
             <?php foreach ($sections as $section): ?>
-                <option value="<?php echo $section['id']; ?>" <?php if($lesson_details['section_id'] == $section['id']) echo 'selected'; ?>><?php echo $section['title']; ?></option>
+            <option value="<?php echo $section['id']; ?>"
+                <?php if($lesson_details['section_id'] == $section['id']) echo 'selected'; ?>>
+                <?php echo $section['title']; ?></option>
             <?php endforeach; ?>
         </select>
     </div>
@@ -69,18 +72,19 @@ $sections = $this->crud_model->get_section('course', $param3)->result_array();
     <div class="form-group">
         <label><?php echo get_phrase('do_you_want_to_keep_it_free_as_a_preview_lesson'); ?>?</label>
         <br>
-        <input type="checkbox" name="free_lesson" id="free_lesson" value="1" <?php if($lesson_details['is_free'])echo 'checked'; ?>>
+        <input type="checkbox" name="free_lesson" id="free_lesson" value="1"
+            <?php if($lesson_details['is_free'])echo 'checked'; ?>>
         <label for="free_lesson"><?php echo get_phrase('mark_as_free_lesson'); ?></label>
     </div>
 
     <div class="text-center">
-        <button class = "btn btn-success" type="submit" name="button"><?php echo get_phrase('update_lesson'); ?></button>
+        <button class="btn btn-success" type="submit" name="button"><?php echo get_phrase('update_lesson'); ?></button>
     </div>
 </form>
 
 <script type="text/javascript">
 $(document).ready(function() {
-    initSelect2(['#section_id','#lesson_type', '#lesson_provider', '#lesson_provider_for_mobile_application']);
+    initSelect2(['#section_id', '#lesson_type', '#lesson_provider', '#lesson_provider_for_mobile_application']);
     initTimepicker();
 
     // HIDING THE SEARCHBOX FROM SELECT2
@@ -91,19 +95,20 @@ $(document).ready(function() {
 
 function ajax_get_video_details(video_url) {
     $('#perloader').show();
-    if(checkURLValidity(video_url)){
+    if (checkURLValidity(video_url)) {
         $.ajax({
-            url: '<?php echo site_url('admin/ajax_get_video_details');?>',
-            type : 'POST',
-            data : {video_url : video_url},
-            success: function(response)
-            {
+            url: '<?php echo site_url('super_admin/ajax_get_video_details');?>',
+            type: 'POST',
+            data: {
+                video_url: video_url
+            },
+            success: function(response) {
                 jQuery('#duration').val(response);
                 $('#perloader').hide();
                 $('#invalid_url').hide();
             }
         });
-    }else {
+    } else {
         $('#invalid_url').show();
         $('#perloader').hide();
         jQuery('#duration').val('');
@@ -112,15 +117,14 @@ function ajax_get_video_details(video_url) {
 }
 
 function checkURLValidity(video_url) {
-    var youtubePregMatch = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+    var youtubePregMatch =
+        /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
     var vimeoPregMatch = /^(http\:\/\/|https\:\/\/)?(www\.)?(vimeo\.com\/)([0-9]+)$/;
     if (video_url.match(youtubePregMatch)) {
         return true;
-    }
-    else if (vimeoPregMatch.test(video_url)) {
+    } else if (vimeoPregMatch.test(video_url)) {
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }

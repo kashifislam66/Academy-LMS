@@ -4,7 +4,7 @@
 
 <ol class="breadcrumb bc-3">
     <li>
-        <a href="<?php echo site_url('admin/dashboard'); ?>">
+        <a href="<?php echo site_url('super_admin/dashboard'); ?>">
             <i class="entypo-folder"></i>
             <?php echo get_phrase('dashboard'); ?>
         </a>
@@ -15,30 +15,32 @@
 <br />
 
 <div class="row">
-	<div class="col-md-8 col-md-offset-2">
+    <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-primary" data-collapsed="0">
             <div class="panel-body">
-              <div class="row">
-                  <div class="col-md-4 col-md-offset-4">
-                      <a href = "<?php echo site_url('admin/course_form/add_course'); ?>" class="btn btn-block btn-info btn-lg" type="button"><i class="fa fa-plus"></i>&nbsp;&nbsp;<?php echo get_phrase('add_course'); ?></a>
-                  </div>
-              </div>
-              <hr>
-              <table class="table table-bordered" id="table-2">
-                  <thead>
-                      <tr>
-                          <th><?php echo get_phrase('title'); ?></th>
-                          <th><?php echo get_phrase('category'); ?></th>
-                          <th><?php echo get_phrase('sub_category'); ?></th>
-                          <th><?php echo get_phrase('instructor'); ?></th>
-                          <th><?php echo get_phrase('number_of_sections'); ?></th>
-                          <th><?php echo get_phrase('number_of_lessons'); ?></th>
-                          <th><?php echo get_phrase('number_of_enrolled_users'); ?></th>
-                          <th><?php echo get_phrase('action'); ?></th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <?php
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                        <a href="<?php echo site_url('super_admin/course_form/add_course'); ?>"
+                            class="btn btn-block btn-info btn-lg" type="button"><i
+                                class="fa fa-plus"></i>&nbsp;&nbsp;<?php echo get_phrase('add_course'); ?></a>
+                    </div>
+                </div>
+                <hr>
+                <table class="table table-bordered" id="table-2">
+                    <thead>
+                        <tr>
+                            <th><?php echo get_phrase('title'); ?></th>
+                            <th><?php echo get_phrase('category'); ?></th>
+                            <th><?php echo get_phrase('sub_category'); ?></th>
+                            <th><?php echo get_phrase('instructor'); ?></th>
+                            <th><?php echo get_phrase('number_of_sections'); ?></th>
+                            <th><?php echo get_phrase('number_of_lessons'); ?></th>
+                            <th><?php echo get_phrase('number_of_enrolled_users'); ?></th>
+                            <th><?php echo get_phrase('action'); ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
                           $pending_courses = 0;
                           foreach ($courses->result_array() as $course):
                           if ($course['status'] != 'pending')
@@ -46,22 +48,22 @@
                           else
                               $pending_courses++;
                           ?>
-                          <tr>
-                              <td><?php echo $course['title']; ?></td>
-                              <td>
-                                  <?php
+                        <tr>
+                            <td><?php echo $course['title']; ?></td>
+                            <td>
+                                <?php
                                   $category_details = $this->crud_model->get_categories($course['category_id'])->row_array();
                                   echo $category_details['name'];
                                   ?>
-                              </td>
-                              <td>
-                                  <?php
+                            </td>
+                            <td>
+                                <?php
                                   $subcategory_details = $this->crud_model->get_category_details_by_id($course['sub_category_id'])->row_array();
                                   echo $subcategory_details['name'];
                                   ?>
-                              </td>
-                              <td>
-                                  <?php
+                            </td>
+                            <td>
+                                <?php
                                      if ($course['user_id'] > 0) {
                                          $instructor_details = $this->user_model->get_all_user($course['user_id'])->row_array();
                                          echo $instructor_details['first_name'].' '.$instructor_details['last_name'];
@@ -70,108 +72,116 @@
                                          echo $admin_details['first_name'].' '.$admin_details['last_name'];
                                      }
                                   ?>
-                              </td>
-                              <td hidden>
-                                  <ul style="list-style-type:square">
-                                      <?php
+                            </td>
+                            <td hidden>
+                                <ul style="list-style-type:square">
+                                    <?php
                                       $lessons = $this->crud_model->get_lessons('course', $course['id'])->result_array();
                                       foreach ($lessons as $lesson):?>
-                                      <a href="<?php echo site_url('admin/watch_video/'.slugify($lesson['title']).'/'.$lesson['id']); ?>"><li><?php echo $lesson['title']; ?></li></a>
-                                  <?php endforeach; ?>
-                              </ul>
-                          </td>
-                          <td>
-                              <?php
+                                    <a
+                                        href="<?php echo site_url('super_admin/watch_video/'.slugify($lesson['title']).'/'.$lesson['id']); ?>">
+                                        <li><?php echo $lesson['title']; ?></li>
+                                    </a>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </td>
+                            <td>
+                                <?php
                               $sections = $this->crud_model->get_section('course', $course['id']);
                               echo $sections->num_rows();
                               ?>
-                          </td>
-                          <td>
-                              <?php
+                            </td>
+                            <td>
+                                <?php
                               $lessons = $this->crud_model->get_lessons('course', $course['id']);
                               echo $lessons->num_rows();
                               ?>
-                          </td>
-                          <td>
-                              <?php
+                            </td>
+                            <td>
+                                <?php
                               $enrol_history = $this->crud_model->enrol_history($course['id']);
                               echo $enrol_history->num_rows();
                               ?>
-                          </td>
-                          <td>
-                              <div class="btn-group">
-                                  <button class="btn btn-small btn-default btn-demo-space" data-toggle="dropdown"> <i class = "fa fa-ellipsis-v"></i> </button>
-                                  <ul class="dropdown-menu">
-                                      <li>
-                                          <a href="<?php echo site_url('home/course/'.slugify($course['title']).'/'.$course['id']); ?>" target="_blank">
-                                              <?php echo get_phrase('view_course_on_frontend');?>
-                                          </a>
-                                      </li>
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-small btn-default btn-demo-space" data-toggle="dropdown"> <i
+                                            class="fa fa-ellipsis-v"></i> </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="<?php echo site_url('home/course/'.slugify($course['title']).'/'.$course['id']); ?>"
+                                                target="_blank">
+                                                <?php echo get_phrase('view_course_on_frontend');?>
+                                            </a>
+                                        </li>
 
-                                      <li>
-                                          <a href="<?php echo site_url('admin/sections/'.$course['id']); ?>">
-                                              <?php echo get_phrase('manage_section');?>
-                                          </a>
-                                      </li>
+                                        <li>
+                                            <a href="<?php echo site_url('super_admin/sections/'.$course['id']); ?>">
+                                                <?php echo get_phrase('manage_section');?>
+                                            </a>
+                                        </li>
 
-                                      <li>
-                                          <a href="<?php echo site_url('admin/lessons/'.$course['id']); ?>">
-                                              <?php echo get_phrase('manage_lesson');?>
-                                          </a>
-                                      </li>
+                                        <li>
+                                            <a href="<?php echo site_url('super_admin/lessons/'.$course['id']); ?>">
+                                                <?php echo get_phrase('manage_lesson');?>
+                                            </a>
+                                        </li>
 
-                                      <li>
-                                          <?php if ($course['user_id'] != $this->session->userdata('user_id')): ?>
-                                              <a href="#" onclick="showAjaxModal('<?php echo base_url();?>modal/popup/mail_on_course_status_changing_modal/active/<?php echo $course['id'];?>');">
-                                                  <?php echo get_phrase('mark_as_active');?>
-                                              </a>
-                                          <?php else: ?>
-                                              <a href="#" onclick="confirm_modal('<?php echo site_url();?>admin/change_course_status_for_admin/active/<?php echo $course['id'];?>', 'generic_confirmation');">
-                                                  <?php echo get_phrase('mark_as_active');?>
-                                              </a>
-                                          <?php endif; ?>
-                                      </li>
+                                        <li>
+                                            <?php if ($course['user_id'] != $this->session->userdata('user_id')): ?>
+                                            <a href="#"
+                                                onclick="showAjaxModal('<?php echo base_url();?>modal/popup/mail_on_course_status_changing_modal/active/<?php echo $course['id'];?>');">
+                                                <?php echo get_phrase('mark_as_active');?>
+                                            </a>
+                                            <?php else: ?>
+                                            <a href="#"
+                                                onclick="confirm_modal('<?php echo site_url();?>super_admin/change_course_status_for_admin/active/<?php echo $course['id'];?>', 'generic_confirmation');">
+                                                <?php echo get_phrase('mark_as_active');?>
+                                            </a>
+                                            <?php endif; ?>
+                                        </li>
 
-                                      <li>
-                                          <a href="<?php echo site_url('admin/course_form/course_edit/'.$course['id']) ?>">
-                                              <?php echo get_phrase('edit');?>
-                                          </a>
-                                      </li>
+                                        <li>
+                                            <a
+                                                href="<?php echo site_url('super_admin/course_form/course_edit/'.$course['id']) ?>">
+                                                <?php echo get_phrase('edit');?>
+                                            </a>
+                                        </li>
 
-                                      <li class="divider"></li>
-                                      <li>
-                                          <a href="#" onclick="confirm_modal('<?php echo site_url('admin/course_actions/delete/'.$course['id']); ?>');">
-                                              <?php echo get_phrase('delete');?>
-                                          </a>
-                                      </li>
-                                  </ul>
-                              </div>
-                          </td>
-                      </tr>
-                  <?php endforeach; ?>
-                  <?php if ($pending_courses == 0): ?>
-                      <tr>
-                          <td colspan="8"><?php echo get_phrase('no_data_found'); ?></td>
-                      </tr>
-                  <?php endif; ?>
-              </tbody>
-              </table>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="#"
+                                                onclick="confirm_modal('<?php echo site_url('super_admin/course_actions/delete/'.$course['id']); ?>');">
+                                                <?php echo get_phrase('delete');?>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                        <?php if ($pending_courses == 0): ?>
+                        <tr>
+                            <td colspan="8"><?php echo get_phrase('no_data_found'); ?></td>
+                        </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
             </div>
         </div>
-	</div>
+    </div>
 </div>
 
 <script type="text/javascript">
-    function ajax_get_sub_category(category_id) {
-        $.ajax({
-            url: '<?php echo site_url('admin/ajax_get_sub_category/');?>' + category_id ,
-            success: function(response)
-            {
-                jQuery('#sub_category_id').html(response);
-                console.log(response);
-            }
-        });
-    }
+function ajax_get_sub_category(category_id) {
+    $.ajax({
+        url: '<?php echo site_url('super_admin/ajax_get_sub_category/');?>' + category_id,
+        success: function(response) {
+            jQuery('#sub_category_id').html(response);
+            console.log(response);
+        }
+    });
+}
 </script>
 
 <!-- <script type="text/javascript">
