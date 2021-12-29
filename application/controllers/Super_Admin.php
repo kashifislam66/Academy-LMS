@@ -681,7 +681,6 @@ class Super_Admin extends CI_Controller
 
             }
                
-               
                 $cat_values = array();
                 foreach($cat_value as $key => $val) {
                   if($key != 0) {

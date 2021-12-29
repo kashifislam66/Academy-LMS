@@ -388,7 +388,11 @@
     }
 
     .content-cell {
-        padding: 45px;
+        /* padding: 45px; */
+        padding-left: 45px;
+        padding-top: 45px;
+        padding-right: 45px;
+        padding-bottom: 0px;
     }
 
     /*Media Queries ------------------------------ */
@@ -449,32 +453,98 @@
                                 <tr>
                                     <td class="content-cell">
                                         <div class="f-fallback">
-                                            <div style="width: 100%; margin-bottom: 10px; text-align: center;">
-                                                <img src="<?= base_url('uploads/system/').get_frontend_settings('dark_logo'); ?>"
-                                                    style="width: 200px;">
-                                            </div>
-                                            <hr style="border: 1px solid #efefef; margin-top: 30px;">
-                                            <p style="text-align: center;">User Credentials</p>
-                                            <hr style="border: 1px solid #fff; margin-bottom: 10px;">
+                                            <div
+                                                style="width: 100%; margin-bottom: 10px; text-align: center; margin-top: 30px;">
+                                                <h2 style="font-size: 30px;font-style: normal;font-weight: 800;line-height: 36px;text-align: center;
+                                                font-family: Muli,-apple-system,system-ui,helvetica,'helvetica neue'
+                                                ,ubuntu,roboto,noto,'segoe ui',arial,sans-serif;">Welcome to
+                                                    GoSkillBoost LMS</h2>
+                                                <div
+                                                    style="font-family:Muli,-apple-system,system-ui,helvetica,'helvetica neue',ubuntu,roboto,noto,'segoe ui',arial,sans-serif;font-size:16px;font-style:normal;line-height:22px;text-align:left;color:#000000">
+                                                    Hi Test, congratulations on joining GoSkillBoost LMS. Begin your
+                                                    learning journey by setting up your account.</div>
+                                                <br /><br />
+                                                <img src="<?= base_url('uploads/system/lms-logo.png'); ?>"
+                                                    alt="Color logo - no background.png" width="213" height="136"
+                                                    style="margin-right:0px" data-image-whitelisted=""
+                                                    class="CToWUd a6T" tabindex="0">
+                                            </div><br /><br />
 
-                                            <h2 style="font-size: 20px;">Dear <?= $full_name; ?>,</h2>
+
+
+                                            <h2 style="font-size: 18px;">Dear <?= $full_name; ?>,</h2>
                                             <br>
-                                            <p>User Email: <b style="cursor: pointer;"><u><?= $to; ?></u></b>
+                                            <p>User Email: <b style="cursor: pointer;"><u><?= $to; ?></u></b></p>
+                                            <p>Number Empolyes: <b style="cursor: pointer;"><?= $empolyes_number; ?></b>
+                                            </p>
+                                            <p>Company Number: <b style="cursor: pointer;"><?= $company_number; ?></b>
+                                            <p>Role: <b style="cursor: pointer;"><?= $role_id; ?></b>
                                             </p>
                                             <br>
-                                            <p>User Password:
-                                                <b style="cursor: pointer;"><u><?= $userPass; ?></u></b>
-                                            </p>
+
                                             <hr style="border: 1px solid #efefef; margin-top: 50px;">
-                                            <p style="text-align: center;"><a
+                                            <br>
+                                            <div
+                                                style="font-family:Muli,-apple-system,system-ui,helvetica,'helvetica neue',ubuntu,roboto,noto,'segoe ui',arial,sans-serif;font-size:16px;font-style:normal;line-height:22px;text-align:left;color:#000000">
+                                                Take the next step and achieve your learning goals with access to
+                                                quality training content across a variety of topics that are relevant to
+                                                you.</div>
+                                            <br />
+                                            <!-- <p style="text-align: center;"><a
                                                     title="<?= get_settings('system_name'); ?>" target="_blank"
                                                     href="<?= site_url(); ?>"><?= get_settings('system_name'); ?></a>
                                             </p>
                                             <p style="text-align: center; color: #999999; font-size: 14px;">
-                                                <?= get_frontend_settings('about_us'); ?></p>
+                                                <?= get_frontend_settings('about_us'); ?></p> -->
                                         </div>
                                     </td>
                                 </tr>
+                                <td>
+                                    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation"
+                                        style="background:#f1f6f9;background-color:#f1f6f9;width:100%">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div style="margin:0px auto;max-width:600px">
+                                                        <table align="center" border="0" cellpadding="0" cellspacing="0"
+                                                            role="presentation" style="width:100%">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td
+                                                                        style="direction:ltr;font-size:0px;padding:0;padding-top:24px;text-align:center">
+                                                                        <div
+                                                                            style="padding-left:30px;padding-right:30px;background-color:#fff;overflow:hidden;margin:0px auto;max-width:600px">
+                                                                            <table align="center" border="0"
+                                                                                cellpadding="0" cellspacing="0"
+                                                                                role="presentation" style="width:100%">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td
+                                                                                            style="direction:ltr;font-size:0px;padding:0;padding-top:26px;text-align:center; padding-bottom:26px">
+                                                                                            <br>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        <div
+                                                                            style="padding-left:30px;padding-right:30px;background-color:#fff;overflow:hidden;margin:0px auto;max-width:600px">
+                                                                            <table align="center" border="0"
+                                                                                cellpadding="0" cellspacing="0"
+                                                                                role="presentation" style="width:100%">
+                                                                                <tbody></tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
                             </table>
                         </td>
                     </tr>

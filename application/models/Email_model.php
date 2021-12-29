@@ -311,15 +311,34 @@ class Email_model extends CI_Model {
 	}
 	
 	public function send_email_company_user_activition($to ='', $userPass='') {
-		$to_name = $this->db->get_where('users', array('email' => $to))->row_array();
+		$query = $this->db->get_where('users', array('email' => $to))->row_array();
 		$email_data['userPass'] = $userPass;
 		$email_data['subject']  = "Verify Your Account";
 		$email_data['from']		= get_settings('system_email');
 		$email_data['to'] 		= $to;
-		$email_data['to_name']  = $to_name['first_name'].' '.$to_name['last_name'];
-		// $email_data['verification_company'] = $verification_company;
+		$email_data['full_name']  = $query['first_name'].' '.$query['last_name'];
 		$email_template = $this->load->view('email/email_user_activition', $email_data, TRUE);
 		
 		$this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from']);
+	}
+
+	public function send_email_company_register_activition($to ='') {
+		$query = $this->db->get_where('users', array('email' => $to))->row_array();
+		$role_id='';
+		if($query['role_id'] ==3){
+			//echo "<pre>"; print_r($query); exit;
+		 $role_id = 'Company Admin';
+		}
+		
+		$email_data['subject']         = "Verify Your Account";
+		$email_data['from']		       = get_settings('system_email');
+		$email_data['to'] 		       = $to;
+		$email_data['full_name']       = $query['first_name'].' '.$query['last_name'];
+		$email_data['empolyes_number'] = $query['number_of_empolyes'];
+		$email_data['company_number']  = $query['company_number'];
+		$email_data['role_id']  = $role_id;
+		$email_template = $this->load->view('email/email_company_activition', $email_data, TRUE);
+		// echo "<pre>"; print_r($email_data); exit;
+		 $this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from']); 
 	}
 }
