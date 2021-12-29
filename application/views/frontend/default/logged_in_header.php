@@ -29,7 +29,7 @@ $user_details = $this->user_model->get_user($this->session->userdata('user_id'))
             <?php if (get_settings('allow_instructor') == 1) : ?>
                 <div class="instructor-box menu-icon-box">
                     <div class="icon">
-                        <a href="<?php echo site_url('user'); ?>" style="border: 1px solid transparent; margin: 0px;     padding: 0px 10px; font-size: 14px; width: max-content; border-radius: 5px; height: 40px; line-height: 40px;"><?php echo site_phrase('instructor'); ?></a>
+                        <a href="<?php echo site_url('user'); ?>" style="border: 1px solid transparent; margin: 0px;     padding: 0px 10px; font-size: 14px; width: max-content; border-radius: 5px; height: 40px; line-height: 40px;"><?php echo site_phrase('student'); ?></a>
                     </div>
                 </div>
             <?php endif; ?>
@@ -102,7 +102,7 @@ $user_details = $this->user_model->get_user($this->session->userdata('user_id'))
 
                 <button type="button" class="btn btn-sign-in" data-toggle="modal" data-target="#signInModal">Log In</button>
 
-                <button type="button" class="btn btn-sign-up" data-toggle="modal" data-target="#signUpModal">Sign Up</button>
+                <button type="button" class="btn btn-sign-up" data-toggle="modal" data-target="#signUpModal">Contact Us</button>
 
             </div> <!--  sign-in-box end -->
 
