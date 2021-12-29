@@ -26,16 +26,7 @@ $total_price = 0;
 								<a href="">
 									<div class="course-name"><?php echo $course_details['title']; ?></div>
 									<div class="instructor-name"><?php echo $instructor_details['first_name'].' '.$instructor_details['last_name']; ?></div>
-									<div class="item-price">
-										<?php if ($course_details['discount_flag'] == 1):
-											$total_price += $course_details['discounted_price'];?>
-											<span class="current-price"><?php echo currency($course_details['discounted_price']); ?></span>
-											<span class="original-price"><?php echo currency($course_details['price']); ?></span>
-										<?php else:
-											$total_price += $course_details['price'];?>
-											<span class="current-price"><?php echo currency($course_details['price']); ?></span>
-										<?php endif; ?>
-									</div>
+									
 								</a>
 							</div>
 						</div>
@@ -44,13 +35,13 @@ $total_price = 0;
 			</ul>
 		</div>
 		<div class="dropdown-footer">
-			<div class="cart-total-price clearfix">
+			<!-- <div class="cart-total-price clearfix">
 				<span><?php echo site_phrase('total'); ?>:</span>
 				<div class="float-end">
 					<span class="current-price"><?php echo currency($total_price); ?></span>
-					<!-- <span class="original-price">$94.99</span> -->
+					 <span class="original-price">$94.99</span> 
 				</div>
-			</div>
+			</div> -->
 			<a href = "<?php echo site_url('home/shopping_cart'); ?>"><?php echo site_phrase('go_to_cart'); ?></a>
 		</div>
 	</div>

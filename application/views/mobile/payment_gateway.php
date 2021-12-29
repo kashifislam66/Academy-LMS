@@ -261,13 +261,7 @@ $total_price_of_checking_out = $this->session->userdata('total_price_of_checking
                             <p class="item float-left">
                                 <span class="count-item"><?php echo $counter; ?></span>
                                 <span class="item-title"><?php echo $course_details['title']; ?>
-                                    <span class="item-price">
-                                        <?php if($course_details['discount_flag'] ==1 ):
-                                            echo currency($course_details['discounted_price']);
-                                        else:
-                                            echo currency($course_details['price']);
-                                        endif; ?>
-                                    </span>
+                                   
                                 </span>
                                 <span class="by-owner">
                                     <?php echo get_phrase('by'); ?>

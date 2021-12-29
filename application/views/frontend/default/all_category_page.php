@@ -72,18 +72,7 @@
                                     </div>
                                 </div>
                                 <div class="course-price-rating">
-                                    <div class="course-price">
-                                        <?php if ($course['is_free_course'] == 1): ?>
-                                            <span class="current-price"><?php echo site_phrase('free'); ?></span>
-                                        <?php else: ?>
-                                          <?php if($course['discount_flag'] == 1): ?>
-                                              <span class="current-price"><?php echo currency($course['discounted_price']); ?></span>
-                                              <span class="original-price"><?php echo currency($course['price']); ?></span>
-                                          <?php else: ?>
-                                              <span class="current-price"><?php echo currency($course['price']); ?></span>
-                                          <?php endif; ?>
-                                        <?php endif; ?>
-                                    </div>
+                                   
                                     <div class="rating">
                                         <?php
                                             $total_rating =  $this->crud_model->get_ratings('course', $course['id'], true)->row()->rating;

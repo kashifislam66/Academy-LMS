@@ -170,15 +170,6 @@ $total_students = $this->db->get('enrol')->num_rows();
 
 
 
-                                        <?php if ($top_course['is_free_course'] == 1) : ?>
-                                            <p class="price text-right d-inline-block float-end"><?php echo site_phrase('free'); ?></p>
-                                        <?php else : ?>
-                                            <?php if ($top_course['discount_flag'] == 1) : ?>
-                                                <p class="price text-right d-inline-block float-end"><small><?php echo currency($top_course['price']); ?></small><?php echo currency($top_course['discounted_price']); ?></p>
-                                            <?php else : ?>
-                                                <p class="price text-right d-inline-block float-end"><?php echo currency($top_course['price']); ?></p>
-                                            <?php endif; ?>
-                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>

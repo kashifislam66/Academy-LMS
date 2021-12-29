@@ -255,25 +255,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                                         <i class="far fa-user"></i>
                                         <?php echo $this->crud_model->enrol_history($other_realted_course['id'])->num_rows(); ?>
                                     </span>
-                                    <?php if ($other_realted_course['is_free_course'] == 1) : ?>
-                                    <span class="item-price mt-4 mt-md-0">
-                                        <span class="current-price"><?php echo site_phrase('free'); ?></span>
-                                    </span>
-                                    <?php else : ?>
-                                    <?php if ($other_realted_course['discount_flag'] == 1) : ?>
-                                    <span class="item-price mt-4 mt-md-0">
-                                        <span
-                                            class="original-price"><?php echo currency($other_realted_course['price']); ?></span>
-                                        <span
-                                            class="current-price"><?php echo currency($other_realted_course['discounted_price']); ?></span>
-                                    </span>
-                                    <?php else : ?>
-                                    <span class="item-price mt-4 mt-md-0">
-                                        <span
-                                            class="current-price"><?php echo currency($other_realted_course['price']); ?></span>
-                                    </span>
-                                    <?php endif; ?>
-                                    <?php endif; ?>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -505,25 +487,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                     </div>
                     <?php endif; ?>
                     <div class="course-sidebar-text-box">
-                        <div class="price text-center">
-                            <?php if ($course_details['is_free_course'] == 1) : ?>
-                            <span class="current-price"><span
-                                    class="current-price"><?php echo site_phrase('free'); ?></span></span>
-                            <?php else : ?>
-                            <?php if ($course_details['discount_flag'] == 1) : ?>
-                            <span class="original-price"><?php echo currency($course_details['price']) ?></span>
-                            <span class="current-price"><span
-                                    class="current-price"><?php echo currency($course_details['discounted_price']); ?></span></span>
-                            <input type="hidden" id="total_price_of_checking_out"
-                                value="<?php echo currency($course_details['discounted_price']); ?>">
-                            <?php else : ?>
-                            <span class="current-price"><span
-                                    class="current-price"><?php echo currency($course_details['price']); ?></span></span>
-                            <input type="hidden" id="total_price_of_checking_out"
-                                value="<?php echo currency($course_details['price']); ?>">
-                            <?php endif; ?>
-                            <?php endif; ?>
-                        </div>
+                       
 
                         <?php if (is_purchased($course_details['id'])) : ?>
                         <div class="already_purchased">
@@ -692,7 +656,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                                 playTimeout = setTimeout(function() {
                                     $("#player").get(0).pause();
                                     $("#player").get(0).currentTime = 0; // Restarts video
-                                }, 10000); // 3 seconds in ms
+                                }, 60000); // 3 seconds in ms
                             });
 
 
