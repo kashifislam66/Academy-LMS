@@ -260,31 +260,22 @@
                                             href="<?php echo site_url('home/my_courses'); ?>"><?php echo site_phrase('already_purchased'); ?></a>
                                     </div>
                                     <?php else : ?>
-                                    <?php if ($top_course['is_free_course'] == 1) :
+                                    <?php 
                                                 if ($this->session->userdata('user_login') != 1) {
                                                     $url = "#";
                                                 } else {
-                                                    $url = site_url('home/get_enrolled_to_free_course/' . $top_course['id']);
+                                                    $url = site_url('home/get_enrolled/' . $top_course['id']);
                                                 } ?>
                                     <a href="<?php echo $url; ?>" class="btn green radius-10"
                                         onclick="handleEnrolledButton()"><?php echo site_phrase('get_enrolled'); ?></a>
-                                    <?php else : ?>
-                                    <button type="button"
-                                        class="btn red add-to-cart-btn <?php if (in_array($top_course['id'], $cart_items)) echo 'addedToCart'; ?> big-cart-button-<?php echo $top_course['id']; ?>"
-                                        id="<?php echo $top_course['id']; ?>" onclick="handleCartItems(this)">
-                                        <?php
-                                                    if (in_array($top_course['id'], $cart_items))
-                                                        echo site_phrase('added_to_cart');
-                                                    else
-                                                        echo site_phrase('add_to_cart');
-                                                    ?>
-                                    </button>
+                                  
+                                  
                                     <?php endif; ?>
                                     <button type="button"
                                         class="wishlist-btn <?php if ($this->crud_model->is_added_to_wishlist($top_course['id'])) echo 'active'; ?>"
                                         title="Add to wishlist" onclick="handleWishList(this)"
                                         id="<?php echo $top_course['id']; ?>"><i class="fas fa-heart"></i></button>
-                                    <?php endif; ?>
+                                   
 
                                 </div>
                             </div>
@@ -457,31 +448,22 @@
                                             href="<?php echo site_url('home/my_courses'); ?>"><?php echo site_phrase('already_purchased'); ?></a>
                                     </div>
                                     <?php else : ?>
-                                    <?php if ($latest_course['is_free_course'] == 1) :
+                                    <?php 
                                                 if ($this->session->userdata('user_login') != 1) {
                                                     $url = "#";
                                                 } else {
-                                                    $url = site_url('home/get_enrolled_to_free_course/' . $latest_course['id']);
+                                                    $url = site_url('home/get_enrolled/' . $latest_course['id']);
                                                 } ?>
                                     <a href="<?php echo $url; ?>" class="btn green radius-10"
                                         onclick="handleEnrolledButton()"><?php echo site_phrase('get_enrolled'); ?></a>
-                                    <?php else : ?>
-                                    <button type="button"
-                                        class="btn red add-to-cart-btn <?php if (in_array($latest_course['id'], $cart_items)) echo 'addedToCart'; ?> big-cart-button-<?php echo $latest_course['id']; ?>"
-                                        id="<?php echo $latest_course['id']; ?>" onclick="handleCartItems(this)">
-                                        <?php
-                                                    if (in_array($latest_course['id'], $cart_items))
-                                                        echo site_phrase('added_to_cart');
-                                                    else
-                                                        echo site_phrase('add_to_cart');
-                                                    ?>
-                                    </button>
+                                   
+                                   
                                     <?php endif; ?>
                                     <button type="button"
                                         class="wishlist-btn <?php if ($this->crud_model->is_added_to_wishlist($latest_course['id'])) echo 'active'; ?>"
                                         title="Add to wishlist" onclick="handleWishList(this)"
                                         id="<?php echo $latest_course['id']; ?>"><i class="fas fa-heart"></i></button>
-                                    <?php endif; ?>
+                                    
 
                                 </div>
                             </div>

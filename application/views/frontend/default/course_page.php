@@ -524,14 +524,10 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                         </div>
                         <?php else : ?>
                         <div class="buy-btns">
-                            <?php if (in_array($course_details['id'], $this->session->userdata('cart_items'))) : ?>
-                            <button class="btn btn-buy-now active addedToCart" type="button"
-                                id="<?php echo $course_details['id']; ?>"
-                                onclick="handleCartItems(this)"><?php echo site_phrase('added_to_cart'); ?></button>
-                            <?php else : ?>
+                           
                                 <a href="<?php echo site_url('home/get_enrolled/' . $course_details['id']); ?>"
                                 class="btn btn-buy-now"><?php echo site_phrase('enrolment_request'); ?></a>
-                            <?php endif; ?>
+                            
                         </div>
                         <?php endif; ?>
                         <?php endif; ?>

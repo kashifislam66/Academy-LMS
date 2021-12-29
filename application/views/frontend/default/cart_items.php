@@ -1,10 +1,10 @@
 <?php
 $total_price = 0;
 ?>
-<div class="icon">
+<!-- <div class="icon">
 	<a href="<?php echo site_url('home/shopping_cart'); ?>"><i class="fas fa-shopping-cart"></i></a>
 	<span class="number"><?php echo sizeof($this->session->userdata('cart_items')); ?></span>
-</div>
+</div> -->
 
 <!-- Cart Dropdown goes here -->
 <div class="dropdown course-list-dropdown corner-triangle top-right" style="display: none;"> <!-- Just remove the display none from the css to make it work -->
