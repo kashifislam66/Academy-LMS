@@ -9,7 +9,7 @@
                     height="40">
             </span>
             <span class="topnav-logo-sm">
-                <img src="<?php echo base_url('uploads/system/'.get_frontend_settings('small_logo'));?>" alt=""
+                <img src="<?php echo base_url('uploads/system/'.get_frontend_settings('light_logo'));?>" alt=""
                     height="40">
             </span>
         </a>
