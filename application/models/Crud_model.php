@@ -1804,13 +1804,23 @@ class Crud_model extends CI_Model
 
     public function get_latest_10_course()
     {
-        if (addon_status('scorm_course')) {
-            $this->db->where('course_type', 'general');
-        }
-        $this->db->order_by("id", "desc");
-        $this->db->limit('10');
-        $this->db->where('status', 'active');
-        return $this->db->get('course')->result_array();
+        return  $query = $this->db
+            ->select("course.*")
+            ->from ("course")
+            ->join('rating', 'rating.ratable_id = course.id')
+            ->order_by("course.id", "desc")
+            ->limit('10')
+            ->where('rating', 5)
+            ->where('status', 'active')
+            ->get()->result_array();
+            // print_r($query); die();
+        // if (addon_status('scorm_course')) {
+        //     $this->db->where('course_type', 'general');
+        // }
+        // $this->db->order_by("id", "desc");
+        // $this->db->limit('10');
+        // $this->db->where('status', 'active');
+        // return $this->db->get('course')->result_array();
     }
 
     public function get_future_courses()

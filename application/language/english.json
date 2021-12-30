@@ -871,5 +871,7 @@
     "feature_courses": "Feature courses",
     "contact_us": "Contact us",
     "student_has_already_sent_request_to_enrolled_this_course": "Student has already sent request to enrolled this course",
-    "number_of_empolyes": "Number of empolyes"
+    "number_of_empolyes": "Number of empolyes",
+    "rated_courses": "Rated courses",
+    "top_rated_courses": "Top rated courses"
 }

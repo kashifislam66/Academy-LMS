@@ -293,7 +293,7 @@
         <div class="row">
             <div class="col">
                 <h3 class="course-carousel-title mb-4">
-                    <?php echo site_phrase('top') . ' 10 ' . site_phrase('latest_courses'); ?></h3>
+                    <?php echo site_phrase('top') .' '. site_phrase('rated_courses'); ?></h3>
 
                 <!-- page loader -->
                 <div class="animated-loader">
@@ -303,6 +303,7 @@
                 <div class="course-carousel shown-after-loading" style="display: none;">
                     <?php
                     $latest_courses = $this->crud_model->get_latest_10_course();
+                    // print_r($latest_courses); die();
                     foreach ($latest_courses as $latest_course) : ?>
                     <?php
                             $lessons = $this->crud_model->get_lessons('course', $latest_course['id']);
