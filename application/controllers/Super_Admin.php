@@ -2007,6 +2007,7 @@ redirect(site_url('super_admin/admins'), 'refresh');
 check_permission('super_admin');
 
 $this->user_model->edit_user($param2);
+
 redirect(site_url('super_admin/campanies'), 'refresh');
 } elseif ($param1 == "delete") {
 // CHECK ACCESS PERMISSION

@@ -925,11 +925,16 @@ class Api_model extends CI_Model
 	}
 
 	public function add_user_go1($token,$data) {
+		if($data['company_id'] != "") {
+			$role = "Learner";
+		} else {
+			$role = "Manager";
+		}
 		$result = [
 			"email"=> $data["email"],
 			"first_name"=> $data["first_name"],
 			"last_name"=> $data["last_name"],
-			"roles"=> array("Learner"),
+			"roles"=> array($role),
 			"password"=> $data["last_name"].'3879',
 			"send_login_email"=> false,
 			"custom_fields"=> array(

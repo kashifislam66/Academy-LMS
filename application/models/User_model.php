@@ -110,7 +110,9 @@ class User_model extends CI_Model
                         } else {
                             $post_user = $this->api_model->add_user_go1($get_login_decode->access_token, $data);
                             $post_user_decode = json_decode($post_user);
+                            if(isset($post_user_decode->id)) {
                             $data['go1_id'] = $post_user_decode->id;
+                            }
                         
                         }
                         
@@ -189,7 +191,9 @@ class User_model extends CI_Model
                     } else {
                         $post_user = $this->api_model->add_user_go1($get_login_decode->access_token, $data);
                         $post_user_decode = json_decode($post_user);
-                        $data['go1_id'] = $post_user_decode->id;
+                        if(isset($post_user_decode->id)) {
+                            $data['go1_id'] = $post_user_decode->id;
+                            }
                     
                     }
                     
@@ -279,16 +283,19 @@ class User_model extends CI_Model
             if(isset($get_login_decode->access_token)) {
                 $search_user = $this->api_model->search_user($get_login_decode->access_token, $email);
                 $search_user_decode = json_decode($search_user);
-
+               
                 if(isset($search_user_decode->hits[0]->id)) {
                     $data['go1_id'] = $search_user_decode->hits[0]->id;
                  
                 } else {
                     $post_user = $this->api_model->add_user_go1($get_login_decode->access_token, $data);
                     $post_user_decode = json_decode($post_user);
+                    if(isset($post_user_decode->id)) {
                     $data['go1_id'] = $post_user_decode->id;
+                    }
                  
                 }
+                $data['status'] = 1;
                 
                 
               }
