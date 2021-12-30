@@ -755,7 +755,7 @@ class Admin extends CI_Controller
                     $instructor_names = $instructor_details['first_name'] . ' ' . $instructor_details['last_name'];
                 }
 
-                $nestedData['title'] = '<strong><a href="' . site_url('admin/course_form/course_edit/' . $row->id) . '">' . $row->title . '</a></strong><br>
+                $nestedData['title'] = '<strong><a href="#">' . $row->title . '</a></strong><br>
                 <small class="text-muted">' . get_phrase('instructor') . ': <b>' . $instructor_names . '</b></small>';
 
                 $nestedData['category'] = '<span class="badge badge-dark-lighten">' . $category_details['name'] . '</span>';
