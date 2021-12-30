@@ -8,8 +8,8 @@
     <div class="container">
         <div class="row mb-5 mt-3">
             <div class="col-md-12 text-center">
-                <h1 class="fw-700"><?php echo site_phrase('sign_up'); ?></h1>
-                <p class="text-14px"><?php echo site_phrase('sign_up_and_start_learning'); ?></p>
+                <h1 class="fw-700"><?php echo site_phrase('Contact_Us'); ?></h1>
+                <p class="text-14px"><?php echo site_phrase('Contact_us'); ?></p>
             </div>
         </div>
         <div class="row">
@@ -86,8 +86,8 @@
                             <div class="input-group">
                                 <span class="input-group-text bg-white" for="company_number"><i
                                         class="fas fa-phone"></i></span>
-                                <input type="tel" name="company_number" pattern="[+]{1}[0-9]{11,14}"
-                                    class="form-control" placeholder="<?php echo site_phrase('company_number'); ?>"
+                                <input type="tel" name="company_number" class="form-control"
+                                    placeholder="<?php echo site_phrase('company_number'); ?>"
                                     aria-label="<?php echo site_phrase('company_number'); ?>"
                                     aria-describedby="<?php echo site_phrase('company_number'); ?>" id="company_number"
                                     required>
@@ -103,7 +103,7 @@
 
                         <div class="form-group">
                             <button type="submit"
-                                class="btn red radius-10 mt-4 w-100"><?php echo site_phrase('sign_up'); ?></button>
+                                class="btn red radius-10 mt-4 w-100"><?php echo site_phrase('Contact_Us'); ?></button>
                         </div>
 
                         <div class="form-group mt-4 mb-0 text-center">
@@ -117,3 +117,11 @@
         </div>
     </div>
 </section>
+
+<style>
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+</style>

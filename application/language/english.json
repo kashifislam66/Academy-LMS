@@ -873,5 +873,6 @@
     "student_has_already_sent_request_to_enrolled_this_course": "Student has already sent request to enrolled this course",
     "number_of_empolyes": "Number of empolyes",
     "rated_courses": "Rated courses",
-    "top_rated_courses": "Top rated courses"
+    "top_rated_courses": "Top rated courses",
+    "form_successfully__submitted": "Form successfully  submitted"
 }

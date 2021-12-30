@@ -8,7 +8,7 @@ $social_links = json_decode($user_data['social_links'], true);
             <div class="card-body">
                 <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i>
                     <?php echo $page_title; ?>
-                    <a href="<?php echo site_url('super_admin/campanies'); ?>"
+                    <a href="<?php echo site_url('super_admin/companies'); ?>"
                         class="btn btn-outline-primary btn-rounded alignToTitle"> <i class="mdi mdi-arrow-left"></i>
                         Back To Company</a>
                 </h4>
@@ -23,7 +23,7 @@ $social_links = json_decode($user_data['social_links'], true);
 
                 <h4 class="header-title mb-3"><?php echo get_phrase('admin_edit_form'); ?></h4>
 
-                <form class="required-form" action="<?php echo site_url('super_admin/campanies/edit/' . $user_id); ?>"
+                <form class="required-form" action="<?php echo site_url('super_admin/companies/edit/' . $user_id); ?>"
                     enctype="multipart/form-data" method="post">
                     <div id="progressbarwizard">
                         <ul class="nav nav-pills nav-justified form-wizard-header mb-3">
@@ -133,14 +133,38 @@ $social_links = json_decode($user_data['social_links'], true);
                                             </div>
                                         </div>
                                         <div class="form-group row mb-3">
-                                            <label class="col-md-3 col-form-label" for="email">
+                                            <label class="col-md-3 col-form-label" for="number_of_empoyies">
+                                                <?php echo get_phrase('Number_of_empolyes'); ?> <span
+                                                    class="required">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <input type="number" id="number_of_empolyes" name="number_of_empolyes"
+                                                    class="form-control"
+                                                    value="<?php echo $user_data['number_of_empolyes']; ?>" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row mb-3">
+                                            <label class="col-md-3 col-form-label" for="company_number">
+                                                <?php echo get_phrase('Company_number'); ?> <span
+                                                    class="required">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <input type="number" id="company_number" name="company_number"
+                                                    class="form-control"
+                                                    value="<?php echo $user_data['company_number']; ?>" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-3">
+                                            <label class="col-md-3 col-form-label" for="status">
                                                 <?php echo get_phrase('status'); ?> <span class="required">*</span>
                                             </label>
                                             <div class="col-md-9">
-                                                <select name="status" id="status" class="form-control">
-                                                    <option value='1' <?php if($user_data['status'] == '1') { ?>
+                                                <select name="status" id="status" class="form-control"
+                                                    value="<?= $user_data['status'] ?>">
+                                                    <option value="1" <?php if($user_data['status'] == 1) { ?>
                                                         selected="selected" <?php } ?>>Active</option>
-                                                    <option value='0' <?php if($user_data['status'] == '0') { ?>
+                                                    <option value="0" <?php if($user_data['status'] == 0) { ?>
                                                         selected="selected" <?php } ?>>Un-Active</option>
                                                 </select>
                                             </div>

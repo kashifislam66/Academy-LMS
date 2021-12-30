@@ -474,11 +474,23 @@
 
                                             <h2 style="font-size: 18px;">Dear <?= $full_name; ?>,</h2>
                                             <br>
-                                            <p>User Email: <b style="cursor: pointer;"><u><?= $to; ?></u></b></p>
-                                            <p>Number Empolyes: <b style="cursor: pointer;"><?= $empolyes_number; ?></b>
+                                            <p style="margin-bottom: 9px; margin-top:2px;">User Email:
+                                                <b style="cursor: pointer;"><?= $to; ?></b>
                                             </p>
-                                            <p>Company Number: <b style="cursor: pointer;"><?= $company_number; ?></b>
-                                            <p>Role: <b style="cursor: pointer;"><?= $role_id; ?></b>
+                                            <?php if(isset($password)){?>
+                                            <p style="margin-bottom: 9px; margin-top:2px;">Password:
+                                                <b style="cursor: pointer;"><?= $password; ?></b>
+                                            </p>
+                                            <?php } ?>
+                                            <p style="margin-bottom: 9px; margin-top:2px;">Number Empolyes:
+                                                <b style="cursor: pointer;"><?= $empolyes_number; ?></b>
+                                            </p>
+                                            <p style="margin-bottom: 9px; margin-top:2px;">Company Number:
+                                                <b style="cursor: pointer;"><?= $company_number; ?></b>
+                                            </p>
+
+                                            <p style="margin-bottom: 9px; margin-top:2px;">Role:
+                                                <b style="cursor: pointer;"><?= $role_id; ?></b>
                                             </p>
                                             <br>
 
@@ -486,16 +498,12 @@
                                             <br>
                                             <div
                                                 style="font-family:Muli,-apple-system,system-ui,helvetica,'helvetica neue',ubuntu,roboto,noto,'segoe ui',arial,sans-serif;font-size:16px;font-style:normal;line-height:22px;text-align:left;color:#000000">
-                                                Take the next step and achieve your learning goals with access to
-                                                quality training content across a variety of topics that are relevant to
+                                                Take the next step and achieve your learning goals with access
+                                                to
+                                                quality training content across a variety of topics that are
+                                                relevant to
                                                 you.</div>
                                             <br />
-                                            <!-- <p style="text-align: center;"><a
-                                                    title="<?= get_settings('system_name'); ?>" target="_blank"
-                                                    href="<?= site_url(); ?>"><?= get_settings('system_name'); ?></a>
-                                            </p>
-                                            <p style="text-align: center; color: #999999; font-size: 14px;">
-                                                <?= get_frontend_settings('about_us'); ?></p> -->
                                         </div>
                                     </td>
                                 </tr>

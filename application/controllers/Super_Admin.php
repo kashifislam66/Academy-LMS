@@ -18,7 +18,7 @@ class Super_Admin extends CI_Controller
     }
 
     public function index()
-    {
+    {  
         if ($this->session->userdata('super_admin_login') == true) {
             $this->dashboard();
         } else {
@@ -1986,8 +1986,8 @@ $question_json = $this->input->post('itemJSON');
 $this->crud_model->sort_question($question_json);
 }
 
-// SUPER ADMINS SECTION STARTS
-public function campanies($param1 = "", $param2 = "")
+// SUPER companies SECTION STARTS
+public function companies($param1 = "", $param2 = "")
 {
 if ($this->session->userdata('super_admin_login') != true) {
 redirect(site_url('login'), 'refresh');
@@ -2000,21 +2000,20 @@ if ($param1 == "add") {
 // CHECK ACCESS PERMISSION
 check_permission('super_admin');
 
-$this->user_model->add_user(false, true); // PROVIDING TRUE FOR INSTRUCTOR
-redirect(site_url('super_admin/admins'), 'refresh');
+$this->user_model->add_company(false, true); // PROVIDING TRUE FOR INSTRUCTOR
+redirect(site_url('super_admin/companies'), 'refresh');
 } elseif ($param1 == "edit") {
 // CHECK ACCESS PERMISSION
 check_permission('super_admin');
+$this->user_model->edit_company($param2);
 
-$this->user_model->edit_user($param2);
-
-redirect(site_url('super_admin/campanies'), 'refresh');
+redirect(site_url('super_admin/companies'), 'refresh');
 } elseif ($param1 == "delete") {
 // CHECK ACCESS PERMISSION
 check_permission('super_admin');
 
 $this->user_model->delete_user($param2);
-redirect(site_url('super_admin/campanies'), 'refresh');
+redirect(site_url('super_admin/companies'), 'refresh');
 }
 
 $page_data['page_name'] = 'companies';
@@ -2038,11 +2037,13 @@ $this->load->view('backend/index', $page_data);
 } elseif ($param1 == 'edit_admin_form') {
 // CHECK ACCESS PERMISSION
 check_permission('super_admin');
-
 $page_data['page_name'] = 'company_edit';
 $page_data['user_id'] = $param2;
 $page_data['page_title'] = 'Company Edit';
 $this->load->view('backend/index', $page_data);
 }
 }
+
+
+
 }

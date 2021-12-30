@@ -41,7 +41,7 @@ class Login extends CI_Controller
 
 
     public function validate_login($from = "")
-    {
+    {    
         if ($this->crud_model->check_recaptcha() == false && get_frontend_settings('recaptcha_status') == true) {
             $this->session->set_flashdata('error_message', get_phrase('recaptcha_verification_failed'));
             redirect(site_url('home/login'), 'refresh');
@@ -98,12 +98,11 @@ class Login extends CI_Controller
             redirect(site_url('home/login'), 'refresh');
         }
 
-        $data['first_name'] = $first_name =  html_escape($this->input->post('first_name'));
-        $data['last_name']  = $last_name  = html_escape($this->input->post('last_name'));
+        $data['first_name'] = html_escape($this->input->post('first_name'));
+        $data['last_name']  = html_escape($this->input->post('last_name'));
         $data['email']      = html_escape($this->input->post('email'));
-        //sha1($this->input->post('password'));
         $data['number_of_empolyes']  = html_escape($this->input->post('number_of_empolyes'));
-        $data['password']  = '';
+        $data['password']  = '';//sha1('password');
         $data['company_number']  = html_escape($this->input->post('company_number'));
 
         if (empty($data['first_name']) || empty($data['last_name']) || empty($data['email']) || empty($data['number_of_empolyes']) ||empty($data['company_number'])) {
@@ -167,9 +166,9 @@ class Login extends CI_Controller
             } else {
                 
                 // company email sent
-                $full_name = $first_name.' '.$last_name;
-                $this->email_model->send_email_company_register_activition($data['email']);
-                $this->session->set_flashdata('flash_message', get_phrase('your_registration_has_been_successfully_done'));
+               // $full_name = $first_name.' '.$last_name;
+                 $this->email_model->send_email_company_register_activition($data['email']);
+                $this->session->set_flashdata('flash_message', get_phrase('Form_successfully _submitted'));
                 redirect(site_url('home/login'), 'refresh');
             }
         } else {
