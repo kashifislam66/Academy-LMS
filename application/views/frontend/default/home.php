@@ -106,7 +106,7 @@
     <div class="container-lg">
         <div class="row">
             <div class="col">
-                <h3 class="course-carousel-title mb-4"><?php echo site_phrase('Future_courses'); ?></h3>
+                <h3 class="course-carousel-title mb-4"><?php echo site_phrase('Feature_courses'); ?></h3>
 
                 <!-- page loader -->
                 <div class="animated-loader">
@@ -208,19 +208,6 @@
 
 
 
-                                        <?php if ($top_course['is_free_course'] == 1) : ?>
-                                        <p class="price text-right d-inline-block float-end">
-                                            <?php echo site_phrase('free'); ?></p>
-                                        <?php else : ?>
-                                        <?php if ($top_course['discount_flag'] == 1) : ?>
-                                        <p class="price text-right d-inline-block float-end">
-                                            <small><?php echo currency($top_course['price']); ?></small><?php echo currency($top_course['discounted_price']); ?>
-                                        </p>
-                                        <?php else : ?>
-                                        <p class="price text-right d-inline-block float-end">
-                                            <?php echo currency($top_course['price']); ?></p>
-                                        <?php endif; ?>
-                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
@@ -273,31 +260,22 @@
                                             href="<?php echo site_url('home/my_courses'); ?>"><?php echo site_phrase('already_purchased'); ?></a>
                                     </div>
                                     <?php else : ?>
-                                    <?php if ($top_course['is_free_course'] == 1) :
+                                    <?php 
                                                 if ($this->session->userdata('user_login') != 1) {
                                                     $url = "#";
                                                 } else {
-                                                    $url = site_url('home/get_enrolled_to_free_course/' . $top_course['id']);
+                                                    $url = site_url('home/get_enrolled/' . $top_course['id']);
                                                 } ?>
                                     <a href="<?php echo $url; ?>" class="btn green radius-10"
                                         onclick="handleEnrolledButton()"><?php echo site_phrase('get_enrolled'); ?></a>
-                                    <?php else : ?>
-                                    <button type="button"
-                                        class="btn red add-to-cart-btn <?php if (in_array($top_course['id'], $cart_items)) echo 'addedToCart'; ?> big-cart-button-<?php echo $top_course['id']; ?>"
-                                        id="<?php echo $top_course['id']; ?>" onclick="handleCartItems(this)">
-                                        <?php
-                                                    if (in_array($top_course['id'], $cart_items))
-                                                        echo site_phrase('added_to_cart');
-                                                    else
-                                                        echo site_phrase('add_to_cart');
-                                                    ?>
-                                    </button>
+                                  
+                                  
                                     <?php endif; ?>
                                     <button type="button"
                                         class="wishlist-btn <?php if ($this->crud_model->is_added_to_wishlist($top_course['id'])) echo 'active'; ?>"
                                         title="Add to wishlist" onclick="handleWishList(this)"
                                         id="<?php echo $top_course['id']; ?>"><i class="fas fa-heart"></i></button>
-                                    <?php endif; ?>
+                                   
 
                                 </div>
                             </div>
@@ -315,7 +293,7 @@
         <div class="row">
             <div class="col">
                 <h3 class="course-carousel-title mb-4">
-                    <?php echo site_phrase('top') . ' 10 ' . site_phrase('latest_courses'); ?></h3>
+                    <?php echo site_phrase('top') .' '. site_phrase('rated_courses'); ?></h3>
 
                 <!-- page loader -->
                 <div class="animated-loader">
@@ -325,6 +303,7 @@
                 <div class="course-carousel shown-after-loading" style="display: none;">
                     <?php
                     $latest_courses = $this->crud_model->get_latest_10_course();
+                    // print_r($latest_courses); die();
                     foreach ($latest_courses as $latest_course) : ?>
                     <?php
                             $lessons = $this->crud_model->get_lessons('course', $latest_course['id']);
@@ -417,19 +396,7 @@
 
 
 
-                                        <?php if ($latest_course['is_free_course'] == 1) : ?>
-                                        <p class="price text-right d-inline-block float-end">
-                                            <?php echo site_phrase('free'); ?></p>
-                                        <?php else : ?>
-                                        <?php if ($latest_course['discount_flag'] == 1) : ?>
-                                        <p class="price text-right d-inline-block float-end">
-                                            <small><?php echo currency($latest_course['price']); ?></small><?php echo currency($latest_course['discounted_price']); ?>
-                                        </p>
-                                        <?php else : ?>
-                                        <p class="price text-right d-inline-block float-end">
-                                            <?php echo currency($latest_course['price']); ?></p>
-                                        <?php endif; ?>
-                                        <?php endif; ?>
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -482,31 +449,22 @@
                                             href="<?php echo site_url('home/my_courses'); ?>"><?php echo site_phrase('already_purchased'); ?></a>
                                     </div>
                                     <?php else : ?>
-                                    <?php if ($latest_course['is_free_course'] == 1) :
+                                    <?php 
                                                 if ($this->session->userdata('user_login') != 1) {
                                                     $url = "#";
                                                 } else {
-                                                    $url = site_url('home/get_enrolled_to_free_course/' . $latest_course['id']);
+                                                    $url = site_url('home/get_enrolled/' . $latest_course['id']);
                                                 } ?>
                                     <a href="<?php echo $url; ?>" class="btn green radius-10"
                                         onclick="handleEnrolledButton()"><?php echo site_phrase('get_enrolled'); ?></a>
-                                    <?php else : ?>
-                                    <button type="button"
-                                        class="btn red add-to-cart-btn <?php if (in_array($latest_course['id'], $cart_items)) echo 'addedToCart'; ?> big-cart-button-<?php echo $latest_course['id']; ?>"
-                                        id="<?php echo $latest_course['id']; ?>" onclick="handleCartItems(this)">
-                                        <?php
-                                                    if (in_array($latest_course['id'], $cart_items))
-                                                        echo site_phrase('added_to_cart');
-                                                    else
-                                                        echo site_phrase('add_to_cart');
-                                                    ?>
-                                    </button>
+                                   
+                                   
                                     <?php endif; ?>
                                     <button type="button"
                                         class="wishlist-btn <?php if ($this->crud_model->is_added_to_wishlist($latest_course['id'])) echo 'active'; ?>"
                                         title="Add to wishlist" onclick="handleWishList(this)"
                                         id="<?php echo $latest_course['id']; ?>"><i class="fas fa-heart"></i></button>
-                                    <?php endif; ?>
+                                    
 
                                 </div>
                             </div>

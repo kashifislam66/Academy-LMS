@@ -42,15 +42,7 @@ if (sizeof($my_courses) > 0) :
                                 <?php echo $instructor_details['first_name'] . ' ' . $instructor_details['last_name']; ?>
                             <?php endif; ?>
                         </p>
-                        <?php if ($my_course['is_free_course'] == 1) : ?>
-                            <p class="price text-right"><?php echo site_phrase('free'); ?></p>
-                        <?php else : ?>
-                            <?php if ($my_course['discount_flag'] == 1) : ?>
-                                <p class="price text-right"><small><?php echo currency($my_course['price']); ?></small><?php echo currency($my_course['discounted_price']); ?></p>
-                            <?php else : ?>
-                                <p class="price text-right"><?php echo currency($my_course['price']); ?></p>
-                            <?php endif; ?>
-                        <?php endif; ?>
+                        
                     </div>
                 </div>
             </div>

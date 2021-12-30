@@ -37,18 +37,7 @@ $cart_items = $this->session->userdata('cart_items');
                                         <?php endif; ?>
                                     </div>
 
-                                    <div class="item-price">
-                                        <?php if ($course_details['is_free_course'] == 1) : ?>
-                                            <span class="current-price"><?php echo site_phrase('free'); ?></span>
-                                        <?php else :  ?>
-                                            <?php if ($course_details['discount_flag'] == 1) : ?>
-                                                <span class="current-price"><?php echo currency($course_details['discounted_price']); ?></span>
-                                                <span class="original-price"><?php echo currency($course_details['price']); ?></span>
-                                            <?php else : ?>
-                                                <span class="current-price"><?php echo currency($course_details['price']); ?></span>
-                                            <?php endif; ?>
-                                        <?php endif; ?>
-                                    </div>
+                                   
                                 </a>
                                 <?php if (is_purchased($course_details['id'])) : ?>
                                     <button><?= site_phrase('already_purchased'); ?></button>

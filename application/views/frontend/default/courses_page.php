@@ -84,8 +84,8 @@ if (isset($sub_category_id)) {
                                 </ul>
                                 <a href="javascript:;" class="text-13px fw-500" id="city-toggle-btn" onclick="showToggle(this, 'hidden-categories')"><?php echo $total_number_of_categories > $number_of_visible_categories ? site_phrase('show_more') : ""; ?></a>
                             </div>
-                            <hr>
-                            <div class="filter_type px-4">
+                            <hr style="display:none;">
+                            <div class="filter_type px-4" style="display:none;">
                                 <div class="form-group">
                                     <h5 class="fw-700 mb-3"><?php echo site_phrase('price'); ?></h5>
                                     <ul>

@@ -609,7 +609,7 @@ class Super_Admin extends CI_Controller
            // get course from db if exist
            $course_details = $this->crud_model->get_course_by_api_id( $value_id)->row_array();
            if(empty($course_details) || $course_details == "") {
-              if ($count > 500) { break; }
+              if ($count > 50) { break; }
                $count++; 
            // get catalauge
             $get_catalauge = $this->api_model->catalauge_response($get_login_decode->access_token, $value_id);
@@ -2007,6 +2007,7 @@ redirect(site_url('super_admin/admins'), 'refresh');
 check_permission('super_admin');
 
 $this->user_model->edit_user($param2);
+
 redirect(site_url('super_admin/campanies'), 'refresh');
 } elseif ($param1 == "delete") {
 // CHECK ACCESS PERMISSION

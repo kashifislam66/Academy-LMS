@@ -868,5 +868,10 @@
     "successfully__sent_enrolled_request": "Successfully  sent enrolled request",
     "enrol_course": "Enrol course",
     "student_has_already_been_enrolled_to_this_course": "Student has already been enrolled to this course",
-    "number_of_empolyes": "Number of empolyes"
+    "feature_courses": "Feature courses",
+    "contact_us": "Contact us",
+    "student_has_already_sent_request_to_enrolled_this_course": "Student has already sent request to enrolled this course",
+    "number_of_empolyes": "Number of empolyes",
+    "rated_courses": "Rated courses",
+    "top_rated_courses": "Top rated courses"
 }

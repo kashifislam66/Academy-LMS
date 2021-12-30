@@ -45,28 +45,7 @@
                                 <!-- <div>Move to Wishlist</div> -->
                             </div>
                             <div class="price">
-                                <?php if ($course_details['discount_flag'] == 1) : ?>
-                                    <div class="current-price">
-                                        <?php
-                                        $total_price += $course_details['discounted_price'];
-                                        echo currency($course_details['discounted_price']);
-                                        ?>
-                                    </div>
-                                    <div class="original-price">
-                                        <?php
-                                        $actual_price += $course_details['price'];
-                                        echo currency($course_details['price']);
-                                        ?>
-                                    </div>
-                                <?php else : ?>
-                                    <div class="current-price">
-                                        <?php
-                                        $actual_price += $course_details['price'];
-                                        $total_price  += $course_details['price'];
-                                        echo currency($course_details['price']);
-                                        ?>
-                                    </div>
-                                <?php endif; ?>
+                                
                             </div>
                         </div>
                     </li>

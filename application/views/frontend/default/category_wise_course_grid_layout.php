@@ -72,16 +72,6 @@
                                 </div>
 
 
-
-                                <?php if ($course['is_free_course'] == 1) : ?>
-                                    <p class="price text-right d-inline-block float-end"><?php echo site_phrase('free'); ?></p>
-                                <?php else : ?>
-                                    <?php if ($course['discount_flag'] == 1) : ?>
-                                        <p class="price text-right d-inline-block float-end"><small><?php echo currency($course['price']); ?></small><?php echo currency($course['discounted_price']); ?></p>
-                                    <?php else : ?>
-                                        <p class="price text-right d-inline-block float-end"><?php echo currency($course['price']); ?></p>
-                                    <?php endif; ?>
-                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
