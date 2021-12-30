@@ -90,27 +90,23 @@ class Login extends CI_Controller
     }
 
 
-
-
-
-
-
-
     public function register()
     {
-
+      // echo "<pre>"; print_r($_POST); exit;
         if ($this->crud_model->check_recaptcha() == false && get_frontend_settings('recaptcha_status') == true) {
             $this->session->set_flashdata('error_message', get_phrase('recaptcha_verification_failed'));
             redirect(site_url('home/login'), 'refresh');
         }
 
-        $data['first_name'] = html_escape($this->input->post('first_name'));
-        $data['last_name']  = html_escape($this->input->post('last_name'));
-        $data['email']  = html_escape($this->input->post('email'));
-        $data['password']  = sha1($this->input->post('password'));
+        $data['first_name'] = $first_name =  html_escape($this->input->post('first_name'));
+        $data['last_name']  = $last_name  = html_escape($this->input->post('last_name'));
+        $data['email']      = html_escape($this->input->post('email'));
+        //sha1($this->input->post('password'));
+        $data['number_of_empolyes']  = html_escape($this->input->post('number_of_empolyes'));
+        $data['password']  = '';
         $data['company_number']  = html_escape($this->input->post('company_number'));
 
-        if (empty($data['first_name']) || empty($data['last_name']) || empty($data['email']) || empty($data['password']) ||empty($data['company_number'])) {
+        if (empty($data['first_name']) || empty($data['last_name']) || empty($data['email']) || empty($data['number_of_empolyes']) ||empty($data['company_number'])) {
             $this->session->set_flashdata('error_message', site_phrase('your_sign_up_form_is_empty') . '. ' . site_phrase('fill_out_the_form with_your_valid_data'));
             redirect(site_url('home/sign_up'), 'refresh');
         }
@@ -157,7 +153,7 @@ class Login extends CI_Controller
             } else {
                 $this->user_model->register_user_update_code($data);
             }
-
+         
             if (get_settings('student_email_verification') == 'enable') {
                 $this->email_model->send_email_verification_mail($data['email'], $verification_code);
 
@@ -169,6 +165,10 @@ class Login extends CI_Controller
                 $this->session->set_userdata('register_email', $this->input->post('email'));
                 redirect(site_url('home/verification_code'), 'refresh');
             } else {
+                
+                // company email sent
+                $full_name = $first_name.' '.$last_name;
+                $this->email_model->send_email_company_register_activition($data['email']);
                 $this->session->set_flashdata('flash_message', get_phrase('your_registration_has_been_successfully_done'));
                 redirect(site_url('home/login'), 'refresh');
             }

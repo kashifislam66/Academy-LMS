@@ -56,17 +56,29 @@
                                     required>
                             </div>
                         </div>
-
+                        <!-- 
                         <div class="form-group">
-                            <label for="registration-password"><?php echo site_phrase('password'); ?></label>
+                            <label for="registration-password"><?php //echo site_phrase('password'); ?></label>
                             <div class="input-group">
                                 <span class="input-group-text bg-white" for="password"><i
                                         class="fas fa-user"></i></span>
                                 <input type="password" name="password" class="form-control"
-                                    placeholder="<?php echo site_phrase('password'); ?>"
-                                    aria-label="<?php echo site_phrase('password'); ?>"
-                                    aria-describedby="<?php echo site_phrase('password'); ?>" id="registration-password"
+                                    placeholder="<?php //echo site_phrase('password'); ?>"
+                                    aria-label="<?php //echo site_phrase('password'); ?>"
+                                    aria-describedby="<?php //echo site_phrase('password'); ?>" id="registration-password"
                                     required>
+                            </div>
+                        </div> -->
+                        <div class="form-group">
+                            <label for="number-of-empolyes"><?php echo site_phrase('Number_of_empolyes'); ?></label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-white" for="number-of-empolyes"><i
+                                        class="fas fa-user"></i></span>
+                                <input type="number" name="number_of_empolyes" class="form-control"
+                                    placeholder="<?php echo site_phrase('Number_of_empolyes'); ?>"
+                                    aria-label="<?php echo site_phrase('Number_of_empolyes'); ?>"
+                                    aria-describedby="<?php echo site_phrase('Number_of_empolyes'); ?>"
+                                    id="number-of-empolyes" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -74,8 +86,8 @@
                             <div class="input-group">
                                 <span class="input-group-text bg-white" for="company_number"><i
                                         class="fas fa-phone"></i></span>
-                                <input type="number" name="company_number" class="form-control"
-                                    placeholder="<?php echo site_phrase('company_number'); ?>"
+                                <input type="tel" name="company_number" pattern="[+]{1}[0-9]{11,14}"
+                                    class="form-control" placeholder="<?php echo site_phrase('company_number'); ?>"
                                     aria-label="<?php echo site_phrase('company_number'); ?>"
                                     aria-describedby="<?php echo site_phrase('company_number'); ?>" id="company_number"
                                     required>
