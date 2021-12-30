@@ -1,7 +1,7 @@
 <form class="required-form ajaxForm" action="<?php echo site_url('admin/shortcut_enrol_student'); ?>" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="user_id"><?php echo get_phrase('user'); ?><span class="required">*</span> </label>
-        <select class="form-control select2" data-toggle="select2" name="user_id" id="user_id" required>
+        <select class="form-control select2" data-toggle="select2" name="user_id[]" id="user_id" required multiple="multiple">
             <option value=""><?php echo get_phrase('select_a_user'); ?></option>
             <?php $user_list = $this->user_model->get_user_by_company()->result_array();
                 foreach ($user_list as $user):?>

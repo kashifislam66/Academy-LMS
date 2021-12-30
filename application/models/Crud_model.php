@@ -656,7 +656,7 @@ class Crud_model extends CI_Model
         $outcomes = $this->trim_and_return_json($this->input->post('outcomes'));
         $requirements = $this->trim_and_return_json($this->input->post('requirements'));
         $data['title'] = $this->input->post('title');
-        $data['short_description'] = html_escape($this->input->post('short_description'));
+        $data['short_description'] = $this->input->post('short_description');
         $data['description'] = $this->input->post('description');
         $data['outcomes'] = $outcomes;
         $data['language'] = $this->input->post('language_made_in');
@@ -672,7 +672,7 @@ class Crud_model extends CI_Model
         $data['level'] = $this->input->post('level');
         $data['video_url'] = $this->input->post('course_overview_url');
         if ($this->input->post('course_overview_url') != "") {
-            $data['course_overview_provider'] = html_escape($this->input->post('course_overview_provider'));
+            $data['course_overview_provider'] = $this->input->post('course_overview_provider');
         } else {
             $data['course_overview_provider'] = "";
         }
@@ -1904,30 +1904,33 @@ class Crud_model extends CI_Model
     public function shortcut_enrol_a_student_manually()
     {
         $data['course_id'] = $this->input->post('course_id');
-        $data['user_id']   = $this->input->post('user_id');
-        if ($this->db->get_where('enrol', $data)->num_rows() > 0) {
-            $response['status'] = 0;
-            $response['message'] = get_phrase('student_has_already_been_enrolled_to_this_course');
-            return json_encode($response);
-        } else {
-            $get_login = $this->api_model->login_go1();
-            $get_login_decode = json_decode($get_login);
-   
-                if(isset($get_login_decode->access_token)) {
-                    $course_details = $this->get_course_by_id($data['course_id'])->row_array();
-                    $user_data= $this->user_model->get_user($data['user_id'])->row_array();
-                    $enrol_add =   $this->api_model->enrol_Add($get_login_decode->access_token,$user_data['go1_id'],$course_details['api_id']);
-                    $enrol_add_decode = json_decode($enrol_add);
-                    // print_r($enrol_add_decode); die();
-                    $data['enrol_go1_id'] = $enrol_add_decode->id;
-                }
-            $data['date_added'] = strtotime(date('D, d-M-Y'));
-            $this->db->insert('enrol', $data);
-            $this->session->set_flashdata('flash_message', get_phrase('student_has_been_enrolled_to_that_course'));
+        $user_id   = $this->input->post('user_id');
+        foreach($user_id as $user) {
+            $data['user_id'] = $user;
+       
+                if ($this->db->get_where('enrol', $data)->num_rows() < 1) {
+                   
+                    $get_login = $this->api_model->login_go1();
+                    $get_login_decode = json_decode($get_login);
+        
+                        if(isset($get_login_decode->access_token)) {
+                            $course_details = $this->get_course_by_id($data['course_id'])->row_array();
+                            $user_data= $this->user_model->get_user($data['user_id'])->row_array();
+                            $enrol_add =   $this->api_model->enrol_Add($get_login_decode->access_token,$user_data['go1_id'],$course_details['api_id']);
+                            $enrol_add_decode = json_decode($enrol_add);
+                            // print_r($enrol_add_decode); die();
+                            $data['enrol_go1_id'] = $enrol_add_decode->id;
+                        }
+                    $data['date_added'] = strtotime(date('D, d-M-Y'));
+                    $this->db->insert('enrol', $data);
+                    $this->session->set_flashdata('flash_message', get_phrase('student_has_been_enrolled_to_that_course'));
 
+                   
+                }
+               
+            }
             $response['status'] = 1;
             return json_encode($response);
-        }
     }
 
     public function enrol_to_free_course($course_id = "", $user_id = "")

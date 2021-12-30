@@ -54,7 +54,7 @@
 
                     <div class="row row-paddingless" style="padding-left: 15px; padding-right: 15px;">
                         <!--begin:Item-->
-                        <?php if ($this->session->userdata('is_instructor') == 1 && !$this->session->userdata('admin_login')  || has_permission('course')) : ?>
+                        <?php if ($this->session->userdata('is_instructor') == 1 && $this->session->userdata('super_admin_login')  ) : ?>
                         <div class="col-6 p-0 border-bottom border-right">
                             <a href="#" class="d-block text-center py-3 bg-hover-light"
                                 onclick="showAjaxModal('<?= site_url($logged_in_user_role.'/course_form/add_course_shortcut'); ?>', '<?= get_phrase('create_course'); ?>')">
@@ -72,7 +72,7 @@
                         </div>
                         <?php endif; ?>
 
-                        <?php if($this->session->userdata('admin_login') && has_permission('student')): ?>
+                        <?php if($this->session->userdata('admin_login') && has_permission('student') || $this->session->userdata('super_admin_login')): ?>
                         <div class="col-6 p-0 border-right">
                             <a href="#" class="d-block text-center py-3 bg-hover-light"
                                 onclick="showAjaxModal('<?php echo site_url('modal/popup/shortcut_add_student'); ?>', '<?php echo get_phrase('add_student'); ?>')">
@@ -82,7 +82,7 @@
                         </div>
                         <?php endif; ?>
 
-                        <?php if($this->session->userdata('admin_login') && has_permission('enrolment')): ?>
+                        <?php if($this->session->userdata('admin_login') && has_permission('enrolment') || $this->session->userdata('super_admin_login')): ?>
                         <div class="col-6 p-0">
                             <a href="#" class="d-block text-center py-3 bg-hover-light"
                                 onclick="showAjaxModal('<?php echo site_url('modal/popup/shortcut_enrol_student'); ?>', '<?php echo get_phrase('enrol_a_student'); ?>')">
