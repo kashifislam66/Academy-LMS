@@ -2381,12 +2381,14 @@ class Crud_model extends CI_Model
             if (!addon_status('scorm_course')) {
                 $this->db->where('course_type', 'general');
             }
-            $this->db->where_in('id', $course_ids);
-            return $this->db->get('course')->result_array();
+            return  $course_ids;
+           
         } else {
             return array();
         }
     }
+
+    
 
     public function get_courses($category_id = "", $sub_category_id = "", $instructor_id = 0)
     {
