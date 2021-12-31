@@ -873,5 +873,14 @@
     "student_has_already_sent_request_to_enrolled_this_course": "Student has already sent request to enrolled this course",
     "number_of_empolyes": "Number of empolyes",
     "rated_courses": "Rated courses",
-    "top_rated_courses": "Top rated courses"
+    "top_rated_courses": "Top rated courses",
+    "certificate_settings": "Certificate settings",
+    "certificate": "Certificate",
+    "notice": "Notice",
+    "you_have_completed": "You have completed",
+    "of_the_course": "Of the course",
+    "you_can_download_the_course_completion_certificate_after_completing_the_course": "You can download the course completion certificate after completing the course",
+    "well_done": "Well done",
+    "you_are_now_eligible_to_download_the_course_completion_certificate": "You are now eligible to download the course completion certificate",
+    "get_certificate": "Get certificate"
 }

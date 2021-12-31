@@ -549,10 +549,10 @@ class Home extends CI_Controller
     public function lesson($slug = "", $course_id = "", $lesson_id = "")
     {
        
-        if ($this->session->userdata('user_login') != 1) {
-            if ($this->session->userdata('admin_login') != 1) {
+        if ($this->session->userdata('user_login') != 1 && $this->session->userdata('admin_login') != 1 && $this->session->userdata('super_admin_login') != 1) {
+            
                 redirect('home', 'refresh');
-            }
+            
         }
 
         $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
@@ -1183,7 +1183,7 @@ class Home extends CI_Controller
         $this->db->where('course_id', $course_id);
         $row = $this->db->get('enrol')->num_rows();
 
-        if($this->session->userdata('role_id') == 1 || $row > 0){
+        if($this->session->userdata('role_id') == 1 || $this->session->userdata('role_id') == 3 || $row > 0){
 
             echo json_encode(1);
             exit();

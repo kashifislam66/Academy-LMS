@@ -704,13 +704,13 @@ class Super_Admin extends CI_Controller
                     'date_added'=>strtotime($catalague_result->created_time),
                     'thumbnail'=>$catalague_result->image,
                     'last_modified'=>strtotime($catalague_result->updated_time),
-                    'price'=> 90,
+                    'price'=> 0,
                     'level'=> isset($catalague_result->attributes->entry_level->value) ? $catalague_result->attributes->entry_level->value : '',
                     'outcomes'=>$outcomes,
                     'requirements'=>$skills,
                     'section'=>json_encode(array()),
                     'course_overview_provider'=>"html5",
-                    'is_free_course'=> 0,
+                    'is_free_course'=> 1,
                     'meta_keywords'=>isset($catalague_result->tags) ? implode(', ', $catalague_result->tags) : '',
                     'meta_description'=>isset($catalague_result->summary) ?  $catalague_result->summary : '',
                     'status'=>'active',
@@ -761,7 +761,7 @@ class Super_Admin extends CI_Controller
                     'video_type_for_mobile_application'=>'html5',
                     'video_url_for_mobile_application'=>isset($get_catalauge_play_decode->player) ? $get_catalauge_play_decode->player : '',
                     'duration_for_mobile_application'=>$duration,
-                    'is_free'=> 0,
+                    'is_free'=> 1,
                    
                 ];
                 $lesson_add_id =  $this->crud_model->add_lesson_api($lesson_add);
@@ -796,7 +796,7 @@ class Super_Admin extends CI_Controller
                                                 'video_type_for_mobile_application'=>'html5',
                                                 'video_url_for_mobile_application'=>"",
                                                 'duration_for_mobile_application'=>'',
-                                                'is_free'=> 0,
+                                                'is_free'=> 1,
                                             ];
                                              $this->crud_model->add_lesson_api($lesson_add);
                             }
