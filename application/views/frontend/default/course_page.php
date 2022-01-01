@@ -168,7 +168,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                                     
                       foreach ($lessons as $lesson) :  ?>
                       
-                                    <li class="lecture has-preview text-14px " <?php if ($this->session->userdata('user_login') != true) { ?> style="pointer-events: none;"<?php } ?>>
+                                    <li class="lecture has-preview text-14px " <?php if ($this->session->userdata('user_login') != true && $this->session->userdata('super_admin_login') != true && $this->session->userdata('admin_login') != true) { ?> style="pointer-events: none;"<?php } ?>>
                                      
                                         <span
                                             class="lecture-title <?php  if($lesson['is_free'] == 1) echo 'text-primary'; ?>"  <?php if($key != "0") { ?>style="pointer-events: none;" <?php } ?>
@@ -176,11 +176,11 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
 
                                         <div class="lecture-info float-lg-end">
                                             <?php if($lesson['is_free'] == 1): ?>
-                                            <span class="lecture-preview"
+                                            <!-- <span class="lecture-preview"
                                                 onclick="lesson_preview('<?php echo site_url('home/preview_free_lesson/'.$lesson['id']); ?>', '<?php echo site_phrase('lesson').': '.htmlspecialchars($lesson['title']); ?>')">
                                                 <i class="fas fa-eye"></i>
                                                 <?php echo site_phrase('preview'); ?>
-                                            </span>
+                                            </span> -->
                                             <?php endif; ?>
 
                                             <span class="lecture-time ps-2">
@@ -785,6 +785,7 @@ function go_course_playing_page(course_id, lesson_id) {
         dataType: 'JSON',
         cache: false,
         success: function(response) {
+// console.log(response);
             if (response == 1) {
                 window.location.replace(course_playing_url);
             }

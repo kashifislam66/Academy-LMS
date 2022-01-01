@@ -1060,5 +1060,58 @@ class Api_model extends CI_Model
 		return $response;
 	}
 
+	// update user
+
+	public function update_user_go1($token,$data,$go1_id) {
+		if($data['company_id'] != "") {
+			$role = "Learner";
+		} else {
+			$role = "Manager";
+		}
+		if($data['status'] = 1) {
+			$status = true;
+		} else {
+			$status = false;
+		}
+		$result = [
+		
+			"first_name"=> $data["first_name"],
+			"last_name"=> $data["last_name"],
+			"status"=> $status,
+			"roles"=> array($role),
+			"custom_fields"=> array(
+				"foo"=>"bar",
+				"baz"=>"quz",
+			),
+			"managers"=> array("5898439"),
+		];
+
+
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+		CURLOPT_URL => 'https://api.go1.com/v2/users/'.$go1_id,
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_ENCODING => '',
+		CURLOPT_MAXREDIRS => 10,
+		CURLOPT_TIMEOUT => 0,
+		CURLOPT_FOLLOWLOCATION => true,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => 'PATCH',
+		CURLOPT_POSTFIELDS =>json_encode($result),
+		CURLOPT_HTTPHEADER => array(
+			'Authorization: Bearer '.$token,
+			'Content-Type: application/json'
+		),
+
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		return $response;
+	}
+
 	
 }
