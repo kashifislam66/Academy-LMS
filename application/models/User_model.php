@@ -106,6 +106,7 @@ class User_model extends CI_Model
 
                         if(isset($search_user_decode->hits[0]->id)) {
                             $data['go1_id'] = $search_user_decode->hits[0]->id;
+                            $update_user = $this->api_model->update_user_go1($get_login_decode->access_token, $data,$data['go1_id']);
                         
                         } else {
                             $post_user = $this->api_model->add_user_go1($get_login_decode->access_token, $data);
@@ -813,7 +814,7 @@ class User_model extends CI_Model
             $data['stripe_keys'] = json_encode($stripe_info);
             // go1 api code start
             
-            if($this->input->post('status') == 1) {
+            
                 $get_login = $this->api_model->login_go1();
                 $get_login_decode = json_decode($get_login);
             if(isset($get_login_decode->access_token)) {
@@ -821,7 +822,25 @@ class User_model extends CI_Model
                 $search_user_decode = json_decode($search_user);
                
                 if(isset($search_user_decode->hits[0]->id)) {
-                    $data['go1_id'] = $search_user_decode->hits[0]->id;
+                    $data['go1_id'] = $go1_id = $search_user_decode->hits[0]->id;
+                    $data['status']  = $this->input->post('status');
+                    $update_user = $this->api_model->update_user_go1($get_login_decode->access_token, $data,$go1_id);
+                    $this->db->where('company_id', $user_id);
+                    $result_company_users =  $this->db->get('users')->result_array();
+                    // print_r($update_user); die();
+                    if(!empty($result_company_users)){
+                    foreach($result_company_users as $company_user) {
+                        $user_data['go1_id'] = $company_user['go1_id'];
+                        $user_data['first_name'] = $company_user['first_name'];
+                        $user_data['last_name'] = $company_user['last_name'];
+                        $user_data['status'] =  $data['status'];
+                        $user_data['company_id'] =  $company_user['company_id'];
+                        $update_user = $this->api_model->update_user_go1($get_login_decode->access_token, $user_data,$user_data['go1_id']);
+                        $this->db->where('id', $company_user['id']);
+                        $this->db->update('users', $user_data);
+                    }
+                }
+                   
                  
                 } else {
                     $post_user = $this->api_model->add_user_go1($get_login_decode->access_token, $data);
@@ -831,13 +850,11 @@ class User_model extends CI_Model
                     }
                  
                 }
-                $data['status'] = 1;
+                // $data['status'] = 1;
               } 
 
               
-            }else{
-                $data['status'] = $this->input->post('status');
-            }
+           
             
            
             
