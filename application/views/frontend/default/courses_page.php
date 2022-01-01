@@ -210,9 +210,9 @@ if (isset($sub_category_id)) {
                     <?php endif; ?>
                 </div>
                 <nav>
-                    <?php if ($selected_category_id == "all" && $selected_price == 0 && $selected_level == 'all' && $selected_language == 'all' && $selected_rating == 'all') {
+                    <?php //if ($selected_category_id == "all" && $selected_price == 0 && $selected_level == 'all' && $selected_language == 'all' && $selected_rating == 'all') {
                         echo $this->pagination->create_links();
-                    } ?>
+                    // }?>
                 </nav>
             </div>
         </div>

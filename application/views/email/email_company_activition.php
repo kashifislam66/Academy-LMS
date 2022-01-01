@@ -472,16 +472,26 @@
 
 
 
+
+
                                             <h2 style="font-size: 18px;">Dear <?= $full_name; ?>,</h2>
+                                            <br>
+                                            <?php if(isset($status) && !empty($status)){?>
+                                            <h2 style="font-size: 18px; color:red; text-align: center"><?= $status; ?>
+                                            </h2>
                                             <br>
                                             <p style="margin-bottom: 9px; margin-top:2px;">User Email:
                                                 <b style="cursor: pointer;"><?= $to; ?></b>
                                             </p>
-                                            <?php if(isset($password)){?>
+                                            <?php } else{ ?>
+                                            <p style="margin-bottom: 9px; margin-top:2px;">User Email:
+                                                <b style="cursor: pointer;"><?= $to; ?></b>
+                                            </p>
+                                            <?php if(isset($password)  && !empty($password)){?>
                                             <p style="margin-bottom: 9px; margin-top:2px;">Password:
                                                 <b style="cursor: pointer;"><?= $password; ?></b>
                                             </p>
-                                            <?php } ?>
+                                            <?php } } ?>
                                             <p style="margin-bottom: 9px; margin-top:2px;">Number Empolyes:
                                                 <b style="cursor: pointer;"><?= $empolyes_number; ?></b>
                                             </p>

@@ -160,8 +160,7 @@ $social_links = json_decode($user_data['social_links'], true);
                                                 <?php echo get_phrase('status'); ?> <span class="required">*</span>
                                             </label>
                                             <div class="col-md-9">
-                                                <select name="status" id="status" class="form-control"
-                                                    value="<?= $user_data['status'] ?>">
+                                                <select name="status" id="status" class="form-control">
                                                     <option value="1" <?php if($user_data['status'] == 1) { ?>
                                                         selected="selected" <?php } ?>>Active</option>
                                                     <option value="0" <?php if($user_data['status'] == 0) { ?>

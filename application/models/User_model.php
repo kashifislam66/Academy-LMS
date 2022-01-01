@@ -147,7 +147,7 @@ class User_model extends CI_Model
             $data['company_number'] = $email = html_escape($this->input->post('company_number'));
             $data['company_id'] = html_escape($this->input->post('company_id'));
             $userPass = html_escape($this->input->post('password'));
-            $data['password'] = sha1(html_escape($this->input->post('password')));
+            $data['password'] =  sha1(html_escape($this->input->post('password')));
             $social_link['facebook'] = html_escape($this->input->post('facebook_link'));
             $social_link['twitter'] = html_escape($this->input->post('twitter_link'));
             $social_link['linkedin'] = html_escape($this->input->post('linkedin_link'));
@@ -203,7 +203,7 @@ class User_model extends CI_Model
                         }
                         
                     }
-
+                       // echo "<pre>"; print_($_POST); exit;
             $this->db->insert('users', $data);
             $this->email_model->send_email_company_activited_system($data['email'], $userPass);
             $user_id = $this->db->insert_id();
@@ -812,8 +812,8 @@ class User_model extends CI_Model
             array_push($stripe_info, $stripe_keys);
             $data['stripe_keys'] = json_encode($stripe_info);
             // go1 api code start
-            $query = $this->db->get_where('users', array('id' => $user_id))->row_array();
-            if($this->input->post('status') == 1 && empty($query['status'])) {
+            
+            if($this->input->post('status') == 1) {
                 $get_login = $this->api_model->login_go1();
                 $get_login_decode = json_decode($get_login);
             if(isset($get_login_decode->access_token)) {
@@ -834,15 +834,16 @@ class User_model extends CI_Model
                 $data['status'] = 1;
               } 
 
-              if($query['role_id'] == 3){
-               $this->email_model->send_email_company_activited_system($data['email']);
-              }
+              
             }else{
                 $data['status'] = $this->input->post('status');
             }
             
+           
+            
             $this->db->where('id', $user_id);
             $this->db->update('users', $data);
+            $this->email_model->send_email_company_activited_system($data['email']);
             $this->session->set_flashdata('flash_message', get_phrase('user_update_successfully'));
         } else {
             $this->session->set_flashdata('error_message', get_phrase('email_duplication'));
