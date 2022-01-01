@@ -883,5 +883,7 @@
     "you_can_download_the_course_completion_certificate_after_completing_the_course": "You can download the course completion certificate after completing the course",
     "well_done": "Well done",
     "you_are_now_eligible_to_download_the_course_completion_certificate": "You are now eligible to download the course completion certificate",
-    "get_certificate": "Get certificate"
+    "get_certificate": "Get certificate",
+    "unverified": "Unverified",
+    "un_active": "Un active"
 }

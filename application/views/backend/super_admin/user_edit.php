@@ -149,6 +149,19 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        <div class="form-group row mb-3">
+                                            <label class="col-md-3 col-form-label" for="status">
+                                                <?php echo get_phrase('status'); ?> <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <select name="status" id="status" class="form-control">
+                                                    <option value="1" <?php if($user_data['status'] == 1) { ?>
+                                                        selected="selected" <?php } ?>>Active</option>
+                                                    <option value="0" <?php if($user_data['status'] == 0) { ?>
+                                                        selected="selected" <?php } ?>>Un-Active</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div> <!-- end col -->
                                 </div> <!-- end row -->
                             </div>

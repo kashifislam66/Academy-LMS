@@ -140,7 +140,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group  row mb-3">
-                                            <label
+                                            <label class="col-md-3 col-form-label"
                                                 for="company_number"><?php echo site_phrase('Company_number'); ?></label>
                                             <div class="col-md-9">
                                                 <input type="tel" name="company_number" class="form-control"
