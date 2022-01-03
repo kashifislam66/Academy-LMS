@@ -472,14 +472,27 @@
 
 
 
+
+
                                             <h2 style="font-size: 18px;">Dear <?= $full_name; ?>,</h2>
+                                            <br>
+                                            <?php if(isset($status) && !empty($status)){?>
+                                            <h2 style="font-size: 18px; color:red; text-align: center"><?= $status; ?>
+                                            </h2>
                                             <br>
                                             <p style="margin-bottom: 9px; margin-top:2px;">User Email:
                                                 <b style="cursor: pointer;"><?= $to; ?></b>
                                             </p>
-                                            <p style="margin-bottom: 9px; margin-top:2px;">Password:
-                                                <b style="cursor: pointer;"><?= $userPass; ?></b>
+                                            <?php } else{ ?>
+                                            <p style="margin-bottom: 9px; margin-top:2px;">User Email:
+                                                <b style="cursor: pointer;"><?= $to; ?></b>
                                             </p>
+                                            <?php if(isset($password)  && !empty($password)){?>
+                                            <p style="margin-bottom: 9px; margin-top:2px;">Password:
+                                                <b style="cursor: pointer;"><?= $password; ?></b>
+                                            </p>
+                                            <?php } } ?>
+
                                             <p style="margin-bottom: 9px; margin-top:2px;">Role:
                                                 <b style="cursor: pointer;"><?= $role_id; ?></b>
                                             </p>
@@ -489,8 +502,10 @@
                                             <br>
                                             <div
                                                 style="font-family:Muli,-apple-system,system-ui,helvetica,'helvetica neue',ubuntu,roboto,noto,'segoe ui',arial,sans-serif;font-size:16px;font-style:normal;line-height:22px;text-align:left;color:#000000">
-                                                Take the next step and achieve your learning goals with access to
-                                                quality training content across a variety of topics that are relevant to
+                                                Take the next step and achieve your learning goals with access
+                                                to
+                                                quality training content across a variety of topics that are
+                                                relevant to
                                                 you.</div>
                                             <br />
                                         </div>

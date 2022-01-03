@@ -20,9 +20,10 @@ class User_model extends CI_Model
     public function get_user($user_id = 0)
     {
         if ($user_id > 0) {
+            $this->db->order_by("id", "DESC");
             $this->db->where('id', $user_id);
         }
-        
+        $this->db->order_by("id", "DESC");
         $this->db->where('role_id', 2);
         return $this->db->get('users');
     }
@@ -31,6 +32,7 @@ class User_model extends CI_Model
     {
         $user_id = $this->session->userdata('user_id');
         // echo $user_id; exit;
+        $this->db->order_by("id", "DESC");
         $array = array('role_id' => 2,  'company_id'=> $user_id);
         $this->db->where($array);
         // echo "<pre>";print_r($test); exit;
@@ -40,6 +42,7 @@ class User_model extends CI_Model
     public function get_all_user($user_id = 0)
     {
         if ($user_id > 0) {
+            $this->db->order_by("id", "DESC");
             $this->db->where('id', $user_id);
         }
         return $this->db->get('users');
@@ -364,16 +367,21 @@ class User_model extends CI_Model
             $data['stripe_keys'] = json_encode($stripe_info);
             // go1 api code start
            
-            if($this->input->post('status') == 1) {
+            // if($this->input->post('status') == 1) {
                 $get_login = $this->api_model->login_go1();
+                $data['status']  = $this->input->post('status');
                 $get_login_decode = json_decode($get_login);
             if(isset($get_login_decode->access_token)) {
                 $search_user = $this->api_model->search_user($get_login_decode->access_token, $email);
                 $search_user_decode = json_decode($search_user);
-               
+                $search_user_decode = json_decode($search_user);
+         
                 if(isset($search_user_decode->hits[0]->id)) {
-                    $data['go1_id'] = $search_user_decode->hits[0]->id;
-                 
+                    $data['go1_id'] = $go1_id = $search_user_decode->hits[0]->id;
+                    $data['status']  = $this->input->post('status');
+                    $update_user = $this->api_model->update_user_go1($get_login_decode->access_token, $data,$go1_id);
+                    $this->db->where('id', $user_id);
+                    $this->db->get('users');
                 } else {
                     $post_user = $this->api_model->add_user_go1($get_login_decode->access_token, $data);
                     $post_user_decode = json_decode($post_user);
@@ -382,11 +390,12 @@ class User_model extends CI_Model
                     }
                  
                 }
-                $data['status'] = 1;
+                // $data['status'] = 1;
               }
-            }
+            // }
             $this->db->where('id', $user_id);
             $this->db->update('users', $data);
+            $this->email_model->send_email_company_user_status_activition($data['email']);
             $this->session->set_flashdata('flash_message', get_phrase('user_update_successfully'));
         } else {
             $this->session->set_flashdata('error_message', get_phrase('email_duplication'));
@@ -509,8 +518,10 @@ class User_model extends CI_Model
     public function get_all_company($id = 0)
     {
         if ($id > 0) {
+            $this->db->order_by("id", "DESC");
             return $this->db->get_where('users', array('id' => $id, 'role_id' => 3));
         } else {
+            $this->db->order_by("id", "DESC");
             return $this->db->get_where('users', array('role_id' => 3));
         }
     }
@@ -853,11 +864,6 @@ class User_model extends CI_Model
                 // $data['status'] = 1;
               } 
 
-              
-           
-            
-           
-            
             $this->db->where('id', $user_id);
             $this->db->update('users', $data);
             $this->email_model->send_email_company_activited_system($data['email']);
