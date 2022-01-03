@@ -45,10 +45,16 @@
                                     <?php if ($user['status'] != 1) : ?>
                                     <small>
                                         <p><?php echo get_phrase('status'); ?>: <span
-                                                class="badge badge-danger-lighten"><?php echo get_phrase('unverified'); ?></span>
+                                                class="badge badge-danger-lighten"><?php echo get_phrase('Un_Active'); ?></span>
                                         </p>
                                     </small>
-                                    <?php endif; ?>
+                                    <?php else : ?>
+                                    <small>
+                                        <p><?php echo get_phrase('status'); ?>: <span
+                                                class="badge badge-info-lighten"><?php echo get_phrase('Active'); ?></span>
+                                        </p>
+                                    </small>
+                                    <?php  endif; ?>
                                 </td>
                                 <td><?php echo $user['email']; ?></td>
                                 <td>

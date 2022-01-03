@@ -26,7 +26,6 @@
                                 <th><?php echo get_phrase('photo'); ?></th>
                                 <th><?php echo get_phrase('name'); ?></th>
                                 <th><?php echo get_phrase('email'); ?></th>
-                                <th><?php echo get_phrase('status'); ?></th>
                                 <th><?php echo get_phrase('actions'); ?></th>
                             </tr>
                         </thead>
@@ -39,15 +38,22 @@
                                     <img src="<?php echo $this->user_model->get_user_image_url($user['id']); ?>" alt=""
                                         height="50" width="50" class="img-fluid rounded-circle img-thumbnail">
                                 </td>
-                                <td><?php echo $user['first_name'] . ' ' . $user['last_name']; ?></td>
-                                <td><?php echo $user['email']; ?></td>
-
-                                <td><?php if($user['status'] == 1) { ?>
-                                    <button class="btn btn-info btn-sm">Active</button>
-                                    <?php } else { ?>
-                                    <button class="btn btn-danger btn-sm">Un-Active</button>
-                                    <?php } ?>
+                                <td><?php echo $user['first_name'] . ' ' . $user['last_name']; ?>
+                                    <?php if ($user['status'] != 1) : ?>
+                                    <small>
+                                        <p><?php echo get_phrase('status'); ?>: <span
+                                                class="badge badge-danger-lighten"><?php echo get_phrase('Un_Active'); ?></span>
+                                        </p>
+                                    </small>
+                                    <?php else : ?>
+                                    <small>
+                                        <p><?php echo get_phrase('status'); ?>: <span
+                                                class="badge badge-info-lighten"><?php echo get_phrase('Active'); ?></span>
+                                        </p>
+                                    </small>
+                                    <?php  endif; ?>
                                 </td>
+                                <td><?php echo $user['email']; ?></td>
                                 <td>
                                     <?php //if (!is_root_admin($user['id'])) : ?>
                                     <div class="dropright dropright">

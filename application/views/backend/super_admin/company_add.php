@@ -19,7 +19,7 @@
 
                 <h4 class="header-title mb-3"><?php echo get_phrase('admin_add_form'); ?></h4>
 
-                <form class="required-form" action="<?php echo site_url('super_admin/admins/add'); ?>"
+                <form class="required-form" action="<?php echo site_url('super_admin/companies/add'); ?>"
                     enctype="multipart/form-data" method="post">
                     <div id="progressbarwizard">
                         <ul class="nav nav-pills nav-justified form-wizard-header mb-3">
@@ -124,6 +124,30 @@
                                             <div class="col-md-9">
                                                 <input type="password" id="password" name="password"
                                                     class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group  row mb-3">
+                                            <label class="col-md-3 col-form-label" for="number_of_empoyies">
+                                                <?php echo get_phrase('Number_of_empolyes'); ?>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <input type="number" id="number_of_empolyes" name="number_of_empolyes"
+                                                    class="form-control"
+                                                    placeholder="<?php echo site_phrase('number_of_empolyes'); ?>"
+                                                    aria-label="<?php echo site_phrase('number_of_empolyes'); ?>"
+                                                    aria-describedby="<?php echo site_phrase('number_of_empolyes'); ?>"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group  row mb-3">
+                                            <label class="col-md-3 col-form-label"
+                                                for="company_number"><?php echo site_phrase('Company_number'); ?></label>
+                                            <div class="col-md-9">
+                                                <input type="tel" name="company_number" class="form-control"
+                                                    placeholder="<?php echo site_phrase('company_number'); ?>"
+                                                    aria-label="<?php echo site_phrase('company_number'); ?>"
+                                                    aria-describedby="<?php echo site_phrase('company_number'); ?>"
+                                                    id="company_number" required>
                                             </div>
                                         </div>
                                     </div> <!-- end col -->

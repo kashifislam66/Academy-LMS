@@ -160,7 +160,7 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
                     <ul class="side-nav-third-level" aria-expanded="false">
                         <li
                             class="<?php if ($page_name == 'admins' || $page_name == 'admin_edit' || $page_name == 'admin_permission') : ?> active <?php endif; ?>">
-                            <a href="<?php echo site_url('super_admin/campanies'); ?>"
+                            <a href="<?php echo site_url('super_admin/companies'); ?>"
                                 class="<?php if ($page_name == 'admins' || $page_name == 'admin_edit' || $page_name == 'admin_permission') : ?> active <?php endif; ?>">Manage
                                 Company</a>
                         </li>

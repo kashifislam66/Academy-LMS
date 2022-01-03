@@ -20,9 +20,10 @@ class User_model extends CI_Model
     public function get_user($user_id = 0)
     {
         if ($user_id > 0) {
+            $this->db->order_by("id", "DESC");
             $this->db->where('id', $user_id);
         }
-        
+        $this->db->order_by("id", "DESC");
         $this->db->where('role_id', 2);
         return $this->db->get('users');
     }
@@ -31,6 +32,7 @@ class User_model extends CI_Model
     {
         $user_id = $this->session->userdata('user_id');
         // echo $user_id; exit;
+        $this->db->order_by("id", "DESC");
         $array = array('role_id' => 2,  'company_id'=> $user_id);
         $this->db->where($array);
         // echo "<pre>";print_r($test); exit;
@@ -40,6 +42,7 @@ class User_model extends CI_Model
     public function get_all_user($user_id = 0)
     {
         if ($user_id > 0) {
+            $this->db->order_by("id", "DESC");
             $this->db->where('id', $user_id);
         }
         return $this->db->get('users');
@@ -106,6 +109,7 @@ class User_model extends CI_Model
 
                         if(isset($search_user_decode->hits[0]->id)) {
                             $data['go1_id'] = $search_user_decode->hits[0]->id;
+                            $update_user = $this->api_model->update_user_go1($get_login_decode->access_token, $data,$data['go1_id']);
                         
                         } else {
                             $post_user = $this->api_model->add_user_go1($get_login_decode->access_token, $data);
@@ -120,6 +124,92 @@ class User_model extends CI_Model
 
             $this->db->insert('users', $data);
             $this->email_model->send_email_company_user_activition($data['email'], $userPass);
+            $user_id = $this->db->insert_id();
+
+            // IF THIS IS A USER THEN INSERT BLANK VALUE IN PERMISSION TABLE AS WELL
+            if ($is_admin) {
+                $permission_data['admin_id'] = $user_id;
+                $permission_data['permissions'] = json_encode(array());
+                $this->db->insert('permissions', $permission_data);
+            }
+
+            $this->upload_user_image($data['image']);
+            $this->session->set_flashdata('flash_message', get_phrase('user_added_successfully'));
+        }
+    }
+
+    public function add_company($is_instructor = false, $is_admin = false)
+    {
+        $validity = $this->check_duplication('on_create', $this->input->post('email'));
+        if ($validity == false) {
+            $this->session->set_flashdata('error_message', get_phrase('email_duplication'));
+        } else {
+            $data['first_name'] = html_escape($this->input->post('first_name'));
+            $data['last_name'] = html_escape($this->input->post('last_name'));
+            $data['email'] = $email = html_escape($this->input->post('email'));
+            $data['number_of_empolyes'] = $email = html_escape($this->input->post('number_of_empolyes'));
+            $data['company_number'] = $email = html_escape($this->input->post('company_number'));
+            $data['company_id'] = html_escape($this->input->post('company_id'));
+            $userPass = html_escape($this->input->post('password'));
+            $data['password'] =  sha1(html_escape($this->input->post('password')));
+            $social_link['facebook'] = html_escape($this->input->post('facebook_link'));
+            $social_link['twitter'] = html_escape($this->input->post('twitter_link'));
+            $social_link['linkedin'] = html_escape($this->input->post('linkedin_link'));
+            $data['social_links'] = json_encode($social_link);
+            $data['biography'] = $this->input->post('biography');
+
+            $data['role_id']  = 3;
+            // echo "<pre>"; print_r($data['company_id']); exit;
+
+            $data['date_added'] = strtotime(date("Y-m-d H:i:s"));
+            $data['wishlist'] = json_encode(array());
+            $data['watch_history'] = json_encode(array());
+            $data['status'] = 1;
+            $data['image'] = md5(rand(10000, 10000000));
+
+            // Add paypal keys
+            $paypal_info = array();
+            $paypal['production_client_id']  = html_escape($this->input->post('paypal_client_id'));
+            $paypal['production_secret_key'] = html_escape($this->input->post('paypal_secret_key'));
+            array_push($paypal_info, $paypal);
+            $data['paypal_keys'] = json_encode($paypal_info);
+
+            // Add Stripe keys
+            $stripe_info = array();
+            $stripe_keys = array(
+                'public_live_key' => html_escape($this->input->post('stripe_public_key')),
+                'secret_live_key' => html_escape($this->input->post('stripe_secret_key'))
+            );
+            array_push($stripe_info, $stripe_keys);
+            $data['stripe_keys'] = json_encode($stripe_info);
+
+            if ($is_instructor) {
+                $data['is_instructor'] = 1;
+            }
+
+            // activated user go1 API
+                $get_login = $this->api_model->login_go1();
+                $get_login_decode = json_decode($get_login);
+                    if(isset($get_login_decode->access_token)) {
+                        $search_user = $this->api_model->search_user($get_login_decode->access_token, $email);
+                        $search_user_decode = json_decode($search_user);
+
+                        if(isset($search_user_decode->hits[0]->id)) {
+                            $data['go1_id'] = $search_user_decode->hits[0]->id;
+                        
+                        } else {
+                            $post_user = $this->api_model->add_user_go1($get_login_decode->access_token, $data);
+                            $post_user_decode = json_decode($post_user);
+                            if(isset($post_user_decode->id)) {
+                            $data['go1_id'] = $post_user_decode->id;
+                            }
+                        
+                        }
+                        
+                    }
+                       // echo "<pre>"; print_($_POST); exit;
+            $this->db->insert('users', $data);
+            $this->email_model->send_email_company_activited_system($data['email'], $userPass);
             $user_id = $this->db->insert_id();
 
             // IF THIS IS A USER THEN INSERT BLANK VALUE IN PERMISSION TABLE AS WELL
@@ -277,16 +367,21 @@ class User_model extends CI_Model
             $data['stripe_keys'] = json_encode($stripe_info);
             // go1 api code start
            
-            if($this->input->post('status') == 1) {
+            // if($this->input->post('status') == 1) {
                 $get_login = $this->api_model->login_go1();
+                $data['status']  = $this->input->post('status');
                 $get_login_decode = json_decode($get_login);
             if(isset($get_login_decode->access_token)) {
                 $search_user = $this->api_model->search_user($get_login_decode->access_token, $email);
                 $search_user_decode = json_decode($search_user);
-               
+                $search_user_decode = json_decode($search_user);
+         
                 if(isset($search_user_decode->hits[0]->id)) {
-                    $data['go1_id'] = $search_user_decode->hits[0]->id;
-                 
+                    $data['go1_id'] = $go1_id = $search_user_decode->hits[0]->id;
+                    $data['status']  = $this->input->post('status');
+                    $update_user = $this->api_model->update_user_go1($get_login_decode->access_token, $data,$go1_id);
+                    $this->db->where('id', $user_id);
+                    $this->db->get('users');
                 } else {
                     $post_user = $this->api_model->add_user_go1($get_login_decode->access_token, $data);
                     $post_user_decode = json_decode($post_user);
@@ -295,13 +390,12 @@ class User_model extends CI_Model
                     }
                  
                 }
-                $data['status'] = 1;
-                
-                
+                // $data['status'] = 1;
               }
-            }
+            // }
             $this->db->where('id', $user_id);
             $this->db->update('users', $data);
+            $this->email_model->send_email_company_user_status_activition($data['email']);
             $this->session->set_flashdata('flash_message', get_phrase('user_update_successfully'));
         } else {
             $this->session->set_flashdata('error_message', get_phrase('email_duplication'));
@@ -424,8 +518,10 @@ class User_model extends CI_Model
     public function get_all_company($id = 0)
     {
         if ($id > 0) {
+            $this->db->order_by("id", "DESC");
             return $this->db->get_where('users', array('id' => $id, 'role_id' => 3));
         } else {
+            $this->db->order_by("id", "DESC");
             return $this->db->get_where('users', array('role_id' => 3));
         }
     }
@@ -684,4 +780,98 @@ class User_model extends CI_Model
          return null;
         }
     }
+
+    public function edit_company($user_id = "")
+    { // Admin does this editing 
+        $validity = $this->check_duplication('on_update', $this->input->post('email'), $user_id);
+        if ($validity) {
+            $data['first_name'] = html_escape($this->input->post('first_name'));
+            $data['last_name'] = html_escape($this->input->post('last_name'));
+
+            if (isset($_POST['email'])) {
+                $data['email'] = $email =  html_escape($this->input->post('email'));
+            }
+            $data['company_id'] = html_escape($this->input->post('company_id'));
+            $social_link['facebook'] = html_escape($this->input->post('facebook_link'));
+            $social_link['twitter'] = html_escape($this->input->post('twitter_link'));
+            $social_link['linkedin'] = html_escape($this->input->post('linkedin_link'));
+            $data['social_links'] = json_encode($social_link);
+            $data['biography'] = $this->input->post('biography');
+            $data['title'] = html_escape($this->input->post('title'));
+            $data['skills'] = html_escape($this->input->post('skills'));
+            $data['number_of_empolyes'] = html_escape($this->input->post('number_of_empolyes'));
+            $data['company_number'] = html_escape($this->input->post('company_number'));
+            $data['last_modified'] = strtotime(date("Y-m-d H:i:s"));
+
+            if (isset($_FILES['user_image']) && $_FILES['user_image']['name'] != "") {
+                unlink('uploads/user_image/' . $this->db->get_where('users', array('id' => $user_id))->row('image') . '.jpg');
+                $data['image'] = md5(rand(10000, 10000000));
+                $this->upload_user_image($data['image']);
+            }
+
+            // Update paypal keys
+            $paypal_info = array();
+            $paypal['production_client_id']  = html_escape($this->input->post('paypal_client_id'));
+            $paypal['production_secret_key'] = html_escape($this->input->post('paypal_secret_key'));
+            array_push($paypal_info, $paypal);
+            $data['paypal_keys'] = json_encode($paypal_info);
+            // Update Stripe keys
+            $stripe_info = array();
+            $stripe_keys = array(
+                'public_live_key' => html_escape($this->input->post('stripe_public_key')),
+                'secret_live_key' => html_escape($this->input->post('stripe_secret_key'))
+            );
+            array_push($stripe_info, $stripe_keys);
+            $data['stripe_keys'] = json_encode($stripe_info);
+            // go1 api code start
+            
+            
+                $get_login = $this->api_model->login_go1();
+                $get_login_decode = json_decode($get_login);
+            if(isset($get_login_decode->access_token)) {
+                $search_user = $this->api_model->search_user($get_login_decode->access_token, $email);
+                $search_user_decode = json_decode($search_user);
+               
+                if(isset($search_user_decode->hits[0]->id)) {
+                    $data['go1_id'] = $go1_id = $search_user_decode->hits[0]->id;
+                    $data['status']  = $this->input->post('status');
+                    $update_user = $this->api_model->update_user_go1($get_login_decode->access_token, $data,$go1_id);
+                    $this->db->where('company_id', $user_id);
+                    $result_company_users =  $this->db->get('users')->result_array();
+                    // print_r($update_user); die();
+                    if(!empty($result_company_users)){
+                    foreach($result_company_users as $company_user) {
+                        $user_data['go1_id'] = $company_user['go1_id'];
+                        $user_data['first_name'] = $company_user['first_name'];
+                        $user_data['last_name'] = $company_user['last_name'];
+                        $user_data['status'] =  $data['status'];
+                        $user_data['company_id'] =  $company_user['company_id'];
+                        $update_user = $this->api_model->update_user_go1($get_login_decode->access_token, $user_data,$user_data['go1_id']);
+                        $this->db->where('id', $company_user['id']);
+                        $this->db->update('users', $user_data);
+                    }
+                }
+                   
+                 
+                } else {
+                    $post_user = $this->api_model->add_user_go1($get_login_decode->access_token, $data);
+                    $post_user_decode = json_decode($post_user);
+                    if(isset($post_user_decode->id)) {
+                    $data['go1_id'] = $post_user_decode->id;
+                    }
+                 
+                }
+                // $data['status'] = 1;
+              } 
+
+            $this->db->where('id', $user_id);
+            $this->db->update('users', $data);
+            $this->email_model->send_email_company_activited_system($data['email']);
+            $this->session->set_flashdata('flash_message', get_phrase('user_update_successfully'));
+        } else {
+            $this->session->set_flashdata('error_message', get_phrase('email_duplication'));
+        }
+    }
+
+    
 }

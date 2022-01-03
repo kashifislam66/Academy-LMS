@@ -1068,7 +1068,7 @@ class Api_model extends CI_Model
 		} else {
 			$role = "Manager";
 		}
-		if($data['status'] = 1) {
+		if($data['status'] == 1) {
 			$status = true;
 		} else {
 			$status = false;
@@ -1079,10 +1079,7 @@ class Api_model extends CI_Model
 			"last_name"=> $data["last_name"],
 			"status"=> $status,
 			"roles"=> array($role),
-			"custom_fields"=> array(
-				"foo"=>"bar",
-				"baz"=>"quz",
-			),
+			// "custom_fields"=> '',
 			"managers"=> array("5898439"),
 		];
 
