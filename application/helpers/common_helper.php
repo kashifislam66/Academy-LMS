@@ -329,21 +329,18 @@ if (!function_exists('course_progress_go1')) {
         if ($user_id == "") {
             $user_id = $CI->session->userdata('user_id');
         }
-        $course_details = $CI->crud_model->get_course_by_id($course_id)->row_array();
-        $get_login = $CI->api_model->login_go1();
-        $get_login_decode = json_decode($get_login);
+        $course_details = $CI->crud_model->check_course_enrolled_user($course_id,$CI->session->userdata('user_id'));
         $statuss = "";
-        if(isset($get_login_decode->access_token)) {
-          $status_get =   $CI->api_model->get_status_course($get_login_decode->access_token,$CI->session->userdata('go1_id'),$course_details['api_id']);
-          $status_get_decode = json_decode($status_get);
-        //   print_r($status_get_decode);
-          if(isset($status_get_decode->hits[0]->status)) {
-            return  $statuss = $status_get_decode->hits[0]->status;
-          } 
+                if(isset($course_details['course_status'])) {
+                    $statuss = $course_details['course_status'];
+                }
+               
+
+        return  $statuss;
         }
-       return  $statuss;
+       
         
-    }
+    
 }
 if (!function_exists('course_progress')) {
     function course_progress($course_id = "", $user_id = "", $return_type = "")

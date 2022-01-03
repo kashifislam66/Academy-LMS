@@ -609,7 +609,7 @@ class Super_Admin extends CI_Controller
            // get course from db if exist
            $course_details = $this->crud_model->get_course_by_api_id( $value_id)->row_array();
            if(empty($course_details) || $course_details == "") {
-              if ($count > 1000) { break; }
+              if ($count > 50) { break; }
                $count++; 
            // get catalauge
             $get_catalauge = $this->api_model->catalauge_response($get_login_decode->access_token, $value_id);
@@ -837,6 +837,39 @@ class Super_Admin extends CI_Controller
         $this->load->view('backend/index', $page_data);
     }
     // end code catalauge api
+
+    // code for course status update
+    public function update_enrol_course_status($action = '') 
+    {
+        ini_set('display_errors', 1);
+        ini_set('max_execution_time', 0); 
+        ini_set('memory_limit','2048M');
+
+        $get_login = $this->api_model->login_go1();
+        $get_login_decode = json_decode($get_login);
+        if(isset($get_login_decode->access_token)) {
+            $this->db->select('enrol.id,users.go1_id,course.api_id');
+            $this->db->join('users','users.id=enrol.user_id');
+            $this->db->join('course','course.id=enrol.course_id');
+            $enrol_reult =  $this->db->get('enrol')->result_array();
+            
+            foreach($enrol_reult as $enrol) {
+                $enrol_api = $this->api_model->get_status_course($get_login_decode->access_token, $enrol['go1_id'],$enrol['api_id']);
+                $enrol_api_decode = json_decode($enrol_api);
+               
+                  $data['course_status'] = "";
+                  if(isset($enrol_api_decode->hits[0]->status)) {
+                     $data['course_status'] = $enrol_api_decode->hits[0]->status;
+                  }
+
+                  $this->db->where('id', $enrol['id']);
+                  $this->db->update('enrol', $data);
+            }
+        }
+     
+        die();
+
+    }
 
     public function theme_actions($action = "", $theme = "")
     {

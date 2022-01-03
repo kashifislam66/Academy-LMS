@@ -2863,6 +2863,10 @@ class Crud_model extends CI_Model
     {
         return $this->db->get_where('enrol', array('course_id' => $course_id, 'user_id' => $user_id))->num_rows();
     }
+    function check_course_enrolled_user($course_id = "", $user_id = "")
+    {
+        return $this->db->get_where('enrol', array('course_id' => $course_id, 'user_id' => $user_id))->row_array();
+    }
 
 
     // GET PAYOUTS
