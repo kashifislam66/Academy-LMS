@@ -607,7 +607,7 @@ class Super_Admin extends CI_Controller
                
             
            // get course from db if exist
-           $course_details = $this->crud_model->get_course_by_api_id( $value_id)->row_array();
+           $course_details = $this->crud_model->get_course_by_api_id($value_id)->row_array();
            if(empty($course_details) || $course_details == "") {
               if ($count > 1000) { break; }
                $count++; 
