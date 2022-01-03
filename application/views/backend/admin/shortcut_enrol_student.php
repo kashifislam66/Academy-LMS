@@ -12,42 +12,70 @@
 
     <div class="form-group">
         <label for="course_id"><?php echo get_phrase('course_to_enrol'); ?><span class="required">*</span> </label>
-        <select class="form-control select2" data-toggle="select2" name="course_id" id="course_id" required>
-            <option value=""><?php echo get_phrase('select_a_course'); ?></option>
+        <select class="form-control select2 fetch_courses" data-toggle="select2" name="course_id" id="course_id" required>
+            <!-- <option value=""><?php echo get_phrase('select_a_course'); ?></option>
             <?php $course_list = $this->crud_model->get_courses()->result_array();
                 foreach ($course_list as $course):
                 if ($course['status'] != 'active')
                     continue;?>
                 <option value="<?php echo $course['id'] ?>"><?php echo $course['title']; ?></option>
-            <?php endforeach; ?>
+            <?php endforeach; ?> -->
         </select>
     </div>
     <button type="button" class="btn btn-primary float-right" onclick="checkRequiredFields()"><?php echo get_phrase('enrol_student'); ?></button>
 </form>
 
 <script type="text/javascript">
-    if($('select').hasClass('select2') == true){
-        $('div').attr('tabindex', "");
-        $(function(){$(".select2").select2()});
-    }
+if($('select').hasClass('select2') == true){
+    $('div').attr('tabindex', "");
+    $(function(){$(".select2").select2()});
+}
 
-    $(".ajaxForm").submit(function(e) {
-        e.preventDefault(); // avoid to execute the actual submit of the form.
-        var form = $(this);
-        var url = form.attr('action');
-        $.ajax({
-           type: "POST",
-           url: url,
-           data: form.serialize(), // serializes the form's elements.
-           success: function(response)
-           {    
-            var myArray = jQuery.parseJSON(response);
-                if(myArray['status']){
-                    location.reload();
-                }else{
-                    error_notify(myArray['message']);
-                }
-           }
-        });
+$(document).ready(function(){
+    var URL = "<?php echo base_url();?>" + "moderate/fetch_courses";
+    $(".fetch_courses").select2({
+        minimumInputLength: 2,
+        tags: [],
+        ajax: {
+            url: URL,
+            dataType: 'json',
+            type: "GET",
+            quietMillis: 50,
+            data: function (params) {
+              return {
+                q: params.term, // search term
+                page: params.page
+              };
+            },
+            processResults: function (data) { 
+                return {
+                    results: $.map(data, function(obj) {
+                        return { id: obj.id, text: obj.title };
+                    })
+                };
+            },
+            cache: true
+        }
     });
+});
+
+$(".ajaxForm").submit(function(e) {
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+    var form = $(this);
+    var url = form.attr('action');
+    $.ajax({
+       type: "POST",
+       url: url,
+       data: form.serialize(), // serializes the form's elements.
+       success: function(response)
+       {    
+        var myArray = jQuery.parseJSON(response);
+            if(myArray['status']){
+                location.reload();
+            }else{
+                error_notify(myArray['message']);
+            }
+       }
+    });
+});
 </script>  
