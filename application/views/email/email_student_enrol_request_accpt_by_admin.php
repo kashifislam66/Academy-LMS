@@ -474,16 +474,13 @@
                                             <h2 style="font-size: 18px;">Dear <?= $full_name; ?>,</h2>
                                             <br>
 
-                                            <p style="margin-bottom: 9px; margin-top:2px;">User Email:
-                                                <b style="cursor: pointer;"><?= $to; ?></b>
-                                            </p>
+                                            <p style="margin-bottom: 9px; margin-top:2px;">You have add my Admin</p>
 
                                             <p style="margin-bottom: 9px; margin-top:2px;">Course Title:
                                                 <b style="cursor: pointer;"><?= $course_title; ?></b>
                                             </p>
                                             <p style="margin-bottom: 9px; margin-top:2px;"> <?= $msg; ?> </p>
                                             <br>
-
                                             <hr style="border: 1px solid #efefef; margin-top: 50px;">
                                             <br>
                                             <div

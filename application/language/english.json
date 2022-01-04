@@ -888,5 +888,6 @@
     "un_active": "Un active",
     "course_status": "Course status",
     "cour": "Cour",
-    "already_enroled": "Already enroled"
+    "already_enroled": "Already enroled",
+    "data_deleted_successfully": "Data deleted successfully"
 }
