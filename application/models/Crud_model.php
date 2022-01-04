@@ -1908,9 +1908,9 @@ class Crud_model extends CI_Model
     {
         $data['course_id'] = $this->input->post('course_id');
         $user_id   = $this->input->post('user_id');
-        foreach($user_id as $user) {
-            $data['user_id'] = $user;
        
+        foreach($user_id as $user) {    
+            $data['user_id'] = $user;
                 if ($this->db->get_where('enrol', $data)->num_rows() < 1) {
                    
                     $get_login = $this->api_model->login_go1();
@@ -1927,14 +1927,16 @@ class Crud_model extends CI_Model
                     $data['enrol_last_date'] = strtotime($this->input->post('enrol_last_date'));
                     $data['date_added'] = strtotime(date('D, d-M-Y'));
                     $this->db->insert('enrol', $data);
+                    // echo $data['user_id']; 
+                   
                     $this->session->set_flashdata('flash_message', get_phrase('student_has_been_enrolled_to_that_course'));
-
                    
                 }
                
             }
+            $this->email_model->send_email_company_multi_user_enrolment($user_id, $data['course_id']);
             $response['status'] = 1;
-            return json_encode($response);
+            return json_encode($response); 
     }
 
     public function enrol_to_free_course($course_id = "", $user_id = "")
@@ -1979,11 +1981,13 @@ class Crud_model extends CI_Model
             } else {
                 $data['company_id']   = 1; 
             }
+            
             if ($this->db->get_where('enrolment_request', $data)->num_rows() > 0) {
                 $this->session->set_flashdata('error_message', get_phrase('student_has_already_sent_request_to_enrolled_this_course'));
             } else {
                 $data['dated_request'] = strtotime(date('D, d-M-Y'));
                 $this->db->insert('enrolment_request', $data);
+                $this->email_model->send_email_company_user_enrolment($data['user_id'],$data['course_id'], $data['company_id']);
                 $this->session->set_flashdata('flash_message', get_phrase('successfully__sent_enrolled_request'));
             }
        
