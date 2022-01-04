@@ -105,6 +105,13 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
 				<span><?php echo get_phrase('enrol_request'); ?></span>
 			</a>
 		</li>
+
+		<li class="side-nav-item <?php if ($page_name == 'course_status') echo 'active'; ?>">
+			<a href="<?php echo site_url(strtolower($this->session->userdata('role')) . '/course_status'); ?>" class="side-nav-link">
+				<i class="dripicons-user"></i>
+				<span><?php echo get_phrase('course_status'); ?></span>
+			</a>
+		</li>
 		<!-- end code -->
 	</ul>
 </div>
