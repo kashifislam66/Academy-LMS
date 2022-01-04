@@ -113,7 +113,7 @@ class Moderate extends CI_Controller
         }
         $title = $_GET["q"];
         if(strlen($title) >= 3){
-            $where = "course.title LIKE CONCAT('%','" . $title . "' ,'%')";
+            $where = "status = 'active' AND course.title LIKE CONCAT('%','" . $title . "' ,'%')";
             $result = $this->course->get_where('*', $where, true, '' , '', '');
             if(!empty($result)){
                 $allData = [];
