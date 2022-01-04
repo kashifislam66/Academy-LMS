@@ -889,5 +889,7 @@
     "course_status": "Course status",
     "cour": "Cour",
     "already_enroled": "Already enroled",
-    "data_deleted_successfully": "Data deleted successfully"
+    "data_deleted_successfully": "Data deleted successfully",
+    "email_send": "Email send",
+    "course_end_date": "Course end date"
 }

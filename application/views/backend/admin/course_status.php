@@ -24,7 +24,8 @@
                                 <th>#</th>
                                 <th><?php echo get_phrase('photo'); ?></th>
                                 <th><?php echo get_phrase('name'); ?></th>
-                                <th><?php echo get_phrase('email'); ?></th>
+                                <th><?php echo get_phrase('Enrolment_date'); ?></th>
+                                <th><?php echo get_phrase('last_date'); ?></th>
                                 <th><?php echo get_phrase('enrolled_courses'); ?></th>
                                 <th><?php echo get_phrase('status'); ?></th>
                                 <th><?php echo get_phrase('actions'); ?></th>
@@ -56,7 +57,8 @@
                                     </small>
                                     <?php  endif; ?>
                                 </td>
-                                <td><?php echo $user['email']; ?></td>
+                                <td><?php echo date('D, d-M-Y', $user['date_added']); ?></td>
+                                <td><?php echo date('D, d-M-Y', $user['enrol_last_date']); ?></td>
                                 <td>
                                         <?php $course_details = $this->crud_model->get_course_by_id($user['course_id'])->row_array();
                                          echo $course_details['title']; ?>
@@ -73,11 +75,9 @@
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li><a class="dropdown-item"
-                                                    href="<?php echo site_url('admin/user_form/edit_user_form/' . $user['id']) ?>"><?php echo get_phrase('edit'); ?></a>
+                                                    href="<?php echo site_url('admin/course_status/email_send/' . $user['id'].'/'.$user['course_id']) ?>"><?php echo get_phrase('Email_send'); ?></a>
                                             </li>
-                                            <li><a class="dropdown-item" href="#"
-                                                    onclick="confirm_modal('<?php echo site_url('admin/users/delete/' . $user['id']); ?>');"><?php echo get_phrase('delete'); ?></a>
-                                            </li>
+                                           
                                         </ul>
                                     </div>
                                 </td>
