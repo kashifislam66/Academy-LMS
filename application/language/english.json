@@ -885,5 +885,8 @@
     "you_are_now_eligible_to_download_the_course_completion_certificate": "You are now eligible to download the course completion certificate",
     "get_certificate": "Get certificate",
     "unverified": "Unverified",
-    "un_active": "Un active"
+    "un_active": "Un active",
+    "course_status": "Course status",
+    "cour": "Cour",
+    "already_enroled": "Already enroled"
 }

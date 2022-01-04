@@ -209,6 +209,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                         <?php
             $this->db->limit(5);
             $other_realted_courses = $this->crud_model->get_courses($course_details['category_id'], $course_details['sub_category_id'])->result_array();
+           
             foreach ($other_realted_courses as $other_realted_course) :
               if ($other_realted_course['id'] != $course_details['id'] && $other_realted_course['status'] == 'active') : ?>
                         <div class="course-comparism-item-container this-course">
@@ -241,6 +242,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                                         <i class="fas fa-star"></i>
                                         <?php
                         $total_rating =  $this->crud_model->get_ratings('course', $other_realted_course['id'], true)->row()->rating;
+                       
                         $number_of_ratings = $this->crud_model->get_ratings('course', $other_realted_course['id'])->num_rows();
                         if ($number_of_ratings > 0) {
                           $average_ceil_rating = ceil($total_rating / $number_of_ratings);
@@ -492,7 +494,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                         <?php if (is_purchased($course_details['id'])) : ?>
                         <div class="already_purchased">
                             <a
-                                href="<?php echo site_url('home/my_courses'); ?>"><?php echo site_phrase('already_purchased'); ?></a>
+                                href="<?php echo site_url('home/my_courses'); ?>"><?php echo site_phrase('already_enroled'); ?></a>
                         </div>
                         <?php else : ?>
 

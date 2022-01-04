@@ -207,6 +207,24 @@ class Admin extends CI_Controller
         $this->load->view('backend/index', $page_data);
     }
 
+    public function course_status($param1 = "", $param2 = "")
+    {
+        if ($this->session->userdata('admin_login') != true) {
+            redirect(site_url('login'), 'refresh');
+        }
+
+        // CHECK ACCESS PERMISSION
+        check_permission('user');
+        check_permission('student');
+
+       
+
+        $page_data['page_name'] = 'course_status';
+        $page_data['page_title'] = get_phrase('course_status');
+        // $page_data['users'] = $this->user_model->get_user_by_company($param2);
+        $this->load->view('backend/index', $page_data);
+    }
+
     public function add_shortcut_student()
     {
         if ($this->session->userdata('admin_login') != true) {

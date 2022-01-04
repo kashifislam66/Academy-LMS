@@ -708,6 +708,7 @@ class Super_Admin extends CI_Controller
                     'level'=> isset($catalague_result->attributes->entry_level->value) ? $catalague_result->attributes->entry_level->value : '',
                     'outcomes'=>$outcomes,
                     'requirements'=>$skills,
+                    'multi_instructor'=>1,
                     'section'=>json_encode(array()),
                     'course_overview_provider'=>"html5",
                     'is_free_course'=> 1,

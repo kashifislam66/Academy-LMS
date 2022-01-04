@@ -92,10 +92,7 @@ $user_details = $this->user_model->get_user($this->session->userdata('user_id'))
                                     class="far fa-heart"></i><?php echo site_phrase('my_wishlist'); ?></a></li>
                         <li class="user-dropdown-menu-item"><a href="<?php echo site_url('home/my_messages'); ?>"><i
                                     class="far fa-envelope"></i><?php echo site_phrase('my_messages'); ?></a></li>
-                        <li class="user-dropdown-menu-item"><a
-                                href="<?php echo site_url('home/purchase_history'); ?>"><i
-                                    class="fas fa-shopping-cart"></i><?php echo site_phrase('purchase_history'); ?></a>
-                        </li>
+                        
                         <li class="user-dropdown-menu-item"><a
                                 href="<?php echo site_url('home/profile/user_profile'); ?>"><i
                                     class="fas fa-user"></i><?php echo site_phrase('user_profile'); ?></a></li>
