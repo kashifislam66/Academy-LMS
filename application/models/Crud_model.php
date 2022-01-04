@@ -151,7 +151,7 @@ class Crud_model extends CI_Model
     {
         $user_id = $this->session->userdata('user_id');
         return $query = $this->db
-            ->select("enrol.user_id,enrol.course_id,enrol.course_status,users.*")
+            ->select("enrol.user_id,enrol.course_id,enrol.course_status,enrol.enrol_last_date,users.*")
             ->from ("enrol")
             ->join('users', 'enrol.user_id = users.id')
             ->where('company_id', $user_id)
