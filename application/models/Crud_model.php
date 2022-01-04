@@ -1865,6 +1865,7 @@ class Crud_model extends CI_Model
             // print_r($enrol_add_decode); die();
             $data['enrol_go1_id'] = $enrol_add_decode->id;
         }
+            $data['enrol_last_date'] = strtotime($this->input->post('enrol_last_date'));
             $data['date_added'] = strtotime(date('D, d-M-Y'));
             $this->db->insert('enrol', $data);
             $this->session->set_flashdata('flash_message', get_phrase('student_has_been_enrolled_to_that_course'));
@@ -1923,6 +1924,7 @@ class Crud_model extends CI_Model
                             // print_r($enrol_add_decode); die();
                             $data['enrol_go1_id'] = $enrol_add_decode->id;
                         }
+                    $data['enrol_last_date'] = strtotime($this->input->post('enrol_last_date'));
                     $data['date_added'] = strtotime(date('D, d-M-Y'));
                     $this->db->insert('enrol', $data);
                     $this->session->set_flashdata('flash_message', get_phrase('student_has_been_enrolled_to_that_course'));
@@ -1957,6 +1959,7 @@ class Crud_model extends CI_Model
                 }
 
                 $data['date_added'] = strtotime(date('D, d-M-Y'));
+                $data['enrol_last_date'] = strtotime($this->input->post('enrol_last_date'));
                 $this->db->insert('enrol', $data);
                 $this->session->set_flashdata('flash_message', get_phrase('successfully_enrolled'));
             }

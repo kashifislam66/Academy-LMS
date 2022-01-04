@@ -888,5 +888,7 @@
     "un_active": "Un active",
     "course_status": "Course status",
     "cour": "Cour",
-    "already_enroled": "Already enroled"
+    "already_enroled": "Already enroled",
+    "email_send": "Email send",
+    "course_end_date": "Course end date"
 }
