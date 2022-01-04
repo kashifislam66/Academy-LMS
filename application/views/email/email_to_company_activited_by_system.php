@@ -470,38 +470,44 @@
                                                     class="CToWUd a6T" tabindex="0">
                                             </div><br /><br />
 
-
-
-
-
-                                            <h2 style="font-size: 18px;">Dear <?= $full_name; ?>,</h2>
+                                            <h2 style="font-size: 18px;">Hi <?= $full_name; ?>,</h2>
                                             <br>
-                                            <?php if(isset($status) && !empty($status)){?>
-                                            <h2 style="font-size: 18px; color:red;"><?= $status; ?></h2>
-                                            <p style="margin-bottom: 9px; margin-top:2px;">User Email:
-                                                <b style="cursor: pointer;"><?= $to; ?></b>
+                                            <?php if(!empty($status)){ ?>
+                                            <h2 style="font-size: 18px; text-align: center; color: red;">
+                                                <?= $status; ?>
+                                            </h2>
+                                            <?php } else {?>
+                                            <p>We are delighted to welcome you to GoSkillBoost Learning Portal.</p>
+
+                                            <p>Get Started</p>
+                                            <p>At GoSkillBoost, we want you to feel empowered in your career journey,
+                                                with the right training tools and resources to support you.</p>
+                                            <p>Spending just a little time on your own career development help you keep
+                                                up to date with knowledge, improve your everyday work skills, and get
+                                                you where you want to go-faster.</p>
+                                            <p>It’s the steps you take today that will impact your tomorrow. So, whether
+                                                it’s ten minutes a day, or an hour each week, start taking charge of
+                                                your own career journey.</p>
+                                            <p>To get started with your online training click on the link below and
+                                                enter the username and password. </p>
+                                            <br>
+                                            <p style="margin-bottom: 9px; margin-top:2px;">LMS LINK:
+                                                <a href="<?= site_url('home/login'); ?>" target="_blank">LMS Login
+                                                    Here</a>
                                             </p>
-                                            <?php } else{ ?>
-                                            <p style="margin-bottom: 9px; margin-top:2px;">User Email:
+                                            <p style="margin-bottom: 9px; margin-top:2px;">Username:
                                                 <b style="cursor: pointer;"><?= $to; ?></b>
                                             </p>
                                             <?php if(isset($password)  && !empty($password)){?>
                                             <p style="margin-bottom: 9px; margin-top:2px;">Password:
                                                 <b style="cursor: pointer;"><?= $password; ?></b>
                                             </p>
-                                            <?php } } ?>
-                                            <p style="margin-bottom: 9px; margin-top:2px;">Number Empolyes:
-                                                <b style="cursor: pointer;"><?= $empolyes_number; ?></b>
-                                            </p>
-                                            <p style="margin-bottom: 9px; margin-top:2px;">Company Number:
-                                                <b style="cursor: pointer;"><?= $company_number; ?></b>
-                                            </p>
+                                            <?php } ?>
 
-                                            <p style="margin-bottom: 9px; margin-top:2px;">Role:
-                                                <b style="cursor: pointer;"><?= $role_id; ?></b>
-                                            </p>
                                             <br>
-
+                                            <p>Continue to your account settings inside the page and change your
+                                                password before logging out.</p>
+                                            <?php } ?>
                                             <hr style="border: 1px solid #efefef; margin-top: 50px;">
                                             <br>
                                             <div

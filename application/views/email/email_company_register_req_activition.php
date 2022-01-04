@@ -470,38 +470,27 @@
                                                     class="CToWUd a6T" tabindex="0">
                                             </div><br /><br />
 
-
-
-
-
-                                            <h2 style="font-size: 18px;">Dear <?= $full_name; ?>,</h2>
+                                            <h2 style="font-size: 18px;">Hello Admin,</h2>
                                             <br>
-                                            <?php if(isset($status) && !empty($status)){?>
-                                            <h2 style="font-size: 18px; color:red;"><?= $status; ?></h2>
-                                            <p style="margin-bottom: 9px; margin-top:2px;">User Email:
-                                                <b style="cursor: pointer;"><?= $to; ?></b>
+                                            <p style="margin-bottom: 9px; margin-top:2px;">
+                                                <b style="cursor: pointer;">I requested to approve my account.</b>
                                             </p>
-                                            <?php } else{ ?>
-                                            <p style="margin-bottom: 9px; margin-top:2px;">User Email:
-                                                <b style="cursor: pointer;"><?= $to; ?></b>
-                                            </p>
-                                            <?php if(isset($password)  && !empty($password)){?>
-                                            <p style="margin-bottom: 9px; margin-top:2px;">Password:
-                                                <b style="cursor: pointer;"><?= $password; ?></b>
-                                            </p>
-                                            <?php } } ?>
-                                            <p style="margin-bottom: 9px; margin-top:2px;">Number Empolyes:
+                                            <p style="margin-bottom: 9px; margin-top:2px;">Number Of Empolyes:
                                                 <b style="cursor: pointer;"><?= $empolyes_number; ?></b>
                                             </p>
-                                            <p style="margin-bottom: 9px; margin-top:2px;">Company Number:
+                                            <p style="margin-bottom: 9px; margin-top:2px;">My company Number:
                                                 <b style="cursor: pointer;"><?= $company_number; ?></b>
                                             </p>
-
                                             <p style="margin-bottom: 9px; margin-top:2px;">Role:
                                                 <b style="cursor: pointer;"><?= $role_id; ?></b>
                                             </p>
                                             <br>
+                                            <p style="margin-bottom: 9px; margin-top:2px;"><b
+                                                    style="cursor: pointer;">Thanks</b></p>
 
+                                            <p style="margin-bottom: 9px; margin-top:2px;">regards
+                                                <b style="cursor: pointer;"><?= $full_name; ?></b>
+                                            </p><br>
                                             <hr style="border: 1px solid #efefef; margin-top: 50px;">
                                             <br>
                                             <div

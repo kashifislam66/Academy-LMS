@@ -1932,6 +1932,7 @@ class Crud_model extends CI_Model
                 }
                
             }
+           
             $this->email_model->send_email_shortcut_enrol_a_student_manually($user_id, $data['course_id']);
             $response['status'] = 1;
             return json_encode($response); 
