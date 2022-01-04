@@ -25,6 +25,7 @@
                                 <th><?php echo get_phrase('photo'); ?></th>
                                 <th><?php echo get_phrase('name'); ?></th>
                                 <th><?php echo get_phrase('Enrolment_date'); ?></th>
+                                <th><?php echo get_phrase('last_date'); ?></th>
                                 <th><?php echo get_phrase('enrolled_courses'); ?></th>
                                 <th><?php echo get_phrase('status'); ?></th>
                                 <th><?php echo get_phrase('actions'); ?></th>
@@ -57,6 +58,7 @@
                                     <?php  endif; ?>
                                 </td>
                                 <td><?php echo date('D, d-M-Y', $user['date_added']); ?></td>
+                                <td><?php echo date('D, d-M-Y', $user['enrol_last_date']); ?></td>
                                 <td>
                                         <?php $course_details = $this->crud_model->get_course_by_id($user['course_id'])->row_array();
                                          echo $course_details['title']; ?>
