@@ -19,7 +19,7 @@
 
                 <h4 class="header-title mb-3"><?php echo get_phrase('student_edit_form'); ?></h4>
 
-                <form class="required-form" action="<?php echo site_url('admin/users/edit/'.$user_id); ?>"
+                <form class="required-form" action="<?php echo site_url('manager/users/edit/'.$user_id); ?>"
                     enctype="multipart/form-data" method="post">
                     <div id="progressbarwizard">
                         <?php $user_id = $this->session->userdata('user_id'); ?>

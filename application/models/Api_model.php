@@ -936,7 +936,7 @@ class Api_model extends CI_Model
 			"last_name"=> $data["last_name"],
 			"roles"=> array($role),
 			"password"=> $data["last_name"].'3879',
-			"send_login_email"=> false,
+			"send_login_email"=> true,
 			"custom_fields"=> array(
 				"customfield1"=>$data["first_name"],
 				"customfield2"=>$data["last_name"],

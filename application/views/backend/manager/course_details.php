@@ -1,28 +1,29 @@
 <ol class="breadcrumb bc-3">
     <li>
-        <a href="<?php echo site_url('admin/dashboard'); ?>">
+        <a href="<?php echo site_url('manager/dashboard'); ?>">
             <i class="entypo-folder"></i>
             <?php echo get_phrase('dashboard'); ?>
         </a>
     </li>
-    <li><a href="<?php echo site_url('admin/courses'); ?>"><?php echo get_phrase('courses'); ?></a> </li>
+    <li><a href="<?php echo site_url('manager/courses'); ?>"><?php echo get_phrase('courses'); ?></a> </li>
     <li><a href="#" class="active"><?php echo get_phrase('course_details'); ?></a> </li>
 </ol>
-<h2><i class="fa fa-arrow-circle-o-right"></i> <?php echo '"'.$course_details['title'].'" '.get_phrase('details'); ?></h2>
+<h2><i class="fa fa-arrow-circle-o-right"></i> <?php echo '"'.$course_details['title'].'" '.get_phrase('details'); ?>
+</h2>
 <br />
 <div class="row">
-	<div class="col-md-8 col-md-offset-2">
-		<div class="panel panel-primary" data-collapsed="0">
-			<div class="panel-body">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-primary" data-collapsed="0">
+            <div class="panel-body">
                 <table class="table table-bordered datatable" id="table-1">
                     <tbody>
                         <tr>
-                            <th width = "50%"><?php echo get_phrase('title'); ?>:</th>
+                            <th width="50%"><?php echo get_phrase('title'); ?>:</th>
                             <td><?php echo $course_details['title']; ?></td>
                         </tr>
 
                         <tr>
-                            <th width = "50%"><?php echo get_phrase('instructor'); ?>:</th>
+                            <th width="50%"><?php echo get_phrase('instructor'); ?>:</th>
                             <td>
                                 <?php
                                     $admin_details = $this->user_model->get_admin_details()->row_array();
@@ -86,8 +87,8 @@
                             </td>
                         </tr>
                     </tbody>
-                  </table>
-			</div>
-		</div>
-	</div>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>

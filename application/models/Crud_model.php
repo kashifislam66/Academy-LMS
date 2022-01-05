@@ -958,6 +958,7 @@ class Crud_model extends CI_Model
         }
         return $courses;
     }
+    
 
     public function get_status_wise_courses_for_instructor($status = "")
     {

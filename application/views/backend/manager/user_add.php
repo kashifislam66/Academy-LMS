@@ -15,7 +15,7 @@
 
                 <h4 class="header-title mb-3"><?php echo get_phrase('student_add_form'); ?></h4>
 
-                <form class="required-form" action="<?php echo site_url('admin/users/add'); ?>"
+                <form class="required-form" action="<?php echo site_url('manager/users/add'); ?>"
                     enctype="multipart/form-data" method="post">
                     <div id="progressbarwizard">
                         <?php $user_id = $this->session->userdata('user_id'); ?>

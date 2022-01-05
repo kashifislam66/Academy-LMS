@@ -8,7 +8,8 @@
 
 <!-- Buy button -->
 <div id="buynow-<?php echo $pending_payout['id']; ?>" style="height: 45px;">
-    <button class="stripe-button btn btn-outline-info btn-sm btn-rounded" id="stripePayButton-<?php echo $pending_payout['id']; ?>"><?php echo get_phrase("pay_with_stripe"); ?></button>
+    <button class="stripe-button btn btn-outline-info btn-sm btn-rounded"
+        id="stripePayButton-<?php echo $pending_payout['id']; ?>"><?php echo get_phrase("pay_with_stripe"); ?></button>
 </div>
 
 <!--Stripe API-->
@@ -18,8 +19,8 @@ var buyBtn = document.getElementById("stripePayButton-<?php echo $pending_payout
 var responseContainer = document.getElementById("stripePaymentResponse-<?php echo $pending_payout['id']; ?>");
 
 // Create a Checkout Session with the selected product
-var createCheckoutSession = function (stripe) {
-    return fetch("<?= site_url('admin/stripe_checkout_for_instructor_revenue/'.$pending_payout['id']); ?>", {
+var createCheckoutSession = function(stripe) {
+    return fetch("<?= site_url('manager/stripe_checkout_for_instructor_revenue/'.$pending_payout['id']); ?>", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -27,15 +28,15 @@ var createCheckoutSession = function (stripe) {
         body: JSON.stringify({
             checkoutSession: 1,
         }),
-    }).then(function (result) {
+    }).then(function(result) {
         return result.json();
     });
 };
 
 // Handle any errors returned from Checkout
-var handleResult = function (result) {
+var handleResult = function(result) {
     if (result.error) {
-        responseContainer.innerHTML = '<p>'+result.error.message+'</p>';
+        responseContainer.innerHTML = '<p>' + result.error.message + '</p>';
     }
     buyBtn.disabled = false;
     buyBtn.textContent = 'Buy Now';
@@ -44,16 +45,16 @@ var handleResult = function (result) {
 // Specify Stripe publishable key to initialize Stripe.js
 var stripe = Stripe('<?php echo STRIPE_PUBLISHABLE_KEY; ?>');
 
-buyBtn.addEventListener("click", function (evt) {
+buyBtn.addEventListener("click", function(evt) {
     buyBtn.disabled = true;
     buyBtn.textContent = '<?php echo get_phrase("please_wait"); ?>...';
 
-    createCheckoutSession().then(function (data) {
-        if(data.sessionId){
+    createCheckoutSession().then(function(data) {
+        if (data.sessionId) {
             stripe.redirectToCheckout({
                 sessionId: data.sessionId,
             }).then(handleResult);
-        }else{
+        } else {
             handleResult(data);
         }
     });

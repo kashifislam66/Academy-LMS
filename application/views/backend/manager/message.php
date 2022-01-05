@@ -2,7 +2,8 @@
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo get_phrase('private_message'); ?></h4>
+                <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i>
+                    <?php echo get_phrase('private_message'); ?></h4>
             </div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->
@@ -15,7 +16,7 @@
 
                 <!-- compose new email button -->
                 <div class="mail-sidebar-row visible-xs">
-                    <a href="<?php echo site_url('admin/message/message_new');?>" class="btn btn-success btn-block">
+                    <a href="<?php echo site_url('manager/message/message_new');?>" class="btn btn-success btn-block">
                         <?php echo get_phrase('new_message');?>
                         <i class="mdi mdi-pencil float-right"></i>
                     </a>
@@ -41,22 +42,23 @@
 
                         $unread_message_number = $this->crud_model->count_unread_message_of_thread($row['message_thread_code']);
                         ?>
-                        <li class="nav-item">
-                            <a class="text-left mb-1 btn btn-light d-block <?php if (isset($current_message_thread_code) && $current_message_thread_code == $row['message_thread_code'])echo 'active';?>" href="<?php echo site_url('admin/message/message_read/' . $row['message_thread_code']);?>">
+                    <li class="nav-item">
+                        <a class="text-left mb-1 btn btn-light d-block <?php if (isset($current_message_thread_code) && $current_message_thread_code == $row['message_thread_code'])echo 'active';?>"
+                            href="<?php echo site_url('manager/message/message_read/' . $row['message_thread_code']);?>">
 
-                                <?php
+                            <?php
                                     $user_details = $this->db->get_where('users' , array('id' => $user_to_show_id))->row_array();
                                     echo $user_details['first_name'].' '.$user_details['last_name'];
                                 ?>
-                                <!-- <span class="badge badge-light pull-right" style="color:#aaa;"><?php echo $user_details['role_id'] == 1 ? get_phrase('admin') : get_phrase('student') ;?></span> -->
+                            <!-- <span class="badge badge-light pull-right" style="color:#aaa;"><?php echo $user_details['role_id'] == 1 ? get_phrase('admin') : get_phrase('student') ;?></span> -->
 
-                                <?php if ($unread_message_number > 0):?>
-                                    <span class="badge badge-secondary pull-right">
-                                        <?php echo $unread_message_number;?>
-                                    </span>
-                                <?php endif;?>
-                            </a>
-                        </li>
+                            <?php if ($unread_message_number > 0):?>
+                            <span class="badge badge-secondary pull-right">
+                                <?php echo $unread_message_number;?>
+                            </span>
+                            <?php endif;?>
+                        </a>
+                    </li>
                     <?php endforeach;?>
                 </ul>
             </div>

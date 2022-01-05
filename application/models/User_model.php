@@ -42,9 +42,19 @@ class User_model extends CI_Model
     public function get_manager_by_company()
     {
         $user_id = $this->session->userdata('user_id');
-        // echo $user_id; exit;
+        //  echo $user_id; exit;
         $this->db->order_by("id", "DESC");
         $array = array('role_id' => 4,'company_id'=> $user_id);
+        $this->db->where($array);
+        return $this->db->get('users');
+    }
+
+    public function get_user_by_manager()
+    {
+        $user_id = $this->session->userdata('user_id');
+        //  echo $user_id; exit;
+        $this->db->order_by("id", "DESC");
+        $array = array('role_id' => 2,'manage_id'=> $user_id);
         $this->db->where($array);
         return $this->db->get('users');
     }
@@ -245,6 +255,7 @@ class User_model extends CI_Model
         } else {
             $data['first_name'] = html_escape($this->input->post('first_name'));
             $data['company_id'] = html_escape($this->input->post('company_id'));
+            $data['manage_id'] = html_escape($this->input->post('manage_id'));
             $data['last_name'] = html_escape($this->input->post('last_name'));
             $data['email'] = $email = html_escape($this->input->post('email'));
             $data['password'] = sha1(html_escape($this->input->post('password')));

@@ -1,4 +1,5 @@
-<form class="required-form ajaxForm" action="<?php echo site_url('admin/add_shortcut_student'); ?>" method="post" enctype="multipart/form-data">
+<form class="required-form ajaxForm" action="<?php echo site_url('manager/add_shortcut_student'); ?>" method="post"
+    enctype="multipart/form-data">
     <div class="form-group">
         <label for="first_name"><?php echo get_phrase('first_name'); ?><span class="required">*</span> </label>
         <input type="text" id="first_name" name="first_name" class="form-control" required>
@@ -7,7 +8,8 @@
         <label for="last_name"><?php echo get_phrase('last_name'); ?></label>
         <input type="text" id="last_name" name="last_name" class="form-control">
     </div>
-    <input type="hidden" value="<?php echo $this->session->userdata('user_id') ?>" id="company_id" name="company_id" class="form-control">
+    <input type="hidden" value="<?php echo $this->session->userdata('user_id') ?>" id="manage_id" name="manage_id"
+        class="form-control">
 
     <div class="form-group">
         <label for="email"><?php echo get_phrase('email'); ?><span class="required">*</span> </label>
@@ -22,25 +24,24 @@
 </form>
 
 <script type="text/javascript">
-    $(".ajaxForm").submit(function(e) {
-        e.preventDefault(); // avoid to execute the actual submit of the form.
-        var form = $(this);
-        var url = form.attr('action');
-        $.ajax({
-           type: "POST",
-           url: url,
-           data: form.serialize(), // serializes the form's elements.
-           success: function(response)
-           {
-               console.log(response);  
+$(".ajaxForm").submit(function(e) {
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+    var form = $(this);
+    var url = form.attr('action');
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: form.serialize(), // serializes the form's elements.
+        success: function(response) {
+            console.log(response);
             var myArray = jQuery.parseJSON(response);
 
-                if(myArray['status']){
-                    location.reload();
-                }else{
-                    error_notify(myArray['message']);
-                }
-           }
-        });
+            if (myArray['status']) {
+                location.reload();
+            } else {
+                error_notify(myArray['message']);
+            }
+        }
     });
-</script>  
+});
+</script>
