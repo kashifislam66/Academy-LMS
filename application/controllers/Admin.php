@@ -251,10 +251,12 @@ class Admin extends CI_Controller
 
         if ($param1 == 'add_user_form') {
             $page_data['page_name'] = 'user_add';
+            $page_data['select_user_manager'] = $this->user_model->select_manager_name();
             $page_data['page_title'] = get_phrase('student_add');
             $this->load->view('backend/index', $page_data);
         } elseif ($param1 == 'edit_user_form') {
             $page_data['page_name'] = 'user_edit';
+            $page_data['select_user_manager'] = $this->user_model->select_manager_name();
             $page_data['user_id'] = $param2;
             $page_data['page_title'] = get_phrase('student_edit');
             $this->load->view('backend/index', $page_data);
@@ -1696,5 +1698,55 @@ class Admin extends CI_Controller
     {
         $question_json = $this->input->post('itemJSON');
         $this->crud_model->sort_question($question_json);
+    }
+
+    public function manager($param1 = "", $param2 = "")
+    {
+        if ($this->session->userdata('admin_login') != true) {
+            redirect(site_url('login'), 'refresh');
+        }
+
+        // CHECK ACCESS PERMISSION
+        check_permission('user');
+        check_permission('student');
+
+        if ($param1 == "add") {
+            // $this->user_model->add_user();
+            $this->user_model->add_manager();
+            redirect(site_url('admin/manager'), 'refresh');
+        } elseif ($param1 == "edit") {
+            $this->user_model->edit_manager($param2);
+            redirect(site_url('admin/manager'), 'refresh');
+        } elseif ($param1 == "delete") {
+            $this->user_model->delete_user($param2);
+            redirect(site_url('admin/manager'), 'refresh');
+        }
+
+        $page_data['page_name'] = 'managers';
+        $page_data['page_title'] = get_phrase('Manager');
+        $page_data['users'] = $this->user_model->get_user_by_company($param2);
+        $this->load->view('backend/index', $page_data);
+    }
+
+    public function manager_form($param1 = "", $param2 = "")
+    {
+        if ($this->session->userdata('admin_login') != true) {
+            redirect(site_url('login'), 'refresh');
+        }
+
+        // CHECK ACCESS PERMISSION
+        check_permission('user');
+        check_permission('student');
+
+        if ($param1 == 'add_user_form') {
+            $page_data['page_name'] = 'manager_add';
+            $page_data['page_title'] = get_phrase('manager_add');
+            $this->load->view('backend/index', $page_data);
+        } elseif ($param1 == 'edit_user_form') {
+            $page_data['page_name'] = 'manager_edit';
+            $page_data['user_id'] = $param2;
+            $page_data['page_title'] = get_phrase('manager_edit');
+            $this->load->view('backend/index', $page_data);
+        }
     }
 }

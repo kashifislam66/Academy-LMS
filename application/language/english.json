@@ -892,5 +892,14 @@
     "data_deleted_successfully": "Data deleted successfully",
     "email_send": "Email send",
     "course_end_date": "Course end date",
-    "last_date": "Last date"
+    "last_date": "Last date",
+    "managers": "Managers",
+    "manage_manager": "Manage manager",
+    "add_new_manager": "Add new manager",
+    "manager": "Manager",
+    "add_manager": "Add manager",
+    "manager_add": "Manager add",
+    "manager_add_form": "Manager add form",
+    "manager_edit": "Manager edit",
+    "manager_edit_form": "Manager edit form"
 }

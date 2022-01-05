@@ -13,13 +13,14 @@
         <div class="card">
             <div class="card-body">
 
-                <h4 class="header-title mb-3"><?php echo get_phrase('student_add_form'); ?></h4>
+                <h4 class="header-title mb-3"><?php echo get_phrase('manager_add_form'); ?></h4>
 
-                <form class="required-form" action="<?php echo site_url('admin/users/add'); ?>"
+                <form class="required-form" action="<?php echo site_url('admin/manager/add'); ?>"
                     enctype="multipart/form-data" method="post">
                     <div id="progressbarwizard">
                         <?php $user_id = $this->session->userdata('user_id'); ?>
                         <input type="hidden" name="company_id" value="<?php echo $user_id;  ?>" />
+                        <input type="hidden" name="is_manager" value="1" />
                         <ul class="nav nav-pills nav-justified form-wizard-header mb-3">
                             <li class="nav-item">
                                 <a href="#basic_info" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
@@ -128,20 +129,6 @@
                                             <div class="col-md-9">
                                                 <input type="password" id="password" name="password"
                                                     class="form-control" required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row mb-3">
-                                            <label class="col-md-3 col-form-label"
-                                                for="admin_list"><?php echo 'Select comany'; ?><span
-                                                    class="required">*</span></label>
-                                            <div class="col-md-9">
-                                                <select name="manage_id" id="manage_id" class="form-control" required>
-                                                    <option>Select Manager</option>
-                                                    <?php foreach ($select_user_manager as $row) {?>
-                                                    <option value="<?php echo $row->id; ?>">
-                                                        <?php echo $row->first_name.' '.$row->last_name; ?></option>
-                                                    <?php } ?>
-                                                </select>
                                             </div>
                                         </div>
                                     </div> <!-- end col -->

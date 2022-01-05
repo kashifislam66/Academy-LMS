@@ -232,10 +232,8 @@ class Super_Admin extends CI_Controller
         check_permission('student');
 
         if ($param1 == 'add_user_form') {
-            $page_data['page_name'] = 'user_add';
-            // $page_data['page_name'] = $this->user_model->get_company_user();
+            $page_data['page_name'] = 'user_add';   
             $page_data['select_user_company'] = $this->user_model->select_company_name();
-            // echo "<pre>"; print_r($test); exit;
             $page_data['page_title'] = get_phrase('student_add');
             $this->load->view('backend/index', $page_data);
         } elseif ($param1 == 'edit_user_form') {
