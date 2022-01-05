@@ -549,7 +549,7 @@ class Home extends CI_Controller
     public function lesson($slug = "", $course_id = "", $lesson_id = "")
     {
        
-        if ($this->session->userdata('user_login') != 1 && $this->session->userdata('admin_login') != 1 && $this->session->userdata('super_admin_login') != 1) {
+        if ($this->session->userdata('user_login') != 1 && $this->session->userdata('admin_login') != 1 && $this->session->userdata('super_admin_login') != 1 && $this->session->userdata('manager_login') != 1) {
             
                 redirect('home', 'refresh');
             
@@ -952,6 +952,10 @@ class Home extends CI_Controller
             redirect(site_url('admin'), 'refresh');
         } elseif ($this->session->userdata('user_login')) {
             redirect(site_url('user'), 'refresh');
+        } elseif ($this->session->userdata('super_admin_login')) {
+            redirect(site_url('super_admin'), 'refresh');
+        } elseif ($this->session->userdata('manager_login')) {
+            redirect(site_url('manager'), 'refresh');
         }
         $page_data['page_name'] = 'sign_up';
         $page_data['page_title'] = site_phrase('Contact_us');
@@ -964,6 +968,10 @@ class Home extends CI_Controller
             redirect(site_url('admin'), 'refresh');
         } elseif ($this->session->userdata('user_login')) {
             redirect(site_url('user'), 'refresh');
+        } elseif ($this->session->userdata('super_admin_login')) {
+            redirect(site_url('super_admin'), 'refresh');
+        } elseif ($this->session->userdata('manager_login')) {
+            redirect(site_url('manager'), 'refresh');
         }
         $page_data['page_name'] = 'forgot_password';
         $page_data['page_title'] = site_phrase('forgot_password');

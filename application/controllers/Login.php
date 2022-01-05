@@ -31,16 +31,6 @@ class Login extends CI_Controller
     }
 
 
-
-
-
-
-
-
-
-
-
-
     public function validate_login($from = "")
     {    
         if ($this->crud_model->check_recaptcha() == false && get_frontend_settings('recaptcha_status') == true) {
@@ -200,6 +190,8 @@ class Login extends CI_Controller
             $this->session->unset_userdata('super_admin_login');
         } else if($this->session->userdata('admin_login') == 1) {
             $this->session->unset_userdata('admin_login');
+        } else if($this->session->userdata('manager_login') == 1) {
+            $this->session->unset_userdata('manager_login');
         }
         else {
             $this->session->unset_userdata('user_login');

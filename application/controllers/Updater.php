@@ -33,6 +33,10 @@ class Updater extends CI_Controller
             redirect(site_url('login'), 'refresh');
         if ($this->session->userdata('admin_login') == 1)
             redirect(site_url('admin/dashboard'), 'refresh');
+        if ($this->session->userdata('super_admin_login') == 1)
+            redirect(site_url('super_admin/dashboard'), 'refresh');
+        if ($this->session->userdata('manager_login') == 1)
+            redirect(site_url('manager/dashboard'), 'refresh');
     }
 
     /***** UPDATE PRODUCT *****/

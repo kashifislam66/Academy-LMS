@@ -168,7 +168,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                                     
                       foreach ($lessons as $lesson) :  ?>
                       
-                                    <li class="lecture has-preview text-14px " <?php if ($this->session->userdata('user_login') != true && $this->session->userdata('super_admin_login') != true && $this->session->userdata('admin_login') != true) { ?> style="pointer-events: none;"<?php } ?>>
+                                    <li class="lecture has-preview text-14px " <?php if ($this->session->userdata('user_login') != true && $this->session->userdata('super_admin_login') != true && $this->session->userdata('admin_login') != true && $this->session->userdata('manager_login') != true) { ?> style="pointer-events: none;"<?php } ?>>
                                      
                                         <span
                                             class="lecture-title <?php  if($lesson['is_free'] == 1) echo 'text-primary'; ?>"  <?php if($key != "0") { ?>style="pointer-events: none;" <?php } ?>

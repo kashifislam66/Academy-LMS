@@ -38,7 +38,7 @@
 
                 </div>
             </li>
-            <?php if($this->session->userdata('is_instructor') == 1 || $this->session->userdata('admin_login') == 1): ?>
+            <?php if($this->session->userdata('is_instructor') == 1 || $this->session->userdata('admin_login') == 1 || $this->session->userdata('manager_login')== 1): ?>
             <li class="dropdown notification-list">
                 <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button"
                     aria-haspopup="false" aria-expanded="false">
@@ -72,7 +72,7 @@
                         </div>
                         <?php endif; ?>
 
-                        <?php if($this->session->userdata('admin_login') && has_permission('student') || $this->session->userdata('super_admin_login')): ?>
+                        <?php if($this->session->userdata('admin_login') && has_permission('student') || $this->session->userdata('super_admin_login') || $this->session->userdata('manager_login')): ?>
                         <div class="col-6 p-0 border-right">
                             <a href="#" class="d-block text-center py-3 bg-hover-light"
                                 onclick="showAjaxModal('<?php echo site_url('modal/popup/shortcut_add_student'); ?>', '<?php echo get_phrase('add_student'); ?>')">
@@ -82,7 +82,7 @@
                         </div>
                         <?php endif; ?>
 
-                        <?php if($this->session->userdata('admin_login') && has_permission('enrolment') || $this->session->userdata('super_admin_login')): ?>
+                        <?php if($this->session->userdata('admin_login') && has_permission('enrolment') || $this->session->userdata('super_admin_login') || $this->session->userdata('manager_login')): ?>
                         <div class="col-6 p-0">
                             <a href="#" class="d-block text-center py-3 bg-hover-light"
                                 onclick="showAjaxModal('<?php echo site_url('modal/popup/shortcut_enrol_student'); ?>', '<?php echo get_phrase('enrol_a_student'); ?>')">
