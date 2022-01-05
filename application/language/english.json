@@ -901,5 +901,7 @@
     "manager_add": "Manager add",
     "manager_add_form": "Manager add form",
     "manager_edit": "Manager edit",
-    "manager_edit_form": "Manager edit form"
+    "manager_edit_form": "Manager edit form",
+    "learner": "Learner",
+    "already_enrolded": "Already enrolded"
 }

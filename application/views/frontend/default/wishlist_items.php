@@ -40,7 +40,7 @@ $cart_items = $this->session->userdata('cart_items');
                                    
                                 </a>
                                 <?php if (is_purchased($course_details['id'])) : ?>
-                                    <button><?= site_phrase('already_purchased'); ?></button>
+                                    <button><?= site_phrase('already_enroled'); ?></button>
                                 <?php else : ?>
                                     <?php if ($course_details['is_free_course'] == 0) : ?>
                                         <button type="button" id="<?php echo $course_details['id']; ?>" onclick="handleCartItems(this)" class="<?php if (in_array($course_details['id'], $cart_items)) echo 'addedToCart'; ?>">

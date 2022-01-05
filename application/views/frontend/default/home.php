@@ -173,12 +173,12 @@
                                             <span
                                                 class="badge badge-sub-warning text-11px"><?php echo site_phrase($top_course['level']); ?></span>
                                         </div>
-                                        <div class="col-6 text-end">
+                                        <!-- <div class="col-6 text-end">
                                             <button class="brn-compare-sm"
                                                 onclick="return check_action(this, '<?php echo site_url('home/compare?course-1=' . rawurlencode(slugify($top_course['title'])) . '&&course-id-1=' . $top_course['id']); ?>');"><i
                                                     class="fas fa-balance-scale"></i>
                                                 <?php echo site_phrase('compare'); ?></button>
-                                        </div>
+                                        </div> -->
                                     </div>
 
                                     <hr class="divider-1">
@@ -257,7 +257,7 @@
                                     <?php if (is_purchased($top_course['id'])) : ?>
                                     <div class="purchased">
                                         <a
-                                            href="<?php echo site_url('home/my_courses'); ?>"><?php echo site_phrase('already_purchased'); ?></a>
+                                            href="<?php echo site_url('home/my_courses'); ?>"><?php echo site_phrase('already_enroled'); ?></a>
                                     </div>
                                     <?php else : ?>
                                     <?php 
@@ -361,12 +361,12 @@
                                             <span
                                                 class="badge badge-sub-warning text-11px"><?php echo site_phrase($latest_course['level']); ?></span>
                                         </div>
-                                        <div class="col-6 text-end">
+                                        <!-- <div class="col-6 text-end">
                                             <button class="brn-compare-sm"
                                                 onclick="return check_action(this, '<?php echo site_url('home/compare?course-1=' . rawurlencode(slugify($latest_course['title'])) . '&&course-id-1=' . $latest_course['id']); ?>');"><i
                                                     class="fas fa-balance-scale"></i>
                                                 <?php echo site_phrase('compare'); ?></button>
-                                        </div>
+                                        </div> -->
                                     </div>
 
                                     <hr class="divider-1">
@@ -446,7 +446,7 @@
                                     <?php if (is_purchased($latest_course['id'])) : ?>
                                     <div class="purchased">
                                         <a
-                                            href="<?php echo site_url('home/my_courses'); ?>"><?php echo site_phrase('already_purchased'); ?></a>
+                                            href="<?php echo site_url('home/my_courses'); ?>"><?php echo site_phrase('already_enroled'); ?></a>
                                     </div>
                                     <?php else : ?>
                                     <?php 

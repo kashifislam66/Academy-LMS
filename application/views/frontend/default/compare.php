@@ -87,7 +87,7 @@
                             <br>
 
                             <?php if (is_purchased($course_1_details['id'])) : ?>
-                                <a href="javascript::" class="btn red radius-10 mt-3 py-2"><?php echo site_phrase('already_purchased'); ?></a>
+                                <a href="javascript::" class="btn red radius-10 mt-3 py-2"><?php echo site_phrase('already_enrolded'); ?></a>
                             <?php else : ?>
                                 <?php if ($course_1_details['is_free_course'] == 1) : ?>
                                     <?php if ($this->session->userdata('user_login') != 1) : ?>
@@ -126,7 +126,7 @@
                             <br>
 
                             <?php if (is_purchased($course_2_details['id'])) : ?>
-                                <a href="javascript::" class="btn red radius-10 mt-3 py-2"><?php echo site_phrase('already_purchased'); ?></a>
+                                <a href="javascript::" class="btn red radius-10 mt-3 py-2"><?php echo site_phrase('already_enroled'); ?></a>
                             <?php else : ?>
                                 <?php if ($course_2_details['is_free_course'] == 1) : ?>
                                     <?php if ($this->session->userdata('user_login') != 1) : ?>
@@ -164,7 +164,7 @@
                             <br>
 
                             <?php if (is_purchased($course_3_details['id'])) : ?>
-                                <a href="javascript::" class="btn red radius-10 mt-3 py-2"><?php echo site_phrase('already_purchased'); ?></a>
+                                <a href="javascript::" class="btn red radius-10 mt-3 py-2"><?php echo site_phrase('already_enroled'); ?></a>
                             <?php else : ?>
                                 <?php if ($course_3_details['is_free_course'] == 1) : ?>
                                     <?php if ($this->session->userdata('user_login') != 1) : ?>
