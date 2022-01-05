@@ -31,7 +31,7 @@ $user_details = $this->user_model->get_user($this->session->userdata('user_id'))
             <div class="instructor-box menu-icon-box">
                 <div class="icon">
                     <a href="<?php echo site_url('user'); ?>"
-                        style="border: 1px solid transparent; margin: 0px;     padding: 0px 10px; font-size: 14px; width: max-content; border-radius: 5px; height: 40px; line-height: 40px;"><?php echo site_phrase('instructor'); ?></a>
+                        style="border: 1px solid transparent; margin: 0px;     padding: 0px 10px; font-size: 14px; width: max-content; border-radius: 5px; height: 40px; line-height: 40px;"><?php echo site_phrase('Learner'); ?></a>
                 </div>
             </div>
             <?php endif; ?>

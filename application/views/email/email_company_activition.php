@@ -477,9 +477,7 @@
                                             <h2 style="font-size: 18px;">Dear <?= $full_name; ?>,</h2>
                                             <br>
                                             <?php if(isset($status) && !empty($status)){?>
-                                            <h2 style="font-size: 18px; color:red; text-align: center"><?= $status; ?>
-                                            </h2>
-                                            <br>
+                                            <h2 style="font-size: 18px; color:red;"><?= $status; ?></h2>
                                             <p style="margin-bottom: 9px; margin-top:2px;">User Email:
                                                 <b style="cursor: pointer;"><?= $to; ?></b>
                                             </p>

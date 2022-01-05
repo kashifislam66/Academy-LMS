@@ -31,7 +31,7 @@
                                 <?php endif; ?>
                                 <span class=""><i class="fas fa-closed-captioning"></i><?php echo site_phrase($course['language']); ?></span>
                                 <span class=""><i class="fa fa-level-up"></i><?php echo site_phrase($course['level']); ?></span>
-                                <button class="brn-compare-sm" onclick="event.stopPropagation(); $(location).attr('href', '<?php echo site_url('home/compare?course-1=' . rawurlencode(slugify($course['title'])) . '&&course-id-1=' . $course['id']); ?>');"><i class="fas fa-balance-scale"></i> <?php echo site_phrase('compare'); ?></button>
+                                <!-- <button class="brn-compare-sm" onclick="event.stopPropagation(); $(location).attr('href', '<?php echo site_url('home/compare?course-1=' . rawurlencode(slugify($course['title'])) . '&&course-id-1=' . $course['id']); ?>');"><i class="fas fa-balance-scale"></i> <?php echo site_phrase('compare'); ?></button> -->
                             </div>
                         </div>
 

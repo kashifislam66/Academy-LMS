@@ -168,7 +168,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                                     
                       foreach ($lessons as $lesson) :  ?>
                       
-                                    <li class="lecture has-preview text-14px " <?php if ($this->session->userdata('user_login') != true && $this->session->userdata('super_admin_login') != true && $this->session->userdata('admin_login') != true) { ?> style="pointer-events: none;"<?php } ?>>
+                                    <li class="lecture has-preview text-14px " <?php if ($this->session->userdata('user_login') != true && $this->session->userdata('super_admin_login') != true && $this->session->userdata('admin_login') != true && $this->session->userdata('manager_login') != true) { ?> style="pointer-events: none;"<?php } ?>>
                                      
                                         <span
                                             class="lecture-title <?php  if($lesson['is_free'] == 1) echo 'text-primary'; ?>"  <?php if($key != "0") { ?>style="pointer-events: none;" <?php } ?>
@@ -558,12 +558,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                                 <?php endif; ?>
                                 <li><i class="far fa-compass"></i><?php echo site_phrase('full_lifetime_access'); ?>
                                 </li>
-                                <li class="text-center pt-3">
-                                    <a class="badge-sub-warning text-decoration-none fw-600 hover-shadow-1 d-inline-block"
-                                        href="<?php echo site_url('home/compare?course-1=' . rawurlencode(slugify($course_details['title'])) . '&&course-id-1=' . $course_details['id']); ?>"><i
-                                            class="fas fa-balance-scale"></i>
-                                        <?php echo site_phrase('compare_this_course_with_other'); ?></a>
-                                </li>
+                               
                             </ul>
                         </div>
                     </div>

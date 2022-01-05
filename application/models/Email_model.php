@@ -310,23 +310,36 @@ class Email_model extends CI_Model {
 		$this->email->send();
 	}
 	
-	public function send_email_company_user_activition($to ='', $userPass='') {
+    // Company user Add / Active / Un-Active email 
+	public function send_email_company_by_user_activition($to ='', $userPass='') {
 		$query = $this->db->get_where('users', array('email' => $to))->row_array();
-		$role_id='';
-		if($query['role_id'] == 2){
-		  $role_id = 'Student';
+		$status = '';
+		$new_password = '';
+		if($query['status'] == 0 ){
+			$status = "Your account has been deactivated. Please contact your site administrator.";
+		}else{
+			if(empty($userPass)){
+			 $new_password = substr(md5(rand(100000000, 20000000000)), 0, 10);
+			//Checking credential for admin
+			 $this->db->where('id', $query['id']);
+			 $this->db->update('users', array('password' => sha1($new_password)));
+			}else{	
+			  $new_password = $userPass; 
+			}	
 		}
-		$email_data['password']  = $userPass;
-		$email_data['subject']   = "Verify Your GoSkillBoost LMS";
-		$email_data['from']		 = get_settings('system_email');
-		$email_data['to'] 		 = $to;
-		$email_data['full_name'] = $query['first_name'].' '.$query['last_name'];
-		$email_data['role_id']   = $role_id;
-		$email_template = $this->load->view('email/email_user_activition', $email_data, TRUE);
+
+		$email_data['subject']         = "Welcome to GoSkillBoost LMS";
+		$email_data['from']		       = get_settings('system_email');
+		$email_data['to'] 		       = $to;
+		$email_data['full_name']       = $query['first_name'].' '.$query['last_name'];
+		$email_data['password']  	   = $new_password;
+		$email_data['status']  	       = $status;
+		$email_template = $this->load->view('email/email_to_company_activited_by_system', $email_data, TRUE);
 		
 		$this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from']);
 	}
 
+	//first time contact the company email to system
 	public function send_email_company_register_activition($to ='') {
 		$query = $this->db->get_where('users', array('email' => $to))->row_array();
 		$role_id='';
@@ -335,27 +348,25 @@ class Email_model extends CI_Model {
 		 $role_id = 'Company Admin';
 		}
 
-		$email_data['subject']         = "Welcome to GoSkillBoost LMS";
+		$email_data['subject']         = "Company requested to GoSkillBoost LMS";
 		$email_data['from']		       = $to;
 		$email_data['to'] 		       = get_settings('system_email');
 		$email_data['full_name']       = $query['first_name'].' '.$query['last_name'];
 		$email_data['empolyes_number'] = $query['number_of_empolyes'];
 		$email_data['company_number']  = $query['company_number'];
 		$email_data['role_id']  	   = $role_id;
-		$email_data['password']  	   = $new_password;
-		$email_template = $this->load->view('email/email_company_activition', $email_data, TRUE);
+		// $email_data['password']  	   = $new_password;
+		$email_template = $this->load->view('email/email_company_register_req_activition', $email_data, TRUE);
 		
 		 $this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from']); 
 	}
-
-	public function send_email_company_activited_system($to ='', $userPass='') {
+	
+	//System to there company Add / Active / Un-active
+	public function send_email_to_company_activited_by_system($to ='', $userPass='') {
 		// echo "sss"; print_r($userPass); exit();
 		$query = $this->db->get_where('users', array('email' => $to))->row_array();
 		$status = '';
-		$role_id = $new_password = '';
-		if($query['role_id'] == 3 ){
-		 $role_id = 'Company Admin';
-		}
+		$new_password = '';
 		
 		if($query['status'] == 0 ){
 			$status = "Your account has been deactivated. Please contact your site administrator.";
@@ -370,57 +381,19 @@ class Email_model extends CI_Model {
 				}	
 		}
 
-		
 		$email_data['subject']         = "Welcome to GoSkillBoost LMS";
 		$email_data['from']		       = get_settings('system_email');
 		$email_data['to'] 		       = $to;
 		$email_data['full_name']       = $query['first_name'].' '.$query['last_name'];
-		$email_data['empolyes_number'] = $query['number_of_empolyes'];
-		$email_data['company_number']  = $query['company_number'];
-		$email_data['role_id']  	   = $role_id;
 		$email_data['password']  	   = $new_password;
 		$email_data['status']  	       = $status;
-		$email_template = $this->load->view('email/email_company_activition', $email_data, TRUE);
+		$email_template = $this->load->view('email/email_to_company_activited_by_system', $email_data, TRUE);
 		
 		 $this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from']); 
 	}
-
-	public function send_email_company_user_status_activition($to ='', $userPass=''){
-		$query = $this->db->get_where('users', array('email' => $to))->row_array();
-		$status = '';
-		$role_id = $new_password = '';
-		if($query['role_id'] == 2 ){
-			$role_id = 'Student';
-		}
-		
-		if($query['status'] == 0 ){
-			$status = "Your account has been deactivated. Please contact your site administrator.";
-		}else{
-			if(empty($userPass)){
-				$new_password = substr(md5(rand(100000000, 20000000000)), 0, 10);
-				//Checking credential for admin
-				$this->db->where('id', $query['id']);
-				$this->db->update('users', array('password' => sha1($new_password)));
-				}else{	
-					$new_password = $userPass; 
-				}	
-		}
-
-		$email_data['subject']   = "Verify Your GoSkillBoost LMS";
-		$email_data['from']		 = get_settings('system_email');
-		$email_data['to'] 		 = $to;
-		$email_data['full_name'] = $query['first_name'].' '.$query['last_name'];
-		$email_data['role_id']   = $role_id;
-		$email_data['password']  = $new_password;
-		$email_data['status']    = $status;
-		$email_template = $this->load->view('email/email_user_activition', $email_data, TRUE);
-		
-		$this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from']);
-	}
+	
 
 	public function send_email_company_user_enrolment($user_id='', $course_id='', $company_id=''){
-		$company_email = $this->db->get_where('users', array('id' => $company_id))->row_array();
-		// echo $company_email['email']; exit;
 		$student_request_course = $this->db->select('course.title, users.first_name, users.last_name, users.email')
 		->join('course', 'enrolment_request.course_id = course.id')
 		->join('users', 'enrolment_request.user_id = users.id')
@@ -429,22 +402,19 @@ class Email_model extends CI_Model {
 		$query = $this->db->get('enrolment_request')->result_array();
 		$student_req = $query[0];
 
-		$email_data['subject']   = "Student Enrolment request GoSkillBoost LMS";
+		$email_data['subject']   = "User request course enrollment GoSkillBoost LMS";
 		$email_data['from']		 = $student_req['email'];
-		$email_data['to'] 		 = $company_email['email'];
+		$email_data['to'] 		 = get_settings('system_email');
 		$email_data['full_name'] = $student_req['first_name'].' '.$student_req['last_name'];
 		$email_data['course_title'] = $student_req['title'];
-		$email_data['msg']    = 'I am interseted to enroll in this course.';
 		$email_template = $this->load->view('email/email_student_enrol_request_to_admin', $email_data, TRUE);
 		
 		$this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from']);
 
 	}
 
-	public function send_email_company_multi_user_enrolment($user_id='', $course_id=''){
-			//echo "<pre>"; print_r($user_id); exit;
+	public function send_email_shortcut_enrol_a_student_manually($user_id='', $course_id=''){
 		  foreach($user_id  as $userId){
-		//	$company_email = $this->db->get_where('users', array('id' => $userId))->row_array();
 			$student_request_course = $this->db->select('course.title, users.first_name, users.last_name, users.email')
 			->join('course', 'enrol.course_id = course.id')
 			->join('users', 'enrol.user_id = users.id')
@@ -452,18 +422,57 @@ class Email_model extends CI_Model {
 			->where('enrol.user_id', $userId);
 			$query = $this->db->get('enrol')->row_array();
 	
-			$email_data['subject']      = "Student Enrolment request GoSkillBoost LMS";
+			$email_data['subject']      = "Learner is enrolled in a course";
 			$email_data['from']		    = get_settings('system_email');
 			$email_data['to'] 		    = $query['email'];
 			$email_data['full_name']    = $query['first_name'].' '.$query['last_name'];
 			$email_data['course_title'] = $query['title'];
 			$email_data['msg']          = 'I am interseted to enroll in this course.';
-			$email_template = $this->load->view('email/email_student_enrol_request_to_admin', $email_data, TRUE);
-			
+			$email_template = $this->load->view('email/email_student_enrol_request_accpt_by_admin', $email_data, TRUE);	
 			$this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from']);
-		//	print_r($query); 
-			   }
-			//return true;
-			//exit;
+			}
+		
 	}
+	// Accept  the request by company
+	public function send_email_req_accept_user_enrolment($user_id='', $course_id=''){
+        // echo "<pre>"; print_r($course_id); exit;
+		$student_request_course = $this->db->select('course.title, users.first_name, users.last_name, users.email')
+		->join('course', 'enrolment_request.course_id = course.id')
+		->join('users', 'enrolment_request.user_id = users.id')
+		->where('enrolment_request.course_id', $course_id)
+		->where('enrolment_request.user_id', $user_id);
+		$query = $this->db->get('enrolment_request')->result_array();
+		$student_req = $query[0];
+		//   echo "<pre>"; print_r($student_req); exit;
+		$email_data['subject']      = "Learner is enrolled in a course";
+		$email_data['from']		    = get_settings('system_email');
+		$email_data['to'] 		    = $student_req['email'];
+		$email_data['full_name']    = $student_req['first_name'].' '.$student_req['last_name'];
+		$email_data['course_title'] = $student_req['title'];
+		$email_template = $this->load->view('email/email_student_enrol_request_accpt_by_admin', $email_data, TRUE);
+		
+		$this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from']);
+
+	}
+  
+	// super admin added munllually assign the course
+	public function send_email_course_assign_to_student_manually($user_id='', $course_id=''){
+
+		  $student_request_course = $this->db->select('course.title, users.first_name, users.last_name, users.email')
+		  ->join('course', 'enrol.course_id = course.id')
+		  ->join('users', 'enrol.user_id = users.id')
+		  ->where('enrol.course_id', $course_id)
+		  ->where('enrol.user_id', $user_id);
+		  $query = $this->db->get('enrol')->row_array();
+  
+		  $email_data['subject']      = "Learner is enrolled in a course";
+		  $email_data['from']		  = get_settings('system_email');
+		  $email_data['to'] 		  = $query['email'];
+		  $email_data['full_name']    = $query['first_name'].' '.$query['last_name'];
+		  $email_data['course_title'] = $query['title'];
+		  $email_data['msg']          = 'I am interseted to enroll in this course.';
+		  $email_template = $this->load->view('email/email_student_enrol_request_accpt_by_admin', $email_data, TRUE);	
+		  $this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from']);
+	  
+  }
 }

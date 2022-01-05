@@ -1868,6 +1868,7 @@ class Crud_model extends CI_Model
             $data['enrol_last_date'] = strtotime($this->input->post('enrol_last_date'));
             $data['date_added'] = strtotime(date('D, d-M-Y'));
             $this->db->insert('enrol', $data);
+            $this->email_model->send_email_course_assign_to_student_manually($data['user_id'],$data['course_id']);
             $this->session->set_flashdata('flash_message', get_phrase('student_has_been_enrolled_to_that_course'));
         }
     }
@@ -1899,7 +1900,7 @@ class Crud_model extends CI_Model
             $checker = array('id' => $id);
             $this->db->where($checker);
             $this->db->update('enrolment_request', $status);
-
+            $this->email_model->send_email_req_accept_user_enrolment($data['user_id'],$data['course_id']);
             $this->session->set_flashdata('flash_message', get_phrase('student_has_been_enrolled_to_that_course'));
         }
     }
@@ -1907,7 +1908,7 @@ class Crud_model extends CI_Model
     public function shortcut_enrol_a_student_manually()
     {
         $data['course_id'] = $this->input->post('course_id');
-        $user_id   = $this->input->post('user_id');
+        $user_id = $this->input->post('user_id');
        
         foreach($user_id as $user) {    
             $data['user_id'] = $user;
@@ -1921,20 +1922,18 @@ class Crud_model extends CI_Model
                             $user_data= $this->user_model->get_user($data['user_id'])->row_array();
                             $enrol_add =   $this->api_model->enrol_Add($get_login_decode->access_token,$user_data['go1_id'],$course_details['api_id']);
                             $enrol_add_decode = json_decode($enrol_add);
-                            // print_r($enrol_add_decode); die();
+                        //  print_r($enrol_add_decode); die();
                             $data['enrol_go1_id'] = $enrol_add_decode->id;
                         }
                     $data['enrol_last_date'] = strtotime($this->input->post('enrol_last_date'));
                     $data['date_added'] = strtotime(date('D, d-M-Y'));
                     $this->db->insert('enrol', $data);
-                    // echo $data['user_id']; 
-                   
                     $this->session->set_flashdata('flash_message', get_phrase('student_has_been_enrolled_to_that_course'));
-                   
                 }
                
             }
-            $this->email_model->send_email_company_multi_user_enrolment($user_id, $data['course_id']);
+           
+            $this->email_model->send_email_shortcut_enrol_a_student_manually($user_id, $data['course_id']);
             $response['status'] = 1;
             return json_encode($response); 
     }

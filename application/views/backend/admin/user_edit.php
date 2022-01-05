@@ -149,6 +149,23 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        <div class="form-group row mb-3">
+                                            <label class="col-md-3 col-form-label" for="manger">
+                                                <?php echo get_phrase('Select_manager'); ?> <span
+                                                    class="required">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <select name="manage_id" id="manage_id" class="form-control" required>
+                                                    <option>Select Manager</option>
+                                                    <?php foreach ($select_user_manager as $row)  {?>
+                                                    <option value="<?php echo $row->id; ?>"
+                                                        <?php if($user_data['manage_id'] == $row->id) { ?>
+                                                        selected="selected" <?php } ?>>
+                                                        <?php echo $row->first_name.' '.$row->last_name; ?> </option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div> <!-- end col -->
                                 </div> <!-- end row -->
                             </div>
