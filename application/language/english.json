@@ -892,5 +892,7 @@
     "data_deleted_successfully": "Data deleted successfully",
     "email_send": "Email send",
     "course_end_date": "Course end date",
-    "last_date": "Last date"
+    "last_date": "Last date",
+    "learner": "Learner",
+    "already_enrolded": "Already enrolded"
 }

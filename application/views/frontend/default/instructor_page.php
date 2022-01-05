@@ -146,9 +146,9 @@ $total_students = $this->db->get('enrol')->num_rows();
                                         <div class="col-6">
                                             <span class="badge badge-sub-warning text-11px"><?php echo site_phrase($top_course['level']); ?></span>
                                         </div>
-                                        <div class="col-6 text-end">
+                                        <!-- <div class="col-6 text-end">
                                             <button class="brn-compare-sm" onclick="event.stopPropagation(); $(location).attr('href', '<?php echo site_url('home/compare?course-1=' . rawurlencode(slugify($top_course['title'])) . '&&course-id-1=' . $top_course['id']); ?>');"><i class="fas fa-balance-scale"></i> <?php echo site_phrase('compare'); ?></button>
-                                        </div>
+                                        </div> -->
                                     </div>
 
                                     <hr class="divider-1">
