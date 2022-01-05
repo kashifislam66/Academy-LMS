@@ -355,6 +355,8 @@ class User_model extends CI_Model
             $data['title'] = html_escape($this->input->post('title'));
             $data['skills'] = html_escape($this->input->post('skills'));
             $data['last_modified'] = strtotime(date("Y-m-d H:i:s"));
+            $data['manage_id'] = html_escape($this->input->post('manage_id'));
+
 
             if (isset($_FILES['user_image']) && $_FILES['user_image']['name'] != "") {
                 unlink('uploads/user_image/' . $this->db->get_where('users', array('id' => $user_id))->row('image') . '.jpg');

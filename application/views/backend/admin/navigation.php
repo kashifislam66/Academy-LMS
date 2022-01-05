@@ -80,17 +80,18 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
             <ul class="side-nav-second-level" aria-expanded="false">
                 <?php if (has_permission('student')) : ?>
                 <li
-                    class="side-nav-item <?php if ($page_name == 'users' || $page_name == 'user_add' || $page_name == 'user_edit') : ?> active <?php endif; ?>">
+                    class="side-nav-item <?php if ($page_name == 'manager' || $page_name == 'manager_add' || $page_name == 'manager_edit') : ?> active <?php endif; ?>">
                     <a href="javascript: void(0);" aria-expanded="false"
-                        class="<?php if ($page_name == 'users' || $page_name == 'user_add' || $page_name == 'user_edit') : ?> active <?php endif; ?>"><?php echo get_phrase('Managers'); ?>
+                        class="<?php if ($page_name == 'managers' || $page_name == 'user_add' || $page_name == 'user_edit') : ?> active <?php endif; ?>"><?php echo get_phrase('Managers'); ?>
                         <span class="menu-arrow"></span>
                     </a>
                     <ul class="side-nav-third-level" aria-expanded="false">
-                        <li class="<?php if ($page_name == 'users' || $page_name == 'user_edit') echo 'active'; ?>">
+                        <li
+                            class="<?php if ($page_name == 'managers' || $page_name == 'manager_edit') echo 'active'; ?>">
                             <a
                                 href="<?php echo site_url('admin/manager'); ?>"><?php echo get_phrase('Manage_manager'); ?></a>
                         </li>
-                        <li class="<?php if ($page_name == 'user_add') echo 'active'; ?>">
+                        <li class="<?php if ($page_name == 'manager_add') echo 'active'; ?>">
                             <a
                                 href="<?php echo site_url('admin/manager_form/add_user_form'); ?>"><?php echo get_phrase('Add_new_Manager'); ?></a>
                         </li>
