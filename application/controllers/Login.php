@@ -21,8 +21,9 @@ class Login extends CI_Controller
             redirect(site_url('super_admin'), 'refresh');
         } elseif ($this->session->userdata('admin_login')) {
             redirect(site_url('admin'), 'refresh');
-        } 
-        elseif ($this->session->userdata('user_login')) {
+        }  elseif ($this->session->userdata('manager_login')) {
+            redirect(site_url('manager'), 'refresh');
+        } elseif ($this->session->userdata('user_login')) {
             redirect(site_url('user'), 'refresh');
         } else {
             redirect(site_url('home/login'), 'refresh');
@@ -71,6 +72,9 @@ class Login extends CI_Controller
             else if ($row->role_id == 3) {
                 $this->session->set_userdata('admin_login', '1');
                 redirect(site_url('admin/dashboard'), 'refresh');
+            } else if ($row->role_id == 4) {
+                $this->session->set_userdata('manager_login', '1');
+                redirect(site_url('manager/dashboard'), 'refresh');
             } else if ($row->role_id == 2) {
                 $this->session->set_userdata('user_login', '1');
 

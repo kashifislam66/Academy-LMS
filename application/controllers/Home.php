@@ -936,6 +936,8 @@ class Home extends CI_Controller
             redirect(site_url('super_admin'), 'refresh');
         } elseif ($this->session->userdata('admin_login')) {
             redirect(site_url('admin'), 'refresh');
+        }  elseif ($this->session->userdata('manager_login')) {
+            redirect(site_url('manager'), 'refresh');
         } elseif ($this->session->userdata('user_login')) {
             redirect(site_url('user'), 'refresh');
         }
