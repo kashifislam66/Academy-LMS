@@ -58,7 +58,9 @@ foreach ($my_courses as $my_course) {
         <div class="row no-gutters" id="my_courses_area">
             <?php foreach ($my_courses as $my_course):
                 $course_details = $this->crud_model->get_course_by_id($my_course['course_id'])->row_array();
-                $instructor_details = $this->user_model->get_all_user($course_details['user_id'])->row_array();?>
+                $instructor_details = $this->user_model->get_all_user($course_details['user_id'])->row_array();
+                $course_status = '';
+            ?>
 
             <div class="col-lg-3">
                 <div class="course-box-wrap">
@@ -79,7 +81,12 @@ foreach ($my_courses as $my_course) {
                                     <h5 class="title"><?php echo ellipsis($course_details['title']); ?></h5>
                                 </a>
                                 <?php if($course_details['api_id'] != "") : ?>
-                                <small> <?php echo course_progress_go1($my_course['course_id']) ?></small>
+                                <small> 
+                                <?php 
+                                $course_status =  course_progress_go1($my_course['course_id']);
+                                echo $course_status;
+                                ?>    
+                                </small>
                                 <?php else:  ?>
                                 <div class="progress" style="height: 5px;">
                                     <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
@@ -119,6 +126,21 @@ foreach ($my_courses as $my_course) {
                                 </div>
                             </div>
                             <div class="row">
+                                <?php
+                                if(!empty($course_status) && ($course_status=="completed" || $course_status=="Completed")){
+                                ?>
+                                <div class="col-md-12 px-4 py-2">
+                                    <a href="" id="download_certificate_<?php echo $my_course['course_id'];?>" class="btn btn-primary radius-10 w-100">Download Certificate</a>
+                                </div>
+
+                                <script type="text/javascript">
+                                $(document).ready(function() {
+                                    var courseId = '<?php echo $my_course['course_id'];?>';
+                                    checkCertificateEligibility(courseId);
+                                });
+                                </script>
+
+                                <?php } ?>
                                 <div class="col-md-12 px-4 py-2">
                                     <a href="<?php echo site_url('home/course/'.rawurlencode(slugify($course_details['title'])).'/'.$my_course['course_id']); ?>"
                                         class="btn red radius-10 w-100"><?php echo site_phrase('course_detail'); ?></a>
@@ -185,6 +207,31 @@ foreach ($my_courses as $my_course) {
 
 
 <script type="text/javascript">
+
+function checkCertificateEligibility(course_id=0) {
+    $.ajax({
+        url: '<?php echo site_url('addons/certificate/get_certificate/');?>'+course_id,
+        success: function(response){
+            if(parseInt(response) === 1){
+            }
+            getCertificateShareableUrl(course_id);
+        }
+    });
+}
+
+function getCertificateShareableUrl(course_id) {
+    var user_id = '<?php echo $this->session->userdata('user_id'); ?>';
+    $.ajax({
+        url: '<?php echo site_url('addons/certificate/get_certificate_url');?>',
+        type : 'POST',
+        data : {user_id : user_id, course_id : course_id},
+        success: function(response)
+        {
+            $('#download_certificate_'+course_id).attr('href', response);
+        }
+    });
+}
+
 function getCoursesByCategoryId(category_id) {
     $.ajax({
         type: 'POST',

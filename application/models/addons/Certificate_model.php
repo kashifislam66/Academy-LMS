@@ -44,6 +44,28 @@ class Certificate_model extends CI_Model
 		}
 	}
 
+	function certificateEligibility($checker_type = "", $checker_id = "", $user_id = ""){
+		$course_id = $checker_id;
+		$checker = array(
+			'course_id' => $course_id,
+			'student_id' => $user_id
+		);
+		$previous_data = $this->db->get_where('certificates', $checker)->num_rows();
+		if($previous_data == 0){
+			$certificate_identifier = substr(sha1($user_id.'-'.$course_id.'-'.date('d-M-Y')), 0, 10);
+			$certificate_link = base_url('uploads/certificates/'.$certificate_identifier.'.jpg');
+			$insert_data = array(
+				'course_id' => $course_id,
+				'student_id' => $user_id,
+				'shareable_url' => $certificate_identifier.'.jpg'
+			);
+			$this->db->insert('certificates', $insert_data);
+			$this->create_certificate($user_id, $course_id, $certificate_identifier);
+			$this->email_model->notify_on_certificate_generate($user_id, $course_id);
+		}
+		//return true;
+	}
+
 	//CERTIFICATE CREATION CODE
 	public function create_certificate($user_id = "", $course_id = "", $certificate_identifier = "") {
 
@@ -71,12 +93,16 @@ class Certificate_model extends CI_Model
 			$certificate_template = str_replace('{course}', $course_name, $certificate_template);
 		}
 
+		//debug($certificate_template , true);
+
 		// MAKE A COPY OF CERTIFICATE TEMPLATE
 		$certificate_src = './uploads/certificates/'.$certificate_identifier.'.jpg';
 		copy('./uploads/certificates/template.jpg', $certificate_src);
 
 		$splited_certificate_template = explode( "\n", wordwrap( $certificate_template, 70));
 		$splited_certificate_template_part = count($splited_certificate_template);
+
+		//echo BA.'system/fonts/'; exit;
 
 		for ($i=0; $i < $splited_certificate_template_part; $i++) {
 			$vrt_offset = 340;
@@ -88,7 +114,7 @@ class Certificate_model extends CI_Model
 			$config_certificate['source_image'] = $certificate_src;
 			$config_certificate['wm_text'] = $splited_certificate_template[$i];
 			$config_certificate['wm_type'] = 'text';
-			$config_certificate['wm_font_path'] = './system/fonts/Palatino.ttf';
+			$config_certificate['wm_font_path'] = FCPATH.'system/fonts/Palatino.ttf';
 			$config_certificate['wm_font_size'] = '18';
 			$config_certificate['wm_font_color'] = '2C5C8F';
 			$config_certificate['wm_vrt_alignment'] = 'top';
@@ -98,6 +124,8 @@ class Certificate_model extends CI_Model
 			$config_certificate['wm_vrt_offset'] = $vrt_offset + (40 * $i);
 			$config_certificate['quality'] = '100%';
 
+		    //debug($splited_certificate_template[$i] , false);
+
 			$this->image_lib->initialize($config_certificate);
 
 			if ( ! $this->image_lib->watermark())
@@ -105,6 +133,8 @@ class Certificate_model extends CI_Model
 				echo $this->image_lib->display_errors();
 			}
 		}
+
+		//exit;
 
 		//INSTRUCTOR PLEBEYA CONFIG
 		$config_instructor_name_plebeya['image_library'] = 'gd2';

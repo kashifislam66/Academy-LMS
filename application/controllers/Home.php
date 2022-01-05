@@ -164,7 +164,6 @@ class Home extends CI_Controller
         if ($this->session->userdata('user_login') != true) {
             redirect(site_url('home'), 'refresh');
         }
-
         $page_data['page_name'] = "my_courses";
         $page_data['page_title'] = site_phrase("my_courses");
         $this->load->view('frontend/' . get_frontend_settings('theme') . '/index', $page_data);
