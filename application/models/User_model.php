@@ -312,7 +312,7 @@ class User_model extends CI_Model
                 }
 
             $this->db->insert('users', $data);
-            $this->email_model->send_email_company_user_activition($email, $this->input->post('password'));
+            $this->email_model->send_email_to_company_activited_by_system($email, $this->input->post('password'));
 
             $this->session->set_flashdata('flash_message', get_phrase('user_added_successfully'));
             $response['status'] = 1;
@@ -984,7 +984,7 @@ class User_model extends CI_Model
                     }
 
             $this->db->insert('users', $data);
-           // $this->email_model->send_email_company_by_user_activition($data['email'], $userPass);
+           $this->email_model->send_email_company_by_user_activition($data['email'], $userPass);
             $user_id = $this->db->insert_id();
 
             // IF THIS IS A USER THEN INSERT BLANK VALUE IN PERMISSION TABLE AS WELL
@@ -1071,7 +1071,7 @@ class User_model extends CI_Model
             // }
             $this->db->where('id', $user_id);
             $this->db->update('users', $data);
-            //$this->email_model->send_email_company_by_user_activition($data['email']);
+            $this->email_model->send_email_company_by_user_activition($data['email']);
             $this->session->set_flashdata('flash_message', get_phrase('user_update_successfully'));
         } else {
             $this->session->set_flashdata('error_message', get_phrase('email_duplication'));
