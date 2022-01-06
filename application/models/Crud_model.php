@@ -147,14 +147,22 @@ class Crud_model extends CI_Model
         return $this->db->get_where('enrol', array('user_id' => $user_id));
     }
 
-    public function enrol_history_by_company_id()
+    public function enrol_history_by_company_id($course_status = '' , $cr_user_id = 0)
     {
         $user_id = $this->session->userdata('user_id');
+        $where = [];
+        $where['company_id'] = $user_id;
+        if(!empty($course_status)){
+            $where['course_status'] = $course_status;
+        }
+        if(!empty($cr_user_id)){
+            $where['user_id'] = $cr_user_id;
+        }
         return $query = $this->db
             ->select("enrol.user_id,enrol.course_id,enrol.course_status,enrol.enrol_last_date,users.*")
             ->from ("enrol")
             ->join('users', 'enrol.user_id = users.id')
-            ->where('company_id', $user_id)
+            ->where($where)
             ->get();
         // return $this->db->get_where('enrol', array('user_id' => $user_id));
     }
