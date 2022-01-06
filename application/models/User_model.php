@@ -31,7 +31,6 @@ class User_model extends CI_Model
     public function get_user_by_company()
     {
         $user_id = $this->session->userdata('user_id');
-        // echo $user_id; exit;
         $this->db->order_by("id", "DESC");
         $array = array('role_id' => 2,  'company_id'=> $user_id);
         $this->db->where($array);

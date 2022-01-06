@@ -415,6 +415,7 @@ class Email_model extends CI_Model {
 
 	public function send_email_shortcut_enrol_a_student_manually($user_id='', $course_id=''){
 		  foreach($user_id  as $userId){
+			  
 			$student_request_course = $this->db->select('course.title, users.first_name, users.last_name, users.email')
 			->join('course', 'enrol.course_id = course.id')
 			->join('users', 'enrol.user_id = users.id')

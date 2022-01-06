@@ -32,7 +32,7 @@
                         </thead>
                         <tbody>
                             <?php
-                            $users = $this->user_model->get_user_by_company();
+                            $users = $this->user_model->get_user_by_manager();
                             // echo "<pre>"; print_r($users); exit;
                             foreach ($users->result_array() as $key => $user) : ?>
                             <tr>
