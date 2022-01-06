@@ -4,7 +4,7 @@
             <div class="card-body">
                 <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i>
                     <?php echo $page_title; ?>
-                    <a href="<?php echo site_url('admin/user_form/add_user_form'); ?>"
+                    <a href="<?php echo site_url('manager/user_form/add_user_form'); ?>"
                         class="btn btn-outline-primary btn-rounded alignToTitle"><i
                             class="mdi mdi-plus"></i><?php echo get_phrase('add_student'); ?></a>
                 </h4>
@@ -32,7 +32,7 @@
                         </thead>
                         <tbody>
                             <?php
-                            $users = $this->user_model->get_user_by_company();
+                            $users = $this->user_model->get_user_by_manager();
                             // echo "<pre>"; print_r($users); exit;
                             foreach ($users->result_array() as $key => $user) : ?>
                             <tr>
@@ -76,10 +76,10 @@
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li><a class="dropdown-item"
-                                                    href="<?php echo site_url('admin/user_form/edit_user_form/' . $user['id']) ?>"><?php echo get_phrase('edit'); ?></a>
+                                                    href="<?php echo site_url('manager/user_form/edit_user_form/' . $user['id']) ?>"><?php echo get_phrase('edit'); ?></a>
                                             </li>
                                             <li><a class="dropdown-item" href="#"
-                                                    onclick="confirm_modal('<?php echo site_url('admin/users/delete/' . $user['id']); ?>');"><?php echo get_phrase('delete'); ?></a>
+                                                    onclick="confirm_modal('<?php echo site_url('manager/users/delete/' . $user['id']); ?>');"><?php echo get_phrase('delete'); ?></a>
                                             </li>
                                         </ul>
                                     </div>

@@ -19,11 +19,11 @@
 
                 <h4 class="header-title mb-3"><?php echo get_phrase('student_edit_form'); ?></h4>
 
-                <form class="required-form" action="<?php echo site_url('admin/users/edit/'.$user_id); ?>"
+                <form class="required-form" action="<?php echo site_url('manager/users/edit/'.$user_id); ?>"
                     enctype="multipart/form-data" method="post">
                     <div id="progressbarwizard">
                         <?php $user_id = $this->session->userdata('user_id'); ?>
-                        <input type="hidden" name="company_id" value="<?php echo $user_id; ?>" />
+                        <input type="hidden" name="manage_id" value="<?php echo $user_id;  ?>" />
                         <ul class="nav nav-pills nav-justified form-wizard-header mb-3">
                             <li class="nav-item">
                                 <a href="#basic_info" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">

@@ -905,5 +905,7 @@
     "manager_edit_form": "Manager edit form",
     "learner": "Learner",
     "already_enrolded": "Already enrolded",
-    "select_manager": "Select manager"
+    "select_manager": "Select manager",
+    "this_email_already_exits": "This email already exits",
+    "please_use_another_email": "Please use another email"
 }

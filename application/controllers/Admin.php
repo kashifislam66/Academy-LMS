@@ -311,10 +311,9 @@ class Admin extends CI_Controller
         if ($this->session->userdata('admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
-
+ 
         // CHECK ACCESS PERMISSION
         check_permission('enrolment');
-
         echo $this->crud_model->shortcut_enrol_a_student_manually();
     }
 

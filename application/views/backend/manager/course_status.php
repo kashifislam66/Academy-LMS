@@ -4,7 +4,7 @@
             <div class="card-body">
                 <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i>
                     <?php echo $page_title; ?>
-                    <!-- <a href="<?php echo site_url('admin/user_form/add_user_form'); ?>"
+                    <!-- <a href="<?php echo site_url('manager/user_form/add_user_form'); ?>"
                         class="btn btn-outline-primary btn-rounded alignToTitle"><i
                             class="mdi mdi-plus"></i><?php echo get_phrase('add_student'); ?></a> -->
                 </h4>
@@ -60,12 +60,12 @@
                                 <td><?php echo date('D, d-M-Y', $user['date_added']); ?></td>
                                 <td><?php echo date('D, d-M-Y', $user['enrol_last_date']); ?></td>
                                 <td>
-                                        <?php $course_details = $this->crud_model->get_course_by_id($user['course_id'])->row_array();
+                                    <?php $course_details = $this->crud_model->get_course_by_id($user['course_id'])->row_array();
                                          echo $course_details['title']; ?>
-                                 </td>
-                                 <td>
-                                        <?php echo $user['course_status']; ?>
-                                 </td>
+                                </td>
+                                <td>
+                                    <?php echo $user['course_status']; ?>
+                                </td>
                                 <td>
                                     <div class="dropright dropright">
                                         <button type="button"
@@ -75,9 +75,9 @@
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li><a class="dropdown-item"
-                                                    href="<?php echo site_url('admin/course_status/email_send/' . $user['id'].'/'.$user['course_id']) ?>"><?php echo get_phrase('Email_send'); ?></a>
+                                                    href="<?php echo site_url('manager/course_status/email_send/' . $user['id'].'/'.$user['course_id']) ?>"><?php echo get_phrase('Email_send'); ?></a>
                                             </li>
-                                           
+
                                         </ul>
                                     </div>
                                 </td>

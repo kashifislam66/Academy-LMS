@@ -109,12 +109,16 @@
                         <span
                             class="account-user-name"><?php echo $logged_in_user_details['first_name'].' '.$logged_in_user_details['last_name'];?></span>
                         <span class="account-position">
-                            <?php //echo strtolower($this->session->userdata('role')) == 'user' ? get_phrase('instructor') : get_phrase('admin'); 
+                            <?php //echo $this->session->userdata('role');
+                            //echo strtolower($this->session->userdata('role')) == 'user' ? get_phrase('instructor') : get_phrase('admin'); 
                             if(strtolower($this->session->userdata('role') =='Super_Admin')){
                                 echo "Super Admin";
                              }
                              else if(strtolower($this->session->userdata('role') == 'user')){
                                 echo get_phrase('instructor');
+                             }
+                             else if(strtolower($this->session->userdata('role') == 'Manager')){
+                                echo get_phrase('Manager');
                              }
                              else if(strtolower($this->session->userdata('role') =='Admin')){
                                 echo get_phrase('admin');
