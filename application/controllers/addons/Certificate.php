@@ -45,6 +45,11 @@ class Certificate extends CI_Controller
         }
     }
 
+    function get_certificate($course_id){
+        $this->certificate_model->certificateEligibility('course', $course_id, $this->session->userdata('user_id'));
+        echo 1;
+    }
+
 
     //GENERATE CERTIFICATE
     public function generate_certificate($certificate_identifier = "") {
