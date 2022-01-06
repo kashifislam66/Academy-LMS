@@ -925,7 +925,10 @@ class Api_model extends CI_Model
 	}
 
 	public function add_user_go1($token,$data) {
-		if($data['company_id'] != "") {
+		if($data['role_id'] == 4){
+			$role = "Manager";
+		}
+		else if($data['company_id'] != "") {
 			$role = "Learner";
 		} else {
 			$role = "Manager";
