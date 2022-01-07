@@ -16,7 +16,67 @@
 <div class="row">
     <div class="col-xl-12">
         <div class="card">
-            <div class="card-body">
+        <div class="card-body">
+                <?php
+                $cr_status = '';
+                $cr_user_id = 0;
+                if(!empty($this->input->post("course_status")))
+                {
+                    $cr_status = $this->input->post("course_status");
+                }
+                if(!empty($this->input->post("user_id"))){
+                    $cr_user_id = $this->input->post("user_id");
+                }
+                ?>
+                <form action="" method="post" id="filtersForm">
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-3 col-form-label">Course Status</label>
+                        <div class="col-sm-9">
+                            <select name="course_status" class="form-control select2 filterInputs">
+                                <option value="">Select Status</option>
+                                <?php
+                                $cs_arr = ["not-started","completed","in-progress","Not yet Started"];
+                                foreach($cs_arr as $key => $value){
+                                ?>
+                                <option value="<?php echo $value;?>" <?php echo ($value==$cr_status)?"selected":'';?>><?php echo $value;?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                      </div>
+                    </div>
+                    <?php
+                    $company_users = managerUsers();
+                    ?>
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-3 col-form-label">Select User</label>
+                        <div class="col-sm-9">
+                            <select name="user_id" class="form-control select2 filterInputs">
+                                <option value="">Select Status</option>
+                                <?php
+                                foreach($company_users as $key => $value){
+                                ?>
+                                <option value="<?php echo $value["id"];?>" <?php echo ($value["id"]==$cr_user_id)?"selected":'';?>><?php echo $value["first_name"]." ".$value["last_name"];?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                </form>
+                <script type="text/javascript">
+                $(document).ready(function(){
+                    $(document).on("change",".filterInputs",function(e){
+                        e.preventDefault();
+                        var val = $(this).val();
+                        if(val!=''){
+                            $("#filtersForm").submit();
+                        }
+                    });
+                });
+                </script>
                 <div class="table-responsive-sm mt-4">
                     <table id="basic-datatable" class="table table-striped table-centered mb-0">
                         <thead>
@@ -28,13 +88,13 @@
                                 <th><?php echo get_phrase('last_date'); ?></th>
                                 <th><?php echo get_phrase('enrolled_courses'); ?></th>
                                 <th><?php echo get_phrase('status'); ?></th>
-                                <th><?php echo get_phrase('actions'); ?></th>
+                              
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                            $users = $enrolled_courses = $this->crud_model->enrol_history_by_company_id();
-                            // echo "<pre>"; print_r($users); exit;
+                        <?php
+                            $users = $enrolled_courses = $this->crud_model->enrol_history_by_manager_id($cr_status , $cr_user_id);
+                            //echo "<pre>"; print_r($users->result_array()); exit;
                             foreach ($users->result_array() as $key => $user) : ?>
                             <tr>
                                 <td><?php echo $key + 1; ?></td>
@@ -66,21 +126,7 @@
                                 <td>
                                     <?php echo $user['course_status']; ?>
                                 </td>
-                                <td>
-                                    <div class="dropright dropright">
-                                        <button type="button"
-                                            class="btn btn-sm btn-outline-primary btn-rounded btn-icon"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="mdi mdi-dots-vertical"></i>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item"
-                                                    href="<?php echo site_url('manager/course_status/email_send/' . $user['id'].'/'.$user['course_id']) ?>"><?php echo get_phrase('Email_send'); ?></a>
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                </td>
+                               
                             </tr>
                             <?php endforeach; ?>
                         </tbody>

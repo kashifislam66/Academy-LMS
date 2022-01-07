@@ -547,7 +547,7 @@ class Home extends CI_Controller
     
     public function lesson($slug = "", $course_id = "", $lesson_id = "")
     {
-       
+    //    
         if ($this->session->userdata('user_login') != 1 && $this->session->userdata('admin_login') != 1 && $this->session->userdata('super_admin_login') != 1 && $this->session->userdata('manager_login') != 1) {
             
                 redirect('home', 'refresh');
@@ -559,10 +559,14 @@ class Home extends CI_Controller
 
         //this function saved current lesson id and return previous lesson id if $lesson_id param is empty
         $lesson_id = $this->crud_model->update_watch_history($course_id, $lesson_id);
+        
         if($course_details['api_id'] != NULL && $this->session->userdata('go1_id') !="") {
+           
             $sections = $this->crud_model->get_section('course', $course_id);
+          
             if ($lesson_id == "" ) {
                 $default_section = $sections->row_array();
+               
                 $page_data['section_id'] = $default_section['id'];
                 $lessons = $this->crud_model->get_lessons('section', $default_section['id']);
                 if ($lessons->num_rows() > 0) {
@@ -572,6 +576,7 @@ class Home extends CI_Controller
                     $page_data['lesson_id']  = $default_lesson['id'];
                 }
             } else {
+               
                 $page_data['lesson_id']  = $lesson_id;
                 $section_id = $this->db->get_where('lesson', array('id' => $lesson_id))->row()->section_id;
                 $page_data['section_id'] = $section_id;
@@ -579,6 +584,7 @@ class Home extends CI_Controller
             if ($sections->num_rows() > 0) {
                 $page_data['sections'] = $sections->result_array();
             }
+           
              // login api to get access token 
                 $get_login = $this->api_model->login_go1();
                 $get_login_decode = json_decode($get_login);
@@ -587,13 +593,15 @@ class Home extends CI_Controller
                     $get_file_decode = json_decode($get_file);
                     // echo "<pre>";
                     // print_r($get_file_decode);  echo "</pre>"; die();
-                    if(isset($get_file_decode->url)) { 
+                    if(isset($get_file_decode->url)) {
+                      
                     $page_data['file_path'] =   $get_file_decode->url;
                     } 
                 }
             $page_data['lesson_id']  = $lesson_id;
         
         } elseif ($course_details['course_type'] == 'general') {
+           
             $sections = $this->crud_model->get_section('course', $course_id);
             if ($sections->num_rows() > 0) {
                 $page_data['sections'] = $sections->result_array();
@@ -622,13 +630,13 @@ class Home extends CI_Controller
 
         // Check if the lesson contained course is purchased by the user
         if (isset($page_data['lesson_id']) && $page_data['lesson_id'] > 0 && $course_details['course_type'] == 'general') {
-            if ($this->session->userdata('role_id') != 1 && $course_details['user_id'] != $this->session->userdata('user_id')) {
+            if ($this->session->userdata('role_id') != 1 && $this->session->userdata('role_id') != 3 && $this->session->userdata('role_id') != 4 && $course_details['user_id'] != $this->session->userdata('user_id')) {
                 if (!is_purchased($course_id)) {
                     redirect(site_url('home/course/' . slugify($course_details['title']) . '/' . $course_details['id']), 'refresh');
                 }
             }
         } else if ($course_details['course_type'] == 'scorm' && $scorm_course_data->num_rows() > 0) {
-            if ($this->session->userdata('role_id') != 1 && $course_details['user_id'] != $this->session->userdata('user_id')) {
+            if ($this->session->userdata('role_id') != 1 && $this->session->userdata('role_id') != 3 && $this->session->userdata('role_id') != 4 && $course_details['user_id'] != $this->session->userdata('user_id')) {
                 if (!is_purchased($course_id)) {
                     redirect(site_url('home/course/' . slugify($course_details['title']) . '/' . $course_details['id']), 'refresh');
                 }
@@ -639,7 +647,7 @@ class Home extends CI_Controller
             }
         }
 
-
+        
         $page_data['course_details']  = $course_details;
         $page_data['course_id']  = $course_id;
         $page_data['page_name']  = 'lessons';
@@ -1192,7 +1200,7 @@ class Home extends CI_Controller
         $this->db->where('course_id', $course_id);
         $row = $this->db->get('enrol')->num_rows();
 
-        if($this->session->userdata('role_id') == 1 || $this->session->userdata('role_id') == 3 || $row > 0){
+        if($this->session->userdata('role_id') == 1 || $this->session->userdata('role_id') == 3 || $this->session->userdata('role_id') == 4 || $row > 0){
 
             echo json_encode(1);
             exit();

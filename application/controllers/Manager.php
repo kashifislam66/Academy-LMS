@@ -281,7 +281,8 @@ class Manager extends CI_Controller
 
        
         $page_data['page_name'] = 'enrol_request';
-        $page_data['enrol_request'] = $this->crud_model->enrol_request_by_date_range();
+        $page_data['enrol_request'] = $this->crud_model->enrol_request_by_manager_id();
+        // print_r($page_data['enrol_request']); die();
         $page_data['page_title'] = get_phrase('enrol_request');
         $this->load->view('backend/index', $page_data);
     }

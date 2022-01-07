@@ -21,7 +21,9 @@ $course_details_url = site_url("home/course/".slugify($course_details['title']).
         </div>
         <div class="col-md-12 col-lg-5 col-xl-3 course_header_col text-right">
             <a href="javascript::" class="course_btn" onclick="toggle_lesson_view()"><i class="fa fa-arrows-alt-h"></i></a>
+           <?php if ($this->session->userdata('user_login') == true) { ?>
             <a href="<?php echo $my_course_url; ?>" class="course_btn"> <i class="fa fa-chevron-left"></i> <?php echo get_phrase($btn_title); ?></a>
+            <?php }?>
             <a href="<?php echo $course_details_url; ?>" class="course_btn"><?php echo get_phrase('course_details'); ?> <i class="fa fa-chevron-right"></i></a>
         </div>
     </div>

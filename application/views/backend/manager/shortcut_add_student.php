@@ -10,6 +10,7 @@
     </div>
     <input type="hidden" value="<?php echo $this->session->userdata('user_id') ?>" id="manage_id" name="manage_id"
         class="form-control">
+        <input type="hidden" value = " <?php echo $this->session->userdata('company_id'); ?>" name="company_id" >
 
     <div class="form-group">
         <label for="email"><?php echo get_phrase('email'); ?><span class="required">*</span> </label>

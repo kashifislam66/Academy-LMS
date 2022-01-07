@@ -172,7 +172,7 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
                 </li>
                 <?php endif; ?>
                 <?php if (has_permission('admin')) : ?>
-                <li
+                <!-- <li
                     class="side-nav-item <?php if ($page_name == 'admins' || $page_name == 'admin_add' || $page_name == 'admin_edit' || $page_name == 'admin_permission') : ?> active <?php endif; ?>">
                     <a href="javascript: void(0);"
                         class="<?php if ($page_name == 'admins' || $page_name == 'admin_add' || $page_name == 'admin_edit' || $page_name == 'admin_permission') : ?> active <?php endif; ?>"
@@ -190,7 +190,7 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
                                 href="<?php echo site_url('super_admin/admin_form/add_admin_form'); ?>"><?php echo get_phrase('add_new_admin'); ?></a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
                 <?php endif; ?>
 
                 <?php if (has_permission('instructor')) : ?>

@@ -299,7 +299,7 @@ class Super_Admin extends CI_Controller
         // CHECK ACCESS PERMISSION
         check_permission('enrolment');
 
-        $this->crud_model->shortcut_enrol_a_student_manually();
+      echo $this->crud_model->shortcut_enrol_a_student_manually();
     }
 
     public function admin_revenue($param1 = "")

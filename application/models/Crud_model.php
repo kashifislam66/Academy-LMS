@@ -167,6 +167,26 @@ class Crud_model extends CI_Model
         // return $this->db->get_where('enrol', array('user_id' => $user_id));
     }
 
+    public function enrol_history_by_manager_id($course_status = '' , $cr_user_id = 0)
+    {
+        $user_id = $this->session->userdata('user_id');
+        $where = [];
+        $where['manage_id'] = $user_id;
+        if(!empty($course_status)){
+            $where['course_status'] = $course_status;
+        }
+        if(!empty($cr_user_id)){
+            $where['user_id'] = $cr_user_id;
+        }
+        return $query = $this->db
+            ->select("enrol.user_id,enrol.course_id,enrol.course_status,enrol.enrol_last_date,users.*")
+            ->from ("enrol")
+            ->join('users', 'enrol.user_id = users.id')
+            ->where($where)
+            ->get();
+        // return $this->db->get_where('enrol', array('user_id' => $user_id));
+    }
+
     
 
     public function all_enrolled_student()
@@ -189,6 +209,17 @@ class Crud_model extends CI_Model
         $this->db->order_by('dated_request', 'desc');
         $this->db->where('company_id', $this->session->userdata('user_id'));
         return $this->db->get('enrolment_request');
+    }
+
+    public function enrol_request_by_manager_id()
+    {
+        $this->db->select('enrolment_request.*');
+        $this->db->order_by('dated_request', 'desc');
+        $this->db->join('users','users.id = enrolment_request.user_id' );
+        $this->db->where('manage_id', $this->session->userdata('user_id'));
+        // $this->db->where('company_id', $this->session->userdata('user_id'));
+        return $this->db->get('enrolment_request');
+        
     }
 
     
@@ -1920,7 +1951,7 @@ class Crud_model extends CI_Model
     {
         $data['course_id'] = $this->input->post('course_id');
         $user_id = $this->input->post('user_id');
-       
+     
         foreach($user_id as $user) {    
             $data['user_id'] = $user;
             

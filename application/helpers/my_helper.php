@@ -48,6 +48,17 @@ function companyUsers()
   return $result;
 }
 
+function managerUsers()
+{
+  $CI = & get_instance();
+  $CI->load->database();
+  $CI->load->model('users_model' , 'users');
+  $manage_id = $CI->session->userdata('user_id');
+  $where = "manage_id = '".$manage_id."'";
+  $result = $CI->users->get_where('*', $where, true, '', '', '');
+  return $result;
+}
+
 function send_email_to($name='',$email='',$message='',$subject='')
 {
     $CI = get_instance();
