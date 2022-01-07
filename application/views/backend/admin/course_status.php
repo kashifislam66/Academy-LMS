@@ -88,7 +88,7 @@
                                 <th><?php echo get_phrase('last_date'); ?></th>
                                 <th><?php echo get_phrase('enrolled_courses'); ?></th>
                                 <th><?php echo get_phrase('status'); ?></th>
-                                <th><?php echo get_phrase('actions'); ?></th>
+                               
                             </tr>
                         </thead>
                         <tbody>
@@ -126,21 +126,7 @@
                                  <td>
                                         <?php echo $user['course_status']; ?>
                                  </td>
-                                <td>
-                                    <div class="dropright dropright">
-                                        <button type="button"
-                                            class="btn btn-sm btn-outline-primary btn-rounded btn-icon"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="mdi mdi-dots-vertical"></i>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item"
-                                                    href="<?php echo site_url('admin/course_status/email_send/' . $user['id'].'/'.$user['course_id']) ?>"><?php echo get_phrase('Email_send'); ?></a>
-                                            </li>
-                                           
-                                        </ul>
-                                    </div>
-                                </td>
+                             
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
