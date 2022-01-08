@@ -32,15 +32,20 @@
         <label for="password"><?php echo get_phrase('password'); ?><span class="required">*</span> </label>
         <input type="password" id="password" name="password" class="form-control" required>
     </div>
+    <div class="loader_ajax_call" style="display:none"></div>
     <button type="submit" 
-        class="btn btn-primary float-right"><?php echo get_phrase('submit'); ?></button>
+        class="btn btn-primary float-right" id="disable_button"><?php echo get_phrase('submit'); ?></button>
 </form>
+
 
 <script type="text/javascript">
 $(".ajaxForm").submit(function(e) {
     e.preventDefault(); // avoid to execute the actual submit of the form.
     var form = $(this);
     var url = form.attr('action');
+    $(".loader_ajax_call").css("display", "block");
+    $("#disable_button").prop('disabled', true);
+   
     $.ajax({
         type: "POST",
         url: url,
@@ -48,10 +53,12 @@ $(".ajaxForm").submit(function(e) {
         success: function(response) {
             var myArray = jQuery.parseJSON(response);
             if (myArray['status']) {
-                location.reload();
+                 location.reload();
             } else {
                 error_notify(myArray['message']);
             }
+            $(".loader_ajax_call").css("display", "none");
+            $("#disable_button").prop('disabled', false);
         }
     });
 });
