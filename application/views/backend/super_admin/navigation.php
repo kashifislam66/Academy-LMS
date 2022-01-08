@@ -325,13 +325,13 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
         <?php endif; ?>
 
         <?php if (has_permission('addon')) : ?>
-        <li class="side-nav-item">
+        <!-- <li class="side-nav-item">
             <a href="<?php echo site_url('super_admin/addon'); ?>"
                 class="side-nav-link <?php if ($page_name == 'addons' || $page_name == 'addon_add' || $page_name == 'available_addons') : ?> active <?php endif; ?>">
                 <i class="dripicons-graph-pie"></i>
                 <span><?php echo get_phrase('addons'); ?></span>
             </a>
-        </li>
+        </li> -->
         <?php endif; ?>
 
         <?php if (has_permission('theme')) : ?>
