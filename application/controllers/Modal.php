@@ -22,7 +22,7 @@ class Modal extends CI_Controller {
   }
 
 	function popup($page_name = '' , $param2 = '' , $param3 = '', $param4 = '', $param5 = '', $param6 = '', $param7 = '')
-	{
+	{  // print_r($param2); exit;
 		$logged_in_user_role 		= strtolower($this->session->userdata('role'));
 		$page_data['param2']		=	$param2;
 		$page_data['param3']		=	$param3;

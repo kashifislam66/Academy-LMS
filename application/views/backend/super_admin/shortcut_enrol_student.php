@@ -1,5 +1,6 @@
 <form class="required-form ajaxForm" action="<?php echo site_url('super_admin/shortcut_enrol_student'); ?>"
     method="post" enctype="multipart/form-data">
+
     <div class="form-group">
         <label for="user_id"><?php echo get_phrase('user'); ?><span class="required">*</span> </label>
         <select class="form-control select2" data-toggle="select2" name="user_id[]" id="user_id" required>
@@ -25,7 +26,7 @@
         <input type="date" name="enrol_last_date" class=" form-control" required>
     </div>
 
-    <button type="button" class="btn btn-primary float-right"
+    <button type="button" class="btn btn-primary float-right submit"
         onclick="checkRequiredFields()"><?php echo get_phrase('enrol_student'); ?></button>
 </form>
 
@@ -67,19 +68,26 @@ $(document).ready(function() {
         }
     });
 });
-
+$('#modelLoader').hide();
 $(".ajaxForm").submit(function(e) {
     e.preventDefault(); // avoid to execute the actual submit of the form.
     var form = $(this);
     var url = form.attr('action');
+
     $.ajax({
         type: "POST",
         url: url,
-        data: form.serialize(), // serializes the form's elements.
+        data: form.serialize(),
+        // serializes the form's elements.
+        beforeSend: function() {
+            $('#modelLoader').show();
+            $('.submit').show();
+        },
         success: function(response) {
             var myArray = jQuery.parseJSON(response);
             if (myArray['status']) {
                 location.reload();
+                //  $('#modelLoader').hide();
             } else {
                 error_notify(myArray['message']);
             }
@@ -87,3 +95,22 @@ $(".ajaxForm").submit(function(e) {
     });
 });
 </script>
+
+<style>
+#modelLoader {
+    background: rgba(255, 255, 255, 0.8);
+    display: none;
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    z-index: 9999;
+}
+
+#modelLoader img {
+    left: 50%;
+    margin-left: -32px;
+    margin-top: -32px;
+    position: absolute;
+    top: 50%;
+}
+</style>

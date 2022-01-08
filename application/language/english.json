@@ -907,5 +907,6 @@
     "already_enrolded": "Already enrolded",
     "select_manager": "Select manager",
     "this_email_already_exits": "This email already exits",
-    "please_use_another_email": "Please use another email"
+    "please_use_another_email": "Please use another email",
+    "no_secret_key_found": "No secret key found"
 }

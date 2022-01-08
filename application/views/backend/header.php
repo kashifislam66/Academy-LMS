@@ -143,7 +143,8 @@
 
                     <?php if (strtolower($this->session->userdata('role')) == 'super_admin'): ?>
                     <!-- settings-->
-                    <a href="<?php echo site_url(strtolower($this->session->userdata('role')).'/system_settings'); ?>" class="dropdown-item notify-item">
+                    <a href="<?php echo site_url(strtolower($this->session->userdata('role')).'/system_settings'); ?>"
+                        class="dropdown-item notify-item">
                         <i class="mdi mdi-settings mr-1"></i>
                         <span><?php echo get_phrase('settings'); ?></span>
                     </a>
