@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Super_admin extends CI_Controller
+class Super_Admin extends CI_Controller
 {
     public function __construct()
     {
