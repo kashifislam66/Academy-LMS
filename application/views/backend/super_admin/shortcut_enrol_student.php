@@ -25,8 +25,8 @@
         </label>
         <input type="date" name="enrol_last_date" class=" form-control" required>
     </div>
-
-    <button type="button" class="btn btn-primary float-right submit"
+    <div class="loader_ajax_call" style="display:none"></div>
+    <button type="button" class="btn btn-primary float-right submit" id="disable_button"
         onclick="checkRequiredFields()"><?php echo get_phrase('enrol_student'); ?></button>
 </form>
 
@@ -73,6 +73,8 @@ $(".ajaxForm").submit(function(e) {
     e.preventDefault(); // avoid to execute the actual submit of the form.
     var form = $(this);
     var url = form.attr('action');
+    $(".loader_ajax_call").css("display", "block");
+    $("#disable_button").prop('disabled', true);
 
     $.ajax({
         type: "POST",
@@ -91,6 +93,8 @@ $(".ajaxForm").submit(function(e) {
             } else {
                 error_notify(myArray['message']);
             }
+            $(".loader_ajax_call").css("display", "none");
+            $("#disable_button").prop('disabled', false);
         }
     });
 });

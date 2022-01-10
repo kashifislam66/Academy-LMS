@@ -503,7 +503,9 @@
                                                 <b style="cursor: pointer;"><?= $password; ?></b>
                                             </p>
                                             <?php } ?>
-
+                                            <p style="margin-bottom: 9px; margin-top:2px;">Role:
+                                                <b style="cursor: pointer;"><?= $role_id; ?></b>
+                                            </p>
                                             <br>
                                             <p>Continue to your account settings inside the page and change your
                                                 password before logging out.</p>

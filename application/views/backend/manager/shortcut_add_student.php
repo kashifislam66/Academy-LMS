@@ -10,7 +10,7 @@
     </div>
     <input type="hidden" value="<?php echo $this->session->userdata('user_id') ?>" id="manage_id" name="manage_id"
         class="form-control">
-        <input type="hidden" value = " <?php echo $this->session->userdata('company_id'); ?>" name="company_id" >
+    <input type="hidden" value=" <?php echo $this->session->userdata('company_id'); ?>" name="company_id">
 
     <div class="form-group">
         <label for="email"><?php echo get_phrase('email'); ?><span class="required">*</span> </label>
@@ -21,7 +21,9 @@
         <label for="password"><?php echo get_phrase('password'); ?><span class="required">*</span> </label>
         <input type="password" id="password" name="password" class="form-control" required>
     </div>
-    <button type="submit" class="btn btn-primary float-right"><?php echo get_phrase('submit'); ?></button>
+    <div class="loader_ajax_call" style="display:none"></div>
+    <button type="submit" class="btn btn-primary float-right"
+        id="disable_button"><?php echo get_phrase('submit'); ?></button>
 </form>
 
 <script type="text/javascript">
@@ -29,6 +31,8 @@ $(".ajaxForm").submit(function(e) {
     e.preventDefault(); // avoid to execute the actual submit of the form.
     var form = $(this);
     var url = form.attr('action');
+    $(".loader_ajax_call").css("display", "block");
+    $("#disable_button").prop('disabled', true);
     $.ajax({
         type: "POST",
         url: url,
@@ -42,6 +46,8 @@ $(".ajaxForm").submit(function(e) {
             } else {
                 error_notify(myArray['message']);
             }
+            $(".loader_ajax_call").css("display", "none");
+            $("#disable_button").prop('disabled', false);
         }
     });
 });
