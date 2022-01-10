@@ -4,10 +4,10 @@
     $course_details = $this->crud_model->get_course_by_id($lesson_details['course_id'])->row_array();
 ?>
 <ul class="breadcrumb">
-    <li><a href="<?php echo site_url('super_admin/dashboard'); ?>" class=""><?php echo get_phrase('dashboard'); ?></a>
+    <li><a href="<?php echo site_url('Super_Admin/dashboard'); ?>" class=""><?php echo get_phrase('dashboard'); ?></a>
     </li>
     <li><a
-            href="<?php echo site_url('super_admin/lessons/').$lesson_details['course_id']; ?>"><?php echo get_phrase('lessons'); ?></a>
+            href="<?php echo site_url('Super_Admin/lessons/').$lesson_details['course_id']; ?>"><?php echo get_phrase('lessons'); ?></a>
     </li>
     <li><a href="#" class="active"><?php echo get_phrase('video_player'); ?></a> </li>
 </ul>

@@ -4,7 +4,7 @@
             <div class="card-body">
                 <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i>
                     <?php echo get_phrase('categories'); ?>
-                    <a href="<?php echo site_url('super_admin/category_form/add_category'); ?>"
+                    <a href="<?php echo site_url('Super_Admin/category_form/add_category'); ?>"
                         class="btn btn-outline-primary btn-rounded alignToTitle"><i
                             class="mdi mdi-plus"></i><?php echo get_phrase('add_new_category'); ?></a>
                 </h4>
@@ -38,26 +38,26 @@
                     <span class="category-action" id='category-delete-btn-<?php echo $sub_category['id']; ?>'
                         style="float: right; margin-left: 5px; display: none; height: 20px;">
                         <a href="javascript::" class="action-icon"
-                            onclick="confirm_modal('<?php echo site_url('super_admin/categories/delete/' . $sub_category['id']); ?>');">
+                            onclick="confirm_modal('<?php echo site_url('Super_Admin/categories/delete/' . $sub_category['id']); ?>');">
                             <i class="mdi mdi-delete" style="font-size: 18px;"></i></a>
                     </span>
                     <span class="category-action" id='category-edit-btn-<?php echo $sub_category['id']; ?>'
                         style="float: right; display: none; height: 20px;">
-                        <a href="<?php echo site_url('super_admin/category_form/edit_category/' . $sub_category['id']); ?>"
+                        <a href="<?php echo site_url('Super_Admin/category_form/edit_category/' . $sub_category['id']); ?>"
                             class="action-icon"> <i class="mdi mdi-pencil" style="font-size: 18px;"></i></a>
                     </span>
                 </li>
                 <?php endforeach; ?>
             </ul>
             <div class="card-body">
-                <a href="<?php echo site_url('super_admin/category_form/edit_category/' . $category['id']); ?>"
+                <a href="<?php echo site_url('Super_Admin/category_form/edit_category/' . $category['id']); ?>"
                     class="btn btn-icon btn-outline-info btn-sm" id="category-edit-btn-<?php echo $category['id']; ?>"
                     style="display: none;" style="margin-right:5px;">
                     <i class="mdi mdi-wrench"></i> <?php echo get_phrase('edit'); ?>
                 </a>
                 <a href="#" class="btn btn-icon btn-outline-danger btn-sm"
                     id="category-delete-btn-<?php echo $category['id']; ?>" style="float: right; display: none;"
-                    onclick="confirm_modal('<?php echo site_url('super_admin/categories/delete/' . $category['id']); ?>');"
+                    onclick="confirm_modal('<?php echo site_url('Super_Admin/categories/delete/' . $category['id']); ?>');"
                     style="margin-right:5px;">
                     <i class="mdi mdi-delete"></i> <?php echo get_phrase('delete'); ?>
                 </a>

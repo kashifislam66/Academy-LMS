@@ -8,7 +8,7 @@ $social_links = json_decode($user_data['social_links'], true);
             <div class="card-body">
                 <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i>
                     <?php echo $page_title; ?>
-                    <a href="<?php echo site_url('super_admin/companies'); ?>"
+                    <a href="<?php echo site_url('Super_Admin/companies'); ?>"
                         class="btn btn-outline-primary btn-rounded alignToTitle"> <i class="mdi mdi-arrow-left"></i>
                         Back To Company</a>
                 </h4>
@@ -23,7 +23,7 @@ $social_links = json_decode($user_data['social_links'], true);
 
                 <h4 class="header-title mb-3"><?php echo get_phrase('admin_edit_form'); ?></h4>
 
-                <form class="required-form" action="<?php echo site_url('super_admin/companies/edit/' . $user_id); ?>"
+                <form class="required-form" action="<?php echo site_url('Super_Admin/companies/edit/' . $user_id); ?>"
                     enctype="multipart/form-data" method="post">
                     <div id="progressbarwizard">
                         <ul class="nav nav-pills nav-justified form-wizard-header mb-3">

@@ -940,7 +940,7 @@ class Home extends CI_Controller
     public function login()
     {
         if ($this->session->userdata('super_admin_login')) {
-            redirect(site_url('super_admin'), 'refresh');
+            redirect(site_url('Super_Admin'), 'refresh');
         } elseif ($this->session->userdata('admin_login')) {
             redirect(site_url('admin'), 'refresh');
         }  elseif ($this->session->userdata('manager_login')) {
@@ -960,7 +960,7 @@ class Home extends CI_Controller
         } elseif ($this->session->userdata('user_login')) {
             redirect(site_url('user'), 'refresh');
         } elseif ($this->session->userdata('super_admin_login')) {
-            redirect(site_url('super_admin'), 'refresh');
+            redirect(site_url('Super_Admin'), 'refresh');
         } elseif ($this->session->userdata('manager_login')) {
             redirect(site_url('manager'), 'refresh');
         }
@@ -976,7 +976,7 @@ class Home extends CI_Controller
         } elseif ($this->session->userdata('user_login')) {
             redirect(site_url('user'), 'refresh');
         } elseif ($this->session->userdata('super_admin_login')) {
-            redirect(site_url('super_admin'), 'refresh');
+            redirect(site_url('Super_Admin'), 'refresh');
         } elseif ($this->session->userdata('manager_login')) {
             redirect(site_url('manager'), 'refresh');
         }

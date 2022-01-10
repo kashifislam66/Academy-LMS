@@ -17,7 +17,7 @@
                 <div class="row justify-content-md-center">
                     <div class="col-xl-6">
                         <form class="form-inline"
-                            action="<?php echo site_url('super_admin/admin_revenue/filter_by_date_range') ?>"
+                            action="<?php echo site_url('Super_Admin/admin_revenue/filter_by_date_range') ?>"
                             method="get">
                             <div class="col-xl-10">
                                 <div class="form-group">
@@ -57,7 +57,7 @@
                             <tr class="gradeU">
                                 <td>
                                     <strong><a
-                                            href="<?php echo site_url('super_admin/course_form/course_edit/' . $course_data['id']); ?>"
+                                            href="<?php echo site_url('Super_Admin/course_form/course_edit/' . $course_data['id']); ?>"
                                             target="_blank"><?php echo $course_data['title']; ?></a></strong>
                                     <?php if ($payment['coupon']) : ?>
                                     <small>

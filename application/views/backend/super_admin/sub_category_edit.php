@@ -1,12 +1,12 @@
 <?php $data = $this->db->get_where('category', array('id' => $sub_category_id))->row_array(); ?>
 <ol class="breadcrumb bc-3">
     <li>
-        <a href="<?php echo site_url('super_admin/dashboard'); ?>">
+        <a href="<?php echo site_url('Super_Admin/dashboard'); ?>">
             <i class="entypo-folder"></i>
             <?php echo get_phrase('dashboard'); ?>
         </a>
     </li>
-    <li><a href="<?php echo site_url('super_admin/sub_categories'); ?>"><?php echo get_phrase('sub_categories'); ?></a>
+    <li><a href="<?php echo site_url('Super_Admin/sub_categories'); ?>"><?php echo get_phrase('sub_categories'); ?></a>
     </li>
     <li><a href="#" class="active"><?php echo get_phrase('edit_sub_category'); ?></a> </li>
 </ol>
@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="panel-body">
-                <form action="<?php echo site_url('super_admin/sub_categories/0/edit/'.$sub_category_id); ?>"
+                <form action="<?php echo site_url('Super_Admin/sub_categories/0/edit/'.$sub_category_id); ?>"
                     method="post" role="form" class="form-horizontal form-groups-bordered">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="form-group">

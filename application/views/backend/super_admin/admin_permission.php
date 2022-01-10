@@ -12,7 +12,7 @@ $modules = [
             <div class="card-body">
                 <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i>
                     <?php echo ucwords($page_title); ?>
-                    <a href="<?php echo site_url('super_admin/admins'); ?>"
+                    <a href="<?php echo site_url('Super_Admin/admins'); ?>"
                         class="btn btn-outline-primary btn-rounded alignToTitle"> <i class="mdi mdi-arrow-left"></i>
                         <?php echo get_phrase('back_to_admins'); ?></a>
                 </h4>
@@ -76,7 +76,7 @@ $modules = [
 function setPermission(arg) {
     // CALL THE SERVER SIDE
     $.ajax({
-        url: '<?php echo site_url('super_admin/assign_permission'); ?>',
+        url: '<?php echo site_url('Super_Admin/assign_permission'); ?>',
         type: 'POST',
         data: {
             arg: arg

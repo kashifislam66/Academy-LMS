@@ -7,7 +7,7 @@
                     <a href="https://academy-lms.com/addons" target="_blank"
                         class="btn btn-outline-primary btn-rounded alignToTitle"> <i class="mdi mdi-cart"></i>
                         <?php echo get_phrase('buy_new_addon'); ?></a>
-                    <a href="<?php echo site_url('super_admin/addon/add'); ?>"
+                    <a href="<?php echo site_url('Super_Admin/addon/add'); ?>"
                         class="btn btn-outline-primary btn-rounded alignToTitle mr-1"><i class="mdi mdi-download"></i>
                         <?php echo get_phrase('install_addon'); ?></a>
                 </h4>
@@ -52,19 +52,19 @@
                                         </button>
                                         <ul class="dropdown-menu">
                                             <a class="dropdown-item"
-                                                href="<?php echo site_url('super_admin/addon/update'); ?>"><?php echo get_phrase('addon_update'); ?></a>
+                                                href="<?php echo site_url('Super_Admin/addon/update'); ?>"><?php echo get_phrase('addon_update'); ?></a>
                                             </li>
                                             <?php if ($addon['status'] == 1) : ?>
                                             <li><a class="dropdown-item" href="#"
-                                                    onclick="confirm_modal('<?php echo site_url('super_admin/addon/deactivate/' . $addon['id']); ?>');"><?php echo get_phrase('deactive'); ?></a>
+                                                    onclick="confirm_modal('<?php echo site_url('Super_Admin/addon/deactivate/' . $addon['id']); ?>');"><?php echo get_phrase('deactive'); ?></a>
                                             </li>
                                             <?php else : ?>
                                             <li><a class="dropdown-item" href="#"
-                                                    onclick="confirm_modal('<?php echo site_url('super_admin/addon/activate/' . $addon['id']); ?>');"><?php echo get_phrase('active'); ?></a>
+                                                    onclick="confirm_modal('<?php echo site_url('Super_Admin/addon/activate/' . $addon['id']); ?>');"><?php echo get_phrase('active'); ?></a>
                                             </li>
                                             <?php endif; ?>
                                             <li><a class="dropdown-item" href="#"
-                                                    onclick="confirm_modal('<?php echo site_url('super_admin/addon/delete/' . $addon['id']); ?>');"><?php echo get_phrase('delete'); ?></a>
+                                                    onclick="confirm_modal('<?php echo site_url('Super_Admin/addon/delete/' . $addon['id']); ?>');"><?php echo get_phrase('delete'); ?></a>
                                             </li>
                                             <li><a class="dropdown-item" href="javascript::"
                                                     onclick="showAjaxModal('<?php echo site_url('modal/popup/about_this_addon/' . $addon['id']); ?>', '<?php echo get_phrase('about_this_addon'); ?>')"><?php echo get_phrase('about_this_addon'); ?></a>

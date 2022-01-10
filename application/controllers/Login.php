@@ -18,7 +18,7 @@ class Login extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('super_admin_login')) {
-            redirect(site_url('super_admin'), 'refresh');
+            redirect(site_url('Super_Admin'), 'refresh');
         } elseif ($this->session->userdata('admin_login')) {
             redirect(site_url('admin'), 'refresh');
         }  elseif ($this->session->userdata('manager_login')) {
@@ -57,7 +57,7 @@ class Login extends CI_Controller
             $this->session->set_flashdata('flash_message', get_phrase('welcome') . ' ' . $row->first_name . ' ' . $row->last_name);
             if ($row->role_id == 1) {
                 $this->session->set_userdata('super_admin_login', '1');
-                redirect(site_url('super_admin/dashboard'), 'refresh');
+                redirect(site_url('Super_Admin/dashboard'), 'refresh');
             }
             else if ($row->role_id == 3) {
                 $this->session->set_userdata('admin_login', '1');

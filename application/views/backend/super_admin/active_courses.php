@@ -44,7 +44,7 @@
                       $lessons = $this->crud_model->get_lessons('course', $course['id'])->result_array();
                       foreach ($lessons as $lesson):?>
                     <a
-                        href="<?php echo site_url('super_admin/watch_video/'.slugify($lesson['title']).'/'.$lesson['id']); ?>">
+                        href="<?php echo site_url('Super_Admin/watch_video/'.slugify($lesson['title']).'/'.$lesson['id']); ?>">
                         <li><?php echo $lesson['title']; ?></li>
                     </a>
                     <?php endforeach; ?>
@@ -81,13 +81,13 @@
                         </li>
 
                         <li>
-                            <a href="<?php echo site_url('super_admin/sections/'.$course['id']); ?>">
+                            <a href="<?php echo site_url('Super_Admin/sections/'.$course['id']); ?>">
                                 <?php echo get_phrase('manage_section');?>
                             </a>
                         </li>
 
                         <li>
-                            <a href="<?php echo site_url('super_admin/lessons/'.$course['id']); ?>">
+                            <a href="<?php echo site_url('Super_Admin/lessons/'.$course['id']); ?>">
                                 <?php echo get_phrase('manage_lesson');?>
                             </a>
                         </li>
@@ -101,7 +101,7 @@
                             </a>
                             <?php else: ?>
                             <a href="#"
-                                onclick="confirm_modal('<?php echo site_url();?>super_admin/change_course_status_for_admin/pending/<?php echo $course['id'];?>', 'generic_confirmation');">
+                                onclick="confirm_modal('<?php echo site_url();?>Super_Admin/change_course_status_for_admin/pending/<?php echo $course['id'];?>', 'generic_confirmation');">
                                 <?php echo get_phrase('mark_as_pending');?>
                             </a>
                             <?php endif; ?>
@@ -109,7 +109,7 @@
 
 
                         <li>
-                            <a href="<?php echo site_url('super_admin/course_form/course_edit/'.$course['id']) ?>">
+                            <a href="<?php echo site_url('Super_Admin/course_form/course_edit/'.$course['id']) ?>">
                                 <?php echo get_phrase('edit');?>
                             </a>
                         </li>
@@ -117,7 +117,7 @@
                         <li class="divider"></li>
                         <li>
                             <a href="#"
-                                onclick="confirm_modal('<?php echo site_url('super_admin/course_actions/delete/'.$course['id']); ?>');">
+                                onclick="confirm_modal('<?php echo site_url('Super_Admin/course_actions/delete/'.$course['id']); ?>');">
                                 <?php echo get_phrase('delete');?>
                             </a>
                         </li>

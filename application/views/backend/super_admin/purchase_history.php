@@ -1,6 +1,6 @@
 <ol class="breadcrumb bc-3">
     <li>
-        <a href="<?php echo site_url('super_admin/dashboard'); ?>">
+        <a href="<?php echo site_url('Super_Admin/dashboard'); ?>">
             <i class="entypo-folder"></i>
             <?php echo get_phrase('dashboard'); ?>
         </a>

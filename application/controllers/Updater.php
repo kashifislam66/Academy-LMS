@@ -34,7 +34,7 @@ class Updater extends CI_Controller
         if ($this->session->userdata('admin_login') == 1)
             redirect(site_url('admin/dashboard'), 'refresh');
         if ($this->session->userdata('super_admin_login') == 1)
-            redirect(site_url('super_admin/dashboard'), 'refresh');
+            redirect(site_url('Super_Admin/dashboard'), 'refresh');
         if ($this->session->userdata('manager_login') == 1)
             redirect(site_url('manager/dashboard'), 'refresh');
     }
@@ -153,7 +153,7 @@ class Updater extends CI_Controller
 
         if ($json['require_version'] != get_settings('version')){
             $this->session->set_flashdata('error_message', get_phrase('it_looks_like_you_are_skipping_a_version').'. '.get_phrase('please_update_version').' '.$json['require_version'].' '.get_phrase('first'));
-            redirect(site_url('super_admin/system_settings'), 'refresh');
+            redirect(site_url('Super_Admin/system_settings'), 'refresh');
         }   
            
         // Run php modifications
@@ -194,7 +194,7 @@ class Updater extends CI_Controller
         }
 
         $this->session->set_flashdata('flash_message', get_phrase('product_updated_successfully'));
-        redirect(site_url('super_admin/system_settings'));
+        redirect(site_url('Super_Admin/system_settings'));
     }
 
 }

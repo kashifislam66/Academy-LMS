@@ -5,7 +5,7 @@
             <?php echo get_phrase('dashboard'); ?>
         </a>
     </li>
-    <li><a href="<?php echo site_url('super_admin/courses'); ?>"><?php echo get_phrase('courses'); ?></a> </li>
+    <li><a href="<?php echo site_url('Super_Admin/courses'); ?>"><?php echo get_phrase('courses'); ?></a> </li>
     <li><a href="#" class="active"><?php echo get_phrase('course_details'); ?></a> </li>
 </ol>
 <h2><i class="fa fa-arrow-circle-o-right"></i> <?php echo '"'.$course_details['title'].'" '.get_phrase('details'); ?>

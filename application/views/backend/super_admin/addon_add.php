@@ -4,7 +4,7 @@
             <div class="card-body">
                 <h4 class="page-title"> <i class="mdi mdi-webpack title_icon"></i>
                     <?php echo get_phrase('install_an_addon'); ?>
-                    <a href="<?php echo site_url('super_admin/addon'); ?>"
+                    <a href="<?php echo site_url('Super_Admin/addon'); ?>"
                         class="btn btn-outline-primary btn-rounded alignToTitle"><?php echo get_phrase('back_to_addon_list'); ?></a>
                 </h4>
             </div> <!-- end card body-->
@@ -25,7 +25,7 @@
                 <div class="col-lg-12">
                     <h4 class="mb-3 header-title">
                         <?php echo get_phrase('upload_addon_file') . ' (' . get_phrase('zip_file') . ') '; ?></h4>
-                    <form action="<?php echo site_url('super_admin/addon/install'); ?>" method="post"
+                    <form action="<?php echo site_url('Super_Admin/addon/install'); ?>" method="post"
                         enctype="multipart/form-data">
                         <?php if ($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_NAME'] == '127.0.0.1') : ?>
                         <?php else : ?>
@@ -49,7 +49,7 @@
 
                         <button type="submit"
                             class="btn btn-primary float-right"><?php echo get_phrase('install_addon'); ?></button>
-                        <a href="<?php echo site_url('super_admin/addon'); ?>"
+                        <a href="<?php echo site_url('Super_Admin/addon'); ?>"
                             class="btn btn-secondary float-left mdi mdi-arrow-left"><?php echo get_phrase('back'); ?></a>
                     </form>
                 </div>

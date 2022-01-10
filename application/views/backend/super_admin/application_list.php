@@ -85,7 +85,7 @@
                                                 <ul class="dropdown-menu">
                                                     <li>
                                                         <a class="dropdown-item" href="#"
-                                                            onclick="confirm_modal('<?php echo site_url();?>super_admin/instructor_application/approve/<?php echo $pending_application['id']; ?>');">
+                                                            onclick="confirm_modal('<?php echo site_url();?>Super_Admin/instructor_application/approve/<?php echo $pending_application['id']; ?>');">
                                                             <?php echo get_phrase('approve');?>
                                                         </a>
                                                     </li>

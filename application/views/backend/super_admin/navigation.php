@@ -21,7 +21,7 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
         <li class="side-nav-title side-nav-item"><?php echo get_phrase('navigation'); ?></li>
 
         <li class="side-nav-item <?php if ($page_name == 'dashboard') echo 'active'; ?>">
-            <a href="<?php echo site_url('super_admin/dashboard'); ?>" class="side-nav-link">
+            <a href="<?php echo site_url('Super_Admin/dashboard'); ?>" class="side-nav-link">
                 <i class="dripicons-view-apps"></i>
                 <span><?php echo get_phrase('dashboard'); ?></span>
             </a>

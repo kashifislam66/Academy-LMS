@@ -20,7 +20,7 @@ $category_details = $this->crud_model->get_category_details_by_id($category_id)-
                     <h4 class="mb-3 header-title"><?php echo get_phrase('update_category_form'); ?></h4>
 
                     <form class="required-form"
-                        action="<?php echo site_url('super_admin/categories/edit/'.$category_id); ?>" method="post"
+                        action="<?php echo site_url('Super_Admin/categories/edit/'.$category_id); ?>" method="post"
                         enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="code"><?php echo get_phrase('category_title'); ?></label>
