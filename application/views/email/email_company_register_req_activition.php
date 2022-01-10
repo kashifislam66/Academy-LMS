@@ -475,6 +475,9 @@
                                             <p style="margin-bottom: 9px; margin-top:2px;">
                                                 <b style="cursor: pointer;">I requested to approve my account.</b>
                                             </p>
+                                            <p style="margin-bottom: 9px; margin-top:2px;">Company Email:
+                                                <b style="cursor: pointer;"><?= $from; ?></b>
+                                            </p>
                                             <p style="margin-bottom: 9px; margin-top:2px;">Number Of Empolyes:
                                                 <b style="cursor: pointer;"><?= $empolyes_number; ?></b>
                                             </p>

@@ -17,15 +17,15 @@
     <div class="form-group">
         <label class="col-form-label" for="admin_list"><?php echo 'Select comany'; ?><span
                 class="required">*</span></label>
-        
-            <select name="company_id" id="company_id" class="form-control" required>
-                <option value="">Select Company</option>
-                <?php foreach ($select_user_company as $row) {?>
-                <option value="<?php echo $row->id; ?>">
-                    <?php echo $row->first_name.' '.$row->last_name; ?></option>
-                <?php } ?>
-            </select>
-        
+
+        <select name="company_id" id="company_id" class="form-control" required>
+            <option value="">Select Company</option>
+            <?php foreach ($select_user_company as $row) {?>
+            <option value="<?php echo $row->id; ?>">
+                <?php echo $row->first_name.' '.$row->last_name; ?></option>
+            <?php } ?>
+        </select>
+
     </div>
 
     <div class="form-group">
@@ -33,8 +33,8 @@
         <input type="password" id="password" name="password" class="form-control" required>
     </div>
     <div class="loader_ajax_call" style="display:none"></div>
-    <button type="submit" 
-        class="btn btn-primary float-right" id="disable_button"><?php echo get_phrase('submit'); ?></button>
+    <button type="submit" class="btn btn-primary float-right"
+        id="disable_button"><?php echo get_phrase('submit'); ?></button>
 </form>
 
 
@@ -45,7 +45,7 @@ $(".ajaxForm").submit(function(e) {
     var url = form.attr('action');
     $(".loader_ajax_call").css("display", "block");
     $("#disable_button").prop('disabled', true);
-   
+
     $.ajax({
         type: "POST",
         url: url,
@@ -53,7 +53,7 @@ $(".ajaxForm").submit(function(e) {
         success: function(response) {
             var myArray = jQuery.parseJSON(response);
             if (myArray['status']) {
-                 location.reload();
+                location.reload();
             } else {
                 error_notify(myArray['message']);
             }

@@ -93,7 +93,6 @@ class User_model extends CI_Model
                 $data['role_id'] = 2;
             }
             // echo "<pre>"; print_r($data['company_id']); exit;
-
             $data['date_added'] = strtotime(date("Y-m-d H:i:s"));
             $data['wishlist'] = json_encode(array());
             $data['watch_history'] = json_encode(array());
@@ -115,33 +114,26 @@ class User_model extends CI_Model
             );
             array_push($stripe_info, $stripe_keys);
             $data['stripe_keys'] = json_encode($stripe_info);
-
             if ($is_instructor) {
                 $data['is_instructor'] = 1;
             }
-
             // activated user go1 API
                 $get_login = $this->api_model->login_go1();
                 $get_login_decode = json_decode($get_login);
                     if(isset($get_login_decode->access_token)) {
                         $search_user = $this->api_model->search_user($get_login_decode->access_token, $email);
                         $search_user_decode = json_decode($search_user);
-
                         if(isset($search_user_decode->hits[0]->id)) {
                             $data['go1_id'] = $search_user_decode->hits[0]->id;
-                            $update_user = $this->api_model->update_user_go1($get_login_decode->access_token, $data,$data['go1_id']);
-                        
+                            $update_user = $this->api_model->update_user_go1($get_login_decode->access_token, $data,$data['go1_id']);          
                         } else {
                             $post_user = $this->api_model->add_user_go1($get_login_decode->access_token, $data);
                             $post_user_decode = json_decode($post_user);
                             if(isset($post_user_decode->id)) {
                             $data['go1_id'] = $post_user_decode->id;
-                            }
-                        
-                        }
-                        
+                            }     
+                        }           
                     }
-
             $this->db->insert('users', $data);
             $this->email_model->send_email_company_by_user_activition($data['email'], $userPass);
             $user_id = $this->db->insert_id();
