@@ -40,14 +40,14 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
                 <?php if (has_permission('course')) : ?>
                 <li class="<?php if ($page_name == 'courses' || $page_name == 'course_edit') echo 'active'; ?>">
                     <a
-                        href="<?php echo site_url('super_admin/courses'); ?>"><?php echo get_phrase('manage_courses'); ?></a>
+                        href="<?php echo site_url('Super_Admin/courses'); ?>"><?php echo get_phrase('manage_courses'); ?></a>
                 </li>
                 <?php endif; ?>
 
                 <?php if (has_permission('course')) : ?>
                 <li class="<?php if ($page_name == 'course_add') echo 'active'; ?>">
                     <a
-                        href="<?php echo site_url('super_admin/course_form/add_course'); ?>"><?php echo get_phrase('add_new_course'); ?></a>
+                        href="<?php echo site_url('Super_Admin/course_form/add_course'); ?>"><?php echo get_phrase('add_new_course'); ?></a>
                 </li>
                 <?php endif; ?>
 
@@ -55,13 +55,13 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
                 <li
                     class="<?php if ($page_name == 'categories' || $page_name == 'category_add' || $page_name == 'category_edit') echo 'active'; ?>">
                     <a
-                        href="<?php echo site_url('super_admin/categories'); ?>"><?php echo get_phrase('course_category'); ?></a>
+                        href="<?php echo site_url('Super_Admin/categories'); ?>"><?php echo get_phrase('course_category'); ?></a>
                 </li>
                 <?php endif; ?>
                 <?php if (has_permission('coupon')) : ?>
                 <li
                     class="<?php if ($page_name == 'coupons' || $page_name == 'coupon_add' || $page_name == 'coupon_edit') echo 'active'; ?>">
-                    <a href="<?php echo site_url('super_admin/coupons'); ?>">
+                    <a href="<?php echo site_url('Super_Admin/coupons'); ?>">
                         <?php echo get_phrase('coupons'); ?>
                     </a>
                 </li>
@@ -105,12 +105,12 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
             <ul class="side-nav-second-level" aria-expanded="false">
                 <li class="<?php if ($page_name == 'enrol_history') echo 'active'; ?>">
                     <a
-                        href="<?php echo site_url('super_admin/enrol_history'); ?>"><?php echo get_phrase('enrol_history'); ?></a>
+                        href="<?php echo site_url('Super_Admin/enrol_history'); ?>"><?php echo get_phrase('enrol_history'); ?></a>
                 </li>
 
                 <li class="<?php if ($page_name == 'enrol_student') echo 'active'; ?>">
                     <a
-                        href="<?php echo site_url('super_admin/enrol_student'); ?>"><?php echo get_phrase('enrol_a_student'); ?></a>
+                        href="<?php echo site_url('Super_Admin/enrol_student'); ?>"><?php echo get_phrase('enrol_a_student'); ?></a>
                 </li>
             </ul>
         </li>
@@ -126,11 +126,11 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
             </a>
             <ul class="side-nav-second-level" aria-expanded="false">
                 <li class="<?php if ($page_name == 'admin_revenue') echo 'active'; ?>"> <a
-                        href="<?php echo site_url('super_admin/admin_revenue'); ?>"><?php echo get_phrase('admin_revenue'); ?></a>
+                        href="<?php echo site_url('Super_Admin/admin_revenue'); ?>"><?php echo get_phrase('admin_revenue'); ?></a>
                 </li>
                 <?php if (get_settings('allow_instructor') == 1) : ?>
                 <li class="<?php if ($page_name == 'instructor_revenue') echo 'active'; ?>">
-                    <a href="<?php echo site_url('super_admin/instructor_revenue'); ?>">
+                    <a href="<?php echo site_url('Super_Admin/instructor_revenue'); ?>">
                         <?php echo get_phrase('instructor_revenue'); ?>
                     </a>
                 </li>
@@ -160,12 +160,12 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
                     <ul class="side-nav-third-level" aria-expanded="false">
                         <li
                             class="<?php if ($page_name == 'admins' || $page_name == 'admin_edit' || $page_name == 'admin_permission') : ?> active <?php endif; ?>">
-                            <a href="<?php echo site_url('super_admin/companies'); ?>"
+                            <a href="<?php echo site_url('Super_Admin/companies'); ?>"
                                 class="<?php if ($page_name == 'admins' || $page_name == 'admin_edit' || $page_name == 'admin_permission') : ?> active <?php endif; ?>">Manage
                                 Company</a>
                         </li>
                         <li class="<?php if ($page_name == 'admin_add') echo 'active'; ?>">
-                            <a href="<?php echo site_url('super_admin/company_form/add_admin_form'); ?>">Add New
+                            <a href="<?php echo site_url('Super_Admin/company_form/add_admin_form'); ?>">Add New
                                 Company</a>
                         </li>
                     </ul>
@@ -182,12 +182,12 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
                     <ul class="side-nav-third-level" aria-expanded="false">
                         <li
                             class="<?php if ($page_name == 'admins' || $page_name == 'admin_edit' || $page_name == 'admin_permission') : ?> active <?php endif; ?>">
-                            <a href="<?php echo site_url('super_admin/admins'); ?>"
+                            <a href="<?php echo site_url('Super_Admin/admins'); ?>"
                                 class="<?php if ($page_name == 'admins' || $page_name == 'admin_edit' || $page_name == 'admin_permission') : ?> active <?php endif; ?>"><?php echo get_phrase('manage_admins'); ?></a>
                         </li>
                         <li class="<?php if ($page_name == 'admin_add') echo 'active'; ?>">
                             <a
-                                href="<?php echo site_url('super_admin/admin_form/add_admin_form'); ?>"><?php echo get_phrase('add_new_admin'); ?></a>
+                                href="<?php echo site_url('Super_Admin/admin_form/add_admin_form'); ?>"><?php echo get_phrase('add_new_admin'); ?></a>
                         </li>
                     </ul>
                 </li> -->
@@ -205,14 +205,14 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
                         <li
                             class="<?php if ($page_name == 'instructors' || $page_name == 'instructor_edit') echo 'active'; ?>">
                             <a
-                                href="<?php echo site_url('super_admin/instructors'); ?>"><?php echo get_phrase('manage_instructors'); ?></a>
+                                href="<?php echo site_url('Super_Admin/instructors'); ?>"><?php echo get_phrase('manage_instructors'); ?></a>
                         </li>
                         <li class="<?php if ($page_name == 'instructor_add') echo 'active'; ?>">
                             <a
-                                href="<?php echo site_url('super_admin/instructor_form/add_instructor_form'); ?>"><?php echo get_phrase('add_new_instructor'); ?></a>
+                                href="<?php echo site_url('Super_Admin/instructor_form/add_instructor_form'); ?>"><?php echo get_phrase('add_new_instructor'); ?></a>
                         </li>
                         <li class="<?php if ($page_name == 'instructor_payout') echo 'active'; ?>">
-                            <a href="<?php echo site_url('super_admin/instructor_payout'); ?>">
+                            <a href="<?php echo site_url('Super_Admin/instructor_payout'); ?>">
                                 <?php echo get_phrase('instructor_payout'); ?>
                                 <span
                                     class="badge badge-danger-lighten"><?php echo $this->crud_model->get_pending_payouts()->num_rows(); ?></span>
@@ -220,10 +220,10 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
                         </li>
                         <li class="<?php if ($page_name == 'instructor_settings') echo 'active'; ?>">
                             <a
-                                href="<?php echo site_url('super_admin/instructor_settings'); ?>"><?php echo get_phrase('instructor_settings'); ?></a>
+                                href="<?php echo site_url('Super_Admin/instructor_settings'); ?>"><?php echo get_phrase('instructor_settings'); ?></a>
                         </li>
                         <li class="<?php if ($page_name == 'application_list') echo 'active'; ?>">
-                            <a href="<?php echo site_url('super_admin/instructor_application'); ?>">
+                            <a href="<?php echo site_url('Super_Admin/instructor_application'); ?>">
                                 <?php echo get_phrase('applications'); ?>
                                 <span
                                     class="badge badge-danger-lighten"><?php echo $this->user_model->get_pending_applications()->num_rows(); ?></span>
@@ -243,11 +243,11 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
                     <ul class="side-nav-third-level" aria-expanded="false">
                         <li class="<?php if ($page_name == 'users' || $page_name == 'user_edit') echo 'active'; ?>">
                             <a
-                                href="<?php echo site_url('super_admin/users'); ?>"><?php echo get_phrase('manage_students'); ?></a>
+                                href="<?php echo site_url('Super_Admin/users'); ?>"><?php echo get_phrase('manage_students'); ?></a>
                         </li>
                         <li class="<?php if ($page_name == 'user_add') echo 'active'; ?>">
                             <a
-                                href="<?php echo site_url('super_admin/user_form/add_user_form'); ?>"><?php echo get_phrase('add_new_student'); ?></a>
+                                href="<?php echo site_url('Super_Admin/user_form/add_user_form'); ?>"><?php echo get_phrase('add_new_student'); ?></a>
                         </li>
                     </ul>
                 </li>
@@ -286,7 +286,7 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
 
         <?php if (has_permission('messaging')) : ?>
         <li class="side-nav-item">
-            <a href="<?php echo site_url('super_admin/message'); ?>"
+            <a href="<?php echo site_url('Super_Admin/message'); ?>"
                 class="side-nav-link <?php if ($page_name == 'message' || $page_name == 'message_new' || $page_name == 'message_read') echo 'active'; ?>">
                 <i class="dripicons-message"></i>
                 <span><?php echo get_phrase('message'); ?></span>
@@ -326,7 +326,7 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
 
         <?php if (has_permission('addon')) : ?>
         <!-- <li class="side-nav-item">
-            <a href="<?php echo site_url('super_admin/addon'); ?>"
+            <a href="<?php echo site_url('Super_Admin/addon'); ?>"
                 class="side-nav-link <?php if ($page_name == 'addons' || $page_name == 'addon_add' || $page_name == 'available_addons') : ?> active <?php endif; ?>">
                 <i class="dripicons-graph-pie"></i>
                 <span><?php echo get_phrase('addons'); ?></span>
@@ -336,7 +336,7 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
 
         <?php if (has_permission('theme')) : ?>
         <li class="side-nav-item">
-            <a href="<?php echo site_url('super_admin/theme_settings'); ?>"
+            <a href="<?php echo site_url('Super_Admin/theme_settings'); ?>"
                 class="side-nav-link <?php if ($page_name == 'theme_settings') echo 'active'; ?>">
                 <i class="dripicons-brush"></i>
                 <span><?php echo get_phrase('themes'); ?></span>
@@ -346,7 +346,7 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
 
         <?php if (has_permission('catalague')) : ?>
         <li class="side-nav-item">
-            <a href="<?php echo site_url('super_admin/get_catalague'); ?>" class="side-nav-link">
+            <a href="<?php echo site_url('Super_Admin/get_catalague'); ?>" class="side-nav-link">
                 <i class="dripicons-brush"></i>
                 <span><?php echo "Catalague"; ?></span>
             </a>
@@ -364,12 +364,12 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
             <ul class="side-nav-second-level" aria-expanded="false">
                 <li class="<?php if ($page_name == 'system_settings') echo 'active'; ?>">
                     <a
-                        href="<?php echo site_url('super_admin/system_settings'); ?>"><?php echo get_phrase('system_settings'); ?></a>
+                        href="<?php echo site_url('Super_Admin/system_settings'); ?>"><?php echo get_phrase('system_settings'); ?></a>
                 </li>
 
                 <li class="<?php if ($page_name == 'frontend_settings') echo 'active'; ?>">
                     <a
-                        href="<?php echo site_url('super_admin/frontend_settings'); ?>"><?php echo get_phrase('website_settings'); ?></a>
+                        href="<?php echo site_url('Super_Admin/frontend_settings'); ?>"><?php echo get_phrase('website_settings'); ?></a>
                 </li>
 
                 <?php if (addon_status('certificate')) : ?>
@@ -395,22 +395,22 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
 
                 <li class="<?php if ($page_name == 'payment_settings') echo 'active'; ?>">
                     <a
-                        href="<?php echo site_url('super_admin/payment_settings'); ?>"><?php echo get_phrase('payment_settings'); ?></a>
+                        href="<?php echo site_url('Super_Admin/payment_settings'); ?>"><?php echo get_phrase('payment_settings'); ?></a>
                 </li>
                 <li class="<?php if ($page_name == 'manage_language') echo 'active'; ?>">
                     <a
-                        href="<?php echo site_url('super_admin/manage_language'); ?>"><?php echo get_phrase('language_settings'); ?></a>
+                        href="<?php echo site_url('Super_Admin/manage_language'); ?>"><?php echo get_phrase('language_settings'); ?></a>
                 </li>
                 <li class="<?php if ($page_name == 'smtp_settings') echo 'active'; ?>">
                     <a
-                        href="<?php echo site_url('super_admin/smtp_settings'); ?>"><?php echo get_phrase('smtp_settings'); ?></a>
+                        href="<?php echo site_url('Super_Admin/smtp_settings'); ?>"><?php echo get_phrase('smtp_settings'); ?></a>
                 </li>
                 <li class="<?php if ($page_name == 'social_login') echo 'active'; ?>">
                     <a
-                        href="<?php echo site_url('super_admin/social_login_settings'); ?>"><?php echo get_phrase('social_login'); ?></a>
+                        href="<?php echo site_url('Super_Admin/social_login_settings'); ?>"><?php echo get_phrase('social_login'); ?></a>
                 </li>
                 <li class="<?php if ($page_name == 'about') echo 'active'; ?>">
-                    <a href="<?php echo site_url('super_admin/about'); ?>"><?php echo get_phrase('about'); ?></a>
+                    <a href="<?php echo site_url('Super_Admin/about'); ?>"><?php echo get_phrase('about'); ?></a>
                 </li>
             </ul>
         </li>
