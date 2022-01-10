@@ -123,7 +123,7 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
         <?php endif; ?>
 
         <li class="side-nav-item <?php if ($page_name == 'manage_profile') echo 'active'; ?>">
-            <a href="<?php echo site_url(strtolower($this->session->userdata('role')) . '/manage_profile'); ?>"
+            <a href="<?php echo site_url($this->session->userdata('role') . '/manage_profile'); ?>"
                 class="side-nav-link">
                 <i class="dripicons-user"></i>
                 <span><?php echo get_phrase('manage_profile'); ?></span>
@@ -131,7 +131,7 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
         </li>
         <!-- code by kasif islam -->
         <li class="side-nav-item <?php if ($page_name == 'enrol_request') echo 'active'; ?>">
-            <a href="<?php echo site_url(strtolower($this->session->userdata('role')) . '/enrol_request'); ?>"
+            <a href="<?php echo site_url($this->session->userdata('role') . '/enrol_request'); ?>"
                 class="side-nav-link">
                 <i class="dripicons-user"></i>
                 <span><?php echo get_phrase('enrol_request'); ?></span>
@@ -139,7 +139,7 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
         </li>
 
         <li class="side-nav-item <?php if ($page_name == 'course_status') echo 'active'; ?>">
-            <a href="<?php echo site_url(strtolower($this->session->userdata('role')) . '/course_status'); ?>"
+            <a href="<?php echo site_url($this->session->userdata('role') . '/course_status'); ?>"
                 class="side-nav-link">
                 <i class="dripicons-user"></i>
                 <span><?php echo get_phrase('course_status'); ?></span>

@@ -1178,7 +1178,7 @@ class Crud_model extends CI_Model
             if ($lesson_provider == 'youtube' || $lesson_provider == 'vimeo') {
                 if ($this->input->post('video_url') == "" || $this->input->post('duration') == "") {
                     $this->session->set_flashdata('error_message', get_phrase('invalid_lesson_url_and_duration'));
-                    redirect(site_url(strtolower($this->session->userdata('role')) . '/course_form/course_edit/' . $data['course_id']), 'refresh');
+                    redirect(site_url($this->session->userdata('role') . '/course_form/course_edit/' . $data['course_id']), 'refresh');
                 }
                 $data['video_url'] = html_escape($this->input->post('video_url'));
 
@@ -1193,7 +1193,7 @@ class Crud_model extends CI_Model
             } elseif ($lesson_provider == 'html5') {
                 if ($this->input->post('html5_video_url') == "" || $this->input->post('html5_duration') == "") {
                     $this->session->set_flashdata('error_message', get_phrase('invalid_lesson_url_and_duration'));
-                    redirect(site_url(strtolower($this->session->userdata('role')) . '/course_form/course_edit/' . $data['course_id']), 'refresh');
+                    redirect(site_url($this->session->userdata('role') . '/course_form/course_edit/' . $data['course_id']), 'refresh');
                 }
                 $data['video_url'] = html_escape($this->input->post('html5_video_url'));
                 $duration_formatter = explode(':', $this->input->post('html5_duration'));
@@ -1205,7 +1205,7 @@ class Crud_model extends CI_Model
             } elseif ($lesson_provider == 'google_drive') {
                 if ($this->input->post('google_drive_video_url') == "" || $this->input->post('google_drive_video_duration') == "") {
                     $this->session->set_flashdata('error_message', get_phrase('invalid_lesson_url_and_duration'));
-                    redirect(site_url(strtolower($this->session->userdata('role')) . '/course_form/course_edit/' . $data['course_id']), 'refresh');
+                    redirect(site_url($this->session->userdata('role') . '/course_form/course_edit/' . $data['course_id']), 'refresh');
                 }
                 $data['video_url'] = html_escape($this->input->post('google_drive_video_url'));
                 $duration_formatter = explode(':', $this->input->post('google_drive_video_duration'));
@@ -1216,7 +1216,7 @@ class Crud_model extends CI_Model
                 $data['video_type'] = 'google_drive';
             } else {
                 $this->session->set_flashdata('error_message', get_phrase('invalid_lesson_provider'));
-                redirect(site_url(strtolower($this->session->userdata('role')) . '/course_form/course_edit/' . $data['course_id']), 'refresh');
+                redirect(site_url($this->session->userdata('role') . '/course_form/course_edit/' . $data['course_id']), 'refresh');
             }
 
             // This portion is for mobile application video lessons
@@ -1245,12 +1245,12 @@ class Crud_model extends CI_Model
             $video_extensions = ['WEBM', 'MP4'];
             if (!in_array($fileExtension, $video_extensions)) {
                 $this->session->set_flashdata('error_message', get_phrase('please_select_valid_video_file'));
-                redirect(site_url(strtolower($this->session->userdata('role')) . '/course_form/course_edit/' . $data['course_id']), 'refresh');
+                redirect(site_url($this->session->userdata('role') . '/course_form/course_edit/' . $data['course_id']), 'refresh');
             }
 
             if ($this->input->post('amazon_s3_duration') == "") {
                 $this->session->set_flashdata('error_message', get_phrase('invalid_lesson_duration'));
-                redirect(site_url(strtolower($this->session->userdata('role')) . '/course_form/course_edit/' . $data['course_id']), 'refresh');
+                redirect(site_url($this->session->userdata('role') . '/course_form/course_edit/' . $data['course_id']), 'refresh');
             }
 
             $upload_loaction = get_settings('video_upload_location');
@@ -1306,11 +1306,11 @@ class Crud_model extends CI_Model
                 if ($_FILES['system_video_file']['error'] !== UPLOAD_ERR_OK) {
                     $error_code = $_FILES['system_video_file']['error'];
                     $this->session->set_flashdata('error_message', phpFileUploadErrors($error_code));
-                    redirect(site_url(strtolower($this->session->userdata('role')) . '/course_form/course_edit/' . $data['course_id']), 'refresh');
+                    redirect(site_url($this->session->userdata('role') . '/course_form/course_edit/' . $data['course_id']), 'refresh');
                 }
             } else {
                 $this->session->set_flashdata('error_message', get_phrase('please_select_valid_video_file'));
-                redirect(site_url(strtolower($this->session->userdata('role')) . '/course_form/course_edit/' . $data['course_id']), 'refresh');
+                redirect(site_url($this->session->userdata('role') . '/course_form/course_edit/' . $data['course_id']), 'refresh');
             };
 
             $tmp                = explode('.', $fileName);
@@ -1320,7 +1320,7 @@ class Crud_model extends CI_Model
 
             if (!in_array($fileExtension, $video_extensions)) {
                 $this->session->set_flashdata('error_message', get_phrase('please_select_valid_video_file'));
-                redirect(site_url(strtolower($this->session->userdata('role')) . '/course_form/course_edit/' . $data['course_id']), 'refresh');
+                redirect(site_url($this->session->userdata('role') . '/course_form/course_edit/' . $data['course_id']), 'refresh');
             }
 
             // custom random name of the video file
@@ -1328,7 +1328,7 @@ class Crud_model extends CI_Model
 
             if ($this->input->post('system_video_file_duration') == "") {
                 $this->session->set_flashdata('error_message', get_phrase('invalid_lesson_duration'));
-                redirect(site_url(strtolower($this->session->userdata('role')) . '/course_form/course_edit/' . $data['course_id']), 'refresh');
+                redirect(site_url($this->session->userdata('role') . '/course_form/course_edit/' . $data['course_id']), 'refresh');
             }
 
 
@@ -1360,13 +1360,13 @@ class Crud_model extends CI_Model
             if ($attachment_type == 'iframe') {
                 if (empty($this->input->post('iframe_source'))) {
                     $this->session->set_flashdata('error_message', get_phrase('invalid_source'));
-                    redirect(site_url(strtolower($this->session->userdata('role')) . '/course_form/course_edit/' . $data['course_id']), 'refresh');
+                    redirect(site_url($this->session->userdata('role') . '/course_form/course_edit/' . $data['course_id']), 'refresh');
                 }
                 $data['attachment'] = $this->input->post('iframe_source');
             } else {
                 if ($_FILES['attachment']['name'] == "") {
                     $this->session->set_flashdata('error_message', get_phrase('invalid_attachment'));
-                    redirect(site_url(strtolower($this->session->userdata('role')) . '/course_form/course_edit/' . $data['course_id']), 'refresh');
+                    redirect(site_url($this->session->userdata('role') . '/course_form/course_edit/' . $data['course_id']), 'refresh');
                 } else {
                     $fileName           = $_FILES['attachment']['name'];
                     $tmp                = explode('.', $fileName);
@@ -1420,7 +1420,7 @@ class Crud_model extends CI_Model
             if ($lesson_provider == 'youtube' || $lesson_provider == 'vimeo') {
                 if ($this->input->post('video_url') == "" || $this->input->post('duration') == "") {
                     $this->session->set_flashdata('error_message', get_phrase('invalid_lesson_url_and_duration'));
-                    redirect(site_url(strtolower($this->session->userdata('role')) . '/course_form/course_edit/' . $data['course_id']), 'refresh');
+                    redirect(site_url($this->session->userdata('role') . '/course_form/course_edit/' . $data['course_id']), 'refresh');
                 }
                 $data['video_url'] = html_escape($this->input->post('video_url'));
 
@@ -1435,7 +1435,7 @@ class Crud_model extends CI_Model
             } elseif ($lesson_provider == 'html5') {
                 if ($this->input->post('html5_video_url') == "" || $this->input->post('html5_duration') == "") {
                     $this->session->set_flashdata('error_message', get_phrase('invalid_lesson_url_and_duration'));
-                    redirect(site_url(strtolower($this->session->userdata('role')) . '/course_form/course_edit/' . $data['course_id']), 'refresh');
+                    redirect(site_url($this->session->userdata('role') . '/course_form/course_edit/' . $data['course_id']), 'refresh');
                 }
                 $data['video_url'] = html_escape($this->input->post('html5_video_url'));
 
@@ -1455,7 +1455,7 @@ class Crud_model extends CI_Model
             } elseif ($lesson_provider == 'google_drive') {
                 if ($this->input->post('google_drive_video_url') == "" || $this->input->post('google_drive_video_duration') == "") {
                     $this->session->set_flashdata('error_message', get_phrase('invalid_lesson_url_and_duration'));
-                    redirect(site_url(strtolower($this->session->userdata('role')) . '/course_form/course_edit/' . $data['course_id']), 'refresh');
+                    redirect(site_url($this->session->userdata('role') . '/course_form/course_edit/' . $data['course_id']), 'refresh');
                 }
                 $data['video_url'] = html_escape($this->input->post('google_drive_video_url'));
                 $duration_formatter = explode(':', $this->input->post('google_drive_video_duration'));
@@ -1466,7 +1466,7 @@ class Crud_model extends CI_Model
                 $data['video_type'] = 'google_drive';
             } else {
                 $this->session->set_flashdata('error_message', get_phrase('invalid_lesson_provider'));
-                redirect(site_url(strtolower($this->session->userdata('role')) . '/course_form/course_edit/' . $data['course_id']), 'refresh');
+                redirect(site_url($this->session->userdata('role') . '/course_form/course_edit/' . $data['course_id']), 'refresh');
             }
             $data['attachment'] = "";
 
@@ -1497,7 +1497,7 @@ class Crud_model extends CI_Model
                 $video_extensions = ['WEBM', 'MP4'];
                 if (!in_array($fileExtension, $video_extensions)) {
                     $this->session->set_flashdata('error_message', get_phrase('please_select_valid_video_file'));
-                    redirect(site_url(strtolower($this->session->userdata('role')) . '/course_form/course_edit/' . $data['course_id']), 'refresh');
+                    redirect(site_url($this->session->userdata('role') . '/course_form/course_edit/' . $data['course_id']), 'refresh');
                 }
 
                 $upload_loaction = get_settings('video_upload_location');
@@ -1539,7 +1539,7 @@ class Crud_model extends CI_Model
 
             if ($this->input->post('amazon_s3_duration') == "") {
                 $this->session->set_flashdata('error_message', get_phrase('invalid_lesson_duration'));
-                redirect(site_url(strtolower($this->session->userdata('role')) . '/course_form/course_edit/' . $data['course_id']), 'refresh');
+                redirect(site_url($this->session->userdata('role') . '/course_form/course_edit/' . $data['course_id']), 'refresh');
             }
 
             $duration_formatter = explode(':', $this->input->post('amazon_s3_duration'));
@@ -1568,11 +1568,11 @@ class Crud_model extends CI_Model
                     if ($_FILES['system_video_file']['error'] !== UPLOAD_ERR_OK) {
                         $error_code = $_FILES['system_video_file']['error'];
                         $this->session->set_flashdata('error_message', phpFileUploadErrors($error_code));
-                        redirect(site_url(strtolower($this->session->userdata('role')) . '/course_form/course_edit/' . $data['course_id']), 'refresh');
+                        redirect(site_url($this->session->userdata('role') . '/course_form/course_edit/' . $data['course_id']), 'refresh');
                     }
                 } else {
                     $this->session->set_flashdata('error_message', get_phrase('please_select_valid_video_file'));
-                    redirect(site_url(strtolower($this->session->userdata('role')) . '/course_form/course_edit/' . $data['course_id']), 'refresh');
+                    redirect(site_url($this->session->userdata('role') . '/course_form/course_edit/' . $data['course_id']), 'refresh');
                 };
 
                 $tmp                = explode('.', $fileName);
@@ -1581,7 +1581,7 @@ class Crud_model extends CI_Model
                 $video_extensions = ['WEBM', 'MP4'];
                 if (!in_array($fileExtension, $video_extensions)) {
                     $this->session->set_flashdata('error_message', get_phrase('please_select_valid_video_file'));
-                    redirect(site_url(strtolower($this->session->userdata('role')) . '/course_form/course_edit/' . $data['course_id']), 'refresh');
+                    redirect(site_url($this->session->userdata('role') . '/course_form/course_edit/' . $data['course_id']), 'refresh');
                 }
 
                 // custom random name of the video file
@@ -1607,7 +1607,7 @@ class Crud_model extends CI_Model
 
             if ($this->input->post('system_video_file_duration') == "") {
                 $this->session->set_flashdata('error_message', get_phrase('invalid_lesson_duration'));
-                redirect(site_url(strtolower($this->session->userdata('role')) . '/course_form/course_edit/' . $data['course_id']), 'refresh');
+                redirect(site_url($this->session->userdata('role') . '/course_form/course_edit/' . $data['course_id']), 'refresh');
             }
 
             $duration_formatter = explode(':', $this->input->post('system_video_file_duration'));
@@ -1625,7 +1625,7 @@ class Crud_model extends CI_Model
             if ($attachment_type == 'iframe') {
                 if (empty($this->input->post('iframe_source'))) {
                     $this->session->set_flashdata('error_message', get_phrase('invalid_source'));
-                    redirect(site_url(strtolower($this->session->userdata('role')) . '/course_form/course_edit/' . $data['course_id']), 'refresh');
+                    redirect(site_url($this->session->userdata('role') . '/course_form/course_edit/' . $data['course_id']), 'refresh');
                 }
                 $data['attachment'] = $this->input->post('iframe_source');
             } else {

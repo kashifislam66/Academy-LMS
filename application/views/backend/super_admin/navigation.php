@@ -417,7 +417,7 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
         <?php endif; ?>
 
         <li class="side-nav-item <?php if ($page_name == 'manage_profile') echo 'active'; ?>">
-            <a href="<?php echo site_url(strtolower($this->session->userdata('role')) . '/manage_profile'); ?>"
+            <a href="<?php echo site_url($this->session->userdata('role') . '/manage_profile'); ?>"
                 class="side-nav-link">
                 <i class="dripicons-user"></i>
                 <span><?php echo get_phrase('manage_profile'); ?></span>

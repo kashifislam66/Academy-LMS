@@ -16,7 +16,7 @@ jQuery(document).ready(function($) {
         "processing": true,
         "serverSide": true,
         "ajax": {
-            "url": "<?php echo site_url(strtolower($this->session->userdata('role')).'/get_courses') ?>",
+            "url": "<?php echo site_url($this->session->userdata('role').'/get_courses') ?>",
             "dataType": "json",
             "type": "POST",
             "data": {
