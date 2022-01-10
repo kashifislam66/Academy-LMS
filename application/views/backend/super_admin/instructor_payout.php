@@ -36,7 +36,7 @@
                         <div class="row justify-content-md-center">
                             <div class="col-xl-6">
                                 <form class="form-inline"
-                                    action="<?php echo site_url('super_admin/instructor_payout/filter_by_date_range') ?>"
+                                    action="<?php echo site_url('Super_Admin/instructor_payout/filter_by_date_range') ?>"
                                     method="get">
                                     <div class="col-xl-10">
                                         <div class="form-group">
@@ -88,7 +88,7 @@
                                         <td> <?php echo currency($completed_payout['amount']); ?> </td>
                                         <td> <?php echo ucfirst($completed_payout['payment_type']); ?> </td>
                                         <td> <?php echo date('D, d M Y', $completed_payout['date_added']); ?> </td>
-                                        <td> <a href="<?php echo site_url('super_admin/invoice/'.$completed_payout['id']); ?>"
+                                        <td> <a href="<?php echo site_url('Super_Admin/invoice/'.$completed_payout['id']); ?>"
                                                 class="btn btn-outline-primary btn-rounded btn-sm"><i
                                                     class="mdi mdi-printer-settings"></i></a> </td>
                                     </tr>
@@ -133,7 +133,7 @@
                                             <?php if ($pending_payout['status'] == 0): ?>
                                             <?php if ($paypal_keys[0]['production_client_id'] != ""): ?>
                                             <form
-                                                action="<?php echo site_url('super_admin/paypal_checkout_for_instructor_revenue'); ?>"
+                                                action="<?php echo site_url('Super_Admin/paypal_checkout_for_instructor_revenue'); ?>"
                                                 method="post">
                                                 <input type="hidden" name="amount_to_pay"
                                                     value="<?php echo $pending_payout['amount']; ?>">
@@ -159,7 +159,7 @@
                                                 onclick="alert('<?php echo get_phrase('this_instructor_has_not_provided_valid_public_key_or_secret_key'); ?>')"><?php echo get_phrase('pay_with_stripe'); ?></button>
                                             <?php endif; ?>
                                             <?php else: ?>
-                                            <a href="<?php echo site_url('super_admin/invoice/'.$pending_payout['id']); ?>"
+                                            <a href="<?php echo site_url('Super_Admin/invoice/'.$pending_payout['id']); ?>"
                                                 class="btn btn-outline-primary btn-rounded btn-sm"><i
                                                     class="mdi mdi-printer-settings"></i></a>
                                             <?php endif; ?>

@@ -17,7 +17,7 @@
                 <div class="col-lg-12">
                     <h4 class="mb-3 header-title"><?php echo get_phrase('enrolment_form'); ?></h4>
 
-                    <form class="required-form" action="<?php echo site_url('super_admin/enrol_student/enrol'); ?>"
+                    <form class="required-form" action="<?php echo site_url('Super_Admin/enrol_student/enrol'); ?>"
                         method="post" enctype="multipart/form-data">
 
                         <div class="form-group">

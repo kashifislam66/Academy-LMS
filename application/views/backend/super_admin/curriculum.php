@@ -45,7 +45,7 @@ $sections = $this->crud_model->get_section('course', $course_id)->result_array()
                                     <?php echo get_phrase('edit_section'); ?></button>
                                 <button type="button" class="btn btn-outline-secondary btn-rounded btn-sm ml-1"
                                     name="button"
-                                    onclick="confirm_modal('<?php echo site_url('super_admin/sections/'.$course_id.'/delete'.'/'.$section['id']); ?>');"><i
+                                    onclick="confirm_modal('<?php echo site_url('Super_Admin/sections/'.$course_id.'/delete'.'/'.$section['id']); ?>');"><i
                                         class="mdi mdi-window-close"></i>
                                     <?php echo get_phrase('delete_section'); ?></button>
                             </div>
@@ -74,7 +74,7 @@ $sections = $this->crud_model->get_section('course', $course_id)->result_array()
                                                 class="mdi mdi-pencil-outline"></i></a>
                                         <?php endif; ?>
                                         <a href="javascript::"
-                                            onclick="confirm_modal('<?php echo site_url('super_admin/lessons/'.$course_id.'/delete'.'/'.$lesson['id']); ?>');"><i
+                                            onclick="confirm_modal('<?php echo site_url('Super_Admin/lessons/'.$course_id.'/delete'.'/'.$lesson['id']); ?>');"><i
                                                 class="mdi mdi-window-close"></i></a>
                                     </div>
                                     <h5 class="card-title mb-0">

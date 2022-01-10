@@ -68,7 +68,7 @@
             // executes the payment
             return actions.payment.execute().then(function() {
                 var redirectUrl =
-                    '<?php echo site_url('super_admin/paypal_payment/'.$payout_id);?>' + '/' + data
+                    '<?php echo site_url('Super_Admin/paypal_payment/'.$payout_id);?>' + '/' + data
                     .paymentID + '/' + data.paymentToken + '/' + data.payerID;
                 window.location = redirectUrl;
             });

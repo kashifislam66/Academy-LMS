@@ -20,12 +20,12 @@ $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();?
                         <h4 class="header-title my-1"><?php echo get_phrase('course_manager'); ?></h4>
                     </div>
                     <div class="col-md-6">
-                        <a href="<?php echo site_url('super_admin/preview/' . $course_id); ?>"
+                        <a href="<?php echo site_url('Super_Admin/preview/' . $course_id); ?>"
                             class="alignToTitle btn btn-outline-secondary btn-rounded btn-sm ml-1 my-1"
                             target="_blank"><?php echo get_phrase('view_on_frontend'); ?> <i
                                 class="mdi mdi-arrow-right"></i> </a>
 
-                        <a href="<?php echo site_url('super_admin/courses'); ?>"
+                        <a href="<?php echo site_url('Super_Admin/courses'); ?>"
                             class="alignToTitle btn btn-outline-secondary btn-rounded btn-sm my-1"> <i
                                 class=" mdi mdi-keyboard-backspace"></i>
                             <?php echo get_phrase('back_to_course_list'); ?></a>
@@ -35,7 +35,7 @@ $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();?
                 <div class="row">
                     <div class="col-xl-12">
                         <form class="required-form"
-                            action="<?php echo site_url('super_admin/course_actions/edit/' . $course_id); ?>"
+                            action="<?php echo site_url('Super_Admin/course_actions/edit/' . $course_id); ?>"
                             method="post" enctype="multipart/form-data" autocomplete="off">
                             <div id="basicwizard">
                                 <ul class="nav nav-pills nav-justified form-wizard-header">
@@ -234,7 +234,7 @@ $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();?
                                                             </span>
                                                             <?php if (count($instructor_ids) > 1 && $course_details['creator'] != $instructor_id) : ?>
                                                             <a href="javascript:void(0)"
-                                                                onclick="confirm_modal('<?php echo site_url('super_admin/remove_an_instructor/' . $course_details['id'] . '/' . $instructor_details['id']); ?>');"
+                                                                onclick="confirm_modal('<?php echo site_url('Super_Admin/remove_an_instructor/' . $course_details['id'] . '/' . $instructor_details['id']); ?>');"
                                                                 style="display: inline-block; height: 20px; width: 20px; border-radius: 50%; background-color: rgb(239,83,80); color: white; margin-left: 6px; vertical-align: sub;">
                                                                 <i class="mdi mdi-window-close"
                                                                     style="margin-left: 3px; font-weight: bold; vertical-align: middle;"></i>
@@ -777,7 +777,7 @@ function removeRequirement(requirementElem) {
 
 function ajax_get_sub_category(category_id) {
     $.ajax({
-        url: '<?php echo site_url('super_admin/ajax_get_sub_category/'); ?>' + category_id,
+        url: '<?php echo site_url('Super_Admin/ajax_get_sub_category/'); ?>' + category_id,
         success: function(response) {
             jQuery('#sub_category_id').html(response);
         }

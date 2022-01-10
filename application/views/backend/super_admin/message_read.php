@@ -42,7 +42,7 @@
                         <?php endforeach;?>
                     </ul>
                     <form method="post"
-                        action="<?php echo site_url('super_admin/message/send_reply/'.$current_message_thread_code); ?>"
+                        action="<?php echo site_url('Super_Admin/message/send_reply/'.$current_message_thread_code); ?>"
                         class="needs-validation" novalidate name="chat-form" id="chat-form">
                         <div class="row">
                             <div class="col">

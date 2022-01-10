@@ -5,7 +5,7 @@
             <div class="card-body">
                 <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i>
                     <?php echo $page_title; ?>
-                    <a href="<?php echo site_url('super_admin/coupons'); ?>"
+                    <a href="<?php echo site_url('Super_Admin/coupons'); ?>"
                         class="btn btn-outline-primary btn-rounded alignToTitle"><?php echo get_phrase('back_to_coupons'); ?></a>
                 </h4>
             </div> <!-- end card body-->
@@ -21,7 +21,7 @@
                     <h4 class="mb-3 header-title"><?php echo get_phrase('coupon_edit_form'); ?></h4>
 
                     <form class="required-form"
-                        action="<?php echo site_url('super_admin/coupons/edit/' . $coupon['id']); ?>" method="post"
+                        action="<?php echo site_url('Super_Admin/coupons/edit/' . $coupon['id']); ?>" method="post"
                         enctype="multipart/form-data">
 
                         <div class="form-group">

@@ -17,7 +17,7 @@
                 <?php
 				foreach($edit_data as $row):
 					$social_links = json_decode($row['social_links'], true);?>
-                <?php echo form_open(site_url('super_admin/manage_profile/update_profile_info/'.$row['id']) , array('class' => 'form-horizontal form-groups-bordered validate','target'=>'_top' , 'enctype' => 'multipart/form-data'));?>
+                <?php echo form_open(site_url('Super_Admin/manage_profile/update_profile_info/'.$row['id']) , array('class' => 'form-horizontal form-groups-bordered validate','target'=>'_top' , 'enctype' => 'multipart/form-data'));?>
 
                 <div class="form-group">
                     <label><?php echo get_phrase('first_name');?></label>
@@ -113,7 +113,7 @@
         <div class="card">
             <div class="card-body">
                 <?php foreach($edit_data as $row): ?>
-                <?php echo form_open(site_url('super_admin/manage_profile/change_password/'.$row['id']) , array('class' => 'form-horizontal form-groups-bordered validate','target'=>'_top'));?>
+                <?php echo form_open(site_url('Super_Admin/manage_profile/change_password/'.$row['id']) , array('class' => 'form-horizontal form-groups-bordered validate','target'=>'_top'));?>
                 <div class="form-group">
                     <label><?php echo get_phrase('current_password');?></label>
                     <input type="password" class="form-control" name="current_password" value="" required />

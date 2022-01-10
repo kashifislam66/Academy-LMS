@@ -20,7 +20,7 @@ var responseContainer = document.getElementById("stripePaymentResponse-<?php ech
 
 // Create a Checkout Session with the selected product
 var createCheckoutSession = function(stripe) {
-    return fetch("<?= site_url('super_admin/stripe_checkout_for_instructor_revenue/'.$pending_payout['id']); ?>", {
+    return fetch("<?= site_url('Super_Admin/stripe_checkout_for_instructor_revenue/'.$pending_payout['id']); ?>", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

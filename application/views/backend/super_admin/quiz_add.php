@@ -1,7 +1,7 @@
 <?php
 $sections = $this->crud_model->get_section('course', $param2)->result_array();
 ?>
-<form action="<?php echo site_url('super_admin/quizes/'.$param2.'/add'); ?>" method="post">
+<form action="<?php echo site_url('Super_Admin/quizes/'.$param2.'/add'); ?>" method="post">
     <div class="form-group">
         <label for="title"><?php echo get_phrase('quiz_title'); ?></label>
         <input class="form-control" type="text" name="title" id="title" required>

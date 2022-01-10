@@ -1,4 +1,4 @@
-<form class="required-form ajaxForm" action="<?php echo site_url('super_admin/shortcut_enrol_student'); ?>"
+<form class="required-form ajaxForm" action="<?php echo site_url('Super_Admin/shortcut_enrol_student'); ?>"
     method="post" enctype="multipart/form-data">
 
     <div class="form-group">

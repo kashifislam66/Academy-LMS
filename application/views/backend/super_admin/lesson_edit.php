@@ -32,7 +32,7 @@ $sections = $this->crud_model->get_section('course', $param3)->result_array();
 </div>
 
 <!-- ACTUAL LESSON ADDING FORM -->
-<form action="<?php echo site_url('super_admin/lessons/'.$param3.'/edit'.'/'.$param2); ?>" method="post"
+<form action="<?php echo site_url('Super_Admin/lessons/'.$param3.'/edit'.'/'.$param2); ?>" method="post"
     enctype="multipart/form-data">
 
     <div class="form-group">
@@ -97,7 +97,7 @@ function ajax_get_video_details(video_url) {
     $('#perloader').show();
     if (checkURLValidity(video_url)) {
         $.ajax({
-            url: '<?php echo site_url('super_admin/ajax_get_video_details');?>',
+            url: '<?php echo site_url('Super_Admin/ajax_get_video_details');?>',
             type: 'POST',
             data: {
                 video_url: video_url

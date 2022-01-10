@@ -15,7 +15,7 @@
             <div class="card-body">
                 <h4 class="mb-3 header-title"><?php echo get_phrase('public_instructor_settings');?></h4>
 
-                <form action="<?php echo site_url('super_admin/instructor_settings/update'); ?>" method="post"
+                <form action="<?php echo site_url('Super_Admin/instructor_settings/update'); ?>" method="post"
                     enctype="multipart/form-data">
                     <div class="form-group">
                         <label><?php echo get_phrase('allow_public_instructor'); ?></label>
@@ -51,7 +51,7 @@
             <div class="card-body">
                 <h4 class="mb-3 header-title"><?php echo get_phrase('instructor_commission_settings');?></h4>
 
-                <form action="<?php echo site_url('super_admin/instructor_settings/update'); ?>" method="post"
+                <form action="<?php echo site_url('Super_Admin/instructor_settings/update'); ?>" method="post"
                     enctype="multipart/form-data">
                     <div class="form-group">
                         <label

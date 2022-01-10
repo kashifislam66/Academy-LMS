@@ -15,7 +15,7 @@
 
                 <h4 class="header-title mb-3"><?php echo get_phrase('student_add_form'); ?></h4>
 
-                <form class="required-form" action="<?php echo site_url('super_admin/users/add'); ?>"
+                <form class="required-form" action="<?php echo site_url('Super_Admin/users/add'); ?>"
                     enctype="multipart/form-data" method="post">
                     <div id="progressbarwizard">
                         <ul class="nav nav-pills nav-justified form-wizard-header mb-3">

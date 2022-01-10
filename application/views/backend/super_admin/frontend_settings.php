@@ -19,7 +19,7 @@
                 <h4 class="mb-3 header-title"><?php echo get_phrase('website_settings');?></h4>
 
                 <form class="required-form"
-                    action="<?php echo site_url('super_admin/frontend_settings/frontend_update'); ?>" method="post"
+                    action="<?php echo site_url('Super_Admin/frontend_settings/frontend_update'); ?>" method="post"
                     enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="banner_title"><?php echo get_phrase('banner_title'); ?><span
@@ -114,7 +114,7 @@
             <div class="card-body">
                 <h4 class="mb-3 header-title"><?php echo get_phrase('recaptcha_settings');?></h4>
 
-                <form action="<?php echo site_url('super_admin/frontend_settings/recaptcha_update'); ?>" method="post"
+                <form action="<?php echo site_url('Super_Admin/frontend_settings/recaptcha_update'); ?>" method="post"
                     enctype="multipart/form-data">
                     <div class="form-group">
                         <label><?php echo get_phrase('recaptcha_status'); ?><span class="required">*</span></label><br>
@@ -162,7 +162,7 @@
                 <div class="col-xl-12">
                     <h4 class="mb-3 header-title"><?php echo get_phrase('update_banner_image');?></h4>
                     <div class="row justify-content-center">
-                        <form action="<?php echo site_url('super_admin/frontend_settings/banner_image_update'); ?>"
+                        <form action="<?php echo site_url('Super_Admin/frontend_settings/banner_image_update'); ?>"
                             method="post" enctype="multipart/form-data" style="text-align: center;">
                             <div class="form-group mb-2">
                                 <div class="wrapper-image-preview">
@@ -198,7 +198,7 @@
                 <div class="col-xl-12">
                     <h4 class="mb-3 header-title"><?php echo get_phrase('update_light_logo');?></h4>
                     <div class="row justify-content-center">
-                        <form action="<?php echo site_url('super_admin/frontend_settings/light_logo'); ?>" method="post"
+                        <form action="<?php echo site_url('Super_Admin/frontend_settings/light_logo'); ?>" method="post"
                             enctype="multipart/form-data" style="text-align: center;">
                             <div class="form-group mb-2">
                                 <div class="wrapper-image-preview">
@@ -231,7 +231,7 @@
                 <div class="col-lg-12">
                     <h4 class="mb-3 header-title"><?php echo get_phrase('update_dark_logo');?></h4>
                     <div class="row justify-content-center">
-                        <form action="<?php echo site_url('super_admin/frontend_settings/dark_logo'); ?>" method="post"
+                        <form action="<?php echo site_url('Super_Admin/frontend_settings/dark_logo'); ?>" method="post"
                             enctype="multipart/form-data" style="text-align: center;">
                             <div class="form-group mb-2">
                                 <div class="wrapper-image-preview">
@@ -264,7 +264,7 @@
                 <div class="col-lg-12">
                     <h4 class="mb-3 header-title"><?php echo get_phrase('update_small_logo');?></h4>
                     <div class="row justify-content-center">
-                        <form action="<?php echo site_url('super_admin/frontend_settings/small_logo'); ?>" method="post"
+                        <form action="<?php echo site_url('Super_Admin/frontend_settings/small_logo'); ?>" method="post"
                             enctype="multipart/form-data" style="text-align: center;">
                             <div class="form-group mb-2">
                                 <div class="wrapper-image-preview">
@@ -297,7 +297,7 @@
                 <div class="col-lg-12">
                     <h4 class="mb-3 header-title"><?php echo get_phrase('update_favicon');?></h4>
                     <div class="row justify-content-center">
-                        <form action="<?php echo site_url('super_admin/frontend_settings/favicon'); ?>" method="post"
+                        <form action="<?php echo site_url('Super_Admin/frontend_settings/favicon'); ?>" method="post"
                             enctype="multipart/form-data" style="text-align: center;">
                             <div class="form-group mb-2">
                                 <div class="wrapper-image-preview">

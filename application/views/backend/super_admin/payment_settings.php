@@ -26,7 +26,7 @@ $razorpay = json_decode(get_settings('razorpay_keys'));
                     <h4 class="header-title">
                         <p><?php echo get_phrase('system_currency_settings'); ?></p>
                     </h4>
-                    <form class="" action="<?php echo site_url('super_admin/payment_settings/system_currency'); ?>"
+                    <form class="" action="<?php echo site_url('Super_Admin/payment_settings/system_currency'); ?>"
                         method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label><?php echo get_phrase('system_currency'); ?></label>
@@ -80,7 +80,7 @@ $razorpay = json_decode(get_settings('razorpay_keys'));
                     <h4 class="header-title">
                         <p><?php echo get_phrase('setup_paypal_settings'); ?></p>
                     </h4>
-                    <form class="" action="<?php echo site_url('super_admin/payment_settings/paypal_settings'); ?>"
+                    <form class="" action="<?php echo site_url('Super_Admin/payment_settings/paypal_settings'); ?>"
                         method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label><?php echo get_phrase('active'); ?></label>
@@ -172,7 +172,7 @@ $razorpay = json_decode(get_settings('razorpay_keys'));
                     <h4 class="header-title">
                         <p><?php echo get_phrase('setup_stripe_settings'); ?></p>
                     </h4>
-                    <form class="" action="<?php echo site_url('super_admin/payment_settings/stripe_settings'); ?>"
+                    <form class="" action="<?php echo site_url('Super_Admin/payment_settings/stripe_settings'); ?>"
                         method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label><?php echo get_phrase('active'); ?></label>
@@ -252,7 +252,7 @@ $razorpay = json_decode(get_settings('razorpay_keys'));
                     <h4 class="header-title">
                         <p><?php echo get_phrase('setup_razorpay_settings'); ?></p>
                     </h4>
-                    <form class="" action="<?php echo site_url('super_admin/payment_settings/razorpay_settings'); ?>"
+                    <form class="" action="<?php echo site_url('Super_Admin/payment_settings/razorpay_settings'); ?>"
                         method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label><?php echo get_phrase('active'); ?></label>

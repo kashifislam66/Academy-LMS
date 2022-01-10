@@ -25,7 +25,7 @@ $sections = $this->crud_model->get_section('course', $param2)->result_array();
 </div>
 
 <!-- ACTUAL LESSON ADDING FORM -->
-<form action="<?php echo site_url('super_admin/lessons/'.$param2.'/add'); ?>" method="post"
+<form action="<?php echo site_url('Super_Admin/lessons/'.$param2.'/add'); ?>" method="post"
     enctype="multipart/form-data">
     <input type="hidden" name="course_id" value="<?php echo $param2; ?>">
     <div class="form-group">
@@ -85,7 +85,7 @@ function ajax_get_video_details(video_url) {
     $('#perloader').show();
     if (checkURLValidity(video_url)) {
         $.ajax({
-            url: '<?php echo site_url('super_admin/ajax_get_video_details');?>',
+            url: '<?php echo site_url('Super_Admin/ajax_get_video_details');?>',
             type: 'POST',
             data: {
                 video_url: video_url

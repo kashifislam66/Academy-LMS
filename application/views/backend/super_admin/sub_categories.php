@@ -18,7 +18,7 @@ $selected_category_details = $this->crud_model->get_categories($selected_categor
             <?php echo get_phrase('dashboard'); ?>
         </a>
     </li>
-    <li><a href="<?php echo site_url('super_admin/categories'); ?>"><?php echo get_phrase('categories'); ?></a> </li>
+    <li><a href="<?php echo site_url('Super_Admin/categories'); ?>"><?php echo get_phrase('categories'); ?></a> </li>
     <li><a href="#" class="active"><?php echo get_phrase('sub_categories'); ?></a> </li>
 </ol>
 <h2><i class="fa fa-arrow-circle-o-right"> </i>
@@ -30,7 +30,7 @@ $selected_category_details = $this->crud_model->get_categories($selected_categor
         <div class="panel panel-primary" data-collapsed="0">
             <div class="panel-body">
                 <div class="row">
-                    <form class="" action="<?php echo site_url('super_admin/sub_categories_by_category_id'); ?>"
+                    <form class="" action="<?php echo site_url('Super_Admin/sub_categories_by_category_id'); ?>"
                         method="post">
                         <div class="col-md-offset-3 col-md-5">
                             <select class="form-control select2" id="source" name="category_id"
@@ -48,7 +48,7 @@ $selected_category_details = $this->crud_model->get_categories($selected_categor
                                     class="fa fa-search"></i></button>
                         </div>
                         <div class="col-md-3">
-                            <a href="<?php echo site_url('super_admin/sub_category_form/add_sub_category'); ?>"
+                            <a href="<?php echo site_url('Super_Admin/sub_category_form/add_sub_category'); ?>"
                                 class="btn btn-lg btn-info" type="button" style="float: right; font-size: 13px;"><i
                                     class="fa fa-plus"></i> <?php echo get_phrase('add_sub_category'); ?></a>
                         </div>
@@ -78,14 +78,14 @@ $selected_category_details = $this->crud_model->get_categories($selected_categor
                                     <ul class="dropdown-menu dropdown-default" role="menu">
                                         <li>
                                             <a
-                                                href="<?php echo site_url('super_admin/sub_category_form/edit_sub_category/'.$sub_category['id']); ?>">
+                                                href="<?php echo site_url('Super_Admin/sub_category_form/edit_sub_category/'.$sub_category['id']); ?>">
                                                 <?php echo get_phrase('edit');?>
                                             </a>
                                         </li>
                                         <li class="divider"></li>
                                         <li>
                                             <a href="#"
-                                                onclick="confirm_modal('<?php echo site_url('super_admin/sub_categories/'.$selected_category_id.'/delete/'.$sub_category['id']); ?>');">
+                                                onclick="confirm_modal('<?php echo site_url('Super_Admin/sub_categories/'.$selected_category_id.'/delete/'.$sub_category['id']); ?>');">
                                                 <?php echo get_phrase('delete');?>
                                             </a>
                                         </li>

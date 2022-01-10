@@ -19,7 +19,7 @@
                         <h4 class="header-title my-1"><?php echo get_phrase('course_adding_form'); ?></h4>
                     </div>
                     <div class="col-md-6">
-                        <a href="<?php echo site_url('super_admin/courses'); ?>"
+                        <a href="<?php echo site_url('Super_Admin/courses'); ?>"
                             class="alignToTitle btn btn-outline-secondary btn-rounded btn-sm my-1"> <i
                                 class=" mdi mdi-keyboard-backspace"></i>
                             <?php echo get_phrase('back_to_course_list'); ?></a>
@@ -28,7 +28,7 @@
 
                 <div class="row">
                     <div class="col-xl-12">
-                        <form class="required-form" action="<?php echo site_url('super_admin/course_actions/add'); ?>"
+                        <form class="required-form" action="<?php echo site_url('Super_Admin/course_actions/add'); ?>"
                             method="post" enctype="multipart/form-data">
                             <div id="basicwizard">
 

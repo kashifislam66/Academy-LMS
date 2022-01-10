@@ -30,7 +30,7 @@
                     </h4>
 
                     <form class="required-form"
-                        action="<?php echo site_url('super_admin/social_login_settings/update'); ?>" method="post"
+                        action="<?php echo site_url('Super_Admin/social_login_settings/update'); ?>" method="post"
                         enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="smtp_protocol"><?php echo get_phrase('facebook_login'); ?><span

@@ -11,8 +11,8 @@ $stripeAmount = round($amount_to_pay*100, 2);
 
 define('STRIPE_API_KEY', $stripe_keys[0]['secret_live_key']);
 define('STRIPE_PUBLISHABLE_KEY', $stripe_keys[0]['public_live_key']);
-define('STRIPE_SUCCESS_URL', site_url('super_admin/stripe_payment/'.$payout_id));
-define('STRIPE_CANCEL_URL', site_url('super_admin/instructor_payout'));
+define('STRIPE_SUCCESS_URL', site_url('Super_Admin/stripe_payment/'.$payout_id));
+define('STRIPE_CANCEL_URL', site_url('Super_Admin/instructor_payout'));
 
 // Include Stripe PHP library
 require_once APPPATH.'libraries/Stripe/init.php';

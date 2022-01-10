@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <form class="ajaxForm" action="<?= site_url('super_admin/course_actions/add_shortcut'); ?>">
+        <form class="ajaxForm" action="<?= site_url('Super_Admin/course_actions/add_shortcut'); ?>">
             <?php if(addon_status('scorm_course')): ?>
             <div class="form-group">
                 <label for="course_type"><?php echo get_phrase('course_type'); ?></label>

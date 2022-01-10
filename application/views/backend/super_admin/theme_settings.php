@@ -9,7 +9,7 @@ $uninstalled_themes = $this->crud_model->get_uninstalled_themes();
     <i class="dripicons-information mr-2"></i>
     <strong><?php echo ucfirst(substr($uninstalled_theme, 0, -4)); ?></strong>
     <?php echo get_phrase('theme_is_showed_up') . '. ' . get_phrase('hit_the_install_button_for_installing'); ?>.
-    <a href="<?php echo site_url('super_admin/install_theme/' . $uninstalled_theme); ?>"
+    <a href="<?php echo site_url('Super_Admin/install_theme/' . $uninstalled_theme); ?>"
         class="btn btn-primary btn-rounded float-right"><?php echo get_phrase('install') . ' ' . ucfirst(substr($uninstalled_theme, 0, -4)) . ' ' . get_phrase('theme'); ?></a>
 </div>
 <?php endforeach; ?>
@@ -82,7 +82,7 @@ $uninstalled_themes = $this->crud_model->get_uninstalled_themes();
                                                     <a href="javascript::"
                                                         class="btn btn-icon btn-secondary float-right col-5" id=""
                                                         style="" style="margin-right:5px;"
-                                                        onclick="confirm_modal('<?php echo site_url('super_admin/theme_actions/remove/' . $installed_theme); ?>');">
+                                                        onclick="confirm_modal('<?php echo site_url('Super_Admin/theme_actions/remove/' . $installed_theme); ?>');">
                                                         <i class="mdi mdi-alert-octagram"></i>
                                                         <?php echo get_phrase('remove'); ?>
                                                     </a>
@@ -107,7 +107,7 @@ $uninstalled_themes = $this->crud_model->get_uninstalled_themes();
 <script type="text/javascript">
 function activate_theme(theme) {
     $.ajax({
-        url: '<?php echo site_url('super_admin/theme_actions/activate/'); ?>',
+        url: '<?php echo site_url('Super_Admin/theme_actions/activate/'); ?>',
         type: 'POST',
         data: {
             theme: theme

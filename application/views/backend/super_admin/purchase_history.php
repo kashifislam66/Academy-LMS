@@ -55,7 +55,7 @@
                                         <ul class="dropdown-menu">
                                             <li>
                                                 <a href="#"
-                                                    onclick="confirm_modal('<?php echo site_url('super_admin/purchase_history/delete/'.$purchase['id']); ?>');">
+                                                    onclick="confirm_modal('<?php echo site_url('Super_Admin/purchase_history/delete/'.$purchase['id']); ?>');">
                                                     <?php echo get_phrase('delete');?>
                                                 </a>
                                             </li>

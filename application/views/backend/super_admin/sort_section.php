@@ -83,7 +83,7 @@ function sort() {
 
     itemJSON = JSON.stringify(itemArray);
     $.ajax({
-        url: '<?php echo site_url('super_admin/ajax_sort_section/');?>',
+        url: '<?php echo site_url('Super_Admin/ajax_sort_section/');?>',
         type: 'POST',
         data: {
             itemJSON: itemJSON

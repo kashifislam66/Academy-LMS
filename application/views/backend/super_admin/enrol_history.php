@@ -17,7 +17,7 @@
                 <div class="row justify-content-md-center">
                     <div class="col-xl-6">
                         <form class="form-inline"
-                            action="<?php echo site_url('super_admin/enrol_history/filter_by_date_range') ?>"
+                            action="<?php echo site_url('Super_Admin/enrol_history/filter_by_date_range') ?>"
                             method="get">
                             <div class="col-xl-10">
                                 <div class="form-group">
@@ -66,12 +66,12 @@
                                     <small><?php echo get_phrase('email').': '.$user_data['email']; ?></small>
                                 </td>
                                 <td><strong><a
-                                            href="<?php echo site_url('super_admin/course_form/course_edit/'.$course_data['id']); ?>"
+                                            href="<?php echo site_url('Super_Admin/course_form/course_edit/'.$course_data['id']); ?>"
                                             target="_blank"><?php echo $course_data['title']; ?></a></strong></td>
                                 <td><?php echo date('D, d-M-Y', $enrol['date_added']); ?></td>
                                 <td>
                                     <button type="button" class="btn btn-outline-danger btn-icon btn-rounded btn-sm"
-                                        onclick="confirm_modal('<?php echo site_url('super_admin/enrol_history_delete/'.$enrol['id']); ?>');">
+                                        onclick="confirm_modal('<?php echo site_url('Super_Admin/enrol_history_delete/'.$enrol['id']); ?>');">
                                         <i class="dripicons-trash"></i> </button>
                                 </td>
                             </tr>

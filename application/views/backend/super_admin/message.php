@@ -16,7 +16,7 @@
 
                 <!-- compose new email button -->
                 <div class="mail-sidebar-row visible-xs">
-                    <a href="<?php echo site_url('super_admin/message/message_new');?>"
+                    <a href="<?php echo site_url('Super_Admin/message/message_new');?>"
                         class="btn btn-success btn-block">
                         <?php echo get_phrase('new_message');?>
                         <i class="mdi mdi-pencil float-right"></i>
@@ -45,7 +45,7 @@
                         ?>
                     <li class="nav-item">
                         <a class="text-left mb-1 btn btn-light d-block <?php if (isset($current_message_thread_code) && $current_message_thread_code == $row['message_thread_code'])echo 'active';?>"
-                            href="<?php echo site_url('super_admin/message/message_read/' . $row['message_thread_code']);?>">
+                            href="<?php echo site_url('Super_Admin/message/message_read/' . $row['message_thread_code']);?>">
 
                             <?php
                                     $user_details = $this->db->get_where('users' , array('id' => $user_to_show_id))->row_array();

@@ -16,7 +16,7 @@
                 <div class="col-lg-12">
                     <h4 class="mb-3 header-title"><?php echo get_phrase('smtp_settings');?></h4>
 
-                    <form class="required-form" action="<?php echo site_url('super_admin/smtp_settings/update'); ?>"
+                    <form class="required-form" action="<?php echo site_url('Super_Admin/smtp_settings/update'); ?>"
                         method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="smtp_protocol"><?php echo get_phrase('protocol'); ?> <small>(smtp or ssmtp or

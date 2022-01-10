@@ -37,7 +37,7 @@
             <div class="card-body p-0">
                 <div class="row no-gutters">
                     <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo site_url('super_admin/courses'); ?>" class="text-secondary">
+                        <a href="<?php echo site_url('Super_Admin/courses'); ?>" class="text-secondary">
                             <div class="card shadow-none m-0">
                                 <div class="card-body text-center">
                                     <i class="dripicons-archive text-muted" style="font-size: 24px;"></i>
@@ -49,7 +49,7 @@
                     </div>
 
                     <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo site_url('super_admin/courses'); ?>" class="text-secondary">
+                        <a href="<?php echo site_url('Super_Admin/courses'); ?>" class="text-secondary">
                             <div class="card shadow-none m-0 border-left">
                                 <div class="card-body text-center">
                                     <i class="dripicons-camcorder text-muted" style="font-size: 24px;"></i>
@@ -62,7 +62,7 @@
                     </div>
 
                     <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo site_url('super_admin/enrol_history'); ?>" class="text-secondary">
+                        <a href="<?php echo site_url('Super_Admin/enrol_history'); ?>" class="text-secondary">
                             <div class="card shadow-none m-0 border-left">
                                 <div class="card-body text-center">
                                     <i class="dripicons-network-3 text-muted" style="font-size: 24px;"></i>
@@ -75,7 +75,7 @@
                     </div>
 
                     <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo site_url('super_admin/users'); ?>" class="text-secondary">
+                        <a href="<?php echo site_url('Super_Admin/users'); ?>" class="text-secondary">
                             <div class="card shadow-none m-0 border-left">
                                 <div class="card-body text-center">
                                     <i class="dripicons-user-group text-muted" style="font-size: 24px;"></i>
@@ -123,7 +123,7 @@
         <div class="card" id='unpaid-instructor-revenue'>
             <div class="card-body">
                 <h4 class="header-title mb-3"><?php echo get_phrase('requested_withdrawal'); ?>
-                    <a href="<?php echo site_url('super_admin/instructor_payout'); ?>" class="alignToTitle"
+                    <a href="<?php echo site_url('Super_Admin/instructor_payout'); ?>" class="alignToTitle"
                         id="go-to-instructor-revenue"> <i class="mdi mdi-logout"></i> </a>
                 </h4>
                 <div class="table-responsive">

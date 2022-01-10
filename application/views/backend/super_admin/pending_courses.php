@@ -4,7 +4,7 @@
 
 <ol class="breadcrumb bc-3">
     <li>
-        <a href="<?php echo site_url('super_admin/dashboard'); ?>">
+        <a href="<?php echo site_url('Super_Admin/dashboard'); ?>">
             <i class="entypo-folder"></i>
             <?php echo get_phrase('dashboard'); ?>
         </a>
@@ -20,7 +20,7 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-4 col-md-offset-4">
-                        <a href="<?php echo site_url('super_admin/course_form/add_course'); ?>"
+                        <a href="<?php echo site_url('Super_Admin/course_form/add_course'); ?>"
                             class="btn btn-block btn-info btn-lg" type="button"><i
                                 class="fa fa-plus"></i>&nbsp;&nbsp;<?php echo get_phrase('add_course'); ?></a>
                     </div>
@@ -79,7 +79,7 @@
                                       $lessons = $this->crud_model->get_lessons('course', $course['id'])->result_array();
                                       foreach ($lessons as $lesson):?>
                                     <a
-                                        href="<?php echo site_url('super_admin/watch_video/'.slugify($lesson['title']).'/'.$lesson['id']); ?>">
+                                        href="<?php echo site_url('Super_Admin/watch_video/'.slugify($lesson['title']).'/'.$lesson['id']); ?>">
                                         <li><?php echo $lesson['title']; ?></li>
                                     </a>
                                     <?php endforeach; ?>
@@ -116,13 +116,13 @@
                                         </li>
 
                                         <li>
-                                            <a href="<?php echo site_url('super_admin/sections/'.$course['id']); ?>">
+                                            <a href="<?php echo site_url('Super_Admin/sections/'.$course['id']); ?>">
                                                 <?php echo get_phrase('manage_section');?>
                                             </a>
                                         </li>
 
                                         <li>
-                                            <a href="<?php echo site_url('super_admin/lessons/'.$course['id']); ?>">
+                                            <a href="<?php echo site_url('Super_Admin/lessons/'.$course['id']); ?>">
                                                 <?php echo get_phrase('manage_lesson');?>
                                             </a>
                                         </li>
@@ -135,7 +135,7 @@
                                             </a>
                                             <?php else: ?>
                                             <a href="#"
-                                                onclick="confirm_modal('<?php echo site_url();?>super_admin/change_course_status_for_admin/active/<?php echo $course['id'];?>', 'generic_confirmation');">
+                                                onclick="confirm_modal('<?php echo site_url();?>Super_Admin/change_course_status_for_admin/active/<?php echo $course['id'];?>', 'generic_confirmation');">
                                                 <?php echo get_phrase('mark_as_active');?>
                                             </a>
                                             <?php endif; ?>
@@ -143,7 +143,7 @@
 
                                         <li>
                                             <a
-                                                href="<?php echo site_url('super_admin/course_form/course_edit/'.$course['id']) ?>">
+                                                href="<?php echo site_url('Super_Admin/course_form/course_edit/'.$course['id']) ?>">
                                                 <?php echo get_phrase('edit');?>
                                             </a>
                                         </li>
@@ -151,7 +151,7 @@
                                         <li class="divider"></li>
                                         <li>
                                             <a href="#"
-                                                onclick="confirm_modal('<?php echo site_url('super_admin/course_actions/delete/'.$course['id']); ?>');">
+                                                onclick="confirm_modal('<?php echo site_url('Super_Admin/course_actions/delete/'.$course['id']); ?>');">
                                                 <?php echo get_phrase('delete');?>
                                             </a>
                                         </li>
@@ -175,7 +175,7 @@
 <script type="text/javascript">
 function ajax_get_sub_category(category_id) {
     $.ajax({
-        url: '<?php echo site_url('super_admin/ajax_get_sub_category/');?>' + category_id,
+        url: '<?php echo site_url('Super_Admin/ajax_get_sub_category/');?>' + category_id,
         success: function(response) {
             jQuery('#sub_category_id').html(response);
             console.log(response);

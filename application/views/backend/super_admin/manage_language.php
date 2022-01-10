@@ -83,12 +83,12 @@
                                     <tr>
                                         <td><?php echo ucwords($language);?></td>
                                         <td>
-                                            <a href="<?php echo site_url('super_admin/manage_language/edit_phrase/'.$language);?>"
+                                            <a href="<?php echo site_url('Super_Admin/manage_language/edit_phrase/'.$language);?>"
                                                 class="btn btn-info">
                                                 <?php echo get_phrase('edit_phrase');?>
                                             </a>
                                             <a href="javascript::"
-                                                onclick="confirm_modal('<?php echo site_url('super_admin/manage_language/delete_language/'.$language);?>')"
+                                                onclick="confirm_modal('<?php echo site_url('Super_Admin/manage_language/delete_language/'.$language);?>')"
                                                 class="btn btn-danger">
                                                 <?php echo get_phrase('delete_language');?>
                                             </a>
@@ -106,7 +106,7 @@
                     <div class="tab-pane" id="add" style="padding: 30px">
                         <div class="row">
                             <div class="col-xl-6">
-                                <form class="" action="<?php echo site_url('super_admin/manage_language/add_phrase') ?>"
+                                <form class="" action="<?php echo site_url('Super_Admin/manage_language/add_phrase') ?>"
                                     method="post">
                                     <div class="form-group mb-3">
                                         <label for="simpleinput"><?php echo get_phrase('add_new_phrase'); ?></label>
@@ -126,7 +126,7 @@
                         <div class="row">
                             <div class="col-xl-6">
                                 <form class=""
-                                    action="<?php echo site_url('super_admin/manage_language/add_language'); ?>"
+                                    action="<?php echo site_url('Super_Admin/manage_language/add_language'); ?>"
                                     method="post">
                                     <div class="form-group mb-3">
                                         <label for="language"><?php echo get_phrase('add_new_language'); ?></label>
@@ -153,7 +153,7 @@ function updatePhrase(key) {
     var currentEditingLanguage = '<?php echo $current_editing_language; ?>';
     $.ajax({
         type: "POST",
-        url: "<?php echo site_url('super_admin/update_phrase_with_ajax'); ?>",
+        url: "<?php echo site_url('Super_Admin/update_phrase_with_ajax'); ?>",
         data: {
             updatedValue: updatedValue,
             currentEditingLanguage: currentEditingLanguage,

@@ -1,4 +1,4 @@
-<form action="<?php echo site_url('super_admin/sections/'.$param2.'/add'); ?>" method="post">
+<form action="<?php echo site_url('Super_Admin/sections/'.$param2.'/add'); ?>" method="post">
     <div class="form-group">
         <label for="title"><?php echo get_phrase('title'); ?></label>
         <input class="form-control" type="text" name="title" id="title" required>

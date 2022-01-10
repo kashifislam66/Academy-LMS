@@ -17,7 +17,7 @@
                     <h4 class="mb-3 header-title"><?php echo get_phrase('system_settings');?></h4>
 
                     <form class="required-form"
-                        action="<?php echo site_url('super_admin/system_settings/system_update'); ?>" method="post"
+                        action="<?php echo site_url('Super_Admin/system_settings/system_update'); ?>" method="post"
                         enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="system_name"><?php echo get_phrase('website_name'); ?><span
