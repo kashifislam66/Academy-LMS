@@ -638,7 +638,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                       
                             <?php if (get_video_extension($course_details['video_url']) == 'mp4') : ?>
 
-<div class="player_timer_off plyr__video-embed" id="player">
+<div class="player_timer_off" id="player">
     <iframe height="500" width="790"
         src="<?php echo $course_details['video_url']; ?>?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
         allowfullscreen allowtransparency allow="autoplay"></iframe>
@@ -666,7 +666,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                             <?php elseif (get_video_extension($course_details['video_url']) == 'webm') : ?>
                                 <video
                             poster="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id']); ?>"
-                            id="player" class="player_timer_off" playsinline controls>
+                            id="player"  playsinline controls>
                             <source src="<?php echo $course_details['video_url']; ?>" type="video/webm">
                             </video>
                             <?php else : ?>
