@@ -654,8 +654,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                           
                                 playTimeout = setTimeout(function() {
                                     console.log("1");
-                                    $("#player").get(0).pause();
-                                    $("#player").get(0).currentTime = 0; // Restarts video
+                                   
                                 }, 3000); // 3 seconds in ms
                             });
 
