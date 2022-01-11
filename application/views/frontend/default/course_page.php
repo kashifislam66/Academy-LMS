@@ -650,7 +650,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                             <script>
                             var playTimeout;
 
-                            $(".player_timer_off").on("click", function(e) {
+                            $(".player_timer_off")..each(function(index) {
                                 console.log(playTimeout);
                                 playTimeout = setTimeout(function() {
                                     $("#player").get(0).pause();
