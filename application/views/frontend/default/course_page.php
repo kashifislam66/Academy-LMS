@@ -638,10 +638,9 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                       
                             <?php if (get_video_extension($course_details['video_url']) == 'mp4') : ?>
 
-<div id="player" class='player_timer_off'>
-    <iframe height="500" width="790"
-        src="<?php echo $course_details['video_url']; ?>?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
-        allowfullscreen allowtransparency allow="autoplay"></iframe>
+<div >
+    <iframe height="500" width="790" id="player" class='player_timer_off'
+        src="<?php echo $course_details['video_url']; ?>" allow="autoplay"></iframe>
 </div>
 
 <script src="<?php echo base_url(); ?>assets/global/plyr/plyr.js"></script>
@@ -654,7 +653,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                                 playTimeout = setTimeout(function() {
                                     $("#player").get(0).pause();
                                     $("#player").get(0).currentTime = 0; // Restarts video
-                                }, 60000); // 3 seconds in ms
+                                }, 3000); // 3 seconds in ms
                             });
 
 
