@@ -649,17 +649,23 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                             <script>
                             var playTimeout;
 
-                            $(".player_timer_off").on("timeupdate", function(e) {
+                            // $(".player_timer_off").on("timeupdate", function(e) {
+                            //     playTimeout = setTimeout(function() {
+                            //         $("#player").get(0).pause();
+                            //         $("#player").get(0).currentTime = 0; // Restarts video
+                            //     }, 3000); // 3 seconds in ms
+                            // });
+
+
+                            $('iframe[src*="<?php echo $course_details['video_url']; ?>"]').addClass("youtube-iframe");
+
                                 playTimeout = setTimeout(function() {
-                                    $("#player").get(0).pause();
-                                    $("#player").get(0).currentTime = 0; // Restarts video
-                                }, 3000); // 3 seconds in ms
-                            });
-
-
-                            $("#player").on("pause", function(e) {
-                                clearTimeout(playTimeout);
-                            });
+  // changes the iframe src to prevent playback or stop the video playback in our case
+  $('.youtube-iframe').each(function(index) {
+    $(this).attr('src', $(this).attr('src'));
+    return false;
+  });
+}, 3000); // 3 seconds in ms
                         
                             </script>
                             <?php elseif (get_video_extension($course_details['video_url']) == 'webm') : ?>
