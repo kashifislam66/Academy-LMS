@@ -638,7 +638,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                       
                             <?php if (get_video_extension($course_details['video_url']) == 'mp4') : ?>
 
-<div id="player" class="pp">
+<div id="player player_timer_off" class='player_timer_off'>
     <iframe height="500" width="790"
         src="<?php echo $course_details['video_url']; ?>?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
         allowfullscreen allowtransparency allow="autoplay"></iframe>
@@ -650,7 +650,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                             <script>
                             var playTimeout;
 
-                            $(".player_timer_off").on("timeupdate", function(e) {
+                            $("#player_timer_off").on("timeupdate", function(e) {
                                 playTimeout = setTimeout(function() {
                                     $("#player").get(0).pause();
                                     $("#player").get(0).currentTime = 0; // Restarts video
