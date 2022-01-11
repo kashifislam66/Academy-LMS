@@ -638,8 +638,8 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                       
                             <?php if (get_video_extension($course_details['video_url']) == 'mp4') : ?>
 
-<div class="player_timer_off" id="player">
-    <iframe height="500" width="500"
+<div class="player_timer_off plyr__video-embed" id="player">
+    <iframe height="500" width="700"
         src="<?php echo $course_details['video_url']; ?>?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
         allowfullscreen allowtransparency allow="autoplay"></iframe>
 </div>
