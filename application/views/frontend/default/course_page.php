@@ -655,9 +655,9 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                                 }, 60000); // 3 seconds in ms
                             });
                             var interval = setInterval(function() {
-                                var countForVideo = document.getElementById('player').readyState;
+                                var countForVideo = document.getElementById('vid').readyState;
                                 if (countForVideo == 4) {
-                                    document.getElementById('player').play();
+                                    document.getElementById('vid').play();
                                     clearInterval(interval);
                                 }
                             }, 2000);
