@@ -652,10 +652,13 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
 
 
                         <script>
-                        $('.player_timer_off').each(function() {
-                            this.contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}',
-                                '*')
-                        });
+                       $('#playButton').click(function(event) {
+   $('#theVideo').get(0).play();
+   setTimeout(function() {
+      $('#theVideo').get(0).pause();
+      $('#theVideo').get(0).currentTime = 0;
+   }, 3000);
+});
                         </script>
                         <?php elseif (get_video_extension($course_details['video_url']) == 'webm') : ?>
                         <video
