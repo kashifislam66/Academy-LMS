@@ -640,7 +640,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                             id="player" playsinline controls>
                             <?php if (get_video_extension($course_details['video_url']) == 'mp4') : ?>
                             
-                            <source  src="<?php echo $course_details['video_url']; ?>" type="video/mp4">
+                            <video  src="<?php echo $course_details['video_url']; ?>" > </video>
                             <script>
                             // var playTimeout;
 
