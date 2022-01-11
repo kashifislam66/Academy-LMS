@@ -662,8 +662,13 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                                 playTimeout = setTimeout(function() {
   // changes the iframe src to prevent playback or stop the video playback in our case
   $('.youtube-iframe').each(function(index) {
-    $("#playerr").get(0).pause();
-    $("#playerr").get(0).currentTime = 0; // Restarts video
+      console.log(this.currentTime);
+    if(this.currentTime >= 5 * 60) {
+        this.pause();
+        this.currentTime  = 0;
+    }
+    // $("#playerr").get(0).pause();
+    // $("#playerr").get(0).currentTime = 0; // Restarts video
 
     return false;
   });
