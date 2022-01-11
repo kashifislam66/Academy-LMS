@@ -642,16 +642,17 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
 
                         <?php if (get_video_extension($course_details['video_url']) == 'mp4') : ?>
 
-                       
+                        <div id="player">
                             <iframe height="500" width="790" class='player_timer_off'
-                                src="<?php echo $course_details['video_url']; ?>"
+                                src="<?php echo $course_details['video_url']; ?>?enablejsapi=1&version=3&playerapiid=ytplayer"
                                 allowfullscreen allowtransparency allow="autoplay"></iframe>
-         
+                        </div>
+
                         <script src="<?php echo base_url(); ?>assets/global/plyr/plyr.js"></script>
 
 
                         <script>
-                       $('.player_timer_off').click(function(event) {
+                       $('#playButton').click(function(event) {
    $('#theVideo').get(0).play();
    setTimeout(function() {
       $('#theVideo').get(0).pause();
