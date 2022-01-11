@@ -141,7 +141,7 @@
                         <span><?php echo get_phrase('my_account'); ?></span>
                     </a>
 
-                    <?php if (strtolower($this->session->userdata('role')) == 'super_admin'): ?>
+                    <?php if (strtolower($this->session->userdata('role')) == 'Super_Admin'): ?>
                     <!-- settings-->
                     <a href="<?php echo site_url($this->session->userdata('role').'/system_settings'); ?>"
                         class="dropdown-item notify-item">

@@ -1761,17 +1761,17 @@ redirect(site_url('login'), 'refresh');
 }
 
 // CHECK ACCESS PERMISSION
-check_permission('super_admin');
+check_permission('Super_Admin');
 
 if ($param1 == "add") {
 // CHECK ACCESS PERMISSION
-check_permission('super_admin');
+check_permission('Super_Admin');
 
 $this->user_model->add_user(false, true); // PROVIDING TRUE FOR INSTRUCTOR
 redirect(site_url('Super_Admin/admins'), 'refresh');
 } elseif ($param1 == "edit") {
 // CHECK ACCESS PERMISSION
-check_permission('super_admin');
+check_permission('Super_Admin');
 
 $this->user_model->edit_user($param2);
 redirect(site_url('Super_Admin/admins'), 'refresh');
@@ -1796,7 +1796,7 @@ redirect(site_url('login'), 'refresh');
 }
 if ($param1 == 'add_admin_form') {
 // CHECK ACCESS PERMISSION
-check_permission('super_admin');
+check_permission('Super_Admin');
 
 $page_data['page_name'] = 'admin_add';
 $page_data['page_title'] = get_phrase('admin_add');
@@ -1818,7 +1818,7 @@ if ($this->session->userdata('super_admin_login') != true) {
 redirect(site_url('login'), 'refresh');
 }
 // CHECK ACCESS PERMISSION
-check_permission('super_admin');
+check_permission('Super_Admin');
 
 if (!isset($_GET['permission_assing_to']) || empty($_GET['permission_assing_to'])) {
 $this->session->set_flashdata('error_message', get_phrase('you_have_select_an_admin_first'));
@@ -2026,23 +2026,23 @@ redirect(site_url('login'), 'refresh');
 }
 
 // CHECK ACCESS PERMISSION
-check_permission('super_admin');
+check_permission('Super_Admin');
 
 if ($param1 == "add") {
 // CHECK ACCESS PERMISSION
-check_permission('super_admin');
+check_permission('Super_Admin');
 
 $this->user_model->add_company(false, true); // PROVIDING TRUE FOR INSTRUCTOR
 redirect(site_url('Super_Admin/companies'), 'refresh');
 } elseif ($param1 == "edit") {
 // CHECK ACCESS PERMISSION
-check_permission('super_admin');
+check_permission('Super_Admin');
 $this->user_model->edit_company($param2);
 
 redirect(site_url('Super_Admin/companies'), 'refresh');
 } elseif ($param1 == "delete") {
 // CHECK ACCESS PERMISSION
-check_permission('super_admin');
+check_permission('Super_Admin');
 
 $this->user_model->delete_user($param2);
 redirect(site_url('Super_Admin/companies'), 'refresh');
@@ -2061,14 +2061,14 @@ redirect(site_url('login'), 'refresh');
 }
 if ($param1 == 'add_admin_form') {
 // CHECK ACCESS PERMISSION
-check_permission('super_admin');
+check_permission('Super_Admin');
 
 $page_data['page_name'] = 'company_add';
 $page_data['page_title'] = 'Add Company';
 $this->load->view('backend/index', $page_data);
 } elseif ($param1 == 'edit_admin_form') {
 // CHECK ACCESS PERMISSION
-check_permission('super_admin');
+check_permission('Super_Admin');
 $page_data['page_name'] = 'company_edit';
 $page_data['user_id'] = $param2;
 $page_data['page_title'] = 'Company Edit';

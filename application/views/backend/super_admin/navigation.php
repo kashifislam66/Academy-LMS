@@ -149,7 +149,7 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
                 <span class="menu-arrow"></span>
             </a>
             <ul class="side-nav-second-level" aria-expanded="false">
-                <?php if (has_permission('super_admin')) : ?>
+                <?php if (has_permission('Super_Admin')) : ?>
                 <li
                     class="side-nav-item <?php if ($page_name == 'admins' || $page_name == 'admin_add' || $page_name == 'admin_edit' || $page_name == 'admin_permission') : ?> active <?php endif; ?>">
                     <a href="javascript: void(0);"
