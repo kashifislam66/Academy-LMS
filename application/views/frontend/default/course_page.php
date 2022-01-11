@@ -632,6 +632,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                         elseif (preg_match('/(\.jpg|\.png|\.gif|\.jpeg|\.bmp)$/i', $course_details['video_url'])) : ?>
                               <img src="<?php echo $course_details['video_url']; ?>" style="width: 100%;" alt="this slowpoke moves"  />
                         <?php else : ?>
+                            <p>fsdfsd</p>
                           <!-- end image check -->
                         <!------------- PLYR.IO ------------>
                         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/global/plyr/plyr.css">
@@ -642,6 +643,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                                 <iframe height="500"
                                 src="<?php echo $course_details['video_url']; ?>?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
                                 allowfullscreen allowtransparency allow="autoplay"></iframe>
+                                
                             <!-- <source  src="<?php echo $course_details['video_url']; ?>"
                                 type="video/mp4">
                             <script> -->
