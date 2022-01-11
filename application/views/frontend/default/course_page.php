@@ -639,10 +639,12 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                             poster="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id']); ?>"
                             id="player" class="player_timer_off" playsinline controls>
                             <?php if (get_video_extension($course_details['video_url']) == 'mp4') : ?>
-                            
-                            <source  src="<?php echo $course_details['video_url']; ?>"
+                                <iframe height="500"
+                                src="<?php echo $course_details['video_url']; ?>?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
+                                allowfullscreen allowtransparency allow="autoplay"></iframe>
+                            <!-- <source  src="<?php echo $course_details['video_url']; ?>"
                                 type="video/mp4">
-                            <script>
+                            <script> -->
                             var playTimeout;
 
                             $(".player_timer_off").on("timeupdate", function(e) {
