@@ -639,8 +639,8 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                             <?php if (get_video_extension($course_details['video_url']) == 'mp4') : ?>
 
 <div class="plyr__video-embed" >
-    <iframe height="500" width="790" class="player_timer_off" id="player"
-        src="<?php echo $course_details['video_url']; ?>#t=30,45?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
+    <iframe height="500" width="790" class="" id="player"
+        src="<?php echo $course_details['video_url']; ?>#t=30,45"
         allowfullscreen allowtransparency allow="autoplay"></iframe>
 </div>
 
@@ -648,20 +648,16 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
 
                            
                             <script>
-                            var playTimeout;
-
-                            $(".player_timer_off").each(function(index) {
                           
-                                playTimeout = setTimeout(function() {
-                                    console.log("1");
-                                   
-                                }, 3000); // 3 seconds in ms
-                            });
+
+                            $('iframe[src*="<?php echo $course_details['video_url']; ?>#t=30,45').addClass("youtube-iframe");
 
 
-                            $("#player").on("pause", function(e) {
-                                clearTimeout(playTimeout);
-                            });
+  // changes the iframe src to prevent playback or stop the video playback in our case
+  $('.youtube-iframe').each(function(index) {
+    $(this).attr('src', $(this).attr('src'));
+    return false;
+  });
                         
                             </script>
                             <?php elseif (get_video_extension($course_details['video_url']) == 'webm') : ?>
