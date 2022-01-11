@@ -656,7 +656,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
    setTimeout(function() {
       $('#theVideo').get(0).pause();
       $('#theVideo').get(0).currentTime = 0;
-   }, 3000);
+   }, 300);
 });
                         </script>
                         <?php elseif (get_video_extension($course_details['video_url']) == 'webm') : ?>
