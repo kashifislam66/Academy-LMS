@@ -167,11 +167,14 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                                     <?php $lessons = $this->crud_model->get_lessons('section', $section['id'])->result_array();
                                     
                       foreach ($lessons as $lesson) :  ?>
-                      
-                                    <li class="lecture has-preview text-14px " <?php if ($this->session->userdata('user_login') != true && $this->session->userdata('super_admin_login') != true && $this->session->userdata('admin_login') != true && $this->session->userdata('manager_login') != true) { ?> style="pointer-events: none;"<?php } ?>>
-                                     
+
+                                    <li class="lecture has-preview text-14px "
+                                        <?php if ($this->session->userdata('user_login') != true && $this->session->userdata('super_admin_login') != true && $this->session->userdata('admin_login') != true && $this->session->userdata('manager_login') != true) { ?>
+                                        style="pointer-events: none;" <?php } ?>>
+
                                         <span
-                                            class="lecture-title <?php  if($lesson['is_free'] == 1) echo 'text-primary'; ?>"  <?php if($key != "0") { ?>style="pointer-events: none;" <?php } ?>
+                                            class="lecture-title <?php  if($lesson['is_free'] == 1) echo 'text-primary'; ?>"
+                                            <?php if($key != "0") { ?>style="pointer-events: none;" <?php } ?>
                                             onclick="go_course_playing_page('<?php echo $course_details['id']; ?>', '<?php echo $lesson['id']; ?>')"><?php  echo $lesson['title']; ?></span>
 
                                         <div class="lecture-info float-lg-end">
@@ -189,7 +192,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                                             </span>
                                         </div>
                                     </li>
-                                    
+
                                     <?php  endforeach; ?>
                                 </ul>
                             </div>
@@ -257,7 +260,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                                         <i class="far fa-user"></i>
                                         <?php echo $this->crud_model->enrol_history($other_realted_course['id'])->num_rows(); ?>
                                     </span>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -489,7 +492,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                     </div>
                     <?php endif; ?>
                     <div class="course-sidebar-text-box">
-                       
+
 
                         <?php if (is_purchased($course_details['id'])) : ?>
                         <div class="already_purchased">
@@ -526,10 +529,10 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                         </div>
                         <?php else : ?>
                         <div class="buy-btns">
-                           
-                                <a href="<?php echo site_url('home/get_enrolled/' . $course_details['id']); ?>"
+
+                            <a href="<?php echo site_url('home/get_enrolled/' . $course_details['id']); ?>"
                                 class="btn btn-buy-now"><?php echo site_phrase('enrolment_request'); ?></a>
-                            
+
                         </div>
                         <?php endif; ?>
                         <?php endif; ?>
@@ -558,7 +561,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                                 <?php endif; ?>
                                 <li><i class="far fa-compass"></i><?php echo site_phrase('full_lifetime_access'); ?>
                                 </li>
-                               
+
                             </ul>
                         </div>
                     </div>
@@ -628,51 +631,42 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                         </script>
                         <!------------- PLYR.IO ------------>
                         <!-- image check -->
-                      <?php 
+                        <?php 
                         elseif (preg_match('/(\.jpg|\.png|\.gif|\.jpeg|\.bmp)$/i', $course_details['video_url'])) : ?>
-                              <img src="<?php echo $course_details['video_url']; ?>" style="width: 100%;" alt="this slowpoke moves"  />
+                        <img src="<?php echo $course_details['video_url']; ?>" style="width: 100%;"
+                            alt="this slowpoke moves" />
                         <?php else : ?>
-                          <!-- end image check -->
+                        <!-- end image check -->
                         <!------------- PLYR.IO ------------>
                         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/global/plyr/plyr.css">
-                      
-                            <?php if (get_video_extension($course_details['video_url']) == 'mp4') : ?>
 
-<div id="player" >
-    <iframe height="500" width="790" class='player_timer_off'
-        src="<?php echo $course_details['video_url']; ?>"
-        allowfullscreen allowtransparency allow="autoplay"></iframe>
-</div>
+                        <?php if (get_video_extension($course_details['video_url']) == 'mp4') : ?>
 
-<script src="<?php echo base_url(); ?>assets/global/plyr/plyr.js"></script>
+                        <div id="player">
+                            <iframe height="500" width="790" class='player_timer_off'
+                                src="<?php echo $course_details['video_url']; ?>?enablejsapi=1&version=3&playerapiid=ytplayer"
+                                allowfullscreen allowtransparency allow="autoplay"></iframe>
+                        </div>
 
-                           
-                            <script>
-                            var playTimeout;
-
-                            $(".player_timer_off").on("timeupdate", function(e) {
-                                playTimeout = setTimeout(function() {
-                                    $("#player").get(0).pause();
-                                    $("#player").get(0).currentTime = 0; // Restarts video
-                                }, 60000); // 3 seconds in ms
-                            });
+                        <script src="<?php echo base_url(); ?>assets/global/plyr/plyr.js"></script>
 
 
-                            $("#player").on("pause", function(e) {
-                                clearTimeout(playTimeout);
-                            });
-                        
-                            </script>
-                            <?php elseif (get_video_extension($course_details['video_url']) == 'webm') : ?>
-                                <video
+                        <script>
+                        $('.player_timer_off').each(function() {
+                            this.contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}',
+                                '*')
+                        });
+                        </script>
+                        <?php elseif (get_video_extension($course_details['video_url']) == 'webm') : ?>
+                        <video
                             poster="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id']); ?>"
-                            id="player"  playsinline controls>
+                            id="player" playsinline controls>
                             <source src="<?php echo $course_details['video_url']; ?>" type="video/webm">
-                            </video>
-                            <?php else : ?>
-                            <h4><?php site_phrase('video_url_is_not_supported'); ?></h4>
-                            <?php endif; ?>
-                  
+                        </video>
+                        <?php else : ?>
+                        <h4><?php site_phrase('video_url_is_not_supported'); ?></h4>
+                        <?php endif; ?>
+
 
                         <style media="screen">
                         .plyr__video-wrapper {
@@ -790,7 +784,7 @@ function go_course_playing_page(course_id, lesson_id) {
         dataType: 'JSON',
         cache: false,
         success: function(response) {
-// console.log(response);
+            // console.log(response);
             if (response == 1) {
                 window.location.replace(course_playing_url);
             }
