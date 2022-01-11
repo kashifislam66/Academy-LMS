@@ -635,9 +635,9 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                           <!-- end image check -->
                         <!------------- PLYR.IO ------------>
                         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/global/plyr/plyr.css">
-                        <video
+                        <video 
                             poster="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id']); ?>"
-                            id="player" class="player_timer_off" playsinline controls>
+                            id="player" class="player_timer_off"  controls>
                             <?php if (get_video_extension($course_details['video_url']) == 'mp4') : ?>
                             
                             <source  src="<?php echo $course_details['video_url']; ?>" type="video/mp4">
