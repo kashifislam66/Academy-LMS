@@ -21,13 +21,13 @@
                 <h5 class="text-muted"><?php echo site_phrase('useful_links'); ?></h5>
                 <ul class="list-unstyled text-small">
                     <li class="mb-1"><a class="link-secondary footer-hover-link"
-                            href="<?php echo site_url('home/courses'); ?>"><?php echo site_phrase('all_courses'); ?> stooop</a>
+                            href="<?php echo site_url('home/courses'); ?>"><?php echo site_phrase('all_courses'); ?></a>
                     </li>
                     <li class="mb-1"><a class="link-secondary footer-hover-link"
-                            href="<?php echo site_url('home/sign_up'); ?>"><?php echo site_phrase('sign_up'); ?> stooop</a>
+                            href="<?php echo site_url('home/sign_up'); ?>"><?php echo site_phrase('sign_up'); ?></a>
                     </li>
                     <li class="mb-1"><a class="link-secondary footer-hover-link"
-                            href="<?php echo site_url('home/login'); ?>"><?php echo site_phrase('login'); ?> stooop</a></li>
+                            href="<?php echo site_url('home/login'); ?>"><?php echo site_phrase('login'); ?></a></li>
                 </ul>
             </div>
             <div class="col-6 col-sm-6 col-md-3">
