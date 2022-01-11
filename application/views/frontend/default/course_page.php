@@ -638,10 +638,21 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                         <video
                             poster="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id']); ?>"
                             id="player" class="player_timer_off" playsinline controls> -->
-                            <?php if (get_video_extension($course_details['video_url']) == 'mp4') : echo $course_details['video_url']; ?>
-                            
-                            <video class="player_timer_off" id="player"  src="<?php echo $course_details['video_url']; ?>"
-                                type="video/mp4">
+                            <?php if (get_video_extension($course_details['video_url']) == 'mp4') : ?>
+                                <link rel="stylesheet" href="<?php echo base_url(); ?>assets/global/plyr/plyr.css">
+
+<div class="plyr__video-embed player_timer_off" id="player">
+    <iframe height="500"
+        src="<?php echo $course_details['video_url']; ?>?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
+        allowfullscreen allowtransparency allow="autoplay"></iframe>
+</div>
+
+<script src="<?php echo base_url(); ?>assets/global/plyr/plyr.js"></script>
+<script>
+const player = new Plyr('#player');
+</script>
+                            <!-- <source  src="<?php echo $course_details['video_url']; ?>"
+                                type="video/mp4"> -->
                             <script>
                             var playTimeout;
 
