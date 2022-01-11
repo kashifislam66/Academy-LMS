@@ -640,7 +640,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
 
 <div class="plyr__video-embed" >
     <iframe height="500" width="790" class="player_timer_off" id="player"
-        src="<?php echo $course_details['video_url']; ?>?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
+        src="<?php echo $course_details['video_url']; ?>#t=30,45?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
         allowfullscreen allowtransparency allow="autoplay"></iframe>
 </div>
 
