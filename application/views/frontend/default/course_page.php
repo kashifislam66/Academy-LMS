@@ -632,19 +632,17 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                         elseif (preg_match('/(\.jpg|\.png|\.gif|\.jpeg|\.bmp)$/i', $course_details['video_url'])) : ?>
                               <img src="<?php echo $course_details['video_url']; ?>" style="width: 100%;" alt="this slowpoke moves"  />
                         <?php else : ?>
-                   
                           <!-- end image check -->
                         <!------------- PLYR.IO ------------>
                         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/global/plyr/plyr.css">
                         <video
                             poster="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id']); ?>"
                             id="player" class="player_timer_off" playsinline controls>
-                            <?php if (get_video_extension($course_details['video_url']) == 'mp4') : ?>
+                            <?php if (get_video_extension($course_details['video_url']) == 'mp4') : echo $course_details['video_url']; ?>
                             
-                                <video data-yt2html5="<?php echo $course_details['video_url']; ?>"></video>
-                            <!-- <source   src="<?php echo $course_details['video_url']; ?>"
-                                type="video/mp4"> -->
-                            <script> 
+                            <source  src="<?php echo $course_details['video_url']; ?>"
+                                type="video/mp4">
+                            <script>
                             var playTimeout;
 
                             $(".player_timer_off").on("timeupdate", function(e) {
