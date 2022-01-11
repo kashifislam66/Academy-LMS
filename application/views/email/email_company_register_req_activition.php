@@ -459,10 +459,10 @@
                                                 font-family: Muli,-apple-system,system-ui,helvetica,'helvetica neue'
                                                 ,ubuntu,roboto,noto,'segoe ui',arial,sans-serif;">Welcome to
                                                     GoSkillBoost LMS</h2>
-                                                <div
+                                                <!-- <div
                                                     style="font-family:Muli,-apple-system,system-ui,helvetica,'helvetica neue',ubuntu,roboto,noto,'segoe ui',arial,sans-serif;font-size:16px;font-style:normal;line-height:22px;text-align:left;color:#000000">
                                                     Hi Test, congratulations on joining GoSkillBoost LMS. Begin your
-                                                    learning journey by setting up your account.</div>
+                                                    learning journey by setting up your account.</div> -->
                                                 <br /><br />
                                                 <img src="<?= base_url('uploads/system/lms-logo.png'); ?>"
                                                     alt="Color logo - no background.png" width="213" height="136"
@@ -473,7 +473,7 @@
                                             <h2 style="font-size: 18px;">Hello Admin,</h2>
                                             <br>
                                             <p style="margin-bottom: 9px; margin-top:2px;">
-                                                <b style="cursor: pointer;">I requested to approve my account.</b>
+                                                <b style="cursor: pointer;">New form submitted</b>
                                             </p>
                                             <p style="margin-bottom: 9px; margin-top:2px;">Company Email:
                                                 <b style="cursor: pointer;"><?= $from; ?></b>
@@ -487,6 +487,9 @@
                                             <p style="margin-bottom: 9px; margin-top:2px;">Role:
                                                 <b style="cursor: pointer;"><?= $role_id; ?></b>
                                             </p>
+                                            <p style="margin-bottom: 9px; margin-top:2px;">Name:
+                                                <b style="cursor: pointer;"><?= $full_name; ?></b>
+                                            </p>
                                             <br>
                                             <p style="margin-bottom: 9px; margin-top:2px;"><b
                                                     style="cursor: pointer;">Thanks</b></p>
@@ -494,15 +497,15 @@
                                             <p style="margin-bottom: 9px; margin-top:2px;">regards
                                                 <b style="cursor: pointer;"><?= $full_name; ?></b>
                                             </p><br>
-                                            <hr style="border: 1px solid #efefef; margin-top: 50px;">
+                                            <!-- <hr style="border: 1px solid #efefef; margin-top: 50px;"> -->
                                             <br>
-                                            <div
+                                            <!-- <div
                                                 style="font-family:Muli,-apple-system,system-ui,helvetica,'helvetica neue',ubuntu,roboto,noto,'segoe ui',arial,sans-serif;font-size:16px;font-style:normal;line-height:22px;text-align:left;color:#000000">
                                                 Take the next step and achieve your learning goals with access
                                                 to
                                                 quality training content across a variety of topics that are
                                                 relevant to
-                                                you.</div>
+                                                you.</div> -->
                                             <br />
                                         </div>
                                     </td>
