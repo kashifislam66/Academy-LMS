@@ -639,7 +639,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                             <?php if (get_video_extension($course_details['video_url']) == 'mp4') : ?>
 
 <div >
-    <iframe height="500" width="790" id="player" class=""
+    <iframe height="500" width="790" id="playerr" class=""
         src="<?php echo $course_details['video_url']; ?>" allow="autoplay"></iframe>
 </div>
 
@@ -662,7 +662,9 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                                 playTimeout = setTimeout(function() {
   // changes the iframe src to prevent playback or stop the video playback in our case
   $('.youtube-iframe').each(function(index) {
-    $(this).attr('src', $(this).attr('src'));
+    $("#playerr").get(0).pause();
+    $("#playerr").get(0).currentTime = 0; // Restarts video
+
     return false;
   });
 }, 3000); // 3 seconds in ms
