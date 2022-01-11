@@ -644,7 +644,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
 
                         <div id="player">
                             <iframe height="500" width="790" class='player_timer_off'
-                                src="<?php echo $course_details['video_url']; ?>?enablejsapi=1&version=3&playerapiid=ytplayer"
+                                src="<?php echo $course_details['video_url']; ?>"
                                 allowfullscreen allowtransparency allow="autoplay"></iframe>
                         </div>
 
