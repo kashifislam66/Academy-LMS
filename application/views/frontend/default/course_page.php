@@ -634,13 +634,13 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                         <?php else : ?>
                           <!-- end image check -->
                         <!------------- PLYR.IO ------------>
-                        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/global/plyr/plyr.css">
+                        <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>assets/global/plyr/plyr.css">
                         <video
                             poster="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id']); ?>"
-                            id="player" class="player_timer_off" playsinline controls>
+                            id="player" class="player_timer_off" playsinline controls> -->
                             <?php if (get_video_extension($course_details['video_url']) == 'mp4') : echo $course_details['video_url']; ?>
                             
-                            <source  src="<?php echo $course_details['video_url']; ?>"
+                            <video class="player_timer_off" id="player"  src="<?php echo $course_details['video_url']; ?>"
                                 type="video/mp4">
                             <script>
                             var playTimeout;
@@ -664,7 +664,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                             <?php else : ?>
                             <h4><?php site_phrase('video_url_is_not_supported'); ?></h4>
                             <?php endif; ?>
-                        </video>
+                        <!-- </video> -->
 
                         <style media="screen">
                         .plyr__video-wrapper {
