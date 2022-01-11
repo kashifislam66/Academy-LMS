@@ -642,14 +642,14 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                             
                             <source  src="<?php echo $course_details['video_url']; ?>" type="video/mp4">
                             <script>
-                            var playTimeout;
+                            // var playTimeout;
 
-                            $(".player_timer_off").on("timeupdate", function(e) {
-                                playTimeout = setTimeout(function() {
-                                    $("#player").get(0).pause();
-                                    $("#player").get(0).currentTime = 0; // Restarts video
-                                }, 60000); // 3 seconds in ms
-                            });
+                            // $(".player_timer_off").on("timeupdate", function(e) {
+                            //     playTimeout = setTimeout(function() {
+                            //         $("#player").get(0).pause();
+                            //         $("#player").get(0).currentTime = 0; // Restarts video
+                            //     }, 60000); // 3 seconds in ms
+                            // });
 
 
                            
