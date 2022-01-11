@@ -157,27 +157,26 @@ class User_model extends CI_Model
             $this->session->set_flashdata('error_message', get_phrase('email_duplication'));
         } else {
             $data['first_name'] = html_escape($this->input->post('first_name'));
-            $data['last_name'] = html_escape($this->input->post('last_name'));
+            $data['last_name']  = html_escape($this->input->post('last_name'));
             $data['email'] = $email = html_escape($this->input->post('email'));
             $data['number_of_empolyes'] = $email = html_escape($this->input->post('number_of_empolyes'));
             $data['company_number'] = $email = html_escape($this->input->post('company_number'));
-            $data['company_id'] = html_escape($this->input->post('company_id'));
+            $data['company_id']     = html_escape($this->input->post('company_id'));
             $userPass = html_escape($this->input->post('password'));
-            $data['password'] =  sha1(html_escape($this->input->post('password')));
+            $data['password']       =  sha1(html_escape($this->input->post('password')));
             $social_link['facebook'] = html_escape($this->input->post('facebook_link'));
-            $social_link['twitter'] = html_escape($this->input->post('twitter_link'));
+            $social_link['twitter']  = html_escape($this->input->post('twitter_link'));
             $social_link['linkedin'] = html_escape($this->input->post('linkedin_link'));
             $data['social_links'] = json_encode($social_link);
             $data['biography'] = $this->input->post('biography');
-
-            $data['role_id']  = 3;
+            $data['role_id']   = 3;
             // echo "<pre>"; print_r($data['company_id']); exit;
 
             $data['date_added'] = strtotime(date("Y-m-d H:i:s"));
-            $data['wishlist'] = json_encode(array());
+            $data['wishlist']   = json_encode(array());
             $data['watch_history'] = json_encode(array());
             $data['status'] = 1;
-            $data['image'] = md5(rand(10000, 10000000));
+            $data['image']  = md5(rand(10000, 10000000));
 
             // Add paypal keys
             $paypal_info = array();
@@ -824,11 +823,12 @@ class User_model extends CI_Model
             $data['social_links'] = json_encode($social_link);
             $data['biography'] = $this->input->post('biography');
             $data['title'] = html_escape($this->input->post('title'));
+            // $data['role_id'] = html_escape($this->input->post('role_id'));
             $data['skills'] = html_escape($this->input->post('skills'));
             $data['number_of_empolyes'] = html_escape($this->input->post('number_of_empolyes'));
             $data['company_number'] = html_escape($this->input->post('company_number'));
             $data['last_modified'] = strtotime(date("Y-m-d H:i:s"));
-
+            $data['role_id']   = 3;
             if (isset($_FILES['user_image']) && $_FILES['user_image']['name'] != "") {
                 unlink('uploads/user_image/' . $this->db->get_where('users', array('id' => $user_id))->row('image') . '.jpg');
                 $data['image'] = md5(rand(10000, 10000000));

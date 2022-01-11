@@ -405,7 +405,8 @@ class Email_model extends CI_Model {
 		$email_data['full_name']       = $query['first_name'].' '.$query['last_name'];
 		$email_data['password']  	   = $new_password;
 		$email_data['status']  	       = $status;
-		$email_data['role']  	       = $role_id;
+		$email_data['role_id']  	   = $role_id;
+		
 		$email_template = $this->load->view('email/email_to_company_activited_by_system', $email_data, TRUE);
 		
 		 $this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from']); 

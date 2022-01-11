@@ -68,7 +68,7 @@
                 <div class="home-fact-box mr-md-auto mr-auto">
                     <i class="fa fa-clock float-start"></i>
                     <div class="text-box">
-                        <h4><?php echo site_phrase('lifetime_access'); ?></h4>
+                        <h4><?php echo site_phrase('Unlimited_access'); ?></h4>
                         <p><?php echo site_phrase('learn_on_your_schedule'); ?></p>
                     </div>
                 </div>
@@ -106,7 +106,7 @@
     <div class="container-lg">
         <div class="row">
             <div class="col">
-                <h3 class="course-carousel-title mb-4"><?php echo site_phrase('Feature_courses'); ?></h3>
+                <h3 class="course-carousel-title mb-4"><?php echo site_phrase('Trending_courses'); ?></h3>
 
                 <!-- page loader -->
                 <div class="animated-loader">
@@ -268,14 +268,14 @@
                                                 } ?>
                                     <a href="<?php echo $url; ?>" class="btn green radius-10"
                                         onclick="handleEnrolledButton()"><?php echo site_phrase('get_enrolled'); ?></a>
-                                  
-                                  
+
+
                                     <?php endif; ?>
                                     <button type="button"
                                         class="wishlist-btn <?php if ($this->crud_model->is_added_to_wishlist($top_course['id'])) echo 'active'; ?>"
                                         title="Add to wishlist" onclick="handleWishList(this)"
                                         id="<?php echo $top_course['id']; ?>"><i class="fas fa-heart"></i></button>
-                                   
+
 
                                 </div>
                             </div>
@@ -396,7 +396,7 @@
 
 
 
-                                       
+
                                     </div>
                                 </div>
                             </div>
@@ -457,14 +457,14 @@
                                                 } ?>
                                     <a href="<?php echo $url; ?>" class="btn green radius-10"
                                         onclick="handleEnrolledButton()"><?php echo site_phrase('get_enrolled'); ?></a>
-                                   
-                                   
+
+
                                     <?php endif; ?>
                                     <button type="button"
                                         class="wishlist-btn <?php if ($this->crud_model->is_added_to_wishlist($latest_course['id'])) echo 'active'; ?>"
                                         title="Add to wishlist" onclick="handleWishList(this)"
                                         id="<?php echo $latest_course['id']; ?>"><i class="fas fa-heart"></i></button>
-                                    
+
 
                                 </div>
                             </div>
@@ -476,13 +476,11 @@
         </div>
     </div>
 </section>
-
-
-<section class="featured-instructor">
+<!-- <section class="featured-instructor">
     <div class="container-lg">
         <div class="row">
             <div class="col">
-                <h3 class="text-center mb-5"><?php echo site_phrase('featured_instructor'); ?></h3>
+                <h3 class="text-center mb-5"><?php //echo site_phrase('featured_instructor'); ?></h3>
             </div>
         </div>
         <div class="row justify-content-center">
@@ -511,26 +509,26 @@
                                 <p class="text-12px fw-500 text-muted my-3">
                                     <?php echo ellipsis(strip_tags($top_instructor['biography']),100); ?></p>
 
-                                <!-- <?php $skills = explode(',', $top_instructor['skills']); ?>
+                                <?php $skills = explode(',', $top_instructor['skills']); ?>
                                     <?php foreach($skills as $skill): ?>
                                       <span class="badge badge-sub-warning text-12px my-1 py-2"><?php echo $skill; ?></span>
-                                    <?php endforeach; ?> -->
-                            </a>
+                                    <?php endforeach; ?>
+</a>
 
-                            <p class="top-instructor-arrow my-3">
-                                <span class="cursor-pointer" onclick="$('.top-istructor-slick .slick-prev').click();"><i
-                                        class="fas fa-angle-left"></i></span>
-                                <span class="cursor-pointer" onclick="$('.top-istructor-slick .slick-next').click();"><i
-                                        class="fas fa-angle-right"></i></span>
-                            </p>
-                        </div>
-                    </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<p class="top-instructor-arrow my-3">
+    <span class="cursor-pointer" onclick="$('.top-istructor-slick .slick-prev').click();"><i
+            class="fas fa-angle-left"></i></span>
+    <span class="cursor-pointer" onclick="$('.top-istructor-slick .slick-next').click();"><i
+            class="fas fa-angle-right"></i></span>
+</p>
+</div>
+</div>
+<?php endforeach; ?>
+</div>
+</div>
+</div>
+</div>
+</section> -->
 
 
 <div class="container-xl">
