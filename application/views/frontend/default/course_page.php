@@ -645,8 +645,8 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                                 allowfullscreen allowtransparency allow="autoplay"></iframe>
                                 
                             <!-- <source  src="<?php echo $course_details['video_url']; ?>"
-                                type="video/mp4">
-                            <script> -->
+                                type="video/mp4">-->
+                            <script> 
                             var playTimeout;
 
                             $(".player_timer_off").on("timeupdate", function(e) {
