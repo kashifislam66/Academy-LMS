@@ -640,8 +640,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                             id="player" class="player_timer_off" playsinline controls>
                             <?php if (get_video_extension($course_details['video_url']) == 'mp4') : ?>
 
-                                <!-- <video src="<?php echo $course_details['video_url']; ?>" type="video/mp4" preload="auto" autobuffer controls autoplay> -->
-
+                                <source src="video.mp4" type="video/mp4">
     <iframe height="500" width="790"
         src="<?php echo $course_details['video_url']; ?>?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
         allowfullscreen allowtransparency allow="autoplay"></iframe>
