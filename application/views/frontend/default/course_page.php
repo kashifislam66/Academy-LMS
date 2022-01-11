@@ -640,9 +640,8 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                             poster="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id']); ?>"
                             id="player" class="player_timer_off" playsinline controls>
                             <?php if (get_video_extension($course_details['video_url']) == 'mp4') : ?>
-                                <iframe height="500"
-                                src="<?php echo $course_details['video_url']; ?>"
-                                allowfullscreen ></iframe>
+                              
+                                <video controls="controls" class="video-stream" x-webkit-airplay="allow" data-youtube-id="N9oxmRT2YWw" src="<?php echo $course_details['video_url']; ?>?sparams=id%2Cexpire%2Cip%2Cipbits%2Citag%2Cratebypass%2Coc%3AU0hPRVRMVV9FSkNOOV9MRllD&amp;itag=43&amp;ipbits=0&amp;signature=D2BCBE2F115E68C5FF97673F1D797F3C3E3BFB99.59252109C7D2B995A8D51A461FF9A6264879948E&amp;sver=3&amp;ratebypass=yes&amp;expire=1300417200&amp;key=yt1&amp;ip=0.0.0.0&amp;id=37da319914f6616c"></video>
                                 
                             <!-- <source  src="<?php echo $course_details['video_url']; ?>"
                                 type="video/mp4">-->
