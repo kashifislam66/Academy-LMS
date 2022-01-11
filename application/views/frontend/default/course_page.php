@@ -635,18 +635,12 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                           <!-- end image check -->
                         <!------------- PLYR.IO ------------>
                         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/global/plyr/plyr.css">
-                      
+                        <video
+                            poster="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id']); ?>"
+                            id="player" class="player_timer_off" playsinline controls>
                             <?php if (get_video_extension($course_details['video_url']) == 'mp4') : ?>
-
-<div class="player_timer_off" id="player">
-    <source height="500" width="700"
-        src="<?php echo $course_details['video_url']; ?>?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
-        allowfullscreen allowtransparency allow="autoplay"></source>
-</div>
-
-<script src="<?php echo base_url(); ?>assets/global/plyr/plyr.js"></script>
-
-                           
+                            
+                            <source  src="<?php echo $course_details['video_url']; ?>" >
                             <script>
                             var playTimeout;
 
@@ -654,7 +648,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                                 playTimeout = setTimeout(function() {
                                     $("#player").get(0).pause();
                                     $("#player").get(0).currentTime = 0; // Restarts video
-                                }, 3000); // 3 seconds in ms
+                                }, 60000); // 3 seconds in ms
                             });
 
 
@@ -664,15 +658,12 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                         
                             </script>
                             <?php elseif (get_video_extension($course_details['video_url']) == 'webm') : ?>
-                                <video
-                            poster="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id']); ?>"
-                            id="player" class="player_timer_off" playsinline controls>
                             <source src="<?php echo $course_details['video_url']; ?>" type="video/webm">
-                            </video>
+                           
                             <?php else : ?>
                             <h4><?php site_phrase('video_url_is_not_supported'); ?></h4>
                             <?php endif; ?>
-                  
+                        </video>
 
                         <style media="screen">
                         .plyr__video-wrapper {
