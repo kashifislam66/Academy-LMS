@@ -73,6 +73,7 @@
                         <?php endif; ?>
 
                         <?php if($this->session->userdata('admin_login') && has_permission('student') || $this->session->userdata('super_admin_login') || $this->session->userdata('manager_login')): ?>
+                        <?php if(!$this->session->userdata('manager_login')) : ?>
                         <div class="col-6 p-0 border-right">
                             <a href="#" class="d-block text-center py-3 bg-hover-light"
                                 onclick="showAjaxModal('<?php echo site_url('modal/popup/shortcut_add_student'); ?>', '<?php echo get_phrase('add_student'); ?>')">
@@ -80,6 +81,7 @@
                                 <span class="w-100 d-block text-muted"><?= get_phrase('add_student'); ?></span>
                             </a>
                         </div>
+                        <?php endif ?>
                         <?php endif; ?>
 
                         <?php if($this->session->userdata('admin_login') && has_permission('enrolment') || $this->session->userdata('super_admin_login') || $this->session->userdata('manager_login')): ?>
