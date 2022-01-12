@@ -217,7 +217,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                                 <div class="item-image float-start  mt-4 mt-md-0">
                                     <a
                                         href="<?php echo site_url('home/course/' . slugify($other_realted_course['title']) . '/' . $other_realted_course['id']); ?>"><img
-                                            src="<?php $this->crud_model->get_course_thumbnail_url($other_realted_course['id']); ?>"
+                                            src="<?php $other_realted_course['thumbnail']; ?>"
                                             alt="" class="img-fluid"></a>
                                     <div class="item-duration">
                                         <b><?php echo $this->crud_model->get_total_duration_of_lesson_by_course_id($other_realted_course['id']); ?></b>
@@ -481,7 +481,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                     <?php if ($course_details['video_url'] != "") : ?>
                     <div class="preview-video-box">
                         <a data-bs-toggle="modal" data-bs-target="#CoursePreviewModal">
-                            <img src="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id']); ?>"
+                            <img src="<?php echo $course_details['thumbnail']; ?>"
                                 alt="" class="w-100">
                             <span class="preview-text"><?php echo site_phrase('preview_this_course'); ?></span>
                             <span class="play-btn"></span>
@@ -636,7 +636,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                         <!------------- PLYR.IO ------------>
                         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/global/plyr/plyr.css">
                         <video
-                            poster="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id']); ?>"
+                            poster="<?php echo $course_details['thumbnail']; ?>"
                             id="player" class="player_timer_off" playsinline controls>
                             <?php if (get_video_extension($course_details['video_url']) == 'mp4') : ?>
                             

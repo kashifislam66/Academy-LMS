@@ -68,7 +68,7 @@ foreach ($my_courses as $my_course) {
                         <a
                             href="<?php echo site_url('home/lesson/'.rawurlencode(slugify($course_details['title'])).'/'.$my_course['course_id']); ?>">
                             <div class="course-image">
-                                <img src="<?php echo $this->crud_model->get_course_thumbnail_url($my_course['course_id']); ?>"
+                                <img src="<?php echo $my_course['thumbnail']; ?>"
                                     alt="" class="img-fluid">
                                 <span class="play-btn"></span>
                             </div>
