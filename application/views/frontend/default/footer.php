@@ -78,7 +78,7 @@
         <div class="container-xl">
             <div class="row mt-3 py-1">
                 <div class="col-6 col-sm-6 col-md-3 text-muted text-13px"> Copyright
-                    &copy; 2021 <?php echo get_settings('system_name'); ?> -
+                    &copy; <?php echo get_settings('system_name'); ?> -
                     <?php echo 'All Rights Reserved'; ?>
                 </div>
 
