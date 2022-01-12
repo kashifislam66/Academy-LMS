@@ -476,7 +476,59 @@
         </div>
     </div>
 </section>
+<!-- <section class="featured-instructor">
+    <div class="container-lg">
+        <div class="row">
+            <div class="col">
+                <h3 class="text-center mb-5"><?php //echo site_phrase('featured_instructor'); ?></h3>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-9 col-lg-7 ">
+                <div class="animated-loader">
+                    <div class="spinner-border text-secondary" role="status"></div>
+                </div>
+                <div class="top-istructor-slick shown-after-loading" style="display: none;">
+                    <?php $top_instructor_ids = $this->crud_model->get_top_instructor(10); ?>
+                    <?php foreach($top_instructor_ids as $top_instructor_id): ?>
+                    <?php $top_instructor = $this->user_model->get_all_user($top_instructor_id['creator'])->row_array(); ?>
+                    <div class="d-sm-flex text-center text-md-start">
+                        <div class="top-instructor-img ms-auto me-auto">
+                            <a href="<?php echo site_url('home/instructor_page/'.$top_instructor['id']); ?>">
+                                <img src="<?php echo $this->user_model->get_user_image_url($top_instructor['id']); ?>"
+                                    width="100%">
+                            </a>
+                        </div>
+                        <div class="top-instructor-details">
+                            <a class="text-decoration-none"
+                                href="<?php echo site_url('home/instructor_page/'.$top_instructor['id']); ?>">
+                                <h4 class="mb-1 fw-700">
+                                    <?php echo $top_instructor['first_name'].' '.$top_instructor['last_name']; ?></h4>
+                                <span
+                                    class="fw-500 text-muted text-14px"><?php echo ellipsis($top_instructor['title'], 60); ?></span>
+                                <p class="text-12px fw-500 text-muted my-3">
+                                    <?php echo ellipsis(strip_tags($top_instructor['biography']),100); ?></p>
 
+                                <?php $skills = explode(',', $top_instructor['skills']); ?>
+                                    <?php foreach($skills as $skill): ?>
+                                      <span class="badge badge-sub-warning text-12px my-1 py-2"><?php echo $skill; ?></span>
+                                    <?php endforeach; ?>
+</a>
+
+<p class="top-instructor-arrow my-3">
+    <span class="cursor-pointer" onclick="$('.top-istructor-slick .slick-prev').click();"><i
+            class="fas fa-angle-left"></i></span>
+    <span class="cursor-pointer" onclick="$('.top-istructor-slick .slick-next').click();"><i
+            class="fas fa-angle-right"></i></span>
+</p>
+</div>
+</div>
+<?php endforeach; ?>
+</div>
+</div>
+</div>
+</div>
+</section> -->
 
 
 <div class="container-xl">
@@ -491,29 +543,14 @@
             <div class="become-user-label text-center mt-3">
                 <h3 class="pb-4"><?php echo 'Current Users - Login'; ?></h3>
                 <?php if ($this->session->userdata('admin_login')): ?>
-                    <div class="instructor-box menu-icon-box ms-auto">
-                        <div class="icon">
                             <a href="<?php echo site_url('admin'); ?>"
-                                style="border: 1px solid transparent; margin: 0px; font-size: 14px; width: max-content; border-radius: 5px; max-height: 40px; line-height: 40px; padding: 0px 10px;"><?php echo 'Manage Account'; ?></a>
-                        </div>
-                    </div>
-          
+                                style="border: 1px solid transparent; margin: 0px; font-size: 14px; width: max-content; border-radius: 5px; "><?php echo 'Manage Account'; ?></a>
                     <?php elseif ($this->session->userdata('super_admin_login')): ?>
-                    <div class="instructor-box menu-icon-box ms-auto">
-                        <div class="icon">
                             <a href="<?php echo site_url('Super_Admin'); ?>"
-                                style="border: 1px solid transparent; margin: 0px; font-size: 14px; width: max-content; border-radius: 5px; max-height: 40px; line-height: 40px; padding: 0px 10px;"><?php echo 'Super Admin'; ?></a>
-                        </div>
-                    </div>
+                                style="border: 1px solid transparent; margin: 0px; font-size: 14px; width: max-content; border-radius: 5px;"><?php echo 'Super Admin'; ?></a>
                     <?php elseif ($this->session->userdata('manager_login')): ?>
-                    <div class="instructor-box menu-icon-box ms-auto">
-                        <div class="icon">
                             <a href="<?php echo site_url('manager'); ?>"
-                                style="border: 1px solid transparent; margin: 0px; font-size: 14px; width: max-content; border-radius: 5px; max-height: 40px; line-height: 40px; padding: 0px 10px;"><?php echo 'Manage Account'; ?></a>
-                        </div>
-                    </div>
-                <!-- <a
-                    href="<?php //echo site_url('user/become_an_instructor'); ?>"><?php echo site_phrase('join_now'); ?></a> -->
+                            style="border: 1px solid transparent; margin: 0px; font-size: 14px; width: max-content; border-radius: 5px;"><?php echo 'Manage Account'; ?></a>
                 <?php else: ?>
                 <a href="<?php echo site_url('home/sign_up'); ?>"><?php echo site_phrase('Login'); ?></a>
                 <?php endif; ?>

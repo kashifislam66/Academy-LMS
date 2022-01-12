@@ -344,14 +344,14 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
         </li>
         <?php endif; ?>
 
-        <?php if (has_permission('catalague')) : ?>
+        <?php /* if (has_permission('catalague')) : ?>
         <li class="side-nav-item">
             <a href="<?php echo site_url('Super_Admin/get_catalague'); ?>" class="side-nav-link">
                 <i class="dripicons-brush"></i>
                 <span><?php echo "Catalague"; ?></span>
             </a>
         </li>
-        <?php endif; ?>
+        <?php endif; */ ?>
 
         <?php if (has_permission('settings')) : ?>
         <li
