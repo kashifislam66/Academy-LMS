@@ -1852,7 +1852,7 @@ class Crud_model extends CI_Model
             ->select("course.*")
             ->from ("course")
             ->join('rating', 'rating.ratable_id = course.id')
-            ->order_by("course.id", "desc")
+            // ->order_by("course.id", "desc")
             ->limit('10')
             ->where('rating', 5)
             ->where('status', 'active')
@@ -1872,7 +1872,7 @@ class Crud_model extends CI_Model
         if (addon_status('scorm_course')) {
             $this->db->where('course_type', 'general');
         }
-        $this->db->order_by("id", "desc");
+        // $this->db->order_by("id", "desc");
         $this->db->limit('10');
         $this->db->where('status', 'active');
         $this->db->where('future_course', '1');

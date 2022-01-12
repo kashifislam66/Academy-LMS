@@ -15,6 +15,7 @@
 
                         <?php
                         $current_user = $this->session->userdata('user_id');
+                        // echo $current_user; exit;
                         $this->db->where('sender', $current_user);
                         $this->db->or_where('receiver', $current_user);
                         $message_threads = $this->db->get('message_thread')->result_array();
@@ -27,6 +28,7 @@
                             $user_to_show_id = $row['sender'];
 
                             $last_messages_details =  $this->crud_model->get_last_message_by_message_thread_code($row['message_thread_code'])->row_array();
+                            // echo $last_messages_details; exit;
                             ?>
                             <a href="<?php echo site_url('home/my_messages/read_message/'.$row['message_thread_code']); ?>">
                                 <li>
@@ -38,7 +40,7 @@
                                                 </div>
                                                 <div class="sender-name d-inline-block">
                                                     <?php
-                                                    $user_to_show_details = $this->user_model->get_all_user($user_to_show_id)->row_array();
+                                                    $user_to_show_details = $this->user_model->get_all_user($user_to_show_id)->row_array();  
                                                     echo $user_to_show_details['first_name'].' '.$user_to_show_details['last_name'];
                                                     ?>
                                                 </div>

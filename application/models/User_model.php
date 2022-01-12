@@ -68,7 +68,8 @@ class User_model extends CI_Model
     }
 
     public function add_user($is_instructor = false, $is_admin = false)
-    {
+    {   
+     
         $validity = $this->check_duplication('on_create', $this->input->post('email'));
         if ($validity == false) {
             $this->session->set_flashdata('error_message', get_phrase('email_duplication'));

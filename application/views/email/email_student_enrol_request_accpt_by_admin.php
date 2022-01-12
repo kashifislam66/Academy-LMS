@@ -459,10 +459,6 @@
                                                 font-family: Muli,-apple-system,system-ui,helvetica,'helvetica neue'
                                                 ,ubuntu,roboto,noto,'segoe ui',arial,sans-serif;">Welcome to
                                                     GoSkillBoost LMS</h2>
-                                                <div
-                                                    style="font-family:Muli,-apple-system,system-ui,helvetica,'helvetica neue',ubuntu,roboto,noto,'segoe ui',arial,sans-serif;font-size:16px;font-style:normal;line-height:22px;text-align:left;color:#000000">
-                                                    Hi Test, congratulations on joining GoSkillBoost LMS. Begin your
-                                                    learning journey by setting up your account.</div>
                                                 <br /><br />
                                                 <img src="<?= base_url('uploads/system/lms-logo.png'); ?>"
                                                     alt="Color logo - no background.png" width="213" height="136"

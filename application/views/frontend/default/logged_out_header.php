@@ -23,11 +23,17 @@
                 </div>
             </form>
 
+            <div class="cart-box menu-icon-box ms-auto" id="cart_items">
+                <?php include 'cart_items.php'; ?>
+            </div>
+
+            <span class="signin-box-move-desktop-helper"></span>
+            <div class="sign-in-box btn-group">
             <?php if ($this->session->userdata('admin_login')): ?>
             <div class="instructor-box menu-icon-box ms-auto">
                 <div class="icon">
                     <a href="<?php echo site_url('admin'); ?>"
-                        style="border: 1px solid transparent; margin: 0px; font-size: 14px; width: max-content; border-radius: 5px; max-height: 40px; line-height: 40px; padding: 0px 10px;"><?php echo site_phrase('administrator'); ?></a>
+                        style="border: 1px solid transparent; margin: 0px; font-size: 14px; width: max-content; border-radius: 5px; max-height: 40px; line-height: 40px; padding: 0px 10px;"><?php echo 'Manage Account'; ?></a>
                 </div>
             </div>
             <?php endif; ?>
@@ -43,21 +49,14 @@
             <div class="instructor-box menu-icon-box ms-auto">
                 <div class="icon">
                     <a href="<?php echo site_url('manager'); ?>"
-                        style="border: 1px solid transparent; margin: 0px; font-size: 14px; width: max-content; border-radius: 5px; max-height: 40px; line-height: 40px; padding: 0px 10px;"><?php echo 'Manager'; ?></a>
+                        style="border: 1px solid transparent; margin: 0px; font-size: 14px; width: max-content; border-radius: 5px; max-height: 40px; line-height: 40px; padding: 0px 10px;"><?php echo 'Manage Account'; ?></a>
                 </div>
             </div>
             <?php endif; ?>
-
-            <div class="cart-box menu-icon-box ms-auto" id="cart_items">
-                <?php include 'cart_items.php'; ?>
-            </div>
-
-            <span class="signin-box-move-desktop-helper"></span>
-            <div class="sign-in-box btn-group">
-
+            <?php if (!$this->session->userdata('super_admin_login') && !$this->session->userdata('admin_login') && !$this->session->userdata('manager_login')): ?>
                 <a href="<?php echo site_url('home/login'); ?>"
                     class="btn btn-sign-in"><?php echo site_phrase('log_in'); ?></a>
-
+            <?php endif; ?>
                 <a href="<?php echo site_url('home/sign_up'); ?>"
                     class="btn btn-sign-up"><?php echo site_phrase('Contact_us'); ?></a>
 

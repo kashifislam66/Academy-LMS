@@ -182,10 +182,11 @@ class Super_Admin extends CI_Controller
 
     public function users($param1 = "", $param2 = "")
     {
-        if ($this->session->userdata('Super_Admin_login') != true) {
+        
+        if ($this->session->userdata('super_admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
-
+        //echo "<pre>"; print_r($_POST); exit;
         // CHECK ACCESS PERMISSION
         check_permission('user');
         check_permission('student');

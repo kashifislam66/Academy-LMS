@@ -443,7 +443,7 @@ class Email_model extends CI_Model {
 			->where('enrol.user_id', $userId);
 			$query = $this->db->get('enrol')->row_array();
 	
-			$email_data['subject']      = "Learner is enrolled in a course";
+			$email_data['subject']      = "You have been enrolled in a course";
 			$email_data['from']		    = get_settings('system_email');
 			$email_data['to'] 		    = $query['email'];
 			$email_data['full_name']    = $query['first_name'].' '.$query['last_name'];
@@ -465,7 +465,7 @@ class Email_model extends CI_Model {
 		$query = $this->db->get('enrolment_request')->result_array();
 		$student_req = $query[0];
 		//   echo "<pre>"; print_r($student_req); exit;
-		$email_data['subject']      = "Learner is enrolled in a course";
+		$email_data['subject']      = "You have been enrolled in a course";
 		$email_data['from']		    = get_settings('system_email');
 		$email_data['to'] 		    = $student_req['email'];
 		$email_data['full_name']    = $student_req['first_name'].' '.$student_req['last_name'];
@@ -486,7 +486,7 @@ class Email_model extends CI_Model {
 		  ->where('enrol.user_id', $user_id);
 		  $query = $this->db->get('enrol')->row_array();
   
-		  $email_data['subject']      = "Learner is enrolled in a course";
+		  $email_data['subject']      = "You have been enrolled in a course";
 		  $email_data['from']		  = get_settings('system_email');
 		  $email_data['to'] 		  = $query['email'];
 		  $email_data['full_name']    = $query['first_name'].' '.$query['last_name'];
