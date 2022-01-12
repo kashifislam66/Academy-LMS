@@ -7,7 +7,7 @@
                 <div class="course-box">
                     <a href="<?php echo site_url('home/lesson/'.rawurlencode(slugify($course_details['title'])).'/'.$my_course['id']); ?>">
                         <div class="course-image">
-                            <img src="<?php echo $this->crud_model->get_course_thumbnail_url($my_course['id']); ?>" alt="" class="img-fluid">
+                            <img src="<?php echo $course_details['thumbnail']; ?>" alt="" class="img-fluid">
                             <span class="play-btn"></span>
                         </div>
                     </a>

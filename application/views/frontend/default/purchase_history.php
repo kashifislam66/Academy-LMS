@@ -30,7 +30,7 @@ $purchase_history = $this->db->get('payment',$per_page, $this->uri->segment(3));
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="purchase-history-course-img">
-                                            <img src="<?php echo $this->crud_model->get_course_thumbnail_url($each_purchase['course_id']);?>" class="img-fluid">
+                                            <img src="<?php echo $course_details['thumbnail'];?>" class="img-fluid">
                                         </div>
                                         <a class="purchase-history-course-title" href="<?php echo site_url('home/course/'.slugify($course_details['title']).'/'.$course_details['id']); ?>" >
                                             <?php

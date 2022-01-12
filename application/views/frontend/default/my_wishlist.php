@@ -23,7 +23,7 @@
                     <div class="course-box-wrap">
                         <div class="course-box">
                             <div class="course-image">
-                                <a href="<?php echo site_url('home/course/' . rawurlencode(slugify($my_course['title'])) . '/' . $my_course['id']); ?>"><img src="<?php echo $this->crud_model->get_course_thumbnail_url($my_course['id']); ?>" alt="" class="img-fluid"></a>
+                                <a href="<?php echo site_url('home/course/' . rawurlencode(slugify($my_course['title'])) . '/' . $my_course['id']); ?>"><img src="<?php echo $my_course['thumbnail']; ?>" alt="" class="img-fluid"></a>
                                 <div class="instructor-img-hover">
                                     <a href="<?php echo site_url('home/instructor_page/' . $instructor_details['id']); ?>"><img src="<?php echo $this->user_model->get_user_image_url($instructor_details['id']); ?>" alt=""></a>
                                     <span>

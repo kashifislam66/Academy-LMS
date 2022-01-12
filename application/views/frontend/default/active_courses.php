@@ -7,7 +7,7 @@
             <div class="course-box-wrap">
                     <div class="course-box">
                         <div class="course-image">
-                            <img src="<?php echo $this->crud_model->get_course_thumbnail_url($my_course['id']); ?>" alt="" class="img-fluid">
+                            <img src="<?php echo $course_details['thumbnail']; ?>" alt="" class="img-fluid">
                         </div>
                         <div class="course-details">
                             <a href="<?php echo site_url('home/course/'.slugify($course_details['title']).'/'.$my_course['id']); ?>"><h5 class="title"><?php echo $course_details['title']; ?></h5></a>

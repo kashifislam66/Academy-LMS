@@ -29,7 +29,7 @@
 	<!--Social sharing content-->
 	<?php if($page_name == "course_page"): ?>
 		<meta property="og:title" content="<?php echo $title['title']; ?>" />
-		<meta property="og:image" content="<?php echo $this->crud_model->get_course_thumbnail_url($course_id); ?>">
+		<meta property="og:image" content="<?php echo  $course_details['thumbnail'] ?>">
 	<?php else: ?>
 		<meta property="og:title" content="<?php echo $page_title; ?>" />
 		<meta property="og:image" content="<?= base_url("uploads/system/".get_frontend_settings('banner_image')); ?>">

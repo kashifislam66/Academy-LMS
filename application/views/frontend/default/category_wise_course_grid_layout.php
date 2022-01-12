@@ -8,7 +8,7 @@
                 <a onclick="$(location).attr('href', '<?php echo site_url('home/course/' . rawurlencode(slugify($course['title'])) . '/' . $course['id']); ?>');" href="javascript:;" class="has-popover">
                     <div class="course-box">
                         <div class="course-image">
-                            <img src="<?php echo $this->crud_model->get_course_thumbnail_url($course['id']); ?>" alt="" class="img-fluid">
+                            <img src="<?php echo $course['thumbnail']; ?>" alt="" class="img-fluid">
                         </div>
                         <div class="course-details">
                             <h5 class="title"><?php echo $course['title']; ?></h5>

@@ -127,7 +127,7 @@
                             class="has-popover">
                             <div class="course-box">
                                 <div class="course-image">
-                                    <img src="<?php echo $this->crud_model->get_course_thumbnail_url($top_course['id']); ?>"
+                                    <img src="<?php echo $top_course['thumbnail']; ?>"
                                         alt="" class="img-fluid">
                                 </div>
                                 <div class="course-details">
@@ -315,7 +315,7 @@
                             class="has-popover">
                             <div class="course-box">
                                 <div class="course-image">
-                                    <img src="<?php echo $this->crud_model->get_course_thumbnail_url($latest_course['id']); ?>"
+                                    <img src="<?php echo $latest_course['thumbnail']; ?>"
                                         alt="" class="img-fluid">
                                 </div>
                                 <div class="course-details">
