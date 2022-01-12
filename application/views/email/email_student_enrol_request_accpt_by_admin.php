@@ -460,7 +460,7 @@
                                                 ,ubuntu,roboto,noto,'segoe ui',arial,sans-serif;">Welcome to
                                                     GoSkillBoost LMS</h2>
                                                 <br /><br />
-                                                <img src="<?= base_url('uploads/system/lms-logo.png'); ?>"
+                                                <img src="<?= base_url('uploads/system/').get_frontend_settings('dark_logo'); ?>" style="width: 200px;"
                                                     alt="Color logo - no background.png" width="213" height="136"
                                                     style="margin-right:0px" data-image-whitelisted=""
                                                     class="CToWUd a6T" tabindex="0">
