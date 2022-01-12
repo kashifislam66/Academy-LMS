@@ -13,7 +13,7 @@
                 </a>
             </li>
             <li class="breadcrumb-item active text-light display-6 fw-bold">
-                <?php echo site_phrase('refund_policy'); ?>
+                <?php echo 'Why Choose GoSkillBoost'; ?>
             </li>
           </ol>
         </nav>

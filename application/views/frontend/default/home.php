@@ -541,10 +541,33 @@
         </div>
         <div class="col-md-6">
             <div class="become-user-label text-center mt-3">
-                <h3 class="pb-4"><?php echo site_phrase('become_instructor'); ?></h3>
-                <?php if($this->session->userdata('user_id')): ?>
-                <a
-                    href="<?php echo site_url('user/become_an_instructor'); ?>"><?php echo site_phrase('join_now'); ?></a>
+   
+                <h3 class="pb-4"><?php echo site_phrase('Current_user_login'); ?></h3>
+                <?php if ($this->session->userdata('admin_login')): ?>
+                    <div class="instructor-box menu-icon-box ms-auto">
+                        <div class="icon">
+                            <a href="<?php echo site_url('admin'); ?>"
+                                style="border: 1px solid transparent; margin: 0px; font-size: 14px; width: max-content; border-radius: 5px; max-height: 40px; line-height: 40px; padding: 0px 10px;"><?php echo 'Manage Account'; ?></a>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                    <?php if ($this->session->userdata('super_admin_login')): ?>
+                    <div class="instructor-box menu-icon-box ms-auto">
+                        <div class="icon">
+                            <a href="<?php echo site_url('Super_Admin'); ?>"
+                                style="border: 1px solid transparent; margin: 0px; font-size: 14px; width: max-content; border-radius: 5px; max-height: 40px; line-height: 40px; padding: 0px 10px;"><?php echo 'Super Admin'; ?></a>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                    <?php if ($this->session->userdata('manager_login')): ?>
+                    <div class="instructor-box menu-icon-box ms-auto">
+                        <div class="icon">
+                            <a href="<?php echo site_url('manager'); ?>"
+                                style="border: 1px solid transparent; margin: 0px; font-size: 14px; width: max-content; border-radius: 5px; max-height: 40px; line-height: 40px; padding: 0px 10px;"><?php echo 'Manage Account'; ?></a>
+                        </div>
+                    </div>
+                <!-- <a
+                    href="<?php //echo site_url('user/become_an_instructor'); ?>"><?php echo site_phrase('join_now'); ?></a> -->
                 <?php else: ?>
                 <a href="<?php echo site_url('home/sign_up'); ?>"><?php echo site_phrase('join_now'); ?></a>
                 <?php endif; ?>

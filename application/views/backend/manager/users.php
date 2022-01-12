@@ -4,9 +4,9 @@
             <div class="card-body">
                 <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i>
                     <?php echo $page_title; ?>
-                    <a href="<?php echo site_url('manager/user_form/add_user_form'); ?>"
+                    <!-- <a href="<?php echo site_url('manager/user_form/add_user_form'); ?>"
                         class="btn btn-outline-primary btn-rounded alignToTitle"><i
-                            class="mdi mdi-plus"></i><?php echo get_phrase('add_student'); ?></a>
+                            class="mdi mdi-plus"></i><?php echo get_phrase('add_student'); ?></a> -->
                 </h4>
             </div> <!-- end card body-->
         </div> <!-- end card -->
@@ -27,7 +27,7 @@
                                 <th><?php echo get_phrase('name'); ?></th>
                                 <th><?php echo get_phrase('email'); ?></th>
                                 <th><?php echo get_phrase('enrolled_courses'); ?></th>
-                                <th><?php echo get_phrase('actions'); ?></th>
+                              
                             </tr>
                         </thead>
                         <tbody>
@@ -67,23 +67,7 @@
                                         <?php endforeach; ?>
                                     </ul>
                                 </td>
-                                <td>
-                                    <div class="dropright dropright">
-                                        <button type="button"
-                                            class="btn btn-sm btn-outline-primary btn-rounded btn-icon"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="mdi mdi-dots-vertical"></i>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item"
-                                                    href="<?php echo site_url('manager/user_form/edit_user_form/' . $user['id']) ?>"><?php echo get_phrase('edit'); ?></a>
-                                            </li>
-                                            <li><a class="dropdown-item" href="#"
-                                                    onclick="confirm_modal('<?php echo site_url('manager/users/delete/' . $user['id']); ?>');"><?php echo get_phrase('delete'); ?></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
+                                
                             </tr>
                             <?php endforeach; ?>
                         </tbody>

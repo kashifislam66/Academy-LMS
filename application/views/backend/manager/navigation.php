@@ -43,13 +43,6 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
                 </li>
                 <?php endif; ?>
 
-                <?php if (has_permission('course')) : ?>
-                <li class="<?php if ($page_name == 'course_add') echo 'active'; ?>">
-                    <a
-                        href="<?php echo site_url('manager/course_form/add_course'); ?>"><?php echo get_phrase('add_new_course'); ?></a>
-                </li>
-                <?php endif; ?>
-
                 <?php if (has_permission('category')) : ?>
                 <li
                     class="<?php if ($page_name == 'categories' || $page_name == 'category_add' || $page_name == 'category_edit') echo 'active'; ?>">
@@ -71,37 +64,11 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
         <?php if (has_permission('user')) : ?>
         <li
             class="side-nav-item <?php if ($page_name == 'admins' || $page_name == 'admin_add' || $page_name == 'admin_edit' || $page_name == 'admin_permission' || $page_name == 'instructors' || $page_name == 'instructor_add' || $page_name == 'instructor_edit' || $page_name == 'instructor_payout' || $page_name == 'instructor_settings' || $page_name == 'application_list' || $page_name == 'users' || $page_name == 'user_add' || $page_name == 'user_edit') : ?> active <?php endif; ?>">
-            <a href="javascript: void(0);"
+            <a href="<?php echo site_url('manager/users'); ?>"
                 class="side-nav-link <?php if ($page_name == 'admins' || $page_name == 'admin_add' || $page_name == 'admin_edit' || $page_name == 'admin_permission' || $page_name == 'instructors' || $page_name == 'instructor_add' || $page_name == 'instructor_edit' || $page_name == 'instructor_payout' || $page_name == 'instructor_settings' || $page_name == 'application_list' || $page_name == 'users' || $page_name == 'user_add' || $page_name == 'user_edit') : ?> active <?php endif; ?>">
                 <i class="dripicons-box"></i>
-                <span> <?php echo get_phrase('users'); ?> </span>
-                <span class="menu-arrow"></span>
+                <span> <?php echo get_phrase('Students'); ?> </span>
             </a>
-            <ul class="side-nav-second-level" aria-expanded="false">
-
-
-
-
-                <?php if (has_permission('student')) : ?>
-                <li
-                    class="side-nav-item <?php if ($page_name == 'users' || $page_name == 'user_add' || $page_name == 'user_edit') : ?> active <?php endif; ?>">
-                    <a href="javascript: void(0);" aria-expanded="false"
-                        class="<?php if ($page_name == 'users' || $page_name == 'user_add' || $page_name == 'user_edit') : ?> active <?php endif; ?>"><?php echo get_phrase('students'); ?>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <ul class="side-nav-third-level" aria-expanded="false">
-                        <li class="<?php if ($page_name == 'users' || $page_name == 'user_edit') echo 'active'; ?>">
-                            <a
-                                href="<?php echo site_url('manager/users'); ?>"><?php echo get_phrase('manage_students'); ?></a>
-                        </li>
-                        <li class="<?php if ($page_name == 'user_add') echo 'active'; ?>">
-                            <a
-                                href="<?php echo site_url('manager/user_form/add_user_form'); ?>"><?php echo get_phrase('add_new_student'); ?></a>
-                        </li>
-                    </ul>
-                </li>
-                <?php endif; ?>
-            </ul>
         </li>
         <?php endif; ?>
 
