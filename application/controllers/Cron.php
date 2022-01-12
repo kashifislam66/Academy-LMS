@@ -3,6 +3,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Cron extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->load->database();
+        $this->load->library('session');
+       
+    }
       // code by kashif islam catalauge code for getting results from api 
       public function get_catalague($action = '')
       {
