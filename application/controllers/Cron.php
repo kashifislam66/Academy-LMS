@@ -17,9 +17,7 @@ class Cron extends CI_Controller
           ini_set('display_errors', 1);
           ini_set('max_execution_time', 0); 
           ini_set('memory_limit','2048M');
-          // if ($this->session->userdata('super_admin_login') != true) {
-          //     redirect(site_url('login'), 'refresh');
-          // }
+     
   
           // CHECK ACCESS PERMISSION
           check_permission('catalague');
@@ -30,9 +28,7 @@ class Cron extends CI_Controller
           // login api to get access token 
           $get_login = $this->api_model->login_go1();
           $get_login_decode = json_decode($get_login);
-          // $get_catalauge = $this->api_model->catalauge_response($get_login_decode->access_token, 8551164);
-          //     $catalague_result = json_decode($get_catalauge);
-          //    echo "<pre>"; print_r($catalague_result); echo "</pre>"; die();
+      
           if(isset($get_login_decode->access_token)) {
               $array = $this->crud_model->go1Array();
               $arr = 0;
@@ -47,7 +43,7 @@ class Cron extends CI_Controller
              // get course from db if exist
              $course_details = $this->crud_model->get_course_by_api_id($value_id)->row_array();
              if(empty($course_details) || $course_details == "") {
-                if ($count > 100) { break; }
+                if ($count > 50) { break; }
                  $count++; 
              // get catalauge
               $get_catalauge = $this->api_model->catalauge_response($get_login_decode->access_token, $value_id);
@@ -244,13 +240,7 @@ class Cron extends CI_Controller
                       }
                   }
           
-                  if (!file_exists('uploads/thumbnails/course_thumbnails')) {
-                      mkdir('uploads/thumbnails/course_thumbnails', 0777, true);
-                  }
-                  if(!file_exists('uploads/thumbnails/course_thumbnails/course_thumbnail_'. get_frontend_settings('theme') . '_' .$course_add_id . '.jpg')) {
-                      $content = file_get_contents($catalague_result->image);
-                      file_put_contents('uploads/thumbnails/course_thumbnails/course_thumbnail_'. get_frontend_settings('theme') . '_' .$course_add_id . '.jpg', $content);
-                  }
+             
                   if(!file_exists('uploads/thumbnails/lesson_thumbnails/'.$lesson_add_id.'.jpg')) {
                       $content = file_get_contents($catalague_result->image);
                       file_put_contents('uploads/thumbnails/lesson_thumbnails/'.$lesson_add_id.'.jpg', $content);
