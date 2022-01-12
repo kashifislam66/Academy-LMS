@@ -464,7 +464,7 @@
                                                     Hi Test, congratulations on joining GoSkillBoost LMS. Begin your
                                                     learning journey by setting up your account.</div>
                                                 <br /><br />
-                                                <img src="<?= base_url('uploads/system/'.get_frontend_settings('dark_logo')); ?>"
+                                                <img src="<?= base_url('uploads/system/').get_frontend_settings('dark_logo'); ?>" style="width: 200px;"
                                                     alt="Color logo - no background.png" width="213" height="136"
                                                     style="margin-right:0px" data-image-whitelisted=""
                                                     class="CToWUd a6T" tabindex="0">
