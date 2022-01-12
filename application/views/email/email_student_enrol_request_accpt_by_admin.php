@@ -472,6 +472,10 @@
                                             <p style="margin-bottom: 9px; margin-top:2px;">Congratulations! You have
                                                 been enrolled in <b><?= $course_title; ?></b>. Start your learning now!
                                             </p>
+                                            <p style="margin-bottom: 9px; margin-top:2px;"><a class="dropdown-item"
+                                                    href="<?php echo site_url('home/course/' . slugify($course_title) . '/' . $course_id); ?>"
+                                                    target="_blank"><b><?= $course_title; ?> link</b></a>
+                                            </p>
                                             <br>
                                             <hr style="border: 1px solid #efefef; margin-top: 50px;">
                                             <br>

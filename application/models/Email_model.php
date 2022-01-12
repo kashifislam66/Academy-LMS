@@ -442,13 +442,13 @@ class Email_model extends CI_Model {
 			->where('enrol.course_id', $course_id)
 			->where('enrol.user_id', $userId);
 			$query = $this->db->get('enrol')->row_array();
-			echo $query['cr_id']; exit;
+			// echo $query['cr_id']; exit;
 			$email_data['subject']      = "You have been enrolled in a course";
 			$email_data['from']		    = get_settings('system_email');
 			$email_data['to'] 		    = $query['email'];
 			$email_data['full_name']    = $query['first_name'].' '.$query['last_name'];
 			$email_data['course_title'] = $query['title'];
-			$email_data['msg']          = 'I am interseted to enroll in this course.';
+			// $email_data['msg']          = 'I am interseted to enroll in this course.';
 			$email_data['course_id']    = $query['cr_id'];
 
 			$email_template = $this->load->view('email/email_student_enrol_request_accpt_by_admin', $email_data, TRUE);	
