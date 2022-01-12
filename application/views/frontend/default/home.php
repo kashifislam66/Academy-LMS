@@ -490,7 +490,7 @@
         <div class="col-md-6">
             <div class="become-user-label text-center mt-3">
    
-                <h3 class="pb-4"><?php echo site_phrase('Current_user_login'); ?></h3>
+                <h3 class="pb-4"><?php echo 'Current Users - Login'; ?></h3>
                 <?php if ($this->session->userdata('admin_login')): ?>
                     <div class="instructor-box menu-icon-box ms-auto">
                         <div class="icon">
@@ -517,7 +517,7 @@
                 <!-- <a
                     href="<?php //echo site_url('user/become_an_instructor'); ?>"><?php echo site_phrase('join_now'); ?></a> -->
                 <?php else: ?>
-                <a href="<?php echo site_url('home/sign_up'); ?>"><?php echo site_phrase('join_now'); ?></a>
+                <a href="<?php echo site_url('home/sign_up'); ?>"><?php echo site_phrase('Login'); ?></a>
                 <?php endif; ?>
             </div>
         </div>
