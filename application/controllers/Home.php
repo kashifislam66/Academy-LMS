@@ -667,22 +667,44 @@ class Home extends CI_Controller
     {
         if (isset($_GET['query']) && !empty($_GET['query'])) {
             $search_string = $_GET['query'];
-            $page_data['courses'] = $this->crud_model->get_courses_by_search_string($search_string)->result_array();
+            // $this->db->like('title', $search_string);
+            // $this->db->where('status', 'active');
+            // $total_rows = $this->db->count_all_results('course');
+
+            $query = $this->db->query('SELECT * FROM course where `status` = "active" and title like "'.$search_string.'%"');
+
+            $total_rows =  $query->num_rows();
+
+          
+            if (!$this->session->userdata('layout')) {
+                $this->session->set_userdata('layout', 'list');
+            }
+            $config = array();
+            $config = pagintaion($total_rows, 6);
+            $config['enable_query_strings'] = TRUE;
+            $config['page_query_string'] = TRUE;
+            $config['base_url']  = site_url('home/search?query='.$search_string);
+            $this->pagination->initialize($config);
+            // $page_data['layout']     = $this->session->userdata('layout');
+            $page_data['page_name'] = 'courses_page';
+            $page_data['search_string'] = $search_string;
+            $page_data['page_title'] = site_phrase('search_results');
+            $this->db->like('title', $search_string);
+            $this->db->where('status', 'active');
+            $page_data['courses'] = $this->db->get('course', $config['per_page'], $this->uri->segment(3))->result_array();
+            // $page_data['total_result'] = $total_rows;
             $page_data['total_result'] = count($page_data['courses']);
         } else {
             $this->session->set_flashdata('error_message', site_phrase('no_search_value_found'));
             redirect(site_url(), 'refresh');
         }
 
-        if (!$this->session->userdata('layout')) {
-            $this->session->set_userdata('layout', 'list');
-        }
+       
 
-        $page_data['layout']     = $this->session->userdata('layout');
-        $page_data['page_name'] = 'courses_page';
-        $page_data['search_string'] = $search_string;
-        $page_data['page_title'] = site_phrase('search_results');
+        
+       
         $this->load->view('frontend/' . get_frontend_settings('theme') . '/index', $page_data);
+       
     }
     public function my_courses_by_search_string()
     {
