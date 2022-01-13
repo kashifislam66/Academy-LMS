@@ -689,10 +689,3 @@ $(document).ready(function() {
     }
 });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.js"></script>
-<script>
-$(document).ready(function() {
-    $("img.lazy").lazyload();
-});
-</script>

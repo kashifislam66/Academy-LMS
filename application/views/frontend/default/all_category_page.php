@@ -47,7 +47,7 @@
                             <div class="course-box-2">
                                 <div class="course-image">
                                     <a href="<?php echo site_url('home/course/'.slugify($course['title']).'/'.$course['id']) ?>">
-                                        <img src="<?php echo $course['thumbnail']; ?>" alt="" class="img-fluid">
+                                        <img src="<?php echo $course['thumbnail']; ?>" alt="" class="img-fluid lazy">
                                     </a>
                                 </div>
                                 <div class="course-details">
