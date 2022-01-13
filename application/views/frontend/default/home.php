@@ -127,8 +127,7 @@
                             class="has-popover">
                             <div class="course-box">
                                 <div class="course-image">
-                                    <img src="<?php echo $top_course['thumbnail']; ?>"
-                                        alt="" class="img-fluid">
+                                 <img class="img-fluid lazy" src="<?php echo $top_course['thumbnail']; ?>">
                                 </div>
                                 <div class="course-details">
                                     <h5 class="title"><?php echo $top_course['title']; ?></h5>
@@ -190,7 +189,7 @@
                                                     $margin = 0;
                                                     foreach ($instructor_details as $key => $instructor_detail) { ?>
                                             <img style="margin-left: <?php echo $margin; ?>px;"
-                                                class="position-absolute"
+                                                class="position-absolute lazy"
                                                 src="<?php echo $this->user_model->get_user_image_url($instructor_detail['id']); ?>"
                                                 width="30px" data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title="<?php echo $instructor_detail['first_name'].' '.$instructor_detail['last_name']; ?>"
@@ -199,7 +198,7 @@
                                             <?php } ?>
                                             <?php else: ?>
                                             <?php $user_details = $this->user_model->get_all_user($top_course['user_id'])->row_array(); ?>
-                                            <img src="<?php echo $this->user_model->get_user_image_url($user_details['id']); ?>"
+                                            <img class="lazy" src="<?php echo $this->user_model->get_user_image_url($user_details['id']); ?>"
                                                 width="30px" data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title="<?php echo $user_details['first_name'].' '.$user_details['last_name']; ?>"
                                                 onclick="return check_action(this,'<?php echo site_url('home/instructor_page/'.$user_details['id']); ?>');">
@@ -316,7 +315,7 @@
                             <div class="course-box">
                                 <div class="course-image">
                                     <img src="<?php echo $latest_course['thumbnail']; ?>"
-                                        alt="" class="img-fluid">
+                                        alt="" class="img-fluid lazy">
                                 </div>
                                 <div class="course-details">
                                     <h5 class="title"><?php echo $latest_course['title']; ?></h5>
@@ -378,7 +377,7 @@
                                                     $margin = 0;
                                                     foreach ($instructor_details as $key => $instructor_detail) { ?>
                                             <img style="margin-left: <?php echo $margin; ?>px;"
-                                                class="position-absolute"
+                                                class="position-absolute lazy"
                                                 src="<?php echo $this->user_model->get_user_image_url($instructor_detail['id']); ?>"
                                                 width="30px" data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title="<?php echo $instructor_detail['first_name'].' '.$instructor_detail['last_name']; ?>"
@@ -552,7 +551,7 @@
                             <a href="<?php echo site_url('manager'); ?>"
                             style="border: 1px solid transparent; margin: 0px; font-size: 14px; width: max-content; border-radius: 5px;"><?php echo 'Manage Account'; ?></a>
                 <?php else: ?>
-                <a href="<?php echo site_url('home/sign_up'); ?>"><?php echo site_phrase('Login'); ?></a>
+                <a href="<?php echo site_url('home/login'); ?>"><?php echo site_phrase('Login'); ?></a>
                 <?php endif; ?>
             </div>
         </div>
@@ -688,5 +687,12 @@ $(document).ready(function() {
             dots: false
         });
     }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.js"></script>
+<script>
+$(document).ready(function() {
+    $("img.lazy").lazyload();
 });
 </script>

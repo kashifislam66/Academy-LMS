@@ -215,6 +215,7 @@ if (!function_exists('get_video_extension')) {
     // Checks if a video is youtube, vimeo or any other
     function get_video_extension($url)
     {
+        // echo $url; exit;
         if (strpos($url, '.mp4') > 0) {
             return 'mp4';
         } elseif (strpos($url, '.webm') > 0) {
