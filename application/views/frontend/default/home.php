@@ -552,7 +552,7 @@
                             <a href="<?php echo site_url('manager'); ?>"
                             style="border: 1px solid transparent; margin: 0px; font-size: 14px; width: max-content; border-radius: 5px;"><?php echo 'Manage Account'; ?></a>
                 <?php else: ?>
-                <a href="<?php echo site_url('home/sign_up'); ?>"><?php echo site_phrase('Login'); ?></a>
+                <a href="<?php echo site_url('home/login'); ?>"><?php echo site_phrase('Login'); ?></a>
                 <?php endif; ?>
             </div>
         </div>
