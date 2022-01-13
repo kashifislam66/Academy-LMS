@@ -127,9 +127,7 @@
                             class="has-popover">
                             <div class="course-box">
                                 <div class="course-image">
-                                    <!-- <img data-src="<?php echo $top_course['thumbnail']; ?>"
-                                        alt="" class="img-fluid lazy"> -->
-                                        <img class="img-fluid lazy" src="<?php echo $top_course['thumbnail']; ?>">
+                                 <img class="img-fluid lazy" src="<?php echo $top_course['thumbnail']; ?>">
                                 </div>
                                 <div class="course-details">
                                     <h5 class="title"><?php echo $top_course['title']; ?></h5>
@@ -191,7 +189,7 @@
                                                     $margin = 0;
                                                     foreach ($instructor_details as $key => $instructor_detail) { ?>
                                             <img style="margin-left: <?php echo $margin; ?>px;"
-                                                class="position-absolute"
+                                                class="position-absolute lazy"
                                                 src="<?php echo $this->user_model->get_user_image_url($instructor_detail['id']); ?>"
                                                 width="30px" data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title="<?php echo $instructor_detail['first_name'].' '.$instructor_detail['last_name']; ?>"
@@ -200,7 +198,7 @@
                                             <?php } ?>
                                             <?php else: ?>
                                             <?php $user_details = $this->user_model->get_all_user($top_course['user_id'])->row_array(); ?>
-                                            <img src="<?php echo $this->user_model->get_user_image_url($user_details['id']); ?>"
+                                            <img class="lazy" src="<?php echo $this->user_model->get_user_image_url($user_details['id']); ?>"
                                                 width="30px" data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title="<?php echo $user_details['first_name'].' '.$user_details['last_name']; ?>"
                                                 onclick="return check_action(this,'<?php echo site_url('home/instructor_page/'.$user_details['id']); ?>');">
@@ -317,7 +315,7 @@
                             <div class="course-box">
                                 <div class="course-image">
                                     <img src="<?php echo $latest_course['thumbnail']; ?>"
-                                        alt="" class="img-fluid">
+                                        alt="" class="img-fluid lazy">
                                 </div>
                                 <div class="course-details">
                                     <h5 class="title"><?php echo $latest_course['title']; ?></h5>
@@ -379,7 +377,7 @@
                                                     $margin = 0;
                                                     foreach ($instructor_details as $key => $instructor_detail) { ?>
                                             <img style="margin-left: <?php echo $margin; ?>px;"
-                                                class="position-absolute"
+                                                class="position-absolute lazy"
                                                 src="<?php echo $this->user_model->get_user_image_url($instructor_detail['id']); ?>"
                                                 width="30px" data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title="<?php echo $instructor_detail['first_name'].' '.$instructor_detail['last_name']; ?>"
