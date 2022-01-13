@@ -9,7 +9,6 @@
         <div class="row mb-5 mt-3">
             <div class="col-md-12 text-center">
                 <h1 class="fw-700"><?php echo site_phrase('Contact_Us'); ?></h1>
-                <p class="text-14px"><?php echo site_phrase('Contact_us'); ?></p>
             </div>
         </div>
         <div class="row">

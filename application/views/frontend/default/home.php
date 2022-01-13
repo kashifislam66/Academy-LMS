@@ -127,8 +127,9 @@
                             class="has-popover">
                             <div class="course-box">
                                 <div class="course-image">
-                                    <img src="<?php echo $top_course['thumbnail']; ?>"
-                                        alt="" class="img-fluid">
+                                    <!-- <img data-src="<?php echo $top_course['thumbnail']; ?>"
+                                        alt="" class="img-fluid lazy"> -->
+                                        <img class="img-fluid lazy" src="<?php echo $top_course['thumbnail']; ?>">
                                 </div>
                                 <div class="course-details">
                                     <h5 class="title"><?php echo $top_course['title']; ?></h5>
@@ -688,5 +689,12 @@ $(document).ready(function() {
             dots: false
         });
     }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.js"></script>
+<script>
+$(document).ready(function() {
+    $("img.lazy").lazyload();
 });
 </script>
