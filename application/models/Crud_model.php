@@ -2498,7 +2498,7 @@ class Crud_model extends CI_Model
         } else {
             $course_ids = array($courses);
         }
-
+print_r($course_ids); die();
         if (count($course_ids) > 0) {
             if (!addon_status('scorm_course')) {
                 $this->db->where('course_type', 'general');
