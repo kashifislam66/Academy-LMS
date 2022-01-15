@@ -127,8 +127,11 @@ class Home extends CI_Controller
                 $this->db->or_where_in('id', $sale_ids);
             }
             $this->db->group_end();
-      
-            $page_data['courses'] =  $this->db->get('course',$config['per_page'], $this->input->get("per_page"))->result_array();
+            if($total_rows > 0) {
+                    $page_data['courses'] =  $this->db->get('course',$config['per_page'], $this->input->get("per_page"))->result_array();
+            } else {
+                $page_data['courses'] = array();
+            }
             $page_data['total_result'] = $total_rows;
          
         }
