@@ -2483,9 +2483,9 @@ class Crud_model extends CI_Model
         $this->db->select('id');
         $this->db->where('status', 'active');
         $courses = $this->db->get('course')->result_array();
-
+        if ($selected_rating != "all") {
         foreach ($courses as $course) {
-            if ($selected_rating != "all") {
+            
                 $total_rating =  $this->get_ratings('course', $course['id'], true)->row()->rating;
                 $number_of_ratings = $this->get_ratings('course', $course['id'])->num_rows();
                 if ($number_of_ratings > 0) {
@@ -2494,9 +2494,9 @@ class Crud_model extends CI_Model
                         array_push($course_ids, $course['id']);
                     }
                 }
-            } else {
-                array_push($course_ids, $course['id']);
             }
+        } else {
+            $course_ids = $courses;
         }
 
         if (count($course_ids) > 0) {
