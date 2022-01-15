@@ -922,10 +922,12 @@ class Crud_model extends CI_Model
     }
 
     function get_top_categories($limit = "10", $category_column = "category_id"){
+        $search="FIND_IN_SET ('$category_column',sub_category_id)";
         $query = $this->db->select($category_column.", count(*) AS course_number",false)
             ->from ("course")
             ->group_by($category_column)
             ->order_by("course_number","DESC")
+            ->where($search)
             ->where('status', 'active')
             ->limit($limit)
             ->get();
