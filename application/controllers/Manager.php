@@ -300,7 +300,7 @@ class Manager extends CI_Controller
             // echo "<pre>"; print_r($_POST); exit;
             if($_POST['enrol_std_course_prv'] == 'enrol_std_by_manager'){
                 $this->crud_model->enrol_a_student_manually();
-                redirect(site_url('home/course/'.$_POST['slug'].'/'.$_POST['course_id']), 'refresh');
+                redirect(site_url('home/course/'.rawurlencode(slugify($_POST['slug'])).'/'.$_POST['course_id']), 'refresh');
             }else{
               $this->crud_model->enrol_a_student_manually();
               redirect(site_url('manager/enrol_history'), 'refresh');

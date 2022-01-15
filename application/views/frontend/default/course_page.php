@@ -32,9 +32,9 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                             class="d-inline-block average-rating"><?php echo $average_ceil_rating; ?></span><span>(<?php echo $number_of_ratings . ' ' . site_phrase('ratings'); ?>)</span>
                         <span class="enrolled-num">
                             <?php
-              $number_of_enrolments = $this->crud_model->enrol_history($course_details['id'])->num_rows();
-              echo $number_of_enrolments . ' ' . site_phrase('students_enrolled');
-              ?>
+                             $number_of_enrolments = $this->crud_model->enrol_history($course_details['id'])->num_rows();
+                            echo $number_of_enrolments . ' ' . site_phrase('students_enrolled');
+                            ?>
                         </span>
                         <span class="comment"><i
                                 class="fas fa-comment"></i><?php echo ucfirst($course_details['language']); ?></span>
@@ -489,7 +489,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                         <a >
                             <img src="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id']); ?>"
                                 alt="" class="w-100">
-                            <span class="preview-text"><?php echo site_phrase('preview_this_course'); ?></span>
+                            <!-- <span class="preview-text"><?php// echo site_phrase('preview_this_course'); ?></span> -->
                             <!-- <span class="play-btn"></span> -->
                         </a>
                     </div>
@@ -570,7 +570,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                                                         <select class="form-control " name="user_id" id="user_id"
                                                             required>
                                                             <option value=""><?php echo get_phrase('select_a_user'); ?></option>
-                                                            <?php $user_list = $this->user_model->get_user()->result_array();
+                                                            <?php $user_list = $this->user_model->get_user_by_manager()->result_array();
                                                             foreach ($user_list as $user):?>
                                                             <option value="<?php echo $user['id'] ?>">
                                                                 <?php echo $user['first_name'].' '.$user['last_name']; ?></option>
