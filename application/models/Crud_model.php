@@ -2376,7 +2376,7 @@ class Crud_model extends CI_Model
     }
 
     // version 1.4
-    function filter_course($selected_category_id = "", $selected_price = "", $selected_level = "", $selected_language = "", $selected_rating = "",$limit ="",$per_page = "")
+    function filter_course($selected_category_id = "", $selected_price = "", $selected_level = "", $selected_language = "", $selected_rating = "")
     {
         // echo $selected_category_id.' '.$selected_price.' '.$selected_level.' '.$selected_language.' '.$selected_rating;
 
@@ -2410,9 +2410,6 @@ class Crud_model extends CI_Model
         if ($selected_language != "all") {
             $this->db->where('language', $selected_language);
         }
-        if($limit != "" && $per_page != "" ) {
-        $this->db->limit($limit, $start);
-        }
         $this->db->where('status', 'active');
         $courses = $this->db->get('course')->result_array();
 
@@ -2435,18 +2432,12 @@ class Crud_model extends CI_Model
             if (!addon_status('scorm_course')) {
                 $this->db->where('course_type', 'general');
             }
-            if($limit != "" && $per_page != "" ) {
-            return  $courses;
-            } else {
-                return  $course_ids;
-            }
+            return  $course_ids;
            
         } else {
             return array();
         }
     }
-
-   
 
     
 
