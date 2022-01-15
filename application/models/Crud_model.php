@@ -2499,22 +2499,7 @@ class Crud_model extends CI_Model
             }
         }
 
-        // if ($selected_rating != "all") {
-        //     foreach ($courses as $course) {
-                
-        //             $total_rating =  $this->get_ratings('course', $course['id'], true)->row()->rating;
-        //             $number_of_ratings = $this->get_ratings('course', $course['id'])->num_rows();
-        //             if ($number_of_ratings > 0) {
-        //                 $average_ceil_rating = ceil($total_rating / $number_of_ratings);
-        //                 if ($average_ceil_rating == $selected_rating) {
-        //                     array_push($course_ids, $course['id']);
-        //                 }
-        //             }
-        //         }
-        //     } else {
-        //         $course_ids = $courses;
-        //     }
-    print_r($course_ids); die();
+    
 
         if (count($course_ids) > 0) {
             if (!addon_status('scorm_course')) {
