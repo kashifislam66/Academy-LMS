@@ -2379,7 +2379,7 @@ class Crud_model extends CI_Model
     function filter_course($selected_category_id = "", $selected_price = "", $selected_level = "", $selected_language = "", $selected_rating = "")
     {
         // echo $selected_category_id.' '.$selected_price.' '.$selected_level.' '.$selected_language.' '.$selected_rating;
-
+// die();
         $course_ids = array();
         if ($selected_category_id != "all") {
             $category_details = $this->get_category_details_by_id($selected_category_id)->row_array();
@@ -2433,70 +2433,6 @@ class Crud_model extends CI_Model
                 $this->db->where('course_type', 'general');
             }
             return  $course_ids;
-           
-        } else {
-            return array();
-        }
-    }
-
-    // pagination for user
-
-    function filter_course_user($limit="", $start="",$selected_category_id = "", $selected_price = "", $selected_level = "", $selected_language = "", $selected_rating = "")
-    {
-        // echo $selected_category_id.' '.$selected_price.' '.$selected_level.' '.$selected_language.' '.$selected_rating;
-die($selected_category_id);
-        $courses = array();
-        if ($selected_category_id != "all") {
-            $category_details = $this->get_category_details_by_id($selected_category_id)->row_array();
-
-            if ($category_details['parent'] > 0) {
-                
-            //   $sub =   explode(',', $category_details['sub_category_id']);
-            $search="FIND_IN_SET ('$selected_category_id',sub_category_id)";
-             $this->db->where($search);
-                // $this->db->where_in('sub_category_id', $selected_category_id);
-            } else {
-                $this->db->where('category_id', $selected_category_id);
-            }
-        }
-
-        if ($selected_price != "all") {
-            if ($selected_price == "paid") {
-                $this->db->where('is_free_course', null);
-            } elseif ($selected_price == "free") {
-                $this->db->where('is_free_course', 1);
-            }
-        }
-
-        if ($selected_level != "all") {
-            $this->db->where('level', $selected_level);
-        }
-
-        if ($selected_language != "all") {
-            $this->db->where('language', $selected_language);
-        }
-        $this->db->where('status', 'active');
-        $courses = $this->db->get('course')->result_array();
-
-        foreach ($courses as $course) {
-            if ($selected_rating != "all") {
-                $total_rating =  $this->get_ratings('course', $course['id'], true)->row()->rating;
-                $number_of_ratings = $this->get_ratings('course', $course['id'])->num_rows();
-                if ($number_of_ratings > 0) {
-                    $average_ceil_rating = ceil($total_rating / $number_of_ratings);
-                    if ($average_ceil_rating == $selected_rating) {
-                        array_push($courses, $course);
-                    }
-                }
-            } 
-        }
-
-        if (count($course_ids) > 0) {
-            if (!addon_status('scorm_course')) {
-                $this->db->where('course_type', 'general');
-            }
-            $this->db->limit($limit, $start);
-            return  $courses;
            
         } else {
             return array();
