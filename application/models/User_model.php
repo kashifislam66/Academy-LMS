@@ -58,6 +58,16 @@ class User_model extends CI_Model
         return $this->db->get('users');
     }
 
+    public function get_manager($user_id = 0)
+    {   
+        if ($user_id > 0) {
+            $this->db->order_by("id", "DESC");
+            $this->db->where('id', $user_id);
+        }
+        $this->db->where('role_id', 4);
+        return $this->db->get('users');
+    }
+
     public function get_all_user($user_id = 0)
     {
         if ($user_id > 0) {
@@ -449,6 +459,19 @@ class User_model extends CI_Model
             $user_id = $this->session->userdata('user_id');
         }
         return $this->db->get_where('enrol', array('user_id' => $user_id));
+    }
+
+    public function manager_courses($user_id = "")
+    {
+        if ($user_id == "") {
+            $user_id = $this->session->userdata('user_id');
+        }
+        $this->db->select('enrol.*');
+        $this->db->join('users','users.id = enrol.user_id');
+        $this->db->where('manage_id', $this->session->userdata('user_id'));
+        // $this->db->where('company_id', $this->session->userdata('user_id'));
+        return $this->db->get('enrol');
+        //return $this->db->get_where('enrol', array('user_id' => $user_id));
     }
 
     public function upload_user_image($image_code)

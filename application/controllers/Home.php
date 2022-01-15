@@ -108,7 +108,7 @@ class Home extends CI_Controller
             $page_data['total_result'] = $total_rows;
         } else {
             $course_ids = $this->crud_model->filter_course($selected_category_id, $selected_price, $selected_level, $selected_language, $selected_rating);
-            $total_rows = array_count_values($course_ids);
+            $total_rows = count($course_ids);
             // $this->db->where_in('id', $course_ids);
             // $total_rows = $this->db->get('course')->num_rows();
             // print_r($total_rows); die();
@@ -177,6 +177,16 @@ class Home extends CI_Controller
         $this->load->view('frontend/' . get_frontend_settings('theme') . '/index', $page_data);
     }
 
+    public function manager_courses()
+    {
+        if ($this->session->userdata('manager_login') != true) {
+            redirect(site_url('home'), 'refresh');
+        }
+        $page_data['page_name'] = "manager_courses";
+        $page_data['page_title'] = site_phrase("my_courses");
+        $this->load->view('frontend/' . get_frontend_settings('theme') . '/index', $page_data);
+    }
+
     public function my_messages($param1 = "", $param2 = "")
     {
         if ($this->session->userdata('user_login') != true) {
@@ -213,6 +223,18 @@ class Home extends CI_Controller
         $my_courses = $this->crud_model->get_courses_by_wishlists();
         $page_data['my_courses'] = $my_courses;
         $page_data['page_name'] = "my_wishlist";
+        $page_data['page_title'] = site_phrase('my_wishlist');
+        $this->load->view('frontend/' . get_frontend_settings('theme') . '/index', $page_data);
+    }
+
+    public function my_manager_wishlist()
+    {
+        if (!$this->session->userdata('cart_items')) {
+            $this->session->set_userdata('cart_items', array());
+        }
+        $my_courses = $this->crud_model->get_courses_by_manager_wishlists();
+        $page_data['my_courses'] = $my_courses;
+        $page_data['page_name'] = "my_manager_wishlist";
         $page_data['page_title'] = site_phrase('my_wishlist');
         $this->load->view('frontend/' . get_frontend_settings('theme') . '/index', $page_data);
     }
@@ -282,7 +304,7 @@ class Home extends CI_Controller
     }
 
     public function handleWishList($return_number = "")
-    {
+    { 
         if ($this->session->userdata('user_login') != 1) {
             echo false;
         } else {
@@ -292,6 +314,22 @@ class Home extends CI_Controller
             }
             if ($return_number == 'true') {
                 echo sizeof($this->crud_model->getWishLists());
+            } else {
+                $this->load->view('frontend/' . get_frontend_settings('theme') . '/wishlist_items');
+            }
+        }
+    }
+    public function handleWishManagerList($return_number = "")
+    {  
+        if ($this->session->userdata('manager_login') != 1) {
+            echo false;
+        } else {
+            if (isset($_POST['course_id'])) {
+                $course_id = $this->input->post('course_id');
+                $this->crud_model->handleWishManagerList($course_id);
+            }
+            if ($return_number == 'true') {
+                echo sizeof($this->crud_model->getWishListsOfManager());
             } else {
                 $this->load->view('frontend/' . get_frontend_settings('theme') . '/wishlist_items');
             }
