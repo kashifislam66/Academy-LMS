@@ -111,7 +111,7 @@ class Home extends CI_Controller
             $total_rows = count($course_ids);
             // $this->db->where_in('id', $course_ids);
             // $total_rows = $this->db->get('course')->num_rows();
-            print_r($total_rows); die();
+            // print_r($total_rows); die();
             $config = array();
             $config = pagintaion($total_rows, 6);
             $config['enable_query_strings'] = TRUE;
