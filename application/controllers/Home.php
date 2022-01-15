@@ -92,20 +92,23 @@ class Home extends CI_Controller
                 $this->db->where('course_type', 'general');
             }
             $this->db->where('status', 'active');
-            $total_rows = $this->db->get('course')->num_rows();
+            $total_rows =$this->db->count_all('course');
             $config = array();
             $config = pagintaion($total_rows, 6);
+            $config['per_page'] = 6;
             $config['base_url']  = site_url('home/courses/');
             $this->pagination->initialize($config);
             if (!addon_status('scorm_course')) {
                 $this->db->where('course_type', 'general');
             }
+            $this->db->limit( $config['per_page'],$this->uri->segment(3));
             $this->db->where('status', 'active');
-            $page_data['courses'] = $this->db->get('course', $config['per_page'], $this->uri->segment(3))->result_array();
+            $page_data['courses'] = $this->db->get('course' )->result_array();
             $page_data['total_result'] = $total_rows;
         } else {
             $course_ids = $this->crud_model->filter_course($selected_category_id, $selected_price, $selected_level, $selected_language, $selected_rating);
             $total_rows = count($course_ids);
+            // print_r($total_rows); die();
             if($total_rows > 0) {
             $config = array();
             $config = pagintaion($total_rows, 6);
@@ -115,12 +118,14 @@ class Home extends CI_Controller
             $config['base_url']  = site_url('home/courses?category='.$_GET['category'].'&&price=all&&level='.$selected_level.'&&language='.$selected_language.'&&rating='.$selected_rating);
             $this->pagination->initialize($config);
             $page = ($this->input->get("per_page")) ? $this->input->get("per_page") : 0;
-            $sale_ids = array_slice( $course_ids, $config['per_page'], $page );
-               print_r($sale_ids); die();
+            $sale_ids = array_slice( $course_ids, $page,$config['per_page'] );
+            //    
                     $this->db->select('id,title,user_id,course_type,language,level,multi_instructor,thumbnail,short_description');
                     $this->db->or_where_in('id', $sale_ids);
+                    $this->db->where('status', 'active');
                     $this->db->limit($config['per_page'], $this->input->get("per_page"));
             $page_data['courses'] =  $this->db->get('course')->result_array();
+            // print_r($page_data['courses']); die();
             } else {
                 $page_data['courses'] = array();  
             }
