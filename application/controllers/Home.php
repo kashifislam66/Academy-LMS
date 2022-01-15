@@ -56,7 +56,7 @@ class Home extends CI_Controller
         if (!$this->session->userdata('layout')) {
             $this->session->set_userdata('layout', 'list');
         }
-        $this->output->enable_profiler(TRUE);
+        
         $layout = $this->session->userdata('layout');
         $selected_category_id = "all";
         $selected_price = "all";
