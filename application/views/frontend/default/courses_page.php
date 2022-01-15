@@ -41,7 +41,45 @@ if (isset($sub_category_id)) {
 </section>
 
 
-
+<section class="category-course-list-area">
+    <div class="container">
+        <div class="row">
+          
+            <div class="col-lg-9">
+                <div class="row category-filter-box mx-0" >
+                    <div class="col-md-6">
+                        <button class="btn py-1 px-2 mx-2 <?php if($this->session->userdata('layout') == 'grid'){echo 'btn-danger';}else{echo 'btn-light'; } ?>" onclick="toggleLayout('grid')"><i class="fas fa-th-large"></i></button>
+                        <button class="btn py-1 px-2 mx-2 <?php if($this->session->userdata('layout') == 'list'){echo 'btn-danger';}else{echo 'btn-light'; } ?>" onclick="toggleLayout('list')"><i class="fas fa-list"></i></button>
+                        <span class="text-12px fw-700 text-muted"><?php echo site_phrase('showing').' '.count($courses).' '.site_phrase('of').' '.$total_result.' '.site_phrase('results'); ?></span>
+                    </div>
+                    <div class="col-md-6 text-end filter-sort-by">
+                        <!-- <span><?php echo site_phrase('sort_by'); ?> : </span>
+                        <div class="dropdown d-inline-block">
+                            <button class="btn bg-background dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                Newest
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item text-12px fw-500" href="#">Action</a></li>
+                                <li><a class="dropdown-item text-12px fw-500" href="#">Another action</a></li>
+                            </ul>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="category-course-list">
+                    <?php include 'category_wise_course_' . $layout . '_layout.php'; ?>
+                    <?php if (count($courses) == 0) : ?>
+                        <?php echo site_phrase('no_result_found'); ?>
+                    <?php endif; ?>
+                </div>
+                <nav>
+                    <?php //if ($selected_category_id == "all" && $selected_price == 0 && $selected_level == 'all' && $selected_language == 'all' && $selected_rating == 'all') {
+                        echo $this->pagination->create_links();
+                    // }?>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
 
 <script type="text/javascript">
     function get_url() {
