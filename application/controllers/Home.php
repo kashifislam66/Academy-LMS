@@ -69,10 +69,7 @@ class Home extends CI_Controller
             // die();
         }
 
-        // Get the selected price
-        if (isset($_GET['price']) && !empty($_GET['price'])) {
-            $selected_price = $_GET['price'];
-        }
+     
 
         // Get the selected level
         if (isset($_GET['level']) && !empty($_GET['level'])) {
@@ -109,7 +106,7 @@ class Home extends CI_Controller
         } else {
             $course_ids = $this->crud_model->filter_course($selected_category_id, $selected_price, $selected_level, $selected_language, $selected_rating);
             $total_rows = count($course_ids);
-            
+            if($total_rows > 0) {
             $config = array();
             $config = pagintaion($total_rows, 6);
             $config['enable_query_strings'] = TRUE;
@@ -117,17 +114,18 @@ class Home extends CI_Controller
             $config['base_url']  = site_url('home/courses?category='.$_GET['category'].'&&price=all&&level='.$selected_level.'&&language='.$selected_language.'&&rating='.$selected_rating);
             $this->pagination->initialize($config);
            
-            if($total_rows > 0) {
+            
                 $this->db->group_start();
                 $sale_ids_chunk = array_chunk($course_ids,25);
                 foreach($sale_ids_chunk as $sale_ids)
                 {
                     $this->db->or_where_in('id', $sale_ids);
+                    $this->db->limit($config['per_page'], $this->input->get("per_page"));
                 }
                 $this->db->group_end();
             
            
-            $page_data['courses'] =  $this->db->get('course',$config['per_page'], $this->input->get("per_page"))->result_array();
+            $page_data['courses'] =  $this->db->get('course')->result_array();
             } else {
                 $page_data['courses'] = array();  
             }

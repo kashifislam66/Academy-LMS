@@ -2472,13 +2472,6 @@ class Crud_model extends CI_Model
             }
         }
 
-        if ($selected_price != "all") {
-            if ($selected_price == "paid") {
-                $this->db->where('is_free_course', null);
-            } elseif ($selected_price == "free") {
-                $this->db->where('is_free_course', 1);
-            }
-        }
 
         if ($selected_level != "all") {
             $this->db->where('level', $selected_level);
