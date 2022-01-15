@@ -1820,6 +1820,35 @@ class Crud_model extends CI_Model
         $this->db->update('users', $updater);
     }
 
+    public function handleWishManagerList($course_id)
+    {
+        $wishlists = array();
+        $user_details = $this->user_model->get_manager($this->session->userdata('user_id'))->row_array();
+        // echo $user_details; exit;
+        if ($user_details['wishlist'] == "") {
+            array_push($wishlists, $course_id);
+        } else {
+            $wishlists = json_decode($user_details['wishlist']);
+            if (in_array($course_id, $wishlists)) {
+                $container = array();
+                foreach ($wishlists as $key) {
+                    if ($key != $course_id) {
+                        array_push($container, $key);
+                    }
+                }
+                $wishlists = $container;
+                // $key = array_search($course_id, $wishlists);
+                // unset($wishlists[$key]);
+            } else {
+                array_push($wishlists, $course_id);
+            }
+        }
+
+        $updater['wishlist'] = json_encode($wishlists);
+        $this->db->where('id', $this->session->userdata('user_id'));
+        $this->db->update('users', $updater);
+    }
+
     public function is_added_to_wishlist($course_id = "")
     {
         if ($this->session->userdata('user_login') == 1) {
@@ -1842,6 +1871,16 @@ class Crud_model extends CI_Model
             $user_id = $this->session->userdata('user_id');
         }
         $user_details = $this->user_model->get_user($user_id)->row_array();
+        return json_decode($user_details['wishlist']);
+    }
+
+    public function getWishListsOfManager($user_id = "")
+    { 
+        if ($user_id == "") {
+            $user_id = $this->session->userdata('user_id');
+        }
+        $user_details = $this->user_model->get_manager($user_id)->row_array();
+        //  echo "<pre>"; print_r($user_details); exit;
         return json_decode($user_details['wishlist']);
     }
 
@@ -2110,10 +2149,32 @@ class Crud_model extends CI_Model
         }
     }
 
+    public function get_courses_by_manager_wishlists()
+    {
+        $wishlists = $this->getWishListsOfManager();
+        if (sizeof($wishlists) > 0) {
+            $this->db->where_in('id', $wishlists);
+            return $this->db->get('course')->result_array();
+        } else {
+            return array();
+        }
+    }
 
     public function get_courses_of_wishlists_by_search_string($search_string)
     {
         $wishlists = $this->getWishLists();
+        if (sizeof($wishlists) > 0) {
+            $this->db->where_in('id', $wishlists);
+            $this->db->like('title', $search_string);
+            return $this->db->get('course')->result_array();
+        } else {
+            return array();
+        }
+    }
+
+    public function get_courses_of_wishlists_by_manager_search_string($search_string)
+    {
+        $wishlists = $this->getWishListsOfManager();
         if (sizeof($wishlists) > 0) {
             $this->db->where_in('id', $wishlists);
             $this->db->like('title', $search_string);

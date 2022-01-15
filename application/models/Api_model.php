@@ -443,6 +443,20 @@ class Api_model extends CI_Model
 		}
 	}
 
+	// My Wishlists manager
+	public function my_wishlist_manager_get($user_id = "")
+	{
+		$wishlists = $this->crud_model->getWishListsOfManager($user_id);
+		if (sizeof($wishlists) > 0) {
+			$this->db->where_in('id', $wishlists);
+			$courses = $this->db->get('course')->result_array();
+			return $this->course_data($courses);
+		} else {
+			return array();
+		}
+	}
+
+
 	// Remove from wishlist
 	public function toggle_wishlist_items_get($user_id = "")
 	{
