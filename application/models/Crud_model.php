@@ -931,6 +931,7 @@ class Crud_model extends CI_Model
             ->where('status', 'active')
             ->limit($limit)
             ->get();
+            echo $query; die();
         return $query->result_array();
     }
 
