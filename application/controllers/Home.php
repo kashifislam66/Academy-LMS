@@ -333,7 +333,7 @@ class Home extends CI_Controller
             if ($return_number == 'true') {
                 echo sizeof($this->crud_model->getWishListsOfManager());
             } else {
-                $this->load->view('frontend/' . get_frontend_settings('theme') . '/wishlist_items');
+                $this->load->view('frontend/' . get_frontend_settings('theme') . '/manager_wishlist_items');
             }
         }
     }

@@ -1866,6 +1866,21 @@ class Crud_model extends CI_Model
         }
     }
 
+    public function is_added_to_manager_wishlist($course_id = "")
+    {
+        if ($this->session->userdata('manager_login') == 1) {
+            $wishlists = array();
+            $user_details = $this->user_model->get_manager($this->session->userdata('user_id'))->row_array();
+            $wishlists = json_decode($user_details['wishlist']);
+            if (in_array($course_id, $wishlists)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
     public function getWishLists($user_id = "")
     {
         if ($user_id == "") {
