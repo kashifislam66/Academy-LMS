@@ -132,7 +132,7 @@ class Home extends CI_Controller
             echo $page_data['no_of_courses'] = count($page_data['courses']);
             $page_data['total_result'] = $total_rows;
 
-echo "<br>";
+echo "<br>.....";
             echo $page_data['total_result'];
             exit;
          
