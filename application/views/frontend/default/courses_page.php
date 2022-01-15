@@ -41,7 +41,7 @@ if (isset($sub_category_id)) {
 </section>
 
 
-<section class="category-course-list-area">
+<!-- <section class="category-course-list-area">
     <div class="container">
         <div class="row">
             <div class="col-lg-3 filter-area">
@@ -196,7 +196,7 @@ if (isset($sub_category_id)) {
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <script type="text/javascript">
     function get_url() {
