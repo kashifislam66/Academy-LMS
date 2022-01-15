@@ -119,14 +119,15 @@ class Home extends CI_Controller
             $config['base_url']  = site_url('home/courses?category='.$_GET['category'].'&&price=all&&level='.$selected_level.'&&language='.$selected_language.'&&rating='.$selected_rating);
             $this->pagination->initialize($config);
             //$this->db->where_in('id', $course_ids);
-
-            $this->db->group_start();
-            $sale_ids_chunk = array_chunk($course_ids,25);
-            foreach($sale_ids_chunk as $sale_ids)
-            {
-                $this->db->or_where_in('id', $sale_ids);
+            if($total_rows > 0) {
+                $this->db->group_start();
+                $sale_ids_chunk = array_chunk($course_ids,25);
+                foreach($sale_ids_chunk as $sale_ids)
+                {
+                    $this->db->or_where_in('id', $sale_ids);
+                }
+                $this->db->group_end();
             }
-            $this->db->group_end();
       
             $page_data['courses'] =  $this->db->get('course',$config['per_page'], $this->input->get("per_page"))->result_array();
             $page_data['total_result'] = $total_rows;
