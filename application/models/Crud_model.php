@@ -2444,7 +2444,7 @@ class Crud_model extends CI_Model
     function filter_course_user($limit="", $start="",$selected_category_id = "", $selected_price = "", $selected_level = "", $selected_language = "", $selected_rating = "")
     {
         // echo $selected_category_id.' '.$selected_price.' '.$selected_level.' '.$selected_language.' '.$selected_rating;
-
+die($selected_category_id);
         $courses = array();
         if ($selected_category_id != "all") {
             $category_details = $this->get_category_details_by_id($selected_category_id)->row_array();
