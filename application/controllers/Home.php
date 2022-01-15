@@ -119,10 +119,10 @@ class Home extends CI_Controller
             $config['base_url']  = site_url('home/courses?category='.$_GET['category'].'&&price=all&&level='.$selected_level.'&&language='.$selected_language.'&&rating='.$selected_rating);
             $this->pagination->initialize($config);
             
-            $this->db->where_in('id', $course_ids);
+            // $this->db->where_in('id', $course_ids);
       
             $page_data['courses'] =  $this->crud_model->filter_course_user($config["per_page"], $page,$selected_category_id, $selected_price, $selected_level, $selected_language, $selected_rating)->result_array();
-            print_r($page_data['courses']); die();
+            // print_r($page_data['courses']); die();
             // $this->db->get('course',$config['per_page'], $this->input->get("per_page"))->result_array();
             $page_data['total_result'] = $total_rows;
          
