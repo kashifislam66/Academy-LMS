@@ -53,8 +53,6 @@ class Home extends CI_Controller
 
     public function courses()
     {
-        echo "......................";exit;
-        
         if (!$this->session->userdata('layout')) {
             $this->session->set_userdata('layout', 'list');
         }
