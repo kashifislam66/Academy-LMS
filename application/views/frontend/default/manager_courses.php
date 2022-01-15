@@ -1,5 +1,7 @@
 <?php
-$my_courses = $this->user_model->my_courses()->result_array();
+
+$my_courses = $this->user_model->manager_courses()->result_array();
+
 $categories = array();
 foreach ($my_courses as $my_course) {
     $course_details = $this->crud_model->get_course_by_id($my_course['course_id'])->row_array();
@@ -8,7 +10,9 @@ foreach ($my_courses as $my_course) {
     }
 }
 ?>
-<?php include "profile_menus.php"; ?>
+
+<?php include " .php"; ?>
+
 <section class="my-courses-area">
     <div class="container">
         <div class="row align-items-baseline">
@@ -19,6 +23,7 @@ foreach ($my_courses as $my_course) {
                         <a class="btn btn-outline-secondary dropdown-toggle all-btn" href="#" data-bs-toggle="dropdown">
                             <?php echo site_phrase('categories'); ?>
                         </a>
+
                         <div class="dropdown-menu">
                             <?php foreach ($categories as $category):
                                 $category_details = $this->crud_model->get_categories($category)->row_array();
@@ -30,7 +35,7 @@ foreach ($my_courses as $my_course) {
                     </div>
 
                     <div class="btn-group">
-                        <a href="<?php echo site_url('home/my_courses'); ?>" class="btn reset-btn"
+                        <a href="<?php echo site_url('home/manager_courses'); ?>" class="btn reset-btn"
                             disabled><?php echo site_phrase('reset'); ?></a>
                     </div>
                 </div>
@@ -51,20 +56,21 @@ foreach ($my_courses as $my_course) {
             </div>
         </div>
         <div class="row no-gutters" id="my_courses_area">
-            <?php //echo "<pre>"; print_r($my_courses); exit;            
-            foreach ($my_courses as $my_course):
+            <?php foreach ($my_courses as $my_course):
                 $course_details = $this->crud_model->get_course_by_id($my_course['course_id'])->row_array();
                 $instructor_details = $this->user_model->get_all_user($course_details['user_id'])->row_array();
                 $course_status = '';
             ?>
+
             <div class="col-lg-3">
                 <div class="course-box-wrap">
                     <div class="course-box">
                         <a
                             href="<?php echo site_url('home/lesson/'.rawurlencode(slugify($course_details['title'])).'/'.$my_course['course_id']); ?>">
+                            <div class="clearfix"></div>
                             <div class="course-image">
                                 <img src="<?php echo $course_details['thumbnail']; ?>"
-                                    alt="" class="img-fluid">
+                                    alt="" class="img-fluid" />
                                 <span class="play-btn"></span>
                             </div>
                         </a>
@@ -94,8 +100,8 @@ foreach ($my_courses as $my_course) {
                                 <div class="rating your-rating-box" style="position: unset; margin-top: -18px;">
 
                                     <?php
-                                    $get_my_rating = $this->crud_model->get_user_specific_rating('course', $my_course['course_id']);
-                                    for($i = 1; $i < 6; $i++):?>
+       $get_my_rating = $this->crud_model->get_user_specific_rating('course', $my_course['course_id']);
+       for($i = 1; $i < 6; $i++):?>
                                     <?php if ($i <= $get_my_rating['rating']): ?>
                                     <i class="fas fa-star filled"></i>
                                     <?php else: ?>
@@ -123,9 +129,10 @@ foreach ($my_courses as $my_course) {
                             <?php
                                 if(!empty($course_status) && ($course_status=="completed" || $course_status=="Completed")){ ?>
                             <div class="rating your-rating-box" style="position: unset; margin-top: -18px;">
-                            
-                            <?php $get_my_rating = $this->crud_model->get_user_specific_rating('course', $my_course['course_id']);
-                             for($i = 1; $i < 6; $i++):?>
+
+                                <?php
+                                           $get_my_rating = $this->crud_model->get_user_specific_rating('course', $my_course['course_id']);
+                                           for($i = 1; $i < 6; $i++):?>
                                 <?php if ($i <= $get_my_rating['rating']): ?>
                                 <i class="fas fa-star filled"></i>
                                 <?php else: ?>
@@ -147,18 +154,22 @@ foreach ($my_courses as $my_course) {
                                         style="color: #2a303b"><?php echo site_phrase('cancel_rating'); ?></a>
                                 </p>
                             </div>
+
                         </div>
                         <div class="row">
+
                             <div class="col-md-12 px-4 py-2">
                                 <a href="" id="download_certificate_<?php echo $my_course['course_id'];?>"
                                     class="btn btn-primary radius-10 w-100">Download Certificate</a>
                             </div>
+
                             <script type="text/javascript">
                             $(document).ready(function() {
                                 var courseId = '<?php echo $my_course['course_id'];?>';
                                 checkCertificateEligibility(courseId);
                             });
                             </script>
+
                             <?php } ?>
                             <div class="col-md-12 px-4 py-2">
                                 <a href="<?php echo site_url('home/course/'.rawurlencode(slugify($course_details['title'])).'/'.$my_course['course_id']); ?>"
@@ -177,7 +188,9 @@ foreach ($my_courses as $my_course) {
                             href="<?php echo site_url('home/course/'.rawurlencode(slugify($course_details['title'])).'/'.$my_course['course_id']); ?>">
                             <h5 class="title"><?php echo ellipsis($course_details['title']); ?></h5>
                         </a>
-                        <?php $user_specific_rating = $this->crud_model->get_user_specific_rating('course', $course_details['id']); ?>
+                        <?php
+                    								$user_specific_rating = $this->crud_model->get_user_specific_rating('course', $course_details['id']);
+                    							?>
                         <form class="javascript:;" action="" method="post">
                             <div class="form-group select">
                                 <div class="styled-select">
