@@ -490,13 +490,26 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                             <img src="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id']); ?>"
                                 alt="" class="w-100">
                             <span class="preview-text"><?php echo site_phrase('preview_this_course'); ?></span>
-                            <span class="play-btn"></span>
+                            <!-- <span class="play-btn"></span> -->
                         </a>
                     </div>
                     <?php endif; ?>
                     <div class="course-sidebar-text-box">
                        
-
+                    <div class="price text-center">
+                        <?php if ($course_details['is_free_course'] == 1) : ?>
+                            <span class="current-price"><span class="current-price"><?php //echo site_phrase('free'); ?></span></span>
+                        <?php else : ?>
+                            <?php if ($course_details['discount_flag'] == 1) : ?>
+                            <span class="original-price"><?php echo currency($course_details['price']) ?></span>
+                            <span class="current-price"><span class="current-price"><?php echo currency($course_details['discounted_price']); ?></span></span>
+                            <input type="hidden" id="total_price_of_checking_out" value="<?php echo currency($course_details['discounted_price']); ?>">
+                            <?php else : ?>
+                            <span class="current-price"><span class="current-price"><?php echo currency($course_details['price']); ?></span></span>
+                            <input type="hidden" id="total_price_of_checking_out" value="<?php echo currency($course_details['price']); ?>">
+                            <?php endif; ?>
+                        <?php endif; ?>
+                        </div>
                         <?php if (is_purchased($course_details['id'])) : ?>
                         <div class="already_purchased">
                             <a
@@ -539,9 +552,51 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                         </div>
                         
                         <?php endif; ?>
+                        <!-- //START: There only manager enroll this courseto student -->
                         <?php } elseif($this->session->userdata('manager_login') == true){?>
-                             <!-- "sdfsdfsdf"; -->
-                        <?php }endif; ?>
+                            <div class="row justify-content-center">
+                                <div class="col-xl-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="col-lg-12">
+                                                <h6 class="mb-3 header-title"><?php echo 'Enrol Student to this course'; ?></h6>
+
+                                                <form class="required-form" action="<?php echo site_url('manager/enrol_student/enrol'); ?>"
+                                                    method="post" enctype="multipart/form-data">
+                                                    <input type="hidden" name="course_id" value="<?php echo $course_details['id']; ?>" id="course_id"  />
+                                                    <div class="form-group">
+                                                        <label for="user_id"><?php echo get_phrase('user'); ?><span class="required">*</span>
+                                                        </label>
+                                                        <select class="form-control " name="user_id" id="user_id"
+                                                            required>
+                                                            <option value=""><?php echo get_phrase('select_a_user'); ?></option>
+                                                            <?php $user_list = $this->user_model->get_user()->result_array();
+                                                            foreach ($user_list as $user):?>
+                                                            <option value="<?php echo $user['id'] ?>">
+                                                                <?php echo $user['first_name'].' '.$user['last_name']; ?></option>
+                                                            <?php endforeach; ?>
+                                                        </select>
+                                                    </div>
+                                                       
+                                                    <!-- last date of course -->
+                                                    <div class="form-group">
+                                                        <label for="enrol_last_date"><?php echo get_phrase('course_end_date'); ?><span
+                                                                class="required">*</span> </label>
+                                                        <input type="date" name="enrol_last_date" class=" form-control" required>
+                                                    </div>
+                                                    <input type="hidden" name="slug" value="<?php echo $course_details['title']; ?>" />
+                                                    <input type="hidden" name="enrol_std_course_prv" value="enrol_std_by_manager" />
+                                                    <button type="submit" class="btn btn-primary mt-3">
+                                                       <?php echo get_phrase('enrol_student'); ?></button>
+                                                </form>
+                                            </div>
+                                        </div> <!-- end card body-->
+                                    </div> <!-- end card -->
+                                </div><!-- end col-->
+                            </div>
+                        <?php }
+                         //END: There only manager enroll this courseto student
+                    endif; ?>
 
 
                         <div class="includes">
@@ -588,8 +643,8 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
     $provider = $video_details['provider'];
   }
 ?>
-<!-- <div class="modal fade" id="CoursePreviewModal" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true"
-    data-keyboard="false" data-backdrop="static">
+<div class="modal fade" id="CoursePreviewModal" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true"
+    data-keyboard="false" data-backdrop="static" style="display:none;">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content course-preview-modal">
             <div class="modal-header">
@@ -600,9 +655,9 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                     <span aria-hidden="true">&times;</span>
                 </button>
 
-                <!-- <button type="button" class="close" data-bs-dismiss="modal" onclick="pausePreview()">
+                 <button type="button" class="close" data-bs-dismiss="modal" onclick="pausePreview()">
             <span aria-hidden="true">&times;</span>
-          </button> -->
+          </button>
             </div>
             <div class="modal-body">
                 <div class="course-preview-video-wrap">

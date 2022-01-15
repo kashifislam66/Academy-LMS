@@ -1944,7 +1944,7 @@ class Crud_model extends CI_Model
         }
     }
     public function enrol_a_student_manually()
-    {
+    {   
         $data['course_id'] = $this->input->post('course_id');
         $data['user_id']   = $this->input->post('user_id');
         if ($this->db->get_where('enrol', $data)->num_rows() > 0) {
