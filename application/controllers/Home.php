@@ -124,7 +124,7 @@ class Home extends CI_Controller
                
            
             $page_data['courses'] =  $this->db->get('course')->result_array();
-            print_r($page_data['courses']); die();
+            // print_r($page_data['courses']); die();
             } else {
                 $page_data['courses'] = array();  
             }
