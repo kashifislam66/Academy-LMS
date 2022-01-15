@@ -92,7 +92,7 @@ class Home extends CI_Controller
                 $this->db->where('course_type', 'general');
             }
             $this->db->where('status', 'active');
-            $total_rows = $this->db->get('course')->num_rows();
+            $total_rows =$this->db->count_all('course');
             $config = array();
             $config = pagintaion($total_rows, 6);
             $config['per_page'] = 6;
