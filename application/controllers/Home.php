@@ -108,7 +108,7 @@ class Home extends CI_Controller
             $page_data['total_result'] = $total_rows;
         } else {
             $course_ids = $this->crud_model->filter_course($selected_category_id, $selected_price, $selected_level, $selected_language, $selected_rating);
-            $total_rows = array_count_values($course_ids);
+            $total_rows = count($course_ids);
             // $this->db->where_in('id', $course_ids);
             // $total_rows = $this->db->get('course')->num_rows();
             // print_r($total_rows); die();
@@ -129,12 +129,7 @@ class Home extends CI_Controller
             $this->db->group_end();
       
             $page_data['courses'] =  $this->db->get('course',$config['per_page'], $this->input->get("per_page"))->result_array();
-            echo $page_data['no_of_courses'] = count($page_data['courses']);
             $page_data['total_result'] = $total_rows;
-
-echo "<br>.....";
-            echo $page_data['total_result'];
-            exit;
          
         }
 
