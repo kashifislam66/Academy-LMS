@@ -82,9 +82,9 @@
         <h3 class="course-carousel-title my-4"><?php echo site_phrase('top_categories'); ?></h3>
         <div class="row justify-content-center">
 
-            <?php $top_10_categories = $this->crud_model->get_top_categories(12, 'category_id'); ?>
+            <?php $top_10_categories = $this->crud_model->get_top_categories(12, 'sub_category_id'); ?>
             <?php foreach($top_10_categories as $top_10_category): ?>
-            <?php $category_details = $this->crud_model->get_category_details_by_id($top_10_category['category_id'])->row_array(); ?>
+            <?php $category_details = $this->crud_model->get_category_details_by_id($top_10_category['sub_category_id'])->row_array(); ?>
             <div class="col-md-6 col-lg-4 col-xl-3 mb-3">
                 <a href="<?php echo site_url('home/courses?category='.$category_details['slug']); ?>"
                     class="top-categories">
@@ -93,7 +93,7 @@
                     </div>
                     <div class="category-title">
                         <?php echo $category_details['name']; ?>
-                        <p><?php echo $top_10_category['course_number'].' '.site_phrase('courses'); ?></p>
+                        <p><?php echo count_sum($top_10_category['sub_category_id']).' '.site_phrase('courses'); ?></p>
                     </div>
                 </a>
             </div>
