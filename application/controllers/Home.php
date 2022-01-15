@@ -115,7 +115,7 @@ class Home extends CI_Controller
             $config['base_url']  = site_url('home/courses?category='.$_GET['category'].'&&price=all&&level='.$selected_level.'&&language='.$selected_language.'&&rating='.$selected_rating);
             $this->pagination->initialize($config);
             $page = ($this->input->get("per_page")) ? $this->input->get("per_page") : 0;
-            $sale_ids = array_slice( $course_ids, $config['per_page'], $page );
+            $sale_ids = array_slice( $course_ids, $page,$config['per_page'] );
                print_r($sale_ids); die();
                     $this->db->select('id,title,user_id,course_type,language,level,multi_instructor,thumbnail,short_description');
                     $this->db->or_where_in('id', $sale_ids);
