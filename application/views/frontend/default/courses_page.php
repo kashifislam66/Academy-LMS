@@ -44,7 +44,89 @@ if (isset($sub_category_id)) {
 <section class="category-course-list-area">
     <div class="container">
         <div class="row">
-          
+            <div class="col-lg-3 filter-area">
+                <div class="card border-0 radius-10">
+                    <div id="collapseFilter" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body p-0">
+                           
+                           
+                            <hr>
+                            <div class="filter_type px-4">
+                                <h5 class="fw-700 mb-3"><?php echo site_phrase('level'); ?></h5>
+                                <ul>
+                                    <li>
+                                        <div class="">
+                                            <input type="radio" id="all" name="level" class="level custom-radio" value="all" onclick="filter(this)" <?php if ($selected_level == 'all') echo 'checked'; ?>>
+                                            <label for="all"><?php echo site_phrase('all'); ?></label>
+                                        </div>
+                                        <div class="">
+                                            <input type="radio" id="beginner" name="level" class="level custom-radio" value="beginner" onclick="filter(this)" <?php if ($selected_level == 'beginner') echo 'checked'; ?>>
+                                            <label for="beginner"><?php echo site_phrase('beginner'); ?></label>
+                                        </div>
+                                        <div class="">
+                                            <input type="radio" id="advanced" name="level" class="level custom-radio" value="advanced" onclick="filter(this)" <?php if ($selected_level == 'advanced') echo 'checked'; ?>>
+                                            <label for="advanced"><?php echo site_phrase('advanced'); ?></label>
+                                        </div>
+                                        <div class="">
+                                            <input type="radio" id="intermediate" name="level" class="level custom-radio" value="intermediate" onclick="filter(this)" <?php if ($selected_level == 'intermediate') echo 'checked'; ?>>
+                                            <label for="intermediate"><?php echo site_phrase('intermediate'); ?></label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <hr>
+                            <div class="filter_type px-4">
+                                <h5 class="fw-700 mb-3"><?php echo site_phrase('language'); ?></h5>
+                                <ul>
+                                    <li>
+                                        <div class="">
+                                            <input type="radio" id="all_language" name="language" class="languages custom-radio" value="<?php echo 'all'; ?>" onclick="filter(this)" <?php if ($selected_language == "all") echo 'checked'; ?>>
+                                            <label for="<?php echo 'all_language'; ?>"><?php echo site_phrase('all'); ?></label>
+                                        </div>
+                                    </li>
+                                    <?php
+                                    $languages = $this->crud_model->get_all_languages();
+                                    foreach ($languages as $language) : ?>
+                                        <li>
+                                            <div class="">
+                                                <input type="radio" id="language_<?php echo $language; ?>" name="language" class="languages custom-radio" value="<?php echo $language; ?>" onclick="filter(this)" <?php if ($selected_language == $language) echo 'checked'; ?>>
+                                                <label for="language_<?php echo $language; ?>"><?php echo ucfirst($language); ?></label>
+                                            </div>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                            <hr>
+                            <div class="filter_type px-4">
+                                <h5 class="fw-700 mb-3"><?php echo site_phrase('ratings'); ?></h5>
+                                <ul>
+                                    <li>
+                                        <div class="">
+                                            <input type="radio" id="all_rating" name="rating" class="ratings custom-radio" value="<?php echo 'all'; ?>" onclick="filter(this)" <?php if ($selected_rating == "all") echo 'checked'; ?>>
+                                            <label for="all_rating"><?php echo site_phrase('all'); ?></label>
+                                        </div>
+                                    </li>
+                                    <?php for ($i = 1; $i <= 5; $i++) : ?>
+                                        <li>
+                                            <div class="">
+                                                <input type="radio" id="rating_<?php echo $i; ?>" name="rating" class="ratings custom-radio" value="<?php echo $i; ?>" onclick="filter(this)" <?php if ($selected_rating == $i) echo 'checked'; ?>>
+                                                <label for="rating_<?php echo $i; ?>">
+                                                    <?php for ($j = 1; $j <= $i; $j++) : ?>
+                                                        <i class="fas fa-star" style="color: #f4c150;"></i>
+                                                    <?php endfor; ?>
+                                                    <?php for ($j = $i; $j < 5; $j++) : ?>
+                                                        <i class="far fa-star" style="color: #dedfe0;"></i>
+                                                    <?php endfor; ?>
+                                                </label>
+                                            </div>
+                                        </li>
+                                    <?php endfor; ?>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-lg-9">
                 <div class="row category-filter-box mx-0" >
                     <div class="col-md-6">
