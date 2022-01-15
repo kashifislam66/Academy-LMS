@@ -2480,8 +2480,8 @@ class Crud_model extends CI_Model
         }
         $this->db->select('id');
         $this->db->where('status', 'active');
-        $courses = $this->db->get('course')->num_rows();
-print_r($courses); die();
+        $courses = $this->db->get('course')->result();
+
         foreach ($courses as $course) {
             if ($selected_rating != "all") {
                 $total_rating =  $this->get_ratings('course', $course->id, true)->row()->rating;
