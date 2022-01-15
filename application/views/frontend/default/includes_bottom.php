@@ -40,8 +40,12 @@
 	</script>
 
 <?php endif; ?>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.js"></script>
 <script type="text/javascript">
+$(document).ready(function() {
+    $("img.lazy").lazyload();
+});
+
 	$(function () {
       $('[data-bs-toggle="tooltip"]').tooltip()
     });
