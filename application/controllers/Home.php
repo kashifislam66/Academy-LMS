@@ -124,8 +124,8 @@ class Home extends CI_Controller
                     $this->db->select('id,title,user_id,course_type,language,level,multi_instructor,thumbnail,short_description');
                     $this->db->where_in('id', $sale_ids);
                     $this->db->where('status', 'active');
-                    $this->db->limit($config['per_page'], $this->input->get("per_page"));
-            $page_data['courses'] =  $this->db->get('course')->result_array();
+                    // $this->db->limit($config['per_page'], $this->input->get("per_page"));
+            $page_data['courses'] =  $this->db->get('course',$config['per_page'],$page)->result_array();
             // print_r($page_data['courses']); die();
             } else {
                 $page_data['courses'] = array();  
