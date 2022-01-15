@@ -93,7 +93,7 @@
                     </div>
                     <div class="category-title">
                         <?php echo $category_details['name']; ?>
-                        <p><?php echo count_sum($top_10_category['category_id']).' '.site_phrase('courses'); ?></p>
+                        <p><?php echo $top_10_category['course_number'].' '.site_phrase('courses'); ?></p>
                     </div>
                 </a>
             </div>
@@ -258,8 +258,8 @@
                                         <a
                                             href="<?php echo site_url('home/my_courses'); ?>"><?php echo site_phrase('already_enroled'); ?></a>
                                     </div>
-                                    <?php else : ?>   
-                                     <?php  if (!$this->session->userdata('manager_login')){
+                                    <?php else : ?>
+                                    <?php 
                                                 if ($this->session->userdata('user_login') != 1) {
                                                     $url = "#";
                                                 } else {
@@ -267,18 +267,15 @@
                                                 } ?>
                                     <a href="<?php echo $url; ?>" class="btn green radius-10"
                                         onclick="handleEnrolledButton()"><?php echo site_phrase('get_enrolled'); ?></a>
-                                         <?php } ?>
-                                    <?php endif; 
-                                    $eventFunction = '';
-                                    if ($this->session->userdata('manager_login')){
-                                       $eventFunction = 'handleWishListManager(this)'; 
-                                    }else{
-                                    //    $eventFunction = 'handleWishList(this)';
-                                    } ?>
+
+
+                                    <?php endif; ?>
                                     <button type="button"
                                         class="wishlist-btn <?php if ($this->crud_model->is_added_to_wishlist($top_course['id'])) echo 'active'; ?>"
-                                        title="Add to wishlist" onclick="<?php echo $eventFunction; ?>"
+                                        title="Add to wishlist" onclick="handleWishList(this)"
                                         id="<?php echo $top_course['id']; ?>"><i class="fas fa-heart"></i></button>
+
+
                                 </div>
                             </div>
                         </div>
@@ -395,6 +392,10 @@
                                                 onclick="return check_action(this,'<?php echo site_url('home/instructor_page/'.$user_details['id']); ?>');">
                                             <?php endif; ?>
                                         </div>
+
+
+
+
                                     </div>
                                 </div>
                             </div>
@@ -447,25 +448,20 @@
                                             href="<?php echo site_url('home/my_courses'); ?>"><?php echo site_phrase('already_enroled'); ?></a>
                                     </div>
                                     <?php else : ?>
-                                     <?php if (!$this->session->userdata('manager_login')) : ?>
-                                        <?php   if ($this->session->userdata('user_login') != 1) {
+                                    <?php 
+                                                if ($this->session->userdata('user_login') != 1) {
                                                     $url = "#";
                                                 } else {
                                                     $url = site_url('home/get_enrolled/' . $latest_course['id']);
                                                 } ?>
                                     <a href="<?php echo $url; ?>" class="btn green radius-10"
                                         onclick="handleEnrolledButton()"><?php echo site_phrase('get_enrolled'); ?></a>
-                                     <?php endif; ?>
-                                    <?php endif; 
-                                    $eventFunction = '';
-                                    if ($this->session->userdata('manager_login')){
-                                       $eventFunction = 'handleWishListManager(this)'; 
-                                    }else{
-                                    //    $eventFunction = 'handleWishList(this)';
-                                    } ?>
+
+
+                                    <?php endif; ?>
                                     <button type="button"
                                         class="wishlist-btn <?php if ($this->crud_model->is_added_to_wishlist($latest_course['id'])) echo 'active'; ?>"
-                                        title="Add to wishlist" onclick="<?php echo $eventFunction; ?>"
+                                        title="Add to wishlist" onclick="handleWishList(this)"
                                         id="<?php echo $latest_course['id']; ?>"><i class="fas fa-heart"></i></button>
 
 
@@ -562,31 +558,10 @@
     </div>
 </div>
 <script type="text/javascript">
-// function handleWishList(elem) {
-//     $.ajax({
-//         url: '<?php echo site_url('home/handleWishList'); ?>',
-//         type: 'POST',
-//         data: {
-//             course_id: elem.id
-//         },
-//         success: function(response) {
-//             if (!response) {
-//                 window.location.replace("<?php echo site_url('login'); ?>");
-//             } else {
-//                 if ($(elem).hasClass('active')) {
-//                     $(elem).removeClass('active')
-//                 } else {
-//                     $(elem).addClass('active')
-//                 }
-//                 $('#wishlist_items').html(response);
-//             }
-//         }
-//     });
-// }
+function handleWishList(elem) {
 
-function handleWishListManager(elem){
     $.ajax({
-        url: '<?php echo site_url('home/handleWishManagerList'); ?>',
+        url: '<?php echo site_url('home/handleWishList'); ?>',
         type: 'POST',
         data: {
             course_id: elem.id
@@ -605,7 +580,6 @@ function handleWishListManager(elem){
         }
     });
 }
-
 
 function handleCartItems(elem) {
     url1 = '<?php echo site_url('home/handleCartItems'); ?>';
