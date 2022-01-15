@@ -269,16 +269,16 @@
                                         onclick="handleEnrolledButton()"><?php echo site_phrase('get_enrolled'); ?></a>
                                          <?php } ?>
                                     <?php endif; 
-                                    $eventFunction = $stdAndManager = '';
+                                    $eventFunction = $stdAndManagerActiveCourse='';
                                     if ($this->session->userdata('manager_login')){
                                        $eventFunction = 'handleWishListManager(this)'; 
-                                       $stdAndManager = $this->crud_model->is_added_to_manager_wishlist($top_course['id']);
+                                       $stdAndManagerActiveCourse = $this->crud_model->is_added_to_manager_wishlist($top_course['id']);
                                     }else{
                                         $eventFunction = 'handleWishList(this)';
-                                        $stdAndManager = $this->crud_model->is_added_to_wishlist($top_course['id']);
+                                        $stdAndManagerActiveCourse = $this->crud_model->is_added_to_wishlist($top_course['id']);
                                     } ?>
                                     <button type="button"
-                                        class="wishlist-btn <?php if ($stdAndManager) echo 'active'; ?>"
+                                        class="wishlist-btn <?php if (!empty($stdAndManagerActiveCourse)) echo 'active'; ?>"
                                         title="Add to wishlist" onclick="<?php echo $eventFunction; ?>"
                                         id="<?php echo $top_course['id']; ?>"><i class="fas fa-heart"></i></button>
                                 </div>
@@ -459,18 +459,18 @@
                                         onclick="handleEnrolledButton()"><?php echo site_phrase('get_enrolled'); ?></a>
                                      <?php endif; ?>
                                     <?php endif; 
-                                    $eventFunction = '';
+                                    $eventFunction = $stdAndManagerActiveCourse = '';
                                     if ($this->session->userdata('manager_login')){
                                        $eventFunction = 'handleWishListManager(this)'; 
+                                       $stdAndManagerActiveCourse = $this->crud_model->is_added_to_manager_wishlist($top_course['id']);
                                     }else{
-                                       $eventFunction = 'handleWishList(this)';
-                                    } ?>
+                                        $eventFunction = 'handleWishList(this)';
+                                        $stdAndManagerActiveCourse = $this->crud_model->is_added_to_wishlist($top_course['id']);
+                                    }?>
                                     <button type="button"
-                                        class="wishlist-btn <?php if ($this->crud_model->is_added_to_wishlist($latest_course['id'])) echo 'active'; ?>"
+                                        class="wishlist-btn <?php if (!empty($stdAndManagerActiveCourse)) echo 'active'; ?>"
                                         title="Add to wishlist" onclick="<?php echo $eventFunction; ?>"
                                         id="<?php echo $latest_course['id']; ?>"><i class="fas fa-heart"></i></button>
-
-
                                 </div>
                             </div>
                         </div>

@@ -198,6 +198,31 @@ if (!function_exists('get_frontend_settings')) {
     }
 }
 
+if (!function_exists('count_sum')) {
+    function count_sum($selected_category_id = '')
+    {
+        $CI    = &get_instance();
+        $CI->load->database();
+        $course_ids = array();
+        $category_details = $CI->crud_model->get_category_details_by_id($selected_category_id)->row_array();
+
+        if ($category_details['parent'] > 0) {
+            
+        //   $sub =   explode(',', $category_details['sub_category_id']);
+        $search="FIND_IN_SET ('$selected_category_id',sub_category_id)";
+         $CI->db->where($search);
+            // $this->db->where_in('sub_category_id', $selected_category_id);
+        } else {
+            $CI->db->where('category_id', $selected_category_id);
+        }
+        $CI->db->where('status', 'active');
+        $courses = $CI->db->get('course')->result_array();
+
+        return count($courses);
+    }
+}
+
+
 if (!function_exists('slugify')) {
     function slugify($text)
     {
