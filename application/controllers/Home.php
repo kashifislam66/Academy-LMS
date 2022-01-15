@@ -95,13 +95,15 @@ class Home extends CI_Controller
             $total_rows = $this->db->get('course')->num_rows();
             $config = array();
             $config = pagintaion($total_rows, 6);
+            $config['per_page'] = 6;
             $config['base_url']  = site_url('home/courses/');
             $this->pagination->initialize($config);
             if (!addon_status('scorm_course')) {
                 $this->db->where('course_type', 'general');
             }
+            $this->db->limit( $this->uri->segment(3),$config['per_page']);
             $this->db->where('status', 'active');
-            $page_data['courses'] = $this->db->get('course', $config['per_page'], $this->uri->segment(3))->result_array();
+            $page_data['courses'] = $this->db->get('course' )->result_array();
             $page_data['total_result'] = $total_rows;
         } else {
             $course_ids = $this->crud_model->filter_course($selected_category_id, $selected_price, $selected_level, $selected_language, $selected_rating);
@@ -119,6 +121,7 @@ class Home extends CI_Controller
             //    
                     $this->db->select('id,title,user_id,course_type,language,level,multi_instructor,thumbnail,short_description');
                     $this->db->or_where_in('id', $sale_ids);
+                    $this->db->where('status', 'active');
                     $this->db->limit($config['per_page'], $this->input->get("per_page"));
                
                
