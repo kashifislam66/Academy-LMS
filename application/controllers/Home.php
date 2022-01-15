@@ -108,9 +108,9 @@ class Home extends CI_Controller
             $page_data['total_result'] = $total_rows;
         } else {
             $course_ids = $this->crud_model->filter_course($selected_category_id, $selected_price, $selected_level, $selected_language, $selected_rating);
-           
-            $this->db->where_in('id', $course_ids);
-            $total_rows = $this->db->get('course')->num_rows();
+            $total_rows = array_count_values($course_ids);
+            // $this->db->where_in('id', $course_ids);
+            // $total_rows = $this->db->get('course')->num_rows();
             // print_r($total_rows); die();
             $config = array();
             $config = pagintaion($total_rows, 6);
@@ -118,10 +118,23 @@ class Home extends CI_Controller
             $config['page_query_string'] = TRUE;
             $config['base_url']  = site_url('home/courses?category='.$_GET['category'].'&&price=all&&level='.$selected_level.'&&language='.$selected_language.'&&rating='.$selected_rating);
             $this->pagination->initialize($config);
-            $this->db->where_in('id', $course_ids);
+            //$this->db->where_in('id', $course_ids);
+
+            $this->db->group_start();
+            $sale_ids_chunk = array_chunk($course_ids,25);
+            foreach($sale_ids_chunk as $sale_ids)
+            {
+                $this->db->or_where_in('id', $sale_ids);
+            }
+            $this->db->group_end();
       
             $page_data['courses'] =  $this->db->get('course',$config['per_page'], $this->input->get("per_page"))->result_array();
+            echo $page_data['no_of_courses'] = count($page_data['courses']);
             $page_data['total_result'] = $total_rows;
+
+echo "<br>.....";
+            echo $page_data['total_result'];
+            exit;
          
         }
 
