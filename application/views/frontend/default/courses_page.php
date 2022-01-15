@@ -4,7 +4,7 @@ isset($selected_category_id) ? "" : $selected_category_id = "all";
 isset($selected_level) ? "" : $selected_level = "all";
 isset($selected_language) ? "" : $selected_language = "all";
 isset($selected_rating) ? "" : $selected_rating = "all";
-isset($selected_price) ? "" : $selected_price = "all";
+
 // echo $selected_category_id.'-'.$selected_level.'-'.$selected_language.'-'.$selected_rating.'-'.$selected_price;
 $number_of_visible_categories = 10;
 if (isset($sub_category_id)) {
@@ -84,28 +84,7 @@ if (isset($sub_category_id)) {
                                 </ul>
                                 <a href="javascript:;" class="text-13px fw-500" id="city-toggle-btn" onclick="showToggle(this, 'hidden-categories')"><?php echo $total_number_of_categories > $number_of_visible_categories ? site_phrase('show_more') : ""; ?></a>
                             </div>
-                            <hr style="display:none;">
-                            <div class="filter_type px-4" style="display:none;">
-                                <div class="form-group">
-                                    <h5 class="fw-700 mb-3"><?php echo site_phrase('price'); ?></h5>
-                                    <ul>
-                                        <li>
-                                            <div class="">
-                                                <input type="radio" id="price_all" name="price" class="prices custom-radio" value="all" onclick="filter(this)" <?php if ($selected_price == 'all') echo 'checked'; ?>>
-                                                <label for="price_all"><?php echo site_phrase('all'); ?></label>
-                                            </div>
-                                            <div class="">
-                                                <input type="radio" id="price_free" name="price" class="prices custom-radio" value="free" onclick="filter(this)" <?php if ($selected_price == 'free') echo 'checked'; ?>>
-                                                <label for="price_free"><?php echo site_phrase('free'); ?></label>
-                                            </div>
-                                            <div class="">
-                                                <input type="radio" id="price_paid" name="price" class="prices custom-radio" value="paid" onclick="filter(this)" <?php if ($selected_price == 'paid') echo 'checked'; ?>>
-                                                <label for="price_paid"><?php echo site_phrase('paid'); ?></label>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                           
                             <hr>
                             <div class="filter_type px-4">
                                 <h5 class="fw-700 mb-3"><?php echo site_phrase('level'); ?></h5>
