@@ -101,7 +101,7 @@ class Home extends CI_Controller
             if (!addon_status('scorm_course')) {
                 $this->db->where('course_type', 'general');
             }
-            $this->db->limit( $this->uri->segment(3),$config['per_page']);
+            $this->db->limit( $config['per_page'],$this->uri->segment(3));
             $this->db->where('status', 'active');
             $page_data['courses'] = $this->db->get('course' )->result_array();
             $page_data['total_result'] = $total_rows;
