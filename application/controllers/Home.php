@@ -119,6 +119,7 @@ class Home extends CI_Controller
                 $sale_ids_chunk = array_chunk($course_ids,25);
                 foreach($sale_ids_chunk as $sale_ids)
                 {
+                    $this->db->select('id,title,user_id,course_type,language,level,multi_instructor');
                     $this->db->or_where_in('id', $sale_ids);
                     $this->db->limit($config['per_page'], $this->input->get("per_page"));
                 }

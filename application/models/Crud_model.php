@@ -2480,6 +2480,7 @@ class Crud_model extends CI_Model
         if ($selected_language != "all") {
             $this->db->where('language', $selected_language);
         }
+        $this->db->select('id');
         $this->db->where('status', 'active');
         $courses = $this->db->get('course')->result_array();
 
