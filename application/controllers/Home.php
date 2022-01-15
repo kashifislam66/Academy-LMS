@@ -130,7 +130,7 @@ class Home extends CI_Controller
             if($total_rows > 0) {
                     $page_data['courses'] =  $this->db->get('course',$config['per_page'], $this->input->get("per_page"))->result_array();
             } else {
-                $page_data['courses'] = array();
+                $page_data['courses'] = "";
             }
             $page_data['total_result'] = $total_rows;
          
