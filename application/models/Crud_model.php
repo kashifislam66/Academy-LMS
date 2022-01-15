@@ -1829,6 +1829,7 @@ class Crud_model extends CI_Model
             array_push($wishlists, $course_id);
         } else {
             $wishlists = json_decode($user_details['wishlist']);
+            echo "<pre>"; print_r($wishlists); exit;
             if (in_array($course_id, $wishlists)) {
                 $container = array();
                 foreach ($wishlists as $key) {

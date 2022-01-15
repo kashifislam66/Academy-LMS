@@ -131,6 +131,7 @@
                         course_id: elem.id
                     },
                     success: function(response) {
+                        // console.log(response);
                         if ($(elem).hasClass('active')) {
                             $(elem).removeClass('active')
                         } else {
