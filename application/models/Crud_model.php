@@ -2496,7 +2496,7 @@ class Crud_model extends CI_Model
                 }
             }
         } else {
-            $course_ids = $courses;
+            $course_ids = array($courses);
         }
 
         if (count($course_ids) > 0) {
