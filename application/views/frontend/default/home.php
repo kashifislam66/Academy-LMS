@@ -269,14 +269,16 @@
                                         onclick="handleEnrolledButton()"><?php echo site_phrase('get_enrolled'); ?></a>
                                          <?php } ?>
                                     <?php endif; 
-                                    $eventFunction = '';
+                                    $eventFunction = $stdAndManager = '';
                                     if ($this->session->userdata('manager_login')){
                                        $eventFunction = 'handleWishListManager(this)'; 
+                                       $stdAndManager = $this->crud_model->is_added_to_manager_wishlist($top_course['id']);
                                     }else{
-                                    //    $eventFunction = 'handleWishList(this)';
+                                        $eventFunction = 'handleWishList(this)';
+                                        $stdAndManager = $this->crud_model->is_added_to_wishlist($top_course['id']);
                                     } ?>
                                     <button type="button"
-                                        class="wishlist-btn <?php if ($this->crud_model->is_added_to_wishlist($top_course['id'])) echo 'active'; ?>"
+                                        class="wishlist-btn <?php if ($stdAndManager) echo 'active'; ?>"
                                         title="Add to wishlist" onclick="<?php echo $eventFunction; ?>"
                                         id="<?php echo $top_course['id']; ?>"><i class="fas fa-heart"></i></button>
                                 </div>
@@ -461,7 +463,7 @@
                                     if ($this->session->userdata('manager_login')){
                                        $eventFunction = 'handleWishListManager(this)'; 
                                     }else{
-                                    //    $eventFunction = 'handleWishList(this)';
+                                       $eventFunction = 'handleWishList(this)';
                                     } ?>
                                     <button type="button"
                                         class="wishlist-btn <?php if ($this->crud_model->is_added_to_wishlist($latest_course['id'])) echo 'active'; ?>"
@@ -562,27 +564,27 @@
     </div>
 </div>
 <script type="text/javascript">
-// function handleWishList(elem) {
-//     $.ajax({
-//         url: '<?php echo site_url('home/handleWishList'); ?>',
-//         type: 'POST',
-//         data: {
-//             course_id: elem.id
-//         },
-//         success: function(response) {
-//             if (!response) {
-//                 window.location.replace("<?php echo site_url('login'); ?>");
-//             } else {
-//                 if ($(elem).hasClass('active')) {
-//                     $(elem).removeClass('active')
-//                 } else {
-//                     $(elem).addClass('active')
-//                 }
-//                 $('#wishlist_items').html(response);
-//             }
-//         }
-//     });
-// }
+function handleWishList(elem) {
+    $.ajax({
+        url: '<?php echo site_url('home/handleWishList'); ?>',
+        type: 'POST',
+        data: {
+            course_id: elem.id
+        },
+        success: function(response) {
+            if (!response) {
+                window.location.replace("<?php echo site_url('login'); ?>");
+            } else {
+                if ($(elem).hasClass('active')) {
+                    $(elem).removeClass('active')
+                } else {
+                    $(elem).addClass('active')
+                }
+                $('#wishlist_items').html(response);
+            }
+        }
+    });
+}
 
 function handleWishListManager(elem){
     $.ajax({

@@ -480,7 +480,13 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                 <div class="course-sidebar natural">
                     <?php if ($course_details['video_url'] != "") : ?>
                     <div class="preview-video-box">
-                        <a data-bs-toggle="modal" data-bs-target="#CoursePreviewModal">
+                    <!-- <a data-bs-toggle="modal" data-bs-target="#CoursePreviewModal">
+                            <img src="<?php //echo $this->crud_model->get_course_thumbnail_url($course_details['id']); ?>"
+                                alt="" class="w-100">
+                            <span class="preview-text"><?php// echo site_phrase('preview_this_course'); ?></span>
+                            <span class="play-btn"></span>
+                        </a> -->
+                        <a >
                             <img src="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id']); ?>"
                                 alt="" class="w-100">
                             <span class="preview-text"><?php echo site_phrase('preview_this_course'); ?></span>
@@ -582,7 +588,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
     $provider = $video_details['provider'];
   }
 ?>
-<div class="modal fade" id="CoursePreviewModal" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true"
+<!-- <div class="modal fade" id="CoursePreviewModal" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true"
     data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content course-preview-modal">
@@ -686,7 +692,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <?php endif; ?>
 <!-- Modal -->
 
