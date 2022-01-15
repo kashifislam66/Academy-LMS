@@ -108,6 +108,8 @@ class Home extends CI_Controller
             $page_data['total_result'] = $total_rows;
         } else {
             $course_ids = $this->crud_model->filter_course($selected_category_id, $selected_price, $selected_level, $selected_language, $selected_rating);
+            echo "<pre>";
+            print_r($course_ids); exit;
             echo $course_ids."<br/>";
             $total_rows = array_count_values($course_ids);
             echo $total_rows."<br/>";
