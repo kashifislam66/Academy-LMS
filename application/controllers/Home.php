@@ -108,6 +108,7 @@ class Home extends CI_Controller
         } else {
             $course_ids = $this->crud_model->filter_course($selected_category_id, $selected_price, $selected_level, $selected_language, $selected_rating);
             $total_rows = count($course_ids);
+            print_r($total_rows); die();
             if($total_rows > 0) {
             $config = array();
             $config = pagintaion($total_rows, 6);
