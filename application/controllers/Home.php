@@ -109,12 +109,13 @@ class Home extends CI_Controller
             if($total_rows > 0) {
             $config = array();
             $config = pagintaion($total_rows, 6);
+            $config['per_page'] = 6;
             $config['enable_query_strings'] = TRUE;
             $config['page_query_string'] = TRUE;
             $config['base_url']  = site_url('home/courses?category='.$_GET['category'].'&&price=all&&level='.$selected_level.'&&language='.$selected_language.'&&rating='.$selected_rating);
             $this->pagination->initialize($config);
-           
-            $sale_ids = array_slice( $course_ids, $config['per_page'], $this->input->get("per_page") );
+            $page = ($this->input->get("per_page")) ? $this->input->get("per_page") : 0;
+            $sale_ids = array_slice( $course_ids, $config['per_page'], $page );
                print_r($sale_ids); die();
                     $this->db->select('id,title,user_id,course_type,language,level,multi_instructor,thumbnail,short_description');
                     $this->db->or_where_in('id', $sale_ids);
