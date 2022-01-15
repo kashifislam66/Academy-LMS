@@ -93,7 +93,7 @@
                     </div>
                     <div class="category-title">
                         <?php echo $category_details['name']; ?>
-                        <p><?php echo $top_10_category['course_number'].' '.site_phrase('courses'); ?></p>
+                        <p><?php echo count_sum($top_10_category['sub_category_id']).' '.site_phrase('courses'); ?></p>
                     </div>
                 </a>
             </div>
