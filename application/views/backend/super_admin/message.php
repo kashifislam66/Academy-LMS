@@ -49,9 +49,12 @@
 
                             <?php
                                     $user_details = $this->db->get_where('users' , array('id' => $user_to_show_id))->row_array();
-                                    echo $user_details['first_name'].' '.$user_details['last_name'];
+                                    if(!empty($user_details)){
+                                        echo $user_details['first_name'].' '.$user_details['last_name'];
+                                    }
+                                  
                                 ?>
-                            <!-- <span class="badge badge-light pull-right" style="color:#aaa;"><?php echo $user_details['role_id'] == 1 ? get_phrase('admin') : get_phrase('student') ;?></span> -->
+                            <!-- <span class="badge badge-light pull-right" style="color:#aaa;"><?php //echo $user_details['role_id'] == 1 ? get_phrase('admin') : get_phrase('student') ;?></span> -->
 
                             <?php if ($unread_message_number > 0):?>
                             <span class="badge badge-secondary pull-right">
