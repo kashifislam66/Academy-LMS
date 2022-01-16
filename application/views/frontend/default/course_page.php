@@ -553,7 +553,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                         
                         <?php endif; ?>
                         <!-- //START: There only manager enroll this courseto student -->
-                        <?php } elseif($this->session->userdata('manager_login') == true){?>
+                        <?php } if($this->session->userdata('manager_login') == true){?>
                             <div class="row justify-content-center">
                                 <div class="col-xl-12">
                                     <div class="card">
