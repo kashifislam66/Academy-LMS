@@ -356,6 +356,11 @@ class User_model extends CI_Model
             if (isset($_POST['email'])) {
                 $data['email'] = $email =  html_escape($this->input->post('email'));
             }
+            if($this->input->post('status') != "" || $this->input->post('status') != NULL) { 
+                $status =  $this->input->post('status'); 
+            }  else {   
+                $status = $this->db->get_where('users', array('id' => $user_id))->row('status'); 
+            }
             $data['company_id'] = html_escape($this->input->post('company_id'));
             $social_link['facebook'] = html_escape($this->input->post('facebook_link'));
             $social_link['twitter'] = html_escape($this->input->post('twitter_link'));
@@ -392,7 +397,7 @@ class User_model extends CI_Model
            
             // if($this->input->post('status') == 1) {
                 $get_login = $this->api_model->login_go1();
-                $data['status']  = $this->input->post('status');
+                $data['status']  =  $status;
                 $get_login_decode = json_decode($get_login);
             if(isset($get_login_decode->access_token)) {
                 $search_user = $this->api_model->search_user($get_login_decode->access_token, $email);
@@ -401,7 +406,7 @@ class User_model extends CI_Model
          
                 if(isset($search_user_decode->hits[0]->id)) {
                     $data['go1_id'] = $go1_id = $search_user_decode->hits[0]->id;
-                    $data['status']  = $this->input->post('status');
+                    $data['status']  = $status;
                     $update_user = $this->api_model->update_user_go1($get_login_decode->access_token, $data,$go1_id);
                     $this->db->where('id', $user_id);
                     $this->db->get('users');

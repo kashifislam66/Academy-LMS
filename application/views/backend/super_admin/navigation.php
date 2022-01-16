@@ -193,45 +193,7 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
                 </li> -->
                 <?php endif; ?>
 
-                <?php if (has_permission('instructor')) : ?>
-                <li
-                    class="side-nav-item <?php if ($page_name == 'instructors' || $page_name == 'instructor_edit') : ?> active <?php endif; ?>">
-                    <a href="javascript: void(0);" aria-expanded="false"
-                        class="<?php if ($page_name == 'instructors' || $page_name == 'instructor_edit') : ?> active <?php endif; ?>">
-                        <?php echo get_phrase('instructors'); ?>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <ul class="side-nav-third-level" aria-expanded="false">
-                        <li
-                            class="<?php if ($page_name == 'instructors' || $page_name == 'instructor_edit') echo 'active'; ?>">
-                            <a
-                                href="<?php echo site_url('Super_Admin/instructors'); ?>"><?php echo get_phrase('manage_instructors'); ?></a>
-                        </li>
-                        <li class="<?php if ($page_name == 'instructor_add') echo 'active'; ?>">
-                            <a
-                                href="<?php echo site_url('Super_Admin/instructor_form/add_instructor_form'); ?>"><?php echo get_phrase('add_new_instructor'); ?></a>
-                        </li>
-                        <li class="<?php if ($page_name == 'instructor_payout') echo 'active'; ?>">
-                            <a href="<?php echo site_url('Super_Admin/instructor_payout'); ?>">
-                                <?php echo get_phrase('instructor_payout'); ?>
-                                <span
-                                    class="badge badge-danger-lighten"><?php echo $this->crud_model->get_pending_payouts()->num_rows(); ?></span>
-                            </a>
-                        </li>
-                        <li class="<?php if ($page_name == 'instructor_settings') echo 'active'; ?>">
-                            <a
-                                href="<?php echo site_url('Super_Admin/instructor_settings'); ?>"><?php echo get_phrase('instructor_settings'); ?></a>
-                        </li>
-                        <li class="<?php if ($page_name == 'application_list') echo 'active'; ?>">
-                            <a href="<?php echo site_url('Super_Admin/instructor_application'); ?>">
-                                <?php echo get_phrase('applications'); ?>
-                                <span
-                                    class="badge badge-danger-lighten"><?php echo $this->user_model->get_pending_applications()->num_rows(); ?></span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <?php endif; ?>
+               
 
                 <?php if (has_permission('student')) : ?>
                 <li
