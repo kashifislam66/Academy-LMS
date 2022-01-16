@@ -94,8 +94,8 @@ class Home extends CI_Controller
             $this->db->where('status', 'active');
             $total_rows =$this->db->count_all('course');
             $config = array();
-            $config = pagintaion($total_rows, 15);
-            $config['per_page'] = 15;
+            $config = pagintaion($total_rows, 9);
+            $config['per_page'] = 9;
             $config['base_url']  = site_url('home/courses/');
             $this->pagination->initialize($config);
             if (!addon_status('scorm_course')) {
@@ -111,8 +111,8 @@ class Home extends CI_Controller
             // print_r($total_rows); die();
             if($total_rows > 0) {
             $config = array();
-            $config = pagintaion($total_rows, 15);
-            $config['per_page'] = 15;
+            $config = pagintaion($total_rows, 9);
+            $config['per_page'] = 9;
             $config['enable_query_strings'] = TRUE;
             $config['page_query_string'] = TRUE;
             $config['base_url']  = site_url('home/courses?category='.$_GET['category'].'&&price=all&&level='.$selected_level.'&&language='.$selected_language.'&&rating='.$selected_rating);
