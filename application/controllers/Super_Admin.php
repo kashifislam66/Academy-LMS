@@ -1413,6 +1413,7 @@ $this->user_model->edit_user($param2);
 redirect(site_url('Super_Admin/manage_profile'), 'refresh');
 }
 if ($param1 == 'change_password') {
+    die("csdfsdf");
 $this->user_model->change_password($param2);
 redirect(site_url('Super_Admin/manage_profile'), 'refresh');
 }
