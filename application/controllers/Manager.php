@@ -1104,7 +1104,7 @@ class Manager extends CI_Controller
         if ($this->session->userdata('manager_login') != 1)
             redirect(site_url('login'), 'refresh');
         if ($param1 == 'update_profile_info') {
-            $this->user_model->edit_user($param2);
+            $this->user_model->edit_manage_user($param2);
             redirect(site_url('manager/manage_profile'), 'refresh');
         }
         if ($param1 == 'change_password') {

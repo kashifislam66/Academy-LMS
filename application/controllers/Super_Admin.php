@@ -1409,11 +1409,10 @@ function manage_profile($param1 = '', $param2 = '', $param3 = '')
 if ($this->session->userdata('super_admin_login') != 1)
 redirect(site_url('login'), 'refresh');
 if ($param1 == 'update_profile_info') {
-$this->user_model->edit_user($param2);
+$this->user_model->edit_manage_user($param2);
 redirect(site_url('Super_Admin/manage_profile'), 'refresh');
 }
 if ($param1 == 'change_password') {
-    die("csdfsdf");
 $this->user_model->change_password($param2);
 redirect(site_url('Super_Admin/manage_profile'), 'refresh');
 }
