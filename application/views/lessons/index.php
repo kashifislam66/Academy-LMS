@@ -34,8 +34,9 @@
 	<?php
 	include 'lessons.php';
 	include 'includes_bottom.php';
+	 if(!isset($file_path)) { 
 	include 'common_scripts.php';
-
+	 }
 	if(get_frontend_settings('cookie_status') == 'active'):
     	include 'eu-cookie.php';
   	endif;
