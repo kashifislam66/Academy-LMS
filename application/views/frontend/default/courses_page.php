@@ -48,44 +48,7 @@ if (isset($sub_category_id)) {
                 <div class="card border-0 radius-10">
                     <div id="collapseFilter" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body p-0">
-                            <div class="filter_type px-4 pt-4">
-                                <h5 class="fw-700 mb-4"><?php echo site_phrase('categories'); ?></h5>
-                                <ul>
-                                    <li class="">
-                                        <div class="text-15px fw-700">
-                                            <input type="radio" id="category_all" name="sub_category" class="categories custom-radio" value="all" onclick="filter(this)" <?php if ($selected_category_id == 'all') echo 'checked'; ?>>
-                                            <label for="category_all"><?php echo site_phrase('all_category'); ?></label>
-                                            <span class="float-end">(<?php echo $this->crud_model->get_active_course()->num_rows(); ?>)</span>
-                                        </div>
-                                    </li>
-                                    <?php
-                                    $counter = 1;
-                                    $total_number_of_categories = $this->db->get('category')->num_rows();
-                                    $categories = $this->crud_model->get_categories()->result_array();
-                                    foreach ($categories as $category) : ?>
-                                        <li class="mt-3">
-                                            <div class="text-15px fw-700 <?php if ($counter > $number_of_visible_categories) : ?> hidden-categories hidden <?php endif; ?>">
-                                                <input type="radio" id="category-<?php echo $category['id']; ?>" name="sub_category" class="categories custom-radio" value="<?php echo $category['slug']; ?>" onclick="filter(this)" <?php if ($selected_category_id == $category['id']) echo 'checked'; ?>>
-                                                <label for="category-<?php echo $category['id']; ?>"><?php echo $category['name']; ?></label>
-                                                <span class="float-end">(<?php echo $this->crud_model->get_active_course_by_category_id($category['id'], 'category_id')->num_rows(); ?>)</span>
-                                            </div>
-                                        </li>
-                                        <?php foreach ($this->crud_model->get_sub_categories($category['id']) as $sub_category) :
-                                            $counter++; ?>
-                                            <li class="ms-3">
-                                                <div class="<?php if ($counter > $number_of_visible_categories) : ?> hidden-categories hidden <?php endif; ?>">
-                                                    <input type="radio" id="sub_category-<?php echo $sub_category['id']; ?>" name="sub_category" class="categories custom-radio" value="<?php echo $sub_category['slug']; ?>" onclick="filter(this)" <?php if ($selected_category_id == $sub_category['id']) echo 'checked'; ?>>
-                                                    <label for="sub_category-<?php echo $sub_category['id']; ?>"><?php echo $sub_category['name']; ?></label>
-                                                    <span class="float-end">(<?php echo $this->crud_model->get_active_course_by_category_id($sub_category['id'], 'sub_category_id')->num_rows(); ?>)</span>
-                                                </div>
-                                            </li>
-                                        <?php endforeach; ?>
-                                    <?php endforeach; ?>
-                                </ul>
-                                <a href="javascript:;" class="text-13px fw-500" id="city-toggle-btn" onclick="showToggle(this, 'hidden-categories')"><?php echo $total_number_of_categories > $number_of_visible_categories ? site_phrase('show_more') : ""; ?></a>
-                            </div>
-                           
-                            <hr>
+                          
                             <div class="filter_type px-4">
                                 <h5 class="fw-700 mb-3"><?php echo site_phrase('level'); ?></h5>
                                 <ul>

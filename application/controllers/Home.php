@@ -56,6 +56,7 @@ class Home extends CI_Controller
         if (!$this->session->userdata('layout')) {
             $this->session->set_userdata('layout', 'list');
         }
+        
         $layout = $this->session->userdata('layout');
         $selected_category_id = "all";
         $selected_price = "all";
@@ -121,9 +122,9 @@ class Home extends CI_Controller
             $sale_ids = array_slice( $course_ids, $page,$config['per_page'] );
             //    
                     $this->db->select('id,title,user_id,course_type,language,level,multi_instructor,thumbnail,short_description');
-                    $this->db->or_where_in('id', $sale_ids);
+                    $this->db->where_in('id', $sale_ids);
                     $this->db->where('status', 'active');
-                    $this->db->limit($config['per_page'], $this->input->get("per_page"));
+                    // $this->db->limit($config['per_page'], $this->input->get("per_page"));
             $page_data['courses'] =  $this->db->get('course')->result_array();
             // print_r($page_data['courses']); die();
             } else {
