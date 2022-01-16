@@ -629,7 +629,7 @@ class Manager extends CI_Controller
         if ($this->session->userdata('manager_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
-
+        ini_set('memory_limit', '-1');
         // CHECK ACCESS PERMISSION
         check_permission('course');
 
