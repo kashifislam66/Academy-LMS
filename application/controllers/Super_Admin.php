@@ -909,7 +909,7 @@ class Super_Admin extends CI_Controller
 
         // CHECK ACCESS PERMISSION
         check_permission('course');
-
+        ini_set('memory_limit', '-1');
         $page_data['selected_category_id']   = isset($_GET['category_id']) ? $_GET['category_id'] : "all";
         $page_data['selected_instructor_id'] = isset($_GET['instructor_id']) ? $_GET['instructor_id'] : "all";
         $page_data['selected_price']         = isset($_GET['price']) ? $_GET['price'] : "all";
