@@ -516,7 +516,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                                 href="<?php echo site_url('home/my_courses'); ?>"><?php echo site_phrase('already_enroled'); ?></a>
                         </div>
                         <?php else : ?>
-                            <?php if (!$this->session->userdata('manager_login')) { ?>
+                            <?php if (!$this->session->userdata('manager_login') && $this->session->userdata('user_login') == true) { ?>
                         <!-- WISHLIST BUTTON -->
                         <div class="buy-btns">
                             <button
