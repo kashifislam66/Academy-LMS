@@ -1994,6 +1994,8 @@ class Crud_model extends CI_Model
             // print_r($enrol_add_decode); die();
             $data['enrol_go1_id'] = $enrol_add_decode->id;
         }
+            $enrol_last_date = strtotime(date('D, d-M-Y'));
+            $data['enrol_last_date'] = strtotime("+1 month", $enrol_last_date);
             $data['date_added'] = strtotime(date('D, d-M-Y'));
             $this->db->insert('enrol', $data);
             $status = ['status'=>1];
