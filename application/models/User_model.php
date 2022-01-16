@@ -429,6 +429,7 @@ class User_model extends CI_Model
                 // $data['status'] = 1;
               }
             // }
+            print_r($data); die();
             $this->db->where('id', $user_id);
             $this->db->update('users', $data);
             $this->email_model->send_email_company_by_user_activition($data['email']);
