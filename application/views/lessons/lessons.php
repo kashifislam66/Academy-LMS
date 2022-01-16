@@ -30,7 +30,7 @@ $course_details_url = site_url("home/course/".slugify($course_details['title']).
 
  <?php   if(isset($file_path)) { ?>
     <body style=" margin: 0; ">
-		<iframe class="iframe1" name="iframe1" id="iframe1" src="<?php echo $file_path ?>"  frameborder="0" style="display: block;background: #000;border: none;height: 76vh;width: 93vw;" height="150%" width="150%"></iframe>
+		<iframe class="iframe1" name="iframe1" id="iframe1" src="<?php echo $file_path ?>"  frameborder="0" style="display: block;background: #000;border: none;height: 76vh;width: 93vw;" height="150%" width="150%" allowfullscreen></iframe>
 		</body>
       
        
