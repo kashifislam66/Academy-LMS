@@ -20,10 +20,8 @@ class User_model extends CI_Model
     public function get_user($user_id = 0)
     {
         if ($user_id > 0) {
-            $this->db->order_by("id", "DESC");
             $this->db->where('id', $user_id);
         }
-        $this->db->order_by("id", "DESC");
         $this->db->where('role_id', 2);
         return $this->db->get('users');
     }
