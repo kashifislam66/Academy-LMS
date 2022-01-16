@@ -80,7 +80,7 @@ class Certificate extends CI_Controller
 
     // CERTIFICATE SETTINGS
     public function settings($param1 = "") {
-        if ($this->session->userdata('admin_login') != true || $this->session->userdata('super_admin_login') != true || $this->session->userdata('manager_login') || true) {
+        if ($this->session->userdata('admin_login') != true && $this->session->userdata('super_admin_login') != true && $this->session->userdata('manager_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
 
