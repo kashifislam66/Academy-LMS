@@ -368,6 +368,12 @@ class User_model extends CI_Model
             }  else {   
                 $role_id = $this->db->get_where('users', array('id' => $user_id))->row('role_id'); 
             }
+            if($this->input->post('manage_id') != "" || $this->input->post('manage_id') != NULL) { 
+                $manage_id =  $this->input->post('manage_id'); 
+            }  else {   
+                $manage_id = $this->db->get_where('users', array('id' => $user_id))->row('manage_id'); 
+            }
+   
             $data['company_id'] = html_escape($this->input->post('company_id'));
             $social_link['facebook'] = html_escape($this->input->post('facebook_link'));
             $social_link['twitter'] = html_escape($this->input->post('twitter_link'));
@@ -377,7 +383,7 @@ class User_model extends CI_Model
             $data['title'] = html_escape($this->input->post('title'));
             $data['skills'] = html_escape($this->input->post('skills'));
             $data['last_modified'] = strtotime(date("Y-m-d H:i:s"));
-            $data['manage_id'] = html_escape($this->input->post('manage_id'));
+            $data['manage_id'] = $manage_id;
 
 
             if (isset($_FILES['user_image']) && $_FILES['user_image']['name'] != "") {
@@ -429,7 +435,7 @@ class User_model extends CI_Model
                 // $data['status'] = 1;
               }
             // }
-            print_r($data); die();
+            // print_r($data); die();
             $this->db->where('id', $user_id);
             $this->db->update('users', $data);
             $this->email_model->send_email_company_by_user_activition($data['email']);
