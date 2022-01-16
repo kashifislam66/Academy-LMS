@@ -54,7 +54,7 @@ class Home extends CI_Controller
     public function courses()
     {
         if (!$this->session->userdata('layout')) {
-            $this->session->set_userdata('layout', 'list');
+            $this->session->set_userdata('layout', 'grid');
         }
         
         $layout = $this->session->userdata('layout');
@@ -66,8 +66,7 @@ class Home extends CI_Controller
         // Get the category ids
         if (isset($_GET['category']) && !empty($_GET['category'] && $_GET['category'] != "all")) {
             $selected_category_id = $this->crud_model->get_category_id($_GET['category']);
-            // print_r($selected_category_id);
-            // die();
+           
         }
 
      
@@ -95,8 +94,8 @@ class Home extends CI_Controller
             $this->db->where('status', 'active');
             $total_rows =$this->db->count_all('course');
             $config = array();
-            $config = pagintaion($total_rows, 6);
-            $config['per_page'] = 6;
+            $config = pagintaion($total_rows, 15);
+            $config['per_page'] = 15;
             $config['base_url']  = site_url('home/courses/');
             $this->pagination->initialize($config);
             if (!addon_status('scorm_course')) {
@@ -112,8 +111,8 @@ class Home extends CI_Controller
             // print_r($total_rows); die();
             if($total_rows > 0) {
             $config = array();
-            $config = pagintaion($total_rows, 6);
-            $config['per_page'] = 6;
+            $config = pagintaion($total_rows, 15);
+            $config['per_page'] = 15;
             $config['enable_query_strings'] = TRUE;
             $config['page_query_string'] = TRUE;
             $config['base_url']  = site_url('home/courses?category='.$_GET['category'].'&&price=all&&level='.$selected_level.'&&language='.$selected_language.'&&rating='.$selected_rating);
