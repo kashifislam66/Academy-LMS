@@ -361,6 +361,11 @@ class User_model extends CI_Model
             }  else {   
                 $status = $this->db->get_where('users', array('id' => $user_id))->row('status'); 
             }
+            if($this->input->post('role_id') != "" || $this->input->post('role_id') != NULL) { 
+                $role_id =  $this->input->post('role_id'); 
+            }  else {   
+                $role_id = $this->db->get_where('users', array('id' => $user_id))->row('role_id'); 
+            }
             $data['company_id'] = html_escape($this->input->post('company_id'));
             $social_link['facebook'] = html_escape($this->input->post('facebook_link'));
             $social_link['twitter'] = html_escape($this->input->post('twitter_link'));
@@ -393,6 +398,7 @@ class User_model extends CI_Model
             );
             array_push($stripe_info, $stripe_keys);
             $data['stripe_keys'] = json_encode($stripe_info);
+            $data['role_id'] = $role_id;
             // go1 api code start
            
             // if($this->input->post('status') == 1) {
