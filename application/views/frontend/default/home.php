@@ -602,7 +602,7 @@ function handleWishListManager(elem){
                 } else {
                     $(elem).addClass('active')
                 }
-                $('#wishlist_items').html(response);
+                $('#wishlist_items_manager').html(response);
             }
         }
     });

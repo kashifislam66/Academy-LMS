@@ -38,7 +38,7 @@
 
                 </div>
             </li>
-            <?php if($this->session->userdata('is_instructor') == 1 || $this->session->userdata('admin_login') == 1 || $this->session->userdata('manager_login')== 1): ?>
+            <?php if($this->session->userdata('is_instructor') == 1 || $this->session->userdata('admin_login') == 1 || $this->session->userdata('super_admin_login') == 1 || $this->session->userdata('manager_login')== 1): ?>
             <li class="dropdown notification-list">
                 <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button"
                     aria-haspopup="false" aria-expanded="false">
