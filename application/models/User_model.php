@@ -355,6 +355,8 @@ class User_model extends CI_Model
 
             if (isset($_POST['email'])) {
                 $data['email'] = $email =  html_escape($this->input->post('email'));
+            } else {
+                $data['email'] = $email =  $this->db->get_where('users', array('id' => $user_id))->row('email'); 
             }
             if($this->input->post('status') != "" || $this->input->post('status') != NULL) { 
                 $status =  $this->input->post('status'); 
