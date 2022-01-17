@@ -40,7 +40,7 @@
 <section class="home-fact-area">
     <div class="container-lg">
         <div class="row">
-            <?php $courses = $this->crud_model->get_courses(); ?>
+            <?php // $courses = $this->crud_model->get_courses(); ?>
             <div class="col-md-4 d-flex">
                 <div class="home-fact-box mr-md-auto mr-auto">
                     <i class="fas fa-bullseye float-start"></i>
@@ -172,12 +172,7 @@
                                             <span
                                                 class="badge badge-sub-warning text-11px"><?php echo site_phrase($top_course['level']); ?></span>
                                         </div>
-                                        <!-- <div class="col-6 text-end">
-                                            <button class="brn-compare-sm"
-                                                onclick="return check_action(this, '<?php echo site_url('home/compare?course-1=' . rawurlencode(slugify($top_course['title'])) . '&&course-id-1=' . $top_course['id']); ?>');"><i
-                                                    class="fas fa-balance-scale"></i>
-                                                <?php echo site_phrase('compare'); ?></button>
-                                        </div> -->
+                                      
                                     </div>
 
                                     <hr class="divider-1">
@@ -365,12 +360,7 @@
                                             <span
                                                 class="badge badge-sub-warning text-11px"><?php echo site_phrase($latest_course['level']); ?></span>
                                         </div>
-                                        <!-- <div class="col-6 text-end">
-                                            <button class="brn-compare-sm"
-                                                onclick="return check_action(this, '<?php echo site_url('home/compare?course-1=' . rawurlencode(slugify($latest_course['title'])) . '&&course-id-1=' . $latest_course['id']); ?>');"><i
-                                                    class="fas fa-balance-scale"></i>
-                                                <?php echo site_phrase('compare'); ?></button>
-                                        </div> -->
+                                      
                                     </div>
 
                                     <hr class="divider-1">
