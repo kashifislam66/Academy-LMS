@@ -23,13 +23,15 @@
                     </div>
                 </div>
             </form>
-            <?php if ($this->session->userdata('user_id')) : ?>
+            
             <div class="instructor-box menu-icon-box pt-3" style="width:30%">
+            <?php if ($this->session->userdata('user_id')) : ?>
              <div class="icon">
                 <p class="text-muted">Welcome <?= $this->user_model->get_user_full_name($this->session->userdata('user_id')); ?></p>
              </div>
+             <?php endif; ?>
             </div>
-            <?php endif; ?>
+            
             <div class="cart-box menu-icon-box ms-auto" id="cart_items">
                 <?php include 'cart_items.php'; ?>
             </div>
