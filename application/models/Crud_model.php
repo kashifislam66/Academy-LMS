@@ -172,6 +172,7 @@ class Crud_model extends CI_Model
         $user_id = $this->session->userdata('user_id');
         $where = [];
         $where['manage_id'] = $user_id;
+        // echo "<pre>"; $where['manage_id']; exit;
         if(!empty($course_status)){
             $where['course_status'] = $course_status;
         }
@@ -2174,6 +2175,7 @@ class Crud_model extends CI_Model
     public function get_courses_by_manager_wishlists()
     {
         $wishlists = $this->getWishListsOfManager();
+       // print_r($wishlists); exit;
         if (sizeof($wishlists) > 0) {
             $this->db->where_in('id', $wishlists);
             return $this->db->get('course')->result_array();

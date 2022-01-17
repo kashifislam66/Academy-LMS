@@ -59,7 +59,7 @@ class User_model extends CI_Model
     public function get_manager($user_id = 0)
     {   
         if ($user_id > 0) {
-            $this->db->order_by("id", "DESC");
+            //$this->db->order_by("id", "DESC");
             $this->db->where('id', $user_id);
         }
         $this->db->where('role_id', 4);

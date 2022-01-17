@@ -11,7 +11,7 @@ foreach ($my_courses as $my_course) {
 }
 ?>
 
-<?php include " .php"; ?>
+<?php include "profile_manager_menus.php"; ?>
 
 <section class="my-courses-area">
     <div class="container">

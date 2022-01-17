@@ -88,38 +88,6 @@
         });
     }
 
-    async function handleWishList(elem) {
-        try {
-            var result = await async_modal();
-            if (result) {
-                $.ajax({
-                    url: '<?php echo site_url('home/handleWishList'); ?>',
-                    type: 'POST',
-                    data: {
-                        course_id: elem.id
-                    },
-                    success: function(response) {
-                        if ($(elem).hasClass('active')) {
-                            $(elem).removeClass('active')
-                        } else {
-                            $(elem).addClass('active')
-                        }
-                        $('#wishlist_items').html(response);
-                        $.ajax({
-                            url: '<?php echo site_url('home/reload_my_wishlists'); ?>',
-                            type: 'POST',
-                            success: function(response) {
-                                $('#my_wishlists_area').html(response);
-                            }
-                        });
-                    }
-                });
-            }
-        } catch (e) {
-            console.log("Error occured", e.message);
-        }
-    }
-
     async function handleWishListManager(elem) {
         try {
             var result = await async_modal();
