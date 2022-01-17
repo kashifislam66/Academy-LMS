@@ -13,7 +13,7 @@
 
             <?php include 'menu.php'; 
              $style = '';
-             !empty($this->session->userdata('user_id')) ? $style = 'width:70%': $style = 'width:70%'; ?>
+             !empty($this->session->userdata('user_id')) ? $style = 'width:49%': $style = 'width:49%'; ?>
             <form class="inline-form" action="<?php echo site_url('home/search'); ?>" method="get" style="<?php echo $style; ?>">
                 <div class="input-group search-box mobile-search">
                     <input type="text" name='query' class="form-control"
@@ -24,7 +24,7 @@
                 </div>
             </form>
             
-            <div class="instructor-box menu-icon-box pt-3" style="width:30%">
+            <div class="instructor-box menu-icon-box pt-3" style="width:20%">
             <?php if ($this->session->userdata('user_id')) : ?>
              <div class="icon">
                 <p class="text-muted">Welcome <?= $this->user_model->get_user_full_name($this->session->userdata('user_id')); ?></p>
