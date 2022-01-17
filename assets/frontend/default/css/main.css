@@ -1707,9 +1707,12 @@ homepage styles
     margin-top: 50px;
     padding-right: 65px;
     position: relative;
-    margin-bottom: 90px;
+    margin-bottom: 15px;
 }
 
+.course-popover-content .manager-wishlist {
+    margin-bottom: 100px !important;
+}
 
 .course-popover-content .popover-btns .add-to-cart-btn {
     width: auto;

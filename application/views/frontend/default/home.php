@@ -653,5 +653,6 @@ $(document).ready(function() {
             dots: false
         });
     }
+    
 });
 </script>
