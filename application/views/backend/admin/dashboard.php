@@ -1,7 +1,7 @@
 <?php 
     $status_wise_courses = $this->crud_model->get_status_wise_courses();
     $number_of_courses = $status_wise_courses['pending']->num_rows() + $status_wise_courses['active']->num_rows();
-    $number_of_lessons = $this->crud_model->get_lessons()->num_rows();
+    $number_of_lessons = $this->db->count_all('lesson');
     $number_of_enrolment = $this->crud_model->enrol_history_by_company_id()->num_rows();
     $number_of_students = $this->user_model->get_user_by_company()->num_rows();
 ?>
@@ -47,7 +47,7 @@
                     </div>
 
                     <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo site_url('admin/enrol_history'); ?>" class="text-secondary">
+                        <a href="<?php //echo site_url('admin/enrol_history'); ?>" class="text-secondary">
                             <div class="card shadow-none m-0 border-left">
                                 <div class="card-body text-center">
                                     <i class="dripicons-network-3 text-muted" style="font-size: 24px;"></i>
