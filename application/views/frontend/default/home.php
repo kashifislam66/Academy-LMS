@@ -247,9 +247,13 @@
                                         <?php endforeach; ?>
                                     </ul>
                                 </div>
-                                <?php $marginBottom = '';
-                                 $this->session->userdata('manager_login') != true ? $marginBottom ='' : $marginBottom ='margin-bottom:100px !important'; ?>
-                                <div class="popover-btns" style="<?php echo  $marginBottom; ?>">
+                                <?php $managerWishList = '';
+                                 if($this->session->userdata('manager_login') != true){
+                                    $managerWishList =0;
+                                 }else{
+                                    $managerWishList = 1; 
+                                 }?>
+                                <div class="popover-btns <?php if (!empty($managerWishList)) echo 'manager-wishlist'; ?>" >
                                     <?php if (is_purchased($top_course['id'])) : ?>
                                     <div class="purchased">
                                         <a
