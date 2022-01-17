@@ -1137,7 +1137,7 @@ class User_model extends CI_Model
         }
     }
 
-    public function get_user_full_name($user_id=0){
+    public function get_user_full_name($user_id= 0){
         if(!empty($user_id)){
           $this->db->where('id', $user_id);
         }

@@ -476,15 +476,15 @@
                                             <p>We are delighted to welcome you to GoSkillBoost Learning Portal.</p>
 
                                             <!-- <p>Get Started</p> -->
-                                            <p>At GoSkillBoost, we want you to feel empowered in your career journey,
+                                            <p>At GoSkillBoost, we want you to feel empowered in your career journey
                                                 with the right training tools and resources to support you.</p>
                                             <p>Spending just a little time on your own career development help you keep
-                                                up to date with knowledge, improve your everyday work skills, and get
-                                                you where you want to go-faster.</p>
+                                                up to date with knowledge, improve your everyday work skills and get
+                                                you where you want to go faster.</p>
                                             <p>It’s the steps you take today that will impact your tomorrow. So, whether
-                                                it’s ten minutes a day, or an hour each week, start taking charge of
+                                                it’s ten minutes a day or an hour each week, start taking charge of
                                                 your own career journey.</p>
-                                            <p>To get started with your online training click on the link below and
+                                            <p>To get started with your online training click the link below and
                                                 enter the username and password. </p>
                                             <br>
                                             <p style="margin-bottom: 9px; margin-top:2px;">LMS LINK:
