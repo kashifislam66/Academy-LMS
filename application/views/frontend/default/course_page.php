@@ -545,7 +545,6 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                         </div>
                         <?php else : ?>
                         <div class="buy-btns">
-                           
                                 <a href="<?php echo site_url('home/get_enrolled/' . $course_details['id']); ?>"
                                 class="btn btn-buy-now"><?php echo site_phrase('enrolment_request'); ?></a>
                             
