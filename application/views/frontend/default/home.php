@@ -248,8 +248,12 @@
                                     </ul>
                                 </div>
                                 <?php $managerWishList = '';
-                                 $this->session->userdata('manager_login') != true ? $managerWishList ='' : $managerWishList ='manager-wishlist'; ?>
-                                <div class="popover-btns <?php echo  $managerWishList; ?>" >
+                                 if($this->session->userdata('manager_login') != true){
+                                    $managerWishList =0;
+                                 }else{
+                                    $managerWishList = 1; 
+                                 }?>
+                                <div class="popover-btns <?php if (!empty($managerWishList)) echo 'manager-wishlist'; ?>" >
                                     <?php if (is_purchased($top_course['id'])) : ?>
                                     <div class="purchased">
                                         <a
