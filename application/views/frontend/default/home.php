@@ -247,13 +247,7 @@
                                         <?php endforeach; ?>
                                     </ul>
                                 </div>
-                                <?php $managerWishList = '';
-                                 if($this->session->userdata('manager_login') != true){
-                                    $managerWishList =0;
-                                 }else{
-                                    $managerWishList = 1; 
-                                 }?>
-                                <div class="popover-btns <?php if (!empty($managerWishList)) echo 'manager-wishlist'; ?>" >
+                                <div class="popover-btns ">
                                     <?php if (is_purchased($top_course['id'])) : ?>
                                     <div class="purchased">
                                         <a
