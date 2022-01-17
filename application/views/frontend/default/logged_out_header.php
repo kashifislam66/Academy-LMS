@@ -24,7 +24,7 @@
                 </div>
             </form>
             
-            <div class="instructor-box menu-icon-box pt-3" style="width:20%">
+            <div class="instructor-box menu-icon-box pt-3 text-center" style="width:30%">
             <?php if ($this->session->userdata('user_id')) : ?>
              <div class="icon">
                 <p class="text-muted">Welcome <?= $this->user_model->get_user_full_name($this->session->userdata('user_id')); ?></p>
