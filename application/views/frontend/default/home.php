@@ -248,7 +248,7 @@
                                     </ul>
                                 </div>
                                 <?php $marginBottom = '';
-                                 $this->session->userdata('manager_login') != true ? $marginBottom ='margin-bottom:100px !important' : $marginBottom =''; ?>
+                                 $this->session->userdata('manager_login') != true ? $marginBottom ='' : $marginBottom ='margin-bottom:100px !important'; ?>
                                 <div class="popover-btns" style="<?php echo  $marginBottom; ?>">
                                     <?php if (is_purchased($top_course['id'])) : ?>
                                     <div class="purchased">
