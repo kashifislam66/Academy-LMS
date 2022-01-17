@@ -69,11 +69,11 @@
             </div>
             <?php endif; ?>
             <?php if (!$this->session->userdata('super_admin_login') && !$this->session->userdata('admin_login') && !$this->session->userdata('manager_login')): ?>
-                <a href="<?php echo site_url('home/login'); ?>"
+                <a href="<?php echo site_url('home/login'); ?>" style=" width: max-content;"
                     class="btn btn-sign-in"><?php echo site_phrase('log_in'); ?></a>
             <?php endif; ?>
                 <a href="<?php echo site_url('home/sign_up'); ?>"
-                    class="btn btn-sign-up" style="<?php echo $btnSyle; ?> width: 111px;"><?php echo site_phrase('Contact_us'); ?></a>
+                    class="btn btn-sign-up" style="<?php echo $btnSyle; ?> width: max-content;"><?php echo site_phrase('Contact_us'); ?></a>
 
             </div> <!--  sign-in-box end -->
         </nav>
