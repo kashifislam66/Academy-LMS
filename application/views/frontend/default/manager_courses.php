@@ -26,8 +26,7 @@ foreach ($my_courses as $my_course) {
 
                         <div class="dropdown-menu">
                             <?php foreach ($categories as $category):
-                                $category_details = $this->crud_model->get_categories($category)->row_array();
-                                ?>
+                                $category_details = $this->crud_model->get_categories($category)->row_array(); ?>
                             <a class="dropdown-item" href="#" id="<?php echo $category; ?>"
                                 onclick="getCoursesByCategoryId(this.id)"><?php echo $category_details['name']; ?></a>
                             <?php endforeach; ?>
@@ -58,7 +57,7 @@ foreach ($my_courses as $my_course) {
         <div class="row no-gutters" id="my_courses_area">
             <?php foreach ($my_courses as $my_course):
                 $course_details = $this->crud_model->get_course_by_id($my_course['course_id'])->row_array();
-                $instructor_details = $this->user_model->get_all_user($course_details['user_id'])->row_array();
+                $instructor_details = $this->user_model->get_manager($course_details['user_id'])->row_array();
                 $course_status = '';
             ?>
 
@@ -100,8 +99,8 @@ foreach ($my_courses as $my_course) {
                                 <div class="rating your-rating-box" style="position: unset; margin-top: -18px;">
 
                                     <?php
-       $get_my_rating = $this->crud_model->get_user_specific_rating('course', $my_course['course_id']);
-       for($i = 1; $i < 6; $i++):?>
+                                    $get_my_rating = $this->crud_model->get_user_specific_rating('course', $my_course['course_id']);
+                                    for($i = 1; $i < 6; $i++):?>
                                     <?php if ($i <= $get_my_rating['rating']): ?>
                                     <i class="fas fa-star filled"></i>
                                     <?php else: ?>
@@ -188,8 +187,7 @@ foreach ($my_courses as $my_course) {
                             href="<?php echo site_url('home/course/'.rawurlencode(slugify($course_details['title'])).'/'.$my_course['course_id']); ?>">
                             <h5 class="title"><?php echo ellipsis($course_details['title']); ?></h5>
                         </a>
-                        <?php
-                    								$user_specific_rating = $this->crud_model->get_user_specific_rating('course', $course_details['id']);
+                        <?php $user_specific_rating = $this->crud_model->get_user_specific_rating('course', $course_details['id']);
                     							?>
                         <form class="javascript:;" action="" method="post">
                             <div class="form-group select">

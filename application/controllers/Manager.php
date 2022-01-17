@@ -84,13 +84,11 @@ class Manager extends CI_Controller
         check_permission('category');
 
         if ($param1 == "add_category") {
-
             $page_data['page_name'] = 'category_add';
             $page_data['categories'] = $this->crud_model->get_categories()->result_array();
             $page_data['page_title'] = get_phrase('add_category');
         }
         if ($param1 == "edit_category") {
-
             $page_data['page_name'] = 'category_edit';
             $page_data['page_title'] = get_phrase('edit_category');
             $page_data['categories'] = $this->crud_model->get_categories()->result_array();
@@ -216,8 +214,6 @@ class Manager extends CI_Controller
         // CHECK ACCESS PERMISSION
         check_permission('user');
         check_permission('student');
-
-       
 
         $page_data['page_name'] = 'course_status';
         $page_data['page_title'] = get_phrase('course_status');

@@ -103,10 +103,10 @@ foreach ($my_courses as $my_course) {
                                     <?php endif; ?>
                                     <?php endfor; ?>
                                     <!-- <p class="your-rating-text" id = "<?php echo $my_course['course_id']; ?>" onclick="getCourseDetailsForRatingModal(this.id)">
-          <span class="your"><?php echo site_phrase('your'); ?></span>
-          <span class="edit"><?php echo site_phrase('edit'); ?></span>
-          <?php echo site_phrase('rating'); ?>
-      </p> -->
+                                    <span class="your"><?php echo site_phrase('your'); ?></span>
+                                    <span class="edit"><?php echo site_phrase('edit'); ?></span>
+                                    <?php echo site_phrase('rating'); ?>
+                                    </p> -->
                                     <p class="your-rating-text">
                                         <a href="javascript::" id="edit_rating_btn_<?php echo $course_details['id']; ?>"
                                             onclick="toggleRatingView('<?php echo $course_details['id']; ?>')"

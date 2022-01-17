@@ -744,11 +744,6 @@ class Home extends CI_Controller
             $this->session->set_flashdata('error_message', site_phrase('no_search_value_found'));
             redirect(site_url(), 'refresh');
         }
-
-       
-
-        
-       
         $this->load->view('frontend/' . get_frontend_settings('theme') . '/index', $page_data);
        
     }
@@ -778,7 +773,7 @@ class Home extends CI_Controller
     public function reload_manager_wishlists()
     {
         $my_courses = $this->crud_model->get_courses_by_manager_wishlists();
-        $page_data['manager_courses'] = $my_courses;
+        $page_data['my_courses'] = $my_courses;
         $this->load->view('frontend/' . get_frontend_settings('theme') . '/reload_manager_wishlists', $page_data);
     }
 
