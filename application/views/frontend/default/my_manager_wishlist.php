@@ -107,7 +107,7 @@
                         }
                         $('#wishlist_items_manager').html(response);
                         $.ajax({
-                            url: '<?php echo site_url('home/reload_my_manager_wishlists'); ?>',
+                            url: '<?php echo site_url('home/reload_manager_wishlists'); ?>',
                             type: 'POST',
                             success: function(response) {
                                 $('#my_wishlists_area').html(response);

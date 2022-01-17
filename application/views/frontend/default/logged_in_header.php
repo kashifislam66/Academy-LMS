@@ -16,7 +16,7 @@ $user_details = $this->user_model->get_user($this->session->userdata('user_id'))
 
             <?php include 'menu.php'; 
               $sty = '';
-            !empty($this->session->userdata('user_id')) ?  $sty = 'width:70%': $sty = 'width:100%'; ?>
+            !empty($this->session->userdata('user_id')) ?  $sty = 'width:70%': $sty = 'width:70%'; ?>
             <form class="inline-form" action="<?php echo site_url('home/search'); ?>" method="get" style="<?php echo $sty; ?>">
                 <div class="input-group search-box mobile-search">
                     <input type="text" name='query' class="form-control"

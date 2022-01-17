@@ -1,4 +1,4 @@
-<?php 
+<?php  
 if (sizeof($my_courses) > 0) :
     foreach ($my_courses as $my_course) :
         $instructor_details = $this->user_model->get_all_user($my_course['user_id'])->row_array(); ?>

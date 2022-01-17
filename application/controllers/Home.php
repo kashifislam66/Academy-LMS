@@ -775,11 +775,11 @@ class Home extends CI_Controller
         $this->load->view('frontend/' . get_frontend_settings('theme') . '/reload_my_wishlists', $page_data);
     }
 
-    public function reload_my_manager_wishlists()
+    public function reload_manager_wishlists()
     {
-        $my_courses = $this->crud_model->get_courses_by_wishlists();
+        $my_courses = $this->crud_model->get_courses_by_manager_wishlists();
         $page_data['manager_courses'] = $my_courses;
-        $this->load->view('frontend/' . get_frontend_settings('theme') . '/reload_my_wishlists', $page_data);
+        $this->load->view('frontend/' . get_frontend_settings('theme') . '/reload_manager_wishlists', $page_data);
     }
 
     public function get_course_details()
