@@ -1136,5 +1136,15 @@ class User_model extends CI_Model
             $this->session->set_flashdata('error_message', get_phrase('email_duplication'));
         }
     }
+
+    public function get_user_full_name($user_id=0){
+        if(!empty($user_id)){
+          $this->db->where('id', $user_id);
+        }
+        $query = $this->db->get('users');
+        $ret = $query->row();
+        $full_name = $ret->first_name.' '.$ret->last_name;
+        return $full_name;
+    }
     
 }

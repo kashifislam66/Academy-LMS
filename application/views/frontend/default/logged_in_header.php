@@ -14,10 +14,10 @@ $user_details = $this->user_model->get_user($this->session->userdata('user_id'))
                     height="35">
             </a>
 
-            <?php include 'menu.php'; ?>
-
-
-            <form class="inline-form" action="<?php echo site_url('home/search'); ?>" method="get" style="width: 100%;">
+            <?php include 'menu.php'; 
+              $sty = '';
+            !empty($this->session->userdata('user_id')) ?  $sty = 'width:70%': $sty = 'width:100%'; ?>
+            <form class="inline-form" action="<?php echo site_url('home/search'); ?>" method="get" style="<?php echo $sty; ?>">
                 <div class="input-group search-box mobile-search">
                     <input type="text" name='query' class="form-control"
                         placeholder="<?php echo site_phrase('search_for_courses'); ?>">
@@ -27,14 +27,13 @@ $user_details = $this->user_model->get_user($this->session->userdata('user_id'))
                 </div>
             </form>
 
-            <?php /*if (get_settings('allow_instructor') == 1) : ?>
-            <div class="instructor-box menu-icon-box">
-                <div class="icon">
-                    <a href="<?php echo site_url('user'); ?>"
-                        style="border: 1px solid transparent; margin: 0px;     padding: 0px 10px; font-size: 14px; width: max-content; border-radius: 5px; height: 40px; line-height: 40px;"><?php echo 'Manage Account'; ?></a>
-                </div>
+            <?php if ($this->session->userdata('user_id')) : ?>
+            <div class="instructor-box menu-icon-box pt-3" style="width:30%">
+             <div class="icon">
+                <p class="text-muted">Welcome <?= $this->user_model->get_user_full_name($this->session->userdata('user_id')); ?></p>
+             </div>
             </div>
-            <?php endif; */?>
+            <?php endif; ?>
 
             <div class="instructor-box menu-icon-box">
                 <div class="icon">

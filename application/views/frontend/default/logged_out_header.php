@@ -11,9 +11,10 @@
                     src="<?php echo base_url('uploads/system/'.get_frontend_settings('dark_logo')); ?>" alt=""
                     height="35"></a>
 
-            <?php include 'menu.php'; ?>
-
-            <form class="inline-form" action="<?php echo site_url('home/search'); ?>" method="get">
+            <?php include 'menu.php'; 
+             $style = '';
+             !empty($this->session->userdata('user_id')) ? $style = 'width:70%': $style = 'width:70%'; ?>
+            <form class="inline-form" action="<?php echo site_url('home/search'); ?>" method="get" style="<?php echo $style; ?>">
                 <div class="input-group search-box mobile-search">
                     <input type="text" name='query' class="form-control"
                         placeholder="<?php echo site_phrase('search_for_courses'); ?>">
@@ -22,7 +23,13 @@
                     </div>
                 </div>
             </form>
-
+            <?php if ($this->session->userdata('user_id')) : ?>
+            <div class="instructor-box menu-icon-box pt-3" style="width:30%">
+             <div class="icon">
+                <p class="text-muted">Welcome <?= $this->user_model->get_user_full_name($this->session->userdata('user_id')); ?></p>
+             </div>
+            </div>
+            <?php endif; ?>
             <div class="cart-box menu-icon-box ms-auto" id="cart_items">
                 <?php include 'cart_items.php'; ?>
             </div>
@@ -64,7 +71,7 @@
                     class="btn btn-sign-in"><?php echo site_phrase('log_in'); ?></a>
             <?php endif; ?>
                 <a href="<?php echo site_url('home/sign_up'); ?>"
-                    class="btn btn-sign-up" style="<?php echo $btnSyle; ?>"><?php echo site_phrase('Contact_us'); ?></a>
+                    class="btn btn-sign-up" style="<?php echo $btnSyle; ?> width: 111px;"><?php echo site_phrase('Contact_us'); ?></a>
 
             </div> <!--  sign-in-box end -->
         </nav>
