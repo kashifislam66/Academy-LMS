@@ -1710,6 +1710,10 @@ homepage styles
     margin-bottom: 15px;
 }
 
+.course-popover-content .manager-wishlist {
+    margin-bottom: 100px !important;
+}
+
 .course-popover-content .popover-btns .add-to-cart-btn {
     width: auto;
     padding: 13px 35px;
