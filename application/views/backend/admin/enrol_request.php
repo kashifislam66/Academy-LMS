@@ -30,6 +30,7 @@
                           <tbody>
                               <?php foreach ($enrol_request->result_array() as $enrol):
                                   $user_data = $this->db->get_where('users', array('id' => $enrol['user_id']))->row_array();
+                                  //echo "<pre>"; print_r($enrol); exit;
                                   $course_data = $this->db->get_where('course', array('id' => $enrol['course_id']))->row_array();?>
                                   <?php if(!empty($user_data)) : ?>
                                   <tr class="gradeU">
