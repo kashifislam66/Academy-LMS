@@ -80,9 +80,6 @@
                                             <li><a class="dropdown-item"
                                                     href="<?php echo site_url('Super_Admin/user_form/edit_user_form/' . $user['id']) ?>"><?php echo get_phrase('edit'); ?></a>
                                             </li>
-                                            <li><a class="dropdown-item" href="#"
-                                                    onclick="confirm_modal('<?php echo site_url('Super_Admin/users/delete/' . $user['id']); ?>');"><?php echo get_phrase('delete'); ?></a>
-                                            </li>
                                         </ul>
                                     </div>
                                 </td>
