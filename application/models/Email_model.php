@@ -472,7 +472,7 @@ class Email_model extends CI_Model {
 		$email_data['to'] 		    = $student_req['email'];
 		$email_data['full_name']    = $student_req['first_name'].' '.$student_req['last_name'];
 		$email_data['course_title'] = $student_req['title'];
-		$email_data['course_id']    = $query['cr_id'];
+		$email_data['course_id']    = $student_req['cr_id'];
 		$email_template = $this->load->view('email/email_student_enrol_request_accpt_by_admin', $email_data, TRUE);
 		
 		$this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from']);
