@@ -27,7 +27,7 @@
             <div class="instructor-box menu-icon-box pt-3 text-center" style="width:30%">
             <?php if ($this->session->userdata('user_id')) : ?>
              <div class="icon">
-                <p class="text-muted">Welcome <?= $this->user_model->get_user_full_name($this->session->userdata('user_id')); ?></p>
+                <p class="text-muted fw-700">Welcome <?= $this->user_model->get_user_full_name($this->session->userdata('user_id')); ?></p>
              </div>
              <?php endif; ?>
             </div>
@@ -42,7 +42,7 @@
             <div class="instructor-box menu-icon-box ms-auto">
                 <div class="icon">
                     <a href="<?php echo site_url('admin'); ?>"
-                        style="border: 1px solid transparent; margin: 0px; font-size: 14px; width: max-content; border-radius: 5px; max-height: 40px; line-height: 40px; padding: 0px 10px;"><?php echo 'Manage Account'; ?></a>
+                        style="border: 1px solid transparent; margin: 0px; font-size: 14px; width: max-content; border-radius: 5px; max-height: 40px; line-height: 40px; padding: 0px 10px;"><?php echo 'Account Manage'; ?></a>
                 </div>
             </div>
             <?php endif; ?>
@@ -59,7 +59,7 @@
             <div class="instructor-box menu-icon-box ms-auto" style="<?php echo $btnSyle; ?>">
                 <div class="icon">
                     <a href="<?php echo site_url('manager'); ?>"
-                        style="border: 1px solid transparent; margin: 0px; font-size: 14px; width: max-content; border-radius: 5px; max-height: 40px; line-height: 40px; padding: 0px 10px;"><?php echo 'Manage Account'; ?></a>
+                        style="border: 1px solid transparent; margin: 0px; font-size: 14px; width: max-content; border-radius: 5px; max-height: 40px; line-height: 40px; padding: 0px 10px;"><?php echo 'Account Manage'; ?></a>
                 </div>
             </div>
             <div class="instructor-box menu-icon-box">

@@ -1746,6 +1746,7 @@ homepage styles
     text-align: center;
     padding: 0;
 }
+.text-bold{font-weight: 600;}
 
 .course-popover-content .popover-btns .wishlist-btn i {
     color: transparent;

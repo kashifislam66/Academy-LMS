@@ -1,5 +1,13 @@
 <!-- Topbar Start -->
-<div class="navbar-custom topnav-navbar topnav-navbar-dark">
+<?php $nav ='';
+   if($this->session->userdata('role') == 'Manager' || $this->session->userdata('role') =='Admin'){
+    $nav = 'navbar-custom topnav-navbar';
+    }else {
+     $nav = 'navbar-custom topnav-navbar topnav-navbar-dark';
+    }
+
+?>
+<div class="<?php echo $nav; ?>">
     <div class="container-fluid">
         <!-- LOGO -->
         <a href="<?php echo site_url($this->session->userdata('role')); ?>" class="topnav-logo"

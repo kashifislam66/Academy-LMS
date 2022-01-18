@@ -199,9 +199,6 @@
                                                 onclick="return check_action(this,'<?php echo site_url('home/instructor_page/'.$user_details['id']); ?>');">
                                             <?php endif; ?>
                                         </div>
-
-
-
                                     </div>
                                 </div>
                             </div>
