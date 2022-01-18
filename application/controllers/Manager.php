@@ -216,7 +216,7 @@ class Manager extends CI_Controller
         check_permission('student');
 
         $page_data['page_name'] = 'course_status';
-        $page_data['page_title'] = get_phrase('course_status');
+        $page_data['page_title'] = ' Department Progress';
         // $page_data['users'] = $this->user_model->get_user_by_company($param2);
         $this->load->view('backend/index', $page_data);
     }
@@ -295,7 +295,7 @@ class Manager extends CI_Controller
         if ($param1 == 'enrol') {
             // echo "<pre>"; print_r($_POST); exit;
             if($_POST['enrol_std_course_prv'] == 'enrol_std_by_manager'){
-                $this->crud_model->enrol_a_student_manually();
+                echo $this->crud_model->shortcut_enrol_a_student_manually();
                 redirect(site_url('home/course/'.rawurlencode(slugify($_POST['slug'])).'/'.$_POST['course_id']), 'refresh');
             }else{
               $this->crud_model->enrol_a_student_manually();
@@ -315,6 +315,7 @@ class Manager extends CI_Controller
 
         // CHECK ACCESS PERMISSION
         check_permission('enrolment');
+
 
         echo $this->crud_model->shortcut_enrol_a_student_manually();
     }
