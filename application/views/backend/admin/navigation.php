@@ -150,5 +150,5 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
     <div class="visit_website">
             <a href="<?php echo site_url('home'); ?>" target=""
                 class="btn btn-outline-dark ml-3 d-md-none d-lg-none ml-5"><?php echo get_phrase('visit_website'); ?></a>
-        </div>
+    </div>
 </div>

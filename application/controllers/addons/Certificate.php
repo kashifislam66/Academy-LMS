@@ -119,6 +119,6 @@ class Certificate extends CI_Controller
     public function send_course_completion_mail() {
         $user_id   = $this->input->post('user_id');
         $course_id = $this->input->post('course_id');
-        $this->email_model->notify_on_certificate_generate($user_id, $course_id);
+        //$this->email_model->notify_on_certificate_generate($user_id, $course_id);
     }
 }

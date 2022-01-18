@@ -1,5 +1,20 @@
+<?php 
+    $nav = $nav_user ='';
+  if($this->session->userdata('admin_login') == 1 || $this->session->userdata('manager_login')== 1){
+    $nav = 'navbar-custom topnav-navbar topnav-navbar-danger';
+    $nav_user = 'nav-user-custom';
+  }else{
+    $nav = 'navbar-custom topnav-navbar topnav-navbar-dark';
+    $nav_user = 'nav-user';
+  }
+?>
+<style>
+   .topnav-navbar-danger {background-color: #ec5252 !important; color: #fff !important; }
+   .nav-user-custom{background-color: #ec5252 !important; color: #fff !important; border: 1px solid #f171a0 !important;}
+   .topnav-navbar-danger .topbar-right-menu .nav-link{color: #fff !important;}
+</style>
 <!-- Topbar Start -->
-<div class="navbar-custom topnav-navbar topnav-navbar-dark">
+<div class="<?php echo $nav; ?>">
     <div class="container-fluid">
         <!-- LOGO -->
         <a href="<?php echo site_url($this->session->userdata('role')); ?>" class="topnav-logo"
@@ -98,7 +113,7 @@
             </li>
             <?php endif; ?>
             <li class="dropdown notification-list">
-                <a class="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" id="topbar-userdrop"
+                <a class="nav-link dropdown-toggle nav-user arrow-none mr-0 <?php echo $nav_user; ?>" data-toggle="dropdown" id="topbar-userdrop"
                     href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <span class="account-user-avatar">
                         <img src="<?php echo $this->user_model->get_user_image_url($this->session->userdata('user_id')); ?>"
