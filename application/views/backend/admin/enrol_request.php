@@ -35,7 +35,7 @@
                                       <td>
                                           <img src="<?php echo $this->user_model->get_user_image_url($enrol['user_id']); ?>" alt="" height="50" width="50" class="img-fluid rounded-circle img-thumbnail">
                                       </td>
-                                      <td> <?php if(!empty(user_data)) : ?>
+                                      <td> <?php if(!empty($user_data)) : ?>
                                           <b><?php echo $user_data['first_name'].' '.$user_data['last_name']; ?></b><br>
                                           <small><?php echo get_phrase('email').': '.$user_data['email']; ?></small>
                                       <?php endif; ?></td>
