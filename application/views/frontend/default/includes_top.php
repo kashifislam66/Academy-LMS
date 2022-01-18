@@ -18,4 +18,4 @@
 <link rel="stylesheet" href="<?php echo base_url() . 'assets/frontend/default/css/custom.css'; ?>">
 <link rel="stylesheet" href="<?php echo base_url() . 'assets/global/toastr/toastr.css' ?>">
 <script src="<?php echo base_url().'assets/frontend/default/js/vendor/jquery-3.2.1.min.js'; ?>"></script>
-<script src="<?php echo base_url().'assets/frontend/default/js/select2.min.js'; ?>"></script>
+
