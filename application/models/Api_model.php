@@ -823,7 +823,7 @@ class Api_model extends CI_Model
 					);
 					$this->db->insert('certificates', $insert_data);
 					$this->certificate_model->create_certificate($user_id, $course_id, $certificate_identifier);
-					$this->email_model->notify_on_certificate_generate($user_id, $course_id);
+					//$this->email_model->notify_on_certificate_generate($user_id, $course_id);
 					$certificate_link = base_url('uploads/certificates/' . $certificate_identifier . '.jpg');
 				} else {
 					$previous_data = $previous_data->row_array();
