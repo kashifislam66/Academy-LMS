@@ -54,7 +54,9 @@
                         <tbody>
                             <?php foreach ($enrol_history->result_array() as $enrol):
                                   $user_data = $this->db->get_where('users', array('id' => $enrol['user_id']))->row_array();
+                                  if(!empty($user_data['id'])):
                                   $course_data = $this->db->get_where('course', array('id' => $enrol['course_id']))->row_array();?>
+                                  
                             <tr class="gradeU">
                                 <td>
                                     <img src="<?php echo $this->user_model->get_user_image_url($enrol['user_id']); ?>"
@@ -74,7 +76,8 @@
                                         <i class="dripicons-trash"></i> </button>
                                 </td>
                             </tr>
-                            <?php endforeach; ?>
+                            <?php endif;
+                              endforeach; ?>
                         </tbody>
                     </table>
                     <?php endif; ?>

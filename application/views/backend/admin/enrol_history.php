@@ -46,6 +46,7 @@
                           <tbody>
                               <?php foreach ($enrol_history->result_array() as $enrol):
                                   $user_data = $this->db->get_where('users', array('id' => $enrol['user_id']))->row_array();
+                                  if(!empty($user_data['id'])):
                                   $course_data = $this->db->get_where('course', array('id' => $enrol['course_id']))->row_array();?>
                                   <tr class="gradeU">
                                       <td>
@@ -61,7 +62,8 @@
                                           <button type="button" class="btn btn-outline-danger btn-icon btn-rounded btn-sm" onclick="confirm_modal('<?php echo site_url('admin/enrol_history_delete/'.$enrol['id']); ?>');"> <i class="dripicons-trash"></i> </button>
                                       </td>
                                   </tr>
-                              <?php endforeach; ?>
+                                  <?php endif;
+                               endforeach; ?>
                           </tbody>
                       </table>
                   <?php endif; ?>

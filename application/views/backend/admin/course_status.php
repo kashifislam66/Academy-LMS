@@ -124,7 +124,12 @@
                                          echo $course_details['title']; ?>
                                  </td>
                                  <td>
-                                        <?php echo $user['course_status']; ?>
+                                 <?php if($user['course_status']){
+                                        echo $user['course_status'];
+                                       }else{
+                                        echo 'In-progress';
+                                      }
+                                 ?>
                                  </td>
                              
                             </tr>

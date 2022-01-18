@@ -220,7 +220,7 @@ class Admin extends CI_Controller
        
 
         $page_data['page_name'] = 'course_status';
-        $page_data['page_title'] = get_phrase('course_status');
+        $page_data['page_title'] = 'Department Progress';
         // $page_data['users'] = $this->user_model->get_user_by_company($param2);
         $this->load->view('backend/index', $page_data);
     }

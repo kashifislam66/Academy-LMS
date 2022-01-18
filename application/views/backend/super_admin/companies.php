@@ -63,15 +63,15 @@
                                             <i class="mdi mdi-dots-vertical"></i>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item"
-                                                    href="<?php echo site_url('Super_Admin/permissions?permission_assing_to=' . $user['id']) ?>"><?php echo get_phrase('assign_permission'); ?></a>
-                                            </li>
+                                            <!-- <li><a class="dropdown-item"
+                                                    href="<?php //echo site_url('Super_Admin/permissions?permission_assing_to=' . $user['id']) ?>"><?php echo get_phrase('assign_permission'); ?></a>
+                                            </li> -->
                                             <li><a class="dropdown-item"
                                                     href="<?php echo site_url('Super_Admin/company_form/edit_admin_form/' . $user['id']) ?>"><?php echo get_phrase('edit'); ?></a>
                                             </li>
-                                            <li><a class="dropdown-item" href="#"
-                                                    onclick="confirm_modal('<?php echo site_url('Super_Admin/admins/delete/' . $user['id']); ?>');"><?php echo get_phrase('delete'); ?></a>
-                                            </li>
+                                            <!-- <li><a class="dropdown-item" href="#"
+                                                    onclick="confirm_modal('<?php //echo site_url('Super_Admin/admins/delete/' . $user['id']); ?>');"><?php echo get_phrase('delete'); ?></a>
+                                            </li> -->
                                         </ul>
                                     </div>
                                     <?php// else : ?>

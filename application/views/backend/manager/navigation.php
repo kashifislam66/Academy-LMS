@@ -92,7 +92,7 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
             <a href="<?php echo site_url($this->session->userdata('role') . '/course_status'); ?>"
                 class="side-nav-link">
                 <i class="dripicons-user"></i>
-                <span><?php echo get_phrase('course_status'); ?></span>
+                <span>Department Progress</span>
             </a>
         </li>
         <!-- end code -->
