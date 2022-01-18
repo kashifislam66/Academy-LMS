@@ -284,10 +284,10 @@ class Cron extends CI_Controller
               foreach($enrol_reult as $enrol) {
                   $enrol_api = $this->api_model->get_status_course($get_login_decode->access_token, $enrol['enrol_go1_id']);
                   $enrol_api_decode = json_decode($enrol_api);
-                 
+                //  print_r($enrol_api_decode->status); die();
                     $data['course_status'] = "in-progress";
                     if(isset($enrol_api_decode->status)) {
-                       $data['course_status'] = $enrol_api_decodestatus;
+                       $data['course_status'] = $enrol_api_decode->status;
                     }
   
                     $this->db->where('id', $enrol['id']);
