@@ -31,6 +31,7 @@
                               <?php foreach ($enrol_request->result_array() as $enrol):
                                   $user_data = $this->db->get_where('users', array('id' => $enrol['user_id']))->row_array();
                                   $course_data = $this->db->get_where('course', array('id' => $enrol['course_id']))->row_array();?>
+                                  <?php if(!empty($user_data)) : ?>
                                   <tr class="gradeU">
                                       <td>
                                           <img src="<?php echo $this->user_model->get_user_image_url($enrol['user_id']); ?>" alt="" height="50" width="50" class="img-fluid rounded-circle img-thumbnail">
@@ -38,7 +39,8 @@
                                       <td> <?php if(!empty($user_data)) : ?>
                                           <b><?php echo $user_data['first_name'].' '.$user_data['last_name']; ?></b><br>
                                           <small><?php echo get_phrase('email').': '.$user_data['email']; ?></small>
-                                      <?php endif; ?></td>
+                                      <?php endif; ?>
+                                     </td>
                                       <td><strong><a href="<?php echo site_url('admin/course_form/course_edit/'.$course_data['id']); ?>" target="_blank"><?php echo $course_data['title']; ?></a></strong></td>
                                       <td><?php echo date('D, d-M-Y', $enrol['dated_request']); ?></td>
                                       <td><?php   if($enrol['status'] == 1) { echo 'Enrol'; }else { echo 'Not Enrol'; } ?></td>
@@ -55,6 +57,7 @@
                                           <!-- <button type="button" class="btn btn-outline-danger btn-icon btn-rounded btn-sm" onclick="confirm_modal('<?php echo site_url('admin/enrol_history_delete/'.$enrol['id']); ?>');"> <i class="dripicons-trash"></i> </button> -->
                                       </td>
                                   </tr>
+                                  <?php endif; ?>
                               <?php endforeach; ?>
                           </tbody>
                       </table>
