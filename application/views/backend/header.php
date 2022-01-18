@@ -1,12 +1,18 @@
 <!-- Topbar Start -->
-<?php $nav ='';
-   if($this->session->userdata('role') == 'Manager' || $this->session->userdata('role') =='Admin'){
-    $nav = 'navbar-custom topnav-navbar';
+<?php $nav = $navUser= '';
+   if($this->session->userdata('admin_login') == 1 || $this->session->userdata('manager_login') == 1){
+    $nav = 'navbar-custom topnav-navbar topnav-danger';
+    $navUser = 'nav-manager-admin';
     }else {
      $nav = 'navbar-custom topnav-navbar topnav-navbar-dark';
+     $navUser = 'nav-user';
     }
 
 ?>
+<style>
+    .topnav-danger{ background-color: #ec5252 !important; color: #fff !important;}
+    .nav-manager-admin{background-color: #ec5252 !important; color: #fff !important; border:none !important;}
+</style>
 <div class="<?php echo $nav; ?>">
     <div class="container-fluid">
         <!-- LOGO -->
@@ -106,7 +112,7 @@
             </li>
             <?php endif; ?>
             <li class="dropdown notification-list">
-                <a class="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" id="topbar-userdrop"
+                <a class="nav-link dropdown-toggle nav-user arrow-none mr-0 <?php echo $navUser; ?>" data-toggle="dropdown" id="topbar-userdrop"
                     href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <span class="account-user-avatar">
                         <img src="<?php echo $this->user_model->get_user_image_url($this->session->userdata('user_id')); ?>"

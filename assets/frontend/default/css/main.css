@@ -5048,3 +5048,8 @@ border: none;
 .radius-15 {
     border-radius: 15px !important;
 }
+
+.topnav-danger{
+    background-color: #ec5252 !important;
+    color: #fff !important;
+}
