@@ -929,7 +929,7 @@ class Crud_model extends CI_Model
         $query = $this->db->select($category_column.", count(*) AS course_number",false)
             ->from ("course")
             ->group_by($category_column)
-            ->order_by("course_number","DESC")
+            //->order_by("course_number","DESC")
             ->where('status', 'active')
             ->where($category_column.' !=', '0')
             ->limit($limit)
