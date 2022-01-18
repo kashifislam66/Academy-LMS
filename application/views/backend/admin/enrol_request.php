@@ -32,7 +32,7 @@
                                   $user_data = $this->db->get_where('users', array('id' => $enrol['user_id']))->row_array();
                                   //echo "<pre>"; print_r($enrol); exit;
                                   $course_data = $this->db->get_where('course', array('id' => $enrol['course_id']))->row_array();?>
-                                  <?php if(!empty($user_data)) : ?>
+                                  <?php if(!empty($user_data['id'])) : ?>
                                   <tr class="gradeU">
                                       <td>
                                           <img src="<?php echo $this->user_model->get_user_image_url($enrol['user_id']); ?>" alt="" height="50" width="50" class="img-fluid rounded-circle img-thumbnail">
