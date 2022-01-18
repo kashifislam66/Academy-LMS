@@ -2009,7 +2009,7 @@ class Crud_model extends CI_Model
     }
 
     public function shortcut_enrol_a_student_manually()
-    {
+    { //echo "<pre>"; print_r($_POST); exit;
         $data['course_id'] = $this->input->post('course_id');
         $user_id = $this->input->post('user_id');
      

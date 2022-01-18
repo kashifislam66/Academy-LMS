@@ -566,8 +566,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                                                     <div class="form-group">
                                                         <label for="user_id"><?php echo get_phrase('user'); ?><span class="required">*</span>
                                                         </label>
-                                                        <select class="form-control " name="user_id" id="user_id"
-                                                            required>
+                                                        <select class="form-control select2" data-toggle="select2" name="user_id[]" id="user_id" multiple="multiple" required>
                                                             <option value=""><?php echo get_phrase('select_a_user'); ?></option>
                                                             <?php $user_list = $this->user_model->get_user_by_manager()->result_array();
                                                             foreach ($user_list as $user):?>
@@ -755,6 +754,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
     padding-top: 0px;
 }
 </style>
+
 <script type="text/javascript">
 function handleCartItems(elem) {
     url1 = '<?php echo site_url('home/handleCartItems'); ?>';
@@ -852,4 +852,13 @@ function go_course_playing_page(course_id, lesson_id) {
         }
     });
 }
+
+if ($('select').hasClass('select2') == true) {
+    $('div').attr('tabindex', "");
+    $(function() {
+        $(".select2").select2()
+    });
+}
+
+
 </script>

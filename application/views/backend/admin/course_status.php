@@ -37,7 +37,7 @@
                             <select name="course_status" class="form-control select2 filterInputs">
                                 <option value="">Select Status</option>
                                 <?php
-                                $cs_arr = ["not-started","completed","in-progress","Not yet Started"];
+                                $cs_arr = ["completed","in-progress","Not yet Started"];
                                 foreach($cs_arr as $key => $value){
                                 ?>
                                 <option value="<?php echo $value;?>" <?php echo ($value==$cr_status)?"selected":'';?>><?php echo $value;?></option>
