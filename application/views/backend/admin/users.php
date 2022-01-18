@@ -78,6 +78,7 @@
                                             <li><a class="dropdown-item"
                                                     href="<?php echo site_url('admin/user_form/edit_user_form/' . $user['id']) ?>"><?php echo get_phrase('edit'); ?></a>
                                             </li>
+                                           
                                         </ul>
                                     </div>
                                 </td>
