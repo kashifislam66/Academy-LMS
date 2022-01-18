@@ -459,7 +459,7 @@ class Email_model extends CI_Model {
 	// Accept  the request by company
 	public function send_email_req_accept_user_enrolment($user_id='', $course_id=''){
         // echo "<pre>"; print_r($course_id); exit;
-		$student_request_course = $this->db->select('course.title, users.first_name, users.last_name, users.email')
+		$student_request_course = $this->db->select('course.title, course.id as cr_id, users.first_name, users.last_name, users.email')
 		->join('course', 'enrolment_request.course_id = course.id')
 		->join('users', 'enrolment_request.user_id = users.id')
 		->where('enrolment_request.course_id', $course_id)
@@ -472,6 +472,7 @@ class Email_model extends CI_Model {
 		$email_data['to'] 		    = $student_req['email'];
 		$email_data['full_name']    = $student_req['first_name'].' '.$student_req['last_name'];
 		$email_data['course_title'] = $student_req['title'];
+		$email_data['course_id']    = $query['cr_id'];
 		$email_template = $this->load->view('email/email_student_enrol_request_accpt_by_admin', $email_data, TRUE);
 		
 		$this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from']);
@@ -487,13 +488,11 @@ class Email_model extends CI_Model {
 		->where('enrol.course_id', $course_id)
 		->where('enrol.user_id', $user_id);
 		$query = $this->db->get('enrol')->row_array();
-		// echo $query['cr_id']; exit;
 		 $email_data['subject']      = "You have been enrolled in a course";
 		 $email_data['from']		    = get_settings('system_email');
 		  $email_data['to'] 		    = $query['email'];
 		  $email_data['full_name']    = $query['first_name'].' '.$query['last_name'];
 		  $email_data['course_title'] = $query['title'];
-		// $email_data['msg']          = 'I am interseted to enroll in this course.';
 		  $email_data['course_id']    = $query['cr_id'];
 		  $email_template = $this->load->view('email/email_student_enrol_request_accpt_by_admin', $email_data, TRUE);	
 		  $this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from']);
