@@ -922,5 +922,6 @@
     "unlimited_access": "Unlimited access",
     "trending_courses": "Trending courses",
     "_all_rights_reserved": " all rights reserved",
-    "template_updated_successfully": "Template updated successfully"
+    "template_updated_successfully": "Template updated successfully",
+    "user_not_found": "User not found"
 }
