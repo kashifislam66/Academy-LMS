@@ -1011,11 +1011,11 @@ class Api_model extends CI_Model
 		return $response;
 	}
 
-	public function get_status_course($token,$user_id,$course_id) {
+	public function get_status_course($token,$enrol_id) {
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		CURLOPT_URL => 'https://api.go1.com/v2/enrollments?user_id='.$user_id.'&lo_ids='.$course_id,
+		CURLOPT_URL => 'https://api.go1.com/v2/enrollments/'.$enrol_id,
 		CURLOPT_RETURNTRANSFER => true,
 		CURLOPT_ENCODING => '',
 		CURLOPT_MAXREDIRS => 10,
