@@ -138,56 +138,6 @@ class Certificate_model extends CI_Model
 
 		//exit;
 
-	
-
-	
-
-		//DATE CONFIG PLEBEYA
-		$config_date_plebeya['image_library'] = 'gd2';
-		$config_date_plebeya['source_image'] = $certificate_src;
-		$config_date_plebeya['wm_text'] = date('d F Y');
-		$config_date_plebeya['wm_type'] = 'text';
-		$config_date_plebeya['wm_font_path'] = './system/fonts/Plebeya.otf';
-		$config_date_plebeya['wm_font_size'] = '22';
-		$config_date_plebeya['wm_font_color'] = '2C5C8F';
-		$config_date_plebeya['wm_vrt_alignment'] = 'top';
-		$config_date_plebeya['wm_hor_alignment'] = 'right';
-		$config_date_plebeya['wm_padding'] = '0';
-		$config_date_plebeya['wm_hor_offset'] = '-200';
-		$config_date_plebeya['wm_vrt_offset'] = '1000';
-		$config_date_plebeya['quality'] = '100%';
-
-		$this->image_lib->initialize($config_date_plebeya);
-
-		if ( ! $this->image_lib->watermark())
-		{
-			echo $this->image_lib->display_errors();
-		}
-
-		//DATE CONFIG PALATINO
-		$config_date_palatino['image_library'] = 'gd2';
-		$config_date_palatino['source_image'] = $certificate_src;
-		$config_date_palatino['wm_text'] = "Date";
-		$config_date_palatino['wm_type'] = 'text';
-		$config_date_palatino['wm_font_path'] = './system/fonts/Palatino.ttf';
-		$config_date_palatino['wm_font_size'] = '13';
-		$config_date_palatino['wm_font_color'] = '2C5C8F';
-		$config_date_palatino['wm_vrt_alignment'] = 'top';
-		$config_date_palatino['wm_hor_alignment'] = 'right';
-		$config_date_palatino['wm_padding'] = '0';
-		$config_date_palatino['wm_hor_offset'] = '-200';
-		$config_date_palatino['wm_vrt_offset'] = '1000';
-		$config_date_palatino['quality'] = '100%';
-
-		$this->image_lib->initialize($config_date_palatino);
-
-		if ( ! $this->image_lib->watermark())
-		{
-			echo $this->image_lib->display_errors();
-		}
-
-	
-
 	}
 
 	//CERTIFICATE TEMPLATE TEXT UPDATE
