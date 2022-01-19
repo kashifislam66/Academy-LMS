@@ -186,49 +186,8 @@ class Certificate_model extends CI_Model
 			echo $this->image_lib->display_errors();
 		}
 
-		// CERTIFICATE NUMBER CONFIG PALATINO
-		$config_certificate_number_palatino['image_library'] = 'gd2';
-		$config_certificate_number_palatino['source_image'] = $certificate_src;
-		$config_certificate_number_palatino['wm_text'] = "Certificate ID: #".$certificate_no;
-		$config_certificate_number_palatino['wm_type'] = 'text';
-		$config_certificate_number_palatino['wm_font_path'] = './system/fonts/Palatino.ttf';
-		$config_certificate_number_palatino['wm_font_size'] = '7';
-		$config_certificate_number_palatino['wm_font_color'] = '757575';
-		$config_certificate_number_palatino['wm_vrt_alignment'] = 'top';
-		$config_certificate_number_palatino['wm_hor_alignment'] = 'left';
-		$config_certificate_number_palatino['wm_padding'] = '0';
-		$config_certificate_number_palatino['wm_hor_offset'] = '200';
-		$config_certificate_number_palatino['wm_vrt_offset'] = '702';
-		$config_certificate_number_palatino['quality'] = '100%';
+	
 
-		$this->image_lib->initialize($config_certificate_number_palatino);
-
-		if ( ! $this->image_lib->watermark())
-		{
-			echo $this->image_lib->display_errors();
-		}
-
-		// CERTIFICATE URL CONFIG PALATINO
-		$config_certificate_url_palatino['image_library'] = 'gd2';
-		$config_certificate_url_palatino['source_image'] = $certificate_src;
-		$config_certificate_url_palatino['wm_text'] = "Certificate URL: ".$certificate_url;
-		$config_certificate_url_palatino['wm_type'] = 'text';
-		$config_certificate_url_palatino['wm_font_path'] = './system/fonts/Palatino.ttf';
-		$config_certificate_url_palatino['wm_font_size'] = '7';
-		$config_certificate_url_palatino['wm_font_color'] = '757575';
-		$config_certificate_url_palatino['wm_vrt_alignment'] = 'top';
-		$config_certificate_url_palatino['wm_hor_alignment'] = 'right';
-		$config_certificate_url_palatino['wm_padding'] = '0';
-		$config_certificate_url_palatino['wm_hor_offset'] = '-105';
-		$config_certificate_url_palatino['wm_vrt_offset'] = '702';
-		$config_certificate_url_palatino['quality'] = '100%';
-
-		$this->image_lib->initialize($config_certificate_url_palatino);
-
-		if ( ! $this->image_lib->watermark())
-		{
-			echo $this->image_lib->display_errors();
-		}
 	}
 
 	//CERTIFICATE TEMPLATE TEXT UPDATE
