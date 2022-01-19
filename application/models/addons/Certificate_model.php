@@ -105,7 +105,7 @@ class Certificate_model extends CI_Model
 		//echo BA.'system/fonts/'; exit;
 
 		for ($i=0; $i < $splited_certificate_template_part; $i++) {
-			$vrt_offset = 340;
+			$vrt_offset = 400;
 			$line_number = $i + 1;
 
 			// CONFIG CERTIFICATE TEMPLATE
@@ -121,8 +121,8 @@ class Certificate_model extends CI_Model
 			$config_certificate['wm_hor_alignment'] = 'center';
 			$config_certificate['wm_padding'] = '0';
 			$config_certificate['wm_hor_offset'] = '0';
-			$config_certificate['wm_vrt_offset'] = '400';
-			// $config_certificate['wm_vrt_offset'] = $vrt_offset + (40 * $i);
+			// $config_certificate['wm_vrt_offset'] = '400';
+			$config_certificate['wm_vrt_offset'] = $vrt_offset + (50 * $i);
 			$config_certificate['quality'] = '100%';
 
 		    //debug($splited_certificate_template[$i] , false);
