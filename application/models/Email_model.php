@@ -134,27 +134,27 @@ class Email_model extends CI_Model {
 		$this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from']);
 	}
 
-	// public function notify_on_certificate_generate($user_id = "", $course_id = "") {
-	// 	$checker = array(
-	// 		'course_id' => $course_id,
-	// 		'student_id' => $user_id
-	// 	);
-	// 	$result = $this->db->get_where('certificates', $checker)->row_array();
-	// 	$certificate_link = site_url('certificate/'.$result['shareable_url']);
-	// 	$course_details    = $this->crud_model->get_course_by_id($course_id)->row_array();
-	// 	$user_details = $this->user_model->get_all_user($user_id)->row_array();
-	// 	$email_msg	=	"<b>Congratulations!!</b> ". $user_details['first_name']." ".$user_details['last_name'].",";
-	// 	$email_msg	.=	"<p>You have successfully completed the course named, <b>".$course_details['title'].".</b></p>";
-	// 	$email_msg	.=	"<p>You can get your course completion certificate from here <b>".$certificate_link.".</b></p>";
+	public function notify_on_certificate_generate($user_id = "", $course_id = "") {
+		$checker = array(
+			'course_id' => $course_id,
+			'student_id' => $user_id
+		);
+		$result = $this->db->get_where('certificates', $checker)->row_array();
+		$certificate_link = site_url('certificate/'.$result['shareable_url']);
+		$course_details    = $this->crud_model->get_course_by_id($course_id)->row_array();
+		$user_details = $this->user_model->get_all_user($user_id)->row_array();
+		$email_msg	=	"<b>Congratulations!!</b> ". $user_details['first_name']." ".$user_details['last_name'].",";
+		$email_msg	.=	"<p>You have successfully completed the course named, <b>".$course_details['title'].".</b></p>";
+		$email_msg	.=	"<p>You can get your course completion certificate from here <b>".$certificate_link.".</b></p>";
 
-	// 	$email_data['subject'] = 'Course Completion Notification';
-	// 	$email_data['from'] = get_settings('system_email');
-	// 	$email_data['to'] = $user_details['email'];
-	// 	$email_data['to_name'] = $user_details['first_name'].' '.$user_details['last_name'];
-	// 	$email_data['message'] = $student_msg;
-	// 	$email_template = $this->load->view('email/common_template', $email_data, TRUE);
-	// 	$this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from']);
-	// }
+		$email_data['subject'] = 'Course Completion Notification';
+		$email_data['from'] = get_settings('system_email');
+		$email_data['to'] = $user_details['email'];
+		$email_data['to_name'] = $user_details['first_name'].' '.$user_details['last_name'];
+		$email_data['message'] = $student_msg;
+		$email_template = $this->load->view('email/common_template', $email_data, TRUE);
+		// $this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from']);
+	}
 
 	public function suspended_offline_payment($user_id = ""){
 		$user_details = $this->user_model->get_all_user($user_id);
