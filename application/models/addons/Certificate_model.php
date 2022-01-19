@@ -115,13 +115,13 @@ class Certificate_model extends CI_Model
 			$config_certificate['wm_text'] = $splited_certificate_template[$i];
 			$config_certificate['wm_type'] = 'text';
 			$config_certificate['wm_font_path'] = FCPATH.'system/fonts/Palatino.ttf';
-			$config_certificate['wm_font_size'] = '18';
+			$config_certificate['wm_font_size'] = '25';
 			$config_certificate['wm_font_color'] = '2C5C8F';
 			$config_certificate['wm_vrt_alignment'] = 'top';
 			$config_certificate['wm_hor_alignment'] = 'center';
 			$config_certificate['wm_padding'] = '0';
 			$config_certificate['wm_hor_offset'] = '0';
-			$config_certificate['wm_vrt_offset'] = $vrt_offset + (40 * $i);
+			$config_certificate['wm_vrt_offset'] = $vrt_offset + (50 * $i);
 			$config_certificate['quality'] = '100%';
 
 		    //debug($splited_certificate_template[$i] , false);
