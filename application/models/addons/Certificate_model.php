@@ -153,8 +153,8 @@ class Certificate_model extends CI_Model
 		$config_date_plebeya['wm_vrt_alignment'] = 'top';
 		$config_date_plebeya['wm_hor_alignment'] = 'right';
 		$config_date_plebeya['wm_padding'] = '0';
-		$config_date_plebeya['wm_hor_offset'] = '-80';
-		$config_date_plebeya['wm_vrt_offset'] = '700';
+		$config_date_plebeya['wm_hor_offset'] = '-200';
+		$config_date_plebeya['wm_vrt_offset'] = '1000';
 		$config_date_plebeya['quality'] = '100%';
 
 		$this->image_lib->initialize($config_date_plebeya);
@@ -175,8 +175,8 @@ class Certificate_model extends CI_Model
 		$config_date_palatino['wm_vrt_alignment'] = 'top';
 		$config_date_palatino['wm_hor_alignment'] = 'right';
 		$config_date_palatino['wm_padding'] = '0';
-		$config_date_palatino['wm_hor_offset'] = '-80';
-		$config_date_palatino['wm_vrt_offset'] = '700';
+		$config_date_palatino['wm_hor_offset'] = '-200';
+		$config_date_palatino['wm_vrt_offset'] = '1000';
 		$config_date_palatino['quality'] = '100%';
 
 		$this->image_lib->initialize($config_date_palatino);
