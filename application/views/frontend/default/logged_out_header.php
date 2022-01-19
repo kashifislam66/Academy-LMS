@@ -39,27 +39,27 @@
             <span class="signin-box-move-desktop-helper"></span>
             <div class="sign-in-box btn-group">
             <?php if ($this->session->userdata('admin_login')): ?>
-            <div class="instructor-box menu-icon-box ms-auto">
+            <div class="instructor-box menu-icon-box ">
                 <div class="icon">
                     <a href="<?php echo site_url('admin'); ?>"
-                        style="border: 1px solid transparent; margin: 0px; font-size: 14px; width: max-content; border-radius: 5px; max-height: 40px; line-height: 40px; padding: 0px 10px;"><?php echo 'Account Manage'; ?></a>
+                        style="border: 1px solid transparent; margin: 0px; font-size: 14px; width: max-content; border-radius: 5px; max-height: 40px; line-height: 40px; padding: 0px 10px;"><?php echo 'Manage Account'; ?></a>
                 </div>
             </div>
             <?php endif; ?>
             <?php if ($this->session->userdata('super_admin_login')): ?>
-            <div class="instructor-box menu-icon-box ms-auto">
+            <div class="instructor-box menu-icon-box ">
                 <div class="icon">
                     <a href="<?php echo site_url('Super_Admin'); ?>"
                         style="border: 1px solid transparent; margin: 0px; font-size: 14px; width: max-content; border-radius: 5px; max-height: 40px; line-height: 40px; padding: 0px 10px;"><?php echo 'Super Admin'; ?></a>
                 </div>
             </div>
-            <?php endif; ?>
-            <?php if ($this->session->userdata('manager_login')): 
+            <?php endif; $btnSyle ="";
+             if ($this->session->userdata('manager_login')): 
                 $btnSyle ="height: 38px; margin-top: 13px;"; ?>
-            <div class="instructor-box menu-icon-box ms-auto" style="<?php echo $btnSyle; ?>">
+            <div class="instructor-box menu-icon-box " style="<?php echo $btnSyle; ?>">
                 <div class="icon">
                     <a href="<?php echo site_url('manager'); ?>"
-                        style="border: 1px solid transparent; margin: 0px; font-size: 14px; width: max-content; border-radius: 5px; max-height: 40px; line-height: 40px; padding: 0px 10px;"><?php echo 'Account Manage'; ?></a>
+                        style="border: 1px solid transparent; margin: 0px; font-size: 14px; width: max-content; border-radius: 5px; max-height: 40px; line-height: 40px; padding: 0px 10px;"><?php echo 'Manage Account'; ?></a>
                 </div>
             </div>
             <div class="instructor-box menu-icon-box">
@@ -71,10 +71,14 @@
             <?php if (!$this->session->userdata('super_admin_login') && !$this->session->userdata('admin_login') && !$this->session->userdata('manager_login')): ?>
                 <a href="<?php echo site_url('home/login'); ?>" style=" width: max-content;"
                     class="btn btn-sign-in"><?php echo site_phrase('log_in'); ?></a>
-            <?php endif; ?>
-                <a href="<?php echo site_url('home/sign_up'); ?>"
+                    <a href="<?php echo site_url('home/sign_up'); ?>"
                     class="btn btn-sign-up" style="<?php echo $btnSyle; ?> width: max-content;"><?php echo site_phrase('Contact_us'); ?></a>
-
+            <?php else: ?>
+            <a href="<?php echo site_url('login/logout'); ?>" class="btn btn-sign-in"
+            style=" width: max-content; height: 38px; <?php echo $btnSyle; ?>">
+                        <?php echo get_phrase('logout'); ?>
+            </a>
+            <?php endif; ?>
             </div> <!--  sign-in-box end -->
         </nav>
     </div>

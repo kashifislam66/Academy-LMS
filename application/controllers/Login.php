@@ -64,7 +64,11 @@ class Login extends CI_Controller
                 redirect(site_url('admin/dashboard'), 'refresh');
             } else if ($row->role_id == 4) {
                 $this->session->set_userdata('manager_login', '1');
-                redirect(site_url('manager/dashboard'), 'refresh');
+                // redirect(site_url('manager/dashboard'), 'refresh');
+                if($this->session->userdata('url_history')){
+                    redirect($this->session->userdata('url_history'), 'refresh');
+                }
+                redirect(site_url('home'), 'refresh');
             } else if ($row->role_id == 2) {
                 $this->session->set_userdata('user_login', '1');
 
