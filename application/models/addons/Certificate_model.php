@@ -106,7 +106,7 @@ class Certificate_model extends CI_Model
 
 		for ($i=0; $i < $splited_certificate_template_part; $i++) {
 			$vrt_offset = 340;
-			$line_number = $i + 2;
+			$line_number = $i + 1;
 
 			// CONFIG CERTIFICATE TEMPLATE
 			$this->load->library('image_lib');
@@ -121,6 +121,7 @@ class Certificate_model extends CI_Model
 			$config_certificate['wm_hor_alignment'] = 'center';
 			$config_certificate['wm_padding'] = '0';
 			$config_certificate['wm_hor_offset'] = '0';
+			$config_certificate['height'] = '30';
 			$config_certificate['wm_vrt_offset'] = $vrt_offset + (40 * $i);
 			$config_certificate['quality'] = '100%';
 
