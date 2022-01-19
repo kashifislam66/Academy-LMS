@@ -121,8 +121,8 @@ class Certificate_model extends CI_Model
 			$config_certificate['wm_hor_alignment'] = 'center';
 			$config_certificate['wm_padding'] = '0';
 			$config_certificate['wm_hor_offset'] = '0';
-			$config_instructor_name_palatino['wm_vrt_offset'] = '300';
-			$config_certificate['wm_vrt_offset'] = $vrt_offset + (40 * $i);
+			$config_certificate['wm_vrt_offset'] = '400';
+			// $config_certificate['wm_vrt_offset'] = $vrt_offset + (40 * $i);
 			$config_certificate['quality'] = '100%';
 
 		    //debug($splited_certificate_template[$i] , false);
