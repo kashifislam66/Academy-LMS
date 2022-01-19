@@ -277,18 +277,17 @@ class Cron extends CI_Controller
           $get_login = $this->api_model->login_go1();
           $get_login_decode = json_decode($get_login);
           if(isset($get_login_decode->access_token)) {
-              $this->db->select('enrol.id,users.go1_id,course.api_id');
-              $this->db->join('users','users.id=enrol.user_id');
-              $this->db->join('course','course.id=enrol.course_id');
+              $this->db->select('enrol.id,enrol_go1_id');
+
               $enrol_reult =  $this->db->get('enrol')->result_array();
               
               foreach($enrol_reult as $enrol) {
-                  $enrol_api = $this->api_model->get_status_course($get_login_decode->access_token, $enrol['go1_id'],$enrol['api_id']);
+                  $enrol_api = $this->api_model->get_status_course($get_login_decode->access_token, $enrol['enrol_go1_id']);
                   $enrol_api_decode = json_decode($enrol_api);
-                 
-                    $data['course_status'] = "";
-                    if(isset($enrol_api_decode->hits[0]->status)) {
-                       $data['course_status'] = $enrol_api_decode->hits[0]->status;
+                //  print_r($enrol_api_decode->status); die();
+                    $data['course_status'] = "in-progress";
+                    if(isset($enrol_api_decode->status)) {
+                       $data['course_status'] = $enrol_api_decode->status;
                     }
   
                     $this->db->where('id', $enrol['id']);
