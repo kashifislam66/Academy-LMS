@@ -2352,12 +2352,13 @@ class Crud_model extends CI_Model
         if ($num2 > 0)
             $message_thread_code = $this->db->get_where('message_thread', array('sender' => $receiver, 'receiver' => $sender))->row()->message_thread_code;
 
-
         $data_message['message_thread_code']    = $message_thread_code;
         $data_message['message']                = $message;
         $data_message['sender']                 = $sender;
         $data_message['timestamp']              = $timestamp;
         $this->db->insert('message', $data_message);
+        // send email to super Admin from user//
+        $this->email_model->send_email_user_first_message_to_super_user($sender);
 
         return $message_thread_code;
     }
@@ -2373,6 +2374,9 @@ class Crud_model extends CI_Model
         $data_message['sender']                 = $sender;
         $data_message['timestamp']              = $timestamp;
         $this->db->insert('message', $data_message);
+        // $insert_id = $this->db->insert_id();
+       // echo $insert_id; exit;
+        $this->email_model->send_email_user_message_to_super_user($sender, $message);
     }
 
     function mark_thread_messages_read($message_thread_code)

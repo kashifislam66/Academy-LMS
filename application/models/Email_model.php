@@ -134,27 +134,27 @@ class Email_model extends CI_Model {
 		$this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from']);
 	}
 
-	public function notify_on_certificate_generate($user_id = "", $course_id = "") {
-		$checker = array(
-			'course_id' => $course_id,
-			'student_id' => $user_id
-		);
-		$result = $this->db->get_where('certificates', $checker)->row_array();
-		$certificate_link = site_url('certificate/'.$result['shareable_url']);
-		$course_details    = $this->crud_model->get_course_by_id($course_id)->row_array();
-		$user_details = $this->user_model->get_all_user($user_id)->row_array();
-		$email_msg	=	"<b>Congratulations!!</b> ". $user_details['first_name']." ".$user_details['last_name'].",";
-		$email_msg	.=	"<p>You have successfully completed the course named, <b>".$course_details['title'].".</b></p>";
-		$email_msg	.=	"<p>You can get your course completion certificate from here <b>".$certificate_link.".</b></p>";
+	// public function notify_on_certificate_generate($user_id = "", $course_id = "") {
+	// 	$checker = array(
+	// 		'course_id' => $course_id,
+	// 		'student_id' => $user_id
+	// 	);
+	// 	$result = $this->db->get_where('certificates', $checker)->row_array();
+	// 	$certificate_link = site_url('certificate/'.$result['shareable_url']);
+	// 	$course_details    = $this->crud_model->get_course_by_id($course_id)->row_array();
+	// 	$user_details = $this->user_model->get_all_user($user_id)->row_array();
+	// 	$email_msg	=	"<b>Congratulations!!</b> ". $user_details['first_name']." ".$user_details['last_name'].",";
+	// 	$email_msg	.=	"<p>You have successfully completed the course named, <b>".$course_details['title'].".</b></p>";
+	// 	$email_msg	.=	"<p>You can get your course completion certificate from here <b>".$certificate_link.".</b></p>";
 
-		$email_data['subject'] = 'Course Completion Notification';
-		$email_data['from'] = get_settings('system_email');
-		$email_data['to'] = $user_details['email'];
-		$email_data['to_name'] = $user_details['first_name'].' '.$user_details['last_name'];
-		$email_data['message'] = $student_msg;
-		$email_template = $this->load->view('email/common_template', $email_data, TRUE);
-		$this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from']);
-	}
+	// 	$email_data['subject'] = 'Course Completion Notification';
+	// 	$email_data['from'] = get_settings('system_email');
+	// 	$email_data['to'] = $user_details['email'];
+	// 	$email_data['to_name'] = $user_details['first_name'].' '.$user_details['last_name'];
+	// 	$email_data['message'] = $student_msg;
+	// 	$email_template = $this->load->view('email/common_template', $email_data, TRUE);
+	// 	$this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from']);
+	// }
 
 	public function suspended_offline_payment($user_id = ""){
 		$user_details = $this->user_model->get_all_user($user_id);
@@ -488,14 +488,51 @@ class Email_model extends CI_Model {
 		->where('enrol.course_id', $course_id)
 		->where('enrol.user_id', $user_id);
 		$query = $this->db->get('enrol')->row_array();
-		 $email_data['subject']      = "You have been enrolled in a course";
-		 $email_data['from']		    = get_settings('system_email');
-		  $email_data['to'] 		    = $query['email'];
-		  $email_data['full_name']    = $query['first_name'].' '.$query['last_name'];
-		  $email_data['course_title'] = $query['title'];
-		  $email_data['course_id']    = $query['cr_id'];
-		  $email_template = $this->load->view('email/email_student_enrol_request_accpt_by_admin', $email_data, TRUE);	
-		  $this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from']);
+		$email_data['subject']      = "You have been enrolled in a course";
+		$email_data['from']		    = get_settings('system_email');
+		$email_data['to'] 		    = $query['email'];
+		$email_data['full_name']    = $query['first_name'].' '.$query['last_name'];
+		$email_data['course_title'] = $query['title'];
+		$email_data['course_id']    = $query['cr_id'];
+		$email_template = $this->load->view('email/email_student_enrol_request_accpt_by_admin', $email_data, TRUE);	
+		$this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from']);
 	  
   }
+  
+   // User message send to super user //
+	public function send_email_user_first_message_to_super_user($sender=''){
+		//echo "pppppppppppp"; $sender; exit;
+		if(!empty($sender)){
+		$this->db->select('message.message, message.sender, users.first_name, users.last_name, users.email')
+		->join('users', 'users.id = message.sender');
+		$query = $this->db->get('message')->row_array();
+		//echo "<pre>"; print_r($query); exit;
+		$email_data['subject']      = "There is a new message in your account";
+		$email_data['from']		    = $query['email'];
+		$email_data['to'] 		    = get_settings('system_email');
+		$email_data['full_name']    = $query['first_name'].' '.$query['last_name'];
+		$email_data['message']      = $query['message'];
+		$email_template = $this->load->view('email/email_user_message_to_system', $email_data, TRUE);	
+		$this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from']);
+		}
+	}
+
+	public function send_email_user_message_to_super_user($sender='', $message=''){
+		//echo "zzzzzzzzzzzzzzzzzzzzzzzzz"; $sender; exit;
+		if(!empty($sender)){
+		$this->db->select('message.message, message.sender, users.first_name, users.last_name, users.email')
+		->join('users', 'users.id = message.sender')
+		->where('message.message', $message);
+		$query = $this->db->get('message')->row_array();
+		//echo "<pre>"; print_r($query); exit;
+		$email_data['subject']      = "There is a new message in your account";
+		$email_data['from']		    = $query['email'];
+		$email_data['to'] 		    = get_settings('system_email');
+		$email_data['full_name']    = $query['first_name'].' '.$query['last_name'];
+		$email_data['message']      = $query['message'];
+		$email_template = $this->load->view('email/email_user_message_to_system', $email_data, TRUE);	
+		$this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from']);
+		}
+	}
+
 }

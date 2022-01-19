@@ -61,7 +61,7 @@ class Certificate_model extends CI_Model
 			);
 			$this->db->insert('certificates', $insert_data);
 			$this->create_certificate($user_id, $course_id, $certificate_identifier);
-			$this->email_model->notify_on_certificate_generate($user_id, $course_id);
+			//$this->email_model->notify_on_certificate_generate($user_id, $course_id);
 		}
 		//return true;
 	}

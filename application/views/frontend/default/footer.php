@@ -8,11 +8,13 @@
                     <?php foreach($top_10_categories as $top_10_category): ?>
                     <?php $category_details = $this->crud_model->get_category_details_by_id($top_10_category['sub_category_id'])->row_array(); ?>
                     <li class="mb-1">
+                        <?php if(!empty($category_details['slug'])){ ?>
                         <a class="link-secondary footer-hover-link"
                             href="<?php echo site_url('home/courses?category='.$category_details['slug']); ?>">
                             <?php echo $category_details['name']; ?>
                             <!-- <span class="fw-700 text-end">(<?php echo $top_10_category['course_number']; ?>)</span> -->
                         </a>
+                        <?php } ?>
                     </li>
                     <?php endforeach; ?>
                 </ul>
