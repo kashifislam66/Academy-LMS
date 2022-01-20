@@ -518,7 +518,6 @@ class Email_model extends CI_Model {
 	}
 
 	public function send_email_user_message_to_super_user($sender='', $message=''){
-		//echo "zzzzzzzzzzzzzzzzzzzzzzzzz"; $sender; exit;
 		if(!empty($sender)){
 		$this->db->select('message.message, message.sender, users.first_name, users.last_name, users.email')
 		->join('users', 'users.id = message.sender')

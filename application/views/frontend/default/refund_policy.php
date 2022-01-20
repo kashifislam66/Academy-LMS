@@ -4,7 +4,7 @@
     background-position-x: right;
     background-color: #ec5252;">
     <div class="image-placeholder-1"></div>
-    <div class="container-lg breadcrumb-container">
+    <div class="container-lg breadcrumb-container" style="padding:50px 0px;">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item display-6 fw-bold">
