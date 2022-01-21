@@ -424,8 +424,8 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                     </div>
 
                     <div class="reviews mt-5">
-                        <h3><?php echo site_phrase('reviews'); ?></h3>
-                        <ul>
+                        <!-- <h3><?php echo site_phrase('reviews'); ?></h3> -->
+                       <?php /* <ul>
                             <?php
               $ratings = $this->crud_model->get_ratings('course', $course_id)->result_array();
               foreach ($ratings as $rating) :
@@ -471,7 +471,7 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                                 </div>
                             </li>
                             <?php endforeach; ?>
-                        </ul>
+                        </ul> */ ?>
                     </div>
                 </div>
             </div>

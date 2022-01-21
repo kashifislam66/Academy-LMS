@@ -751,6 +751,8 @@ $course_edit_menu = '<li><a class="dropdown-item" href="' . $edit_this_course_ur
 $course_delete_menu = '<li><a class="dropdown-item" href="javascript::" onclick="' . $delete_course_url . '">' .
         get_phrase("delete") . '</a></li>';
 
+$course_inactive_menu = '<li><a class="dropdown-item" href="'. site_url('Super_Admin/course_actions/inactive/' . $row->id)  .'">In-Active</a></li>';
+
 $action = '
 <div class="dropright dropright">
     <button type="button" class="btn btn-sm btn-outline-primary btn-rounded btn-icon" data-toggle="dropdown"
@@ -763,7 +765,7 @@ $action = '
         ' . $course_edit_menu . $section_and_lesson_menu . '
         <li><a class="dropdown-item" href="javascript::" onclick="' . $course_status_changing_action . '">' .
                 $course_status_changing_message . '</a></li>
-        ' . $course_delete_menu . '
+        ' . $course_inactive_menu . '
     </ul>
 </div>
 ';
@@ -862,9 +864,11 @@ if (addon_status('jitsi-live-class')) {
 $this->load->model('addons/jitsi_liveclass_model', 'jitsi_liveclass_model');
 $this->jitsi_liveclass_model->update_live_class($param2);
 }
-
 redirect(site_url('Super_Admin/course_form/course_edit/' . $param2));
-} elseif ($param1 == 'delete') {
+} elseif ($param1 == 'inactive') {
+    $this->crud_model->inactive_active_course($param2);
+    redirect(site_url('Super_Admin/courses'), 'refresh');
+}elseif ($param1 == 'delete') {
 
 $this->is_drafted_course($param2);
 $this->crud_model->delete_course($param2);

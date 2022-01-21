@@ -3085,6 +3085,19 @@ class Crud_model extends CI_Model
         return $requested_withdrawal_amount;
     }
 
+    public function inactive_active_course($course_id=""){
+        // $course_type = $this->get_course_by_id($course_id)->row();
+        $course_status = $this->get_course_by_id($course_id)->row('status');
+        $status = '';
+        if($course_status == 'inactive'){
+            $status = array('status' => 'active');
+        }elseif($course_status == 'active'){
+            $status = array('status' => 'inactive');
+        } 
+         $this->db->where('id', $course_id);
+         $this->db->update('course', $status);
+     }
+
     // GET REQUESTED WITHDRAWALS OF AN INSTRUCTOR
     public function get_requested_withdrawals($id = "")
     {
