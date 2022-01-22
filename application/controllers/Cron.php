@@ -299,4 +299,34 @@ class Cron extends CI_Controller
   
       }
 
+      public function weekly_course_progress_email(){
+        ini_set('display_errors', 1);
+        ini_set('max_execution_time', 0); 
+        ini_set('memory_limit','2048M');
+
+        $current_date = strtotime(date('D, d-M-Y'));
+        // echo "<pre>"; print_r($current_date); exit;
+        $query = $this->db
+            ->select("enrol.*, course.title, course.id, users.first_name, users.last_name, users.email")
+            ->join('users', 'enrol.user_id = users.id')
+            ->join('course', 'enrol.course_id = course.id')
+            ->where('enrol.course_status' , 'Not yet Started');
+            //->where('' < $current_date);
+            $this->db->where('enrol.enrol_last_date >=', $current_date);
+            $query = $this->db->get('enrol')->result_array();
+         //echo "<pre>"; print_r($query);
+
+        foreach($query  as $student_progress){
+			$email_data['subject']      = "Your weekly course progress report";
+			$email_data['from']		    = get_settings('system_email');
+			$email_data['to'] 		    = $student_progress['email'];
+			$email_data['full_name']    = $student_progress['first_name'].' '.$student_progress['last_name'];
+			$email_data['course_title'] = $student_progress['title'];
+			$email_data['course_id']    = $student_progress['course_id'];
+
+			$email_template = $this->load->view('email/email_enroll_weekly_progress', $email_data, TRUE);	
+			$this->send_smtp_mail($email_template, $email_data['subject'], $email_data['to'], $email_data['from']);
+      }
+    }
+
 }
