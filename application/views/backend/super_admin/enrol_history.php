@@ -49,7 +49,7 @@
                                 <th><?php echo get_phrase('user_name'); ?></th>
                                 <th><?php echo get_phrase('enrolled_course'); ?></th>
                                 <th><?php echo get_phrase('enrolment_date'); ?></th>
-                                <th><?php echo get_phrase('actions'); ?></th>
+                                <!-- <th><?php echo get_phrase('actions'); ?></th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -70,11 +70,11 @@
                                             href="<?php echo site_url('Super_Admin/course_form/course_edit/'.$course_data['id']); ?>"
                                             target="_blank"><?php echo $course_data['title']; ?></a></strong></td>
                                 <td><?php echo date('D, d-M-Y', $enrol['date_added']); ?></td>
-                                <td>
+                                <!-- <td>
                                     <button type="button" class="btn btn-outline-danger btn-icon btn-rounded btn-sm"
                                         onclick="confirm_modal('<?php echo site_url('Super_Admin/enrol_history_delete/'.$enrol['id']); ?>');">
                                         <i class="dripicons-trash"></i> </button>
-                                </td>
+                                </td> -->
                             </tr>
                                   <?php endif;
                          endforeach; ?>

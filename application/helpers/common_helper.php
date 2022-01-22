@@ -347,6 +347,28 @@ if (!function_exists('lesson_progress')) {
         return 0;
     }
 }
+if (!function_exists('course_enrol_due_date_go1')) {
+    function course_enrol_due_date_go1($course_id = "", $user_id = "", $return_type = "")
+    {
+        $CI    = &get_instance();
+        $CI->load->database();
+        if ($user_id == "") {
+            $user_id = $CI->session->userdata('user_id');
+        }
+        $course_details = $CI->crud_model->check_course_enrolled_user($course_id,$CI->session->userdata('user_id'));
+        $enrol_last_dates = "";
+                if(isset($course_details['enrol_last_date'])) {
+                    $enrol_last_dates = $course_details['enrol_last_date'];
+                }
+               
+
+        return  $enrol_last_dates;
+        }
+       
+        
+    
+}
+
 if (!function_exists('course_progress_go1')) {
     function course_progress_go1($course_id = "", $user_id = "", $return_type = "")
     {
@@ -368,6 +390,7 @@ if (!function_exists('course_progress_go1')) {
         
     
 }
+
 if (!function_exists('course_progress')) {
     function course_progress($course_id = "", $user_id = "", $return_type = "")
     {

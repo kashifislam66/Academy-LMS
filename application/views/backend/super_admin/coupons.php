@@ -48,9 +48,9 @@
                                             <li><a class="dropdown-item"
                                                     href="<?php echo site_url('Super_Admin/coupon_form/edit_coupon_form/' . $coupon['id']) ?>"><?php echo get_phrase('edit'); ?></a>
                                             </li>
-                                            <li><a class="dropdown-item" href="#"
+                                            <!-- <li><a class="dropdown-item" href="#"
                                                     onclick="confirm_modal('<?php echo site_url('Super_Admin/coupons/delete/' . $coupon['id']); ?>');"><?php echo get_phrase('delete'); ?></a>
-                                            </li>
+                                            </li> -->
                                         </ul>
                                     </div>
                                 </td>

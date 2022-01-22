@@ -35,12 +35,12 @@
                 <li class="list-group-item on-hover-action" id="<?php echo $sub_category['id']; ?>">
                     <span><i class="<?php echo $sub_category['font_awesome_class']; ?>"></i>
                         <?php echo $sub_category['name']; ?></span>
-                    <span class="category-action" id='category-delete-btn-<?php echo $sub_category['id']; ?>'
+                    <!-- <span class="category-action" id='category-delete-btn-<?php echo $sub_category['id']; ?>'
                         style="float: right; margin-left: 5px; display: none; height: 20px;">
                         <a href="javascript::" class="action-icon"
                             onclick="confirm_modal('<?php echo site_url('Super_Admin/categories/delete/' . $sub_category['id']); ?>');">
                             <i class="mdi mdi-delete" style="font-size: 18px;"></i></a>
-                    </span>
+                    </span> -->
                     <span class="category-action" id='category-edit-btn-<?php echo $sub_category['id']; ?>'
                         style="float: right; display: none; height: 20px;">
                         <a href="<?php echo site_url('Super_Admin/category_form/edit_category/' . $sub_category['id']); ?>"
@@ -55,12 +55,12 @@
                     style="display: none;" style="margin-right:5px;">
                     <i class="mdi mdi-wrench"></i> <?php echo get_phrase('edit'); ?>
                 </a>
-                <a href="#" class="btn btn-icon btn-outline-danger btn-sm"
-                    id="category-delete-btn-<?php echo $category['id']; ?>" style="float: right; display: none;"
-                    onclick="confirm_modal('<?php echo site_url('Super_Admin/categories/delete/' . $category['id']); ?>');"
+                <!-- <a href="#" class="btn btn-icon btn-outline-danger btn-sm"
+                    id="category-delete-btn-<?php //echo $category['id']; ?>" style="float: right; display: none;"
+                    onclick="confirm_modal('<?php //echo site_url('Super_Admin/categories/delete/' . $category['id']); ?>');"
                     style="margin-right:5px;">
-                    <i class="mdi mdi-delete"></i> <?php echo get_phrase('delete'); ?>
-                </a>
+                    <i class="mdi mdi-delete"></i> <?php //echo get_phrase('delete'); ?>
+                </a> -->
             </div> <!-- end card-body-->
         </div> <!-- end card-->
     </div>

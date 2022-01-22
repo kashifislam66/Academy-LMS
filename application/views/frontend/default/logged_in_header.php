@@ -30,7 +30,7 @@ $user_details = $this->user_model->get_user($this->session->userdata('user_id'))
             <?php if ($this->session->userdata('user_id')) : ?>
             <div class="instructor-box menu-icon-box pt-3" style="width:30%">
              <div class="icon">
-                <p class="text-muted">Welcome <?= $this->user_model->get_user_full_name($this->session->userdata('user_id')); ?></p>
+                <p class="text-muted text-bold">Welcome <?= $this->user_model->get_user_full_name($this->session->userdata('user_id')); ?></p>
              </div>
             </div>
             <?php endif; ?>

@@ -76,10 +76,16 @@ foreach ($my_courses as $my_course) {
                                     <h5 class="title"><?php echo ellipsis($course_details['title']); ?></h5>
                                 </a>
                                 <?php if($course_details['api_id'] != "") : ?>
-                                <small>
-                                    <?php 
-                                $course_status =  course_progress_go1($my_course['course_id']);
-                                echo $course_status;
+                                <small class="text-bold">
+                                <?php 
+                                  $course_status =  course_progress_go1($my_course['course_id']);
+                                  echo $course_status;
+                                ?>
+                                </small><br />
+                                <small class="text-bold"> End Date :
+                                <?php 
+                                  $enrol_last_date =  course_enrol_due_date_go1($my_course['course_id']);
+                                   echo date('d-M-Y', $enrol_last_date);
                                 ?>
                                 </small>
                                 <?php else:  ?>
@@ -91,7 +97,7 @@ foreach ($my_courses as $my_course) {
                                 </div>
                                 <small><?php echo ceil(course_progress($my_course['course_id'])); ?>%
                                     <?php echo site_phrase('completed'); ?></small>
-                                <div class="rating your-rating-box" style="position: unset; margin-top: -18px;">
+                                <div class="rating your-rating-box" style="position: unset; margin-top: -46px;">
 
                                     <?php
                                     $get_my_rating = $this->crud_model->get_user_specific_rating('course', $my_course['course_id']);
@@ -122,7 +128,7 @@ foreach ($my_courses as $my_course) {
                             <?php endif; ?>
                             <?php
                                 if(!empty($course_status) && ($course_status=="completed" || $course_status=="Completed")){ ?>
-                            <div class="rating your-rating-box" style="position: unset; margin-top: -18px;">
+                            <div class="rating your-rating-box" style="position: unset; margin-top: -46px;">
                             
                             <?php $get_my_rating = $this->crud_model->get_user_specific_rating('course', $my_course['course_id']);
                              for($i = 1; $i < 6; $i++):?>
