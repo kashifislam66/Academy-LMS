@@ -82,7 +82,7 @@ foreach ($my_courses as $my_course) {
                                   echo $course_status;
                                 ?>
                                 </small><br />
-                                <small class="text-bold"> End Date :
+                                <small class="text-bold"> Due date :
                                 <?php 
                                   $enrol_last_date =  course_enrol_due_date_go1($my_course['course_id']);
                                    echo date('d-M-Y', $enrol_last_date);
