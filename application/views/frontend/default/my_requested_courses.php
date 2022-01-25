@@ -82,12 +82,6 @@ foreach ($my_courses as $my_course) {
                                         echo $course_status;
                                         ?>
                                         </small><br />
-                                        <small class="text-bold"> Due date :
-                                        <?php 
-                                        $enrol_last_date =  course_enrol_due_date_go1($my_course['course_id']);
-                                        echo date('d-M-Y', $enrol_last_date);
-                                        ?>
-                                        </small>
                                         <?php else:  ?>
                                         <div class="progress" style="height: 5px;">
                                             <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
