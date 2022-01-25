@@ -1997,7 +1997,8 @@ class Crud_model extends CI_Model
         }
             $enrol_last_date = strtotime(date('D, d-M-Y'));
             $data['enrol_last_date'] = strtotime("+1 month", $enrol_last_date);
-            $data['date_added'] = strtotime(date('D, d-M-Y'));
+            $data['date_added']      = strtotime(date('D, d-M-Y'));
+            $data['is_requested']    = 1;
             $this->db->insert('enrol', $data);
             $status = ['status'=>1];
             $checker = array('id' => $id);

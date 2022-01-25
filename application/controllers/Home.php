@@ -177,6 +177,16 @@ class Home extends CI_Controller
         $this->load->view('frontend/' . get_frontend_settings('theme') . '/index', $page_data);
     }
 
+    public function my_requested_courses()
+    {
+        if ($this->session->userdata('user_login') != true) {
+            redirect(site_url('home'), 'refresh');
+        }
+        $page_data['page_name'] = "my_requested_courses";
+        $page_data['page_title'] = 'Requested Courses';
+        $this->load->view('frontend/' . get_frontend_settings('theme') . '/index', $page_data);
+    }
+
     public function manager_courses()
     {
         if ($this->session->userdata('manager_login') != true) {

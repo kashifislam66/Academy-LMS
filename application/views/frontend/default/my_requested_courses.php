@@ -56,7 +56,7 @@ foreach ($my_courses as $my_course) {
                 $course_details = $this->crud_model->get_course_by_id($my_course['course_id'])->row_array();
                 $instructor_details = $this->user_model->get_all_user($course_details['user_id'])->row_array();
                 $course_status = '';
-              if(!empty($my_course['is_requested']) == 0){?>
+              if(!empty($my_course['is_requested']) == 1){?>
                     <div class="col-lg-3">
                         <div class="course-box-wrap">
                             <div class="course-box">
