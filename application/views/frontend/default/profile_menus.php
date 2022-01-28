@@ -4,7 +4,7 @@
             <div class="col">
                 <h1 class="page-title print-hidden"><?php echo $page_title; ?></h1>
                 <ul class="print-hidden">
-                  <li class="<?php if($page_name == 'my_courses') echo 'active'; ?>"><a href="<?php echo site_url('home/my_courses'); ?>"><?php echo 'My Courses'; ?></a></li>
+                  <li class="<?php if($page_name == 'my_courses') echo 'active'; ?>"><a href="<?php echo site_url('home/my_courses'); ?>"><?php echo 'Assigned courses'; ?></a></li>
                   <li class="<?php if($page_name == 'my_requested_courses') echo 'active'; ?>"><a href="<?php echo site_url('home/my_requested_courses'); ?>"><?php echo 'Requested courses'; ?></a></li>
                   <?php if(addon_status('course_bundle')): ?>
                     <li class="<?php if($page_name == 'my_bundles' || $page_name == 'bundle_invoice') echo 'active'; ?>"><a href="<?php echo site_url('home/my_bundles'); ?>"><?php echo site_phrase('bundles'); ?></a></li>

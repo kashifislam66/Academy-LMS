@@ -62,6 +62,12 @@
                         style="border: 1px solid transparent; margin: 0px; font-size: 14px; width: max-content; border-radius: 5px; max-height: 40px; line-height: 40px; padding: 0px 10px;"><?php echo 'Manage Account'; ?></a>
                 </div>
             </div>
+            <div class="instructor-box menu-icon-box" style="<?php echo $btnSyle; ?>">
+                <div class="icon">
+                    <a href="<?php echo site_url('home/manager_courses'); ?>"
+                        style="border: 1px solid transparent; margin: 0px;     padding: 0px 10px; font-size: 14px; width: max-content; border-radius: 5px; height: 40px; line-height: 40px;"><?php echo site_phrase('my_courses'); ?></a>
+                </div>
+            </div>
             <div class="instructor-box menu-icon-box">
             <div class="wishlist-box menu-icon-box" id="wishlist_items_manager">
                 <?php include 'manager_wishlist_items.php'; ?>

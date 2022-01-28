@@ -391,11 +391,10 @@ class Email_model extends CI_Model {
 		}else{
 			if(empty($userPass)){
 			  $new_password = substr(md5(rand(100000000, 20000000000)), 0, 10);
-			  //Checking credential for admin
 			  $this->db->where('id', $query['id']);
 			  $this->db->update('users', array('password' => sha1($new_password)));
 			}else{	
-					$new_password = $userPass; 
+			  $new_password = $userPass; 
 			}	
 		}
 
@@ -414,17 +413,19 @@ class Email_model extends CI_Model {
 	
 
 	public function send_email_company_user_enrolment($user_id='', $course_id='', $company_id=''){
-		$student_request_course = $this->db->select('course.title, users.first_name, users.last_name, users.email')
+		$student_request_course = $this->db->select('course.title, users.first_name, users.last_name, users.email, users.company_id')
 		->join('course', 'enrolment_request.course_id = course.id')
 		->join('users', 'enrolment_request.user_id = users.id')
 		->where('enrolment_request.course_id', $course_id)
 		->where('enrolment_request.user_id', $user_id);
 		$query = $this->db->get('enrolment_request')->result_array();
 		$student_req = $query[0];
+		
+		$to_company_email = $this->db->get_where('users', array('id' => $student_req['company_id']))->row_array();
 
 		$email_data['subject']   = "User request course enrollment GoSkillBoost LMS";
 		$email_data['from']		 = $student_req['email'];
-		$email_data['to'] 		 = get_settings('system_email');
+		$email_data['to'] 		 = $to_company_email['email'];
 		$email_data['full_name'] = $student_req['first_name'].' '.$student_req['last_name'];
 		$email_data['course_title'] = $student_req['title'];
 		$email_template = $this->load->view('email/email_student_enrol_request_to_admin', $email_data, TRUE);
@@ -435,7 +436,6 @@ class Email_model extends CI_Model {
 
 	public function send_email_shortcut_enrol_a_student_manually($user_id='', $course_id=''){
 		  foreach($user_id  as $userId){
-			  
 			$student_request_course = $this->db->select('course.title,course.id as cr_id, users.first_name, users.last_name, users.email')
 			->join('course', 'enrol.course_id = course.id')
 			->join('users', 'enrol.user_id = users.id')

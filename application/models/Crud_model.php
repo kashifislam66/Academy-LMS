@@ -1430,8 +1430,8 @@ class Crud_model extends CI_Model
 
                 $duration_formatter = explode(':', $this->input->post('duration'));
                 $hour = sprintf('%02d', $duration_formatter[0]);
-                $min = sprintf('%02d', $duration_formatter[1]);
-                $sec = sprintf('%02d', $duration_formatter[2]);
+                $min  = sprintf('%02d', $duration_formatter[1]);
+                $sec  = sprintf('%02d', $duration_formatter[2]);
                 $data['duration'] = $hour . ':' . $min . ':' . $sec;
 
                 $video_details = $this->video_model->getVideoDetails($data['video_url']);
@@ -1445,8 +1445,8 @@ class Crud_model extends CI_Model
 
                 $duration_formatter = explode(':', $this->input->post('html5_duration'));
                 $hour = sprintf('%02d', $duration_formatter[0]);
-                $min = sprintf('%02d', $duration_formatter[1]);
-                $sec = sprintf('%02d', $duration_formatter[2]);
+                $min  = sprintf('%02d', $duration_formatter[1]);
+                $sec  = sprintf('%02d', $duration_formatter[2]);
                 $data['duration'] = $hour . ':' . $min . ':' . $sec;
                 $data['video_type'] = 'html5';
 

@@ -1,7 +1,6 @@
 <?php
 
 $my_courses = $this->user_model->manager_courses()->result_array();
-
 $categories = array();
 foreach ($my_courses as $my_course) {
     $course_details = $this->crud_model->get_course_by_id($my_course['course_id'])->row_array();

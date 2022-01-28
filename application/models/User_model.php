@@ -51,9 +51,18 @@ class User_model extends CI_Model
         $user_id = $this->session->userdata('user_id');
         //  echo $user_id; exit;
         $this->db->order_by("id", "DESC");
-        $array = array('role_id' => 2,'manage_id'=> $user_id);
+        $array = array('role_id' => 2, 'manage_id'=> $user_id);
         $this->db->where($array);
         return $this->db->get('users');
+    }
+
+    public function get_user_and_manager_by_manager()
+    {
+        $user_id = $this->session->userdata('user_id');
+        $student = $this->db->select('users.*')
+		->where('users.manage_id', $user_id);
+        return$this->db->get('users');
+       
     }
 
     public function get_manager($user_id = 0)
@@ -172,7 +181,7 @@ class User_model extends CI_Model
             $data['company_number'] = $email = html_escape($this->input->post('company_number'));
             $data['company_id']     = html_escape($this->input->post('company_id'));
             $userPass = html_escape($this->input->post('password'));
-            $data['password']       =  sha1(html_escape($this->input->post('password')));
+            $data['password']        =  sha1(html_escape($this->input->post('password')));
             $social_link['facebook'] = html_escape($this->input->post('facebook_link'));
             $social_link['twitter']  = html_escape($this->input->post('twitter_link'));
             $social_link['linkedin'] = html_escape($this->input->post('linkedin_link'));
@@ -512,10 +521,8 @@ class User_model extends CI_Model
         }
         $this->db->select('enrol.*');
         $this->db->join('users','users.id = enrol.user_id');
-        $this->db->where('manage_id', $this->session->userdata('user_id'));
-        // $this->db->where('company_id', $this->session->userdata('user_id'));
+        $this->db->where('users.id', $user_id);
         return $this->db->get('enrol');
-        //return $this->db->get_where('enrol', array('user_id' => $user_id));
     }
 
     public function upload_user_image($image_code)
@@ -977,6 +984,7 @@ class User_model extends CI_Model
             $data['last_name'] = html_escape($this->input->post('last_name'));
             $data['email'] = $email = html_escape($this->input->post('email'));
             $data['company_id'] = html_escape($this->input->post('company_id'));
+            $data['manage_id'] = html_escape($this->input->post('manage_id'));
             $userPass = html_escape($this->input->post('password'));
             $data['password'] = sha1(html_escape($this->input->post('password')));
             $social_link['facebook'] = html_escape($this->input->post('facebook_link'));
@@ -1070,15 +1078,16 @@ class User_model extends CI_Model
                 $data['email'] = $email =  html_escape($this->input->post('email'));
             }
             $data['company_id'] = html_escape($this->input->post('company_id'));
+            $data['manage_id']  = html_escape($this->input->post('manage_id'));
             $social_link['facebook'] = html_escape($this->input->post('facebook_link'));
-            $social_link['twitter'] = html_escape($this->input->post('twitter_link'));
+            $social_link['twitter']  = html_escape($this->input->post('twitter_link'));
             $social_link['linkedin'] = html_escape($this->input->post('linkedin_link'));
             $data['social_links'] = json_encode($social_link);
             $data['biography'] = $this->input->post('biography');
-            $data['title'] = html_escape($this->input->post('title'));
+            $data['title']  = html_escape($this->input->post('title'));
             $data['skills'] = html_escape($this->input->post('skills'));
             $data['last_modified'] = strtotime(date("Y-m-d H:i:s"));
-            $data['is_manager'] = html_escape($this->input->post('is_manager'));
+            $data['is_manager']    = html_escape($this->input->post('is_manager'));
             if (isset($_FILES['user_image']) && $_FILES['user_image']['name'] != "") {
                 unlink('uploads/user_image/' . $this->db->get_where('users', array('id' => $user_id))->row('image') . '.jpg');
                 $data['image'] = md5(rand(10000, 10000000));

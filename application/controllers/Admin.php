@@ -1740,10 +1740,12 @@ class Admin extends CI_Controller
         if ($param1 == 'add_user_form') {
             $page_data['page_name'] = 'manager_add';
             $page_data['page_title'] = get_phrase('manager_add');
+            $page_data['select_user_manager'] = $this->user_model->select_manager_name();
             $this->load->view('backend/index', $page_data);
         } elseif ($param1 == 'edit_user_form') {
             $page_data['page_name'] = 'manager_edit';
             $page_data['user_id'] = $param2;
+            $page_data['select_user_manager'] = $this->user_model->select_manager_name();
             $page_data['page_title'] = get_phrase('manager_edit');
             $this->load->view('backend/index', $page_data);
         }

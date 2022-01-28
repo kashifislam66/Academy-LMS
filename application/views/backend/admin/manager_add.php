@@ -127,6 +127,21 @@
                                         </div>
                                     </div> <!-- end col -->
                                 </div> <!-- end row -->
+
+                                <div class="form-group row mb-3">
+                                            <label class="col-md-3 col-form-label"
+                                                for="admin_list"><?php echo 'Select Manager'; ?><span
+                                                    class="required">*</span></label>
+                                            <div class="col-md-9">
+                                                <select name="manage_id" id="manage_id" class="form-control" required>
+                                                    <option>Select Manager</option>
+                                                    <?php foreach ($select_user_manager as $row) {?>
+                                                    <option value="<?php echo $row->id; ?>">
+                                                        <?php echo $row->first_name.' '.$row->last_name; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                        </div>
                             </div>
 
                             <div class="tab-pane" id="social_information">

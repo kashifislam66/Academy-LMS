@@ -568,7 +568,8 @@ $instructor_details = $this->user_model->get_all_user($course_details['user_id']
                                                         </label>
                                                         <select class="form-control select2" data-toggle="select2" name="user_id[]" id="user_id" multiple="multiple" required>
                                                             <option value=""><?php echo get_phrase('select_a_user'); ?></option>
-                                                            <?php $user_list = $this->user_model->get_user_by_manager()->result_array();
+
+                                                            <?php $user_list = $this->user_model->get_user_and_manager_by_manager()->result_array();
                                                             foreach ($user_list as $user):?>
                                                             <option value="<?php echo $user['id'] ?>">
                                                                 <?php echo $user['first_name'].' '.$user['last_name']; ?></option>
